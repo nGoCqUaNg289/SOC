@@ -37,41 +37,42 @@
                                                 </article>
                                             </a>
                                         </div>
-                                        <!-- <div>
-                                            <a>
-                                                <article class="uk-card uk-card-default uk-card-small uk-article uk-overflow-hidden uk-box-shadow-hover-large uk-height-1-1 tm-ignore-container">
-                                                    <div class="tm-ratio tm-ratio-16-9">
-                                                        <figure class="tm-media-box uk-cover-container uk-margin-remove"><img src="images/articles/macos.jpg" alt="Apple introduces macOS Mojave" uk-cover="uk-cover" /></figure>
-                                                    </div>
-                                                    <div class="uk-card-body">
-                                                        <div class="uk-article-body">
-                                                            <div class="uk-article-meta uk-margin-xsmall-bottom">
-                                                                <time>May 21, 2018</time>
-                                                            </div>
-                                                            <div>
-                                                                <h3 class="uk-margin-remove">Apple introduces macOS Mojave</h3>
-                                                            </div>
-                                                            <div class="uk-margin-small-top">
-                                                                <p>Praesent consequat justo eu massa malesuada posuere. Donec ultricies tincidunt nisl, sed euismod nulla venenatis maximus. Maecenas sit amet semper tellus. Pellentesque imperdiet finibus sapien,
-                                                                    a consectetur eros auctor a.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </article>
-                                            </a>
-                                        </div> -->
                                     </div>
                                 </section>
                                 <aside class="uk-width-1-4 uk-visible@m tm-aside-column">
                                     <section class="uk-card uk-card-default uk-card-small" uk-sticky="offset: 90; bottom: true;">
                                         <nav>
                                             <ul class="uk-nav uk-nav-default tm-nav">
-                                                <li><a href="about.html">About</a></li>
-                                                <li><a href="contacts.html">Contacts</a></li>
-                                                <li class="uk-active"><a href="blog.html">Blog</a></li>
-                                                <li><a href="news.html">News</a></li>
-                                                <li><a href="faq.html">FAQ</a></li>
-                                                <li><a href="delivery.html">Delivery</a></li>
+                                                <li>
+                                                    <router-link to="/about">
+                                                        Về chúng tôi
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/about">
+                                                        Liên hệ với của hàng
+                                                    </router-link>
+                                                </li>
+                                                <li class="uk-active">
+                                                    <router-link to="/blog">
+                                                        Blog
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/news">
+                                                        News
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/faq">
+                                                        FAQ
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/delivery">
+                                                        Delivery
+                                                    </router-link>
+                                                </li>
                                             </ul>
                                         </nav>
                                     </section>

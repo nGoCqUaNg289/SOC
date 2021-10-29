@@ -22,7 +22,8 @@ import personal from "../components/personal.vue"
 import product from "../components/product.vue"
 import setting from "../components/setting.vue"
 import subcategory from "../components/subcategory.vue"
-
+import vnpay from "../components/vnpay.vue"
+import cartInfo from "../components/cartInfo.vue"
 
 import Login from "../containers/Login.vue"
 
@@ -52,6 +53,8 @@ const router = new Router({
         { path: "/personal", component: personal, name: "personal" },
         { path: "/product", component: product, name: "product", props: true },
         { path: "/setting", component: setting, name: "setting" },
+        { path: "/vnpay", component: vnpay, name: "vnpay", props: true },
+        { path: "/cartinfo", component: cartInfo, name: "cartinfo", props: true },
         { path: "/login", component: Login, name: "login" },
     ]
 })

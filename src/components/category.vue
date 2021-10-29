@@ -6,12 +6,12 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalog.html">Catalog</a></li>
-                <li><span>Laptops &amp; Tablets</span></li>
+                <li><a>Trang chủ</a></li>
+                <li><a>Danh mục sản phẩm</a></li>
+                <li><span>Laptops</span></li>
               </ul>
               <h1 class="uk-margin-small-top uk-margin-remove-bottom">
-                Laptops &amp; Tablets
+                Laptops
               </h1>
               <!-- <div class="uk-text-meta uk-margin-xsmall-top">367 items</div> -->
             </div>
@@ -36,7 +36,7 @@
                       <header class="uk-card-header uk-flex uk-flex-middle">
                         <div class="uk-grid-small uk-flex-1" uk-grid>
                           <div class="uk-width-expand">
-                            <div class="uk-h3">Filters</div>
+                            <div class="uk-h3">Bộ lọc</div>
                           </div>
                           <button
                             class="uk-offcanvas-close"
@@ -51,20 +51,20 @@
                         style="flex-basis: auto"
                       >
                         <section class="uk-card-small uk-card-body">
-                          <h4 class="uk-margin-small-bottom">Categories</h4>
+                          <h4 class="uk-margin-small-bottom">Thể loại</h4>
                           <ul class="uk-nav uk-nav-default">
-                            <li><a href="subcategory.html">Laptops</a></li>
-                            <li><a href="subcategory.html">Tablets</a></li>
-                            <li><a href="subcategory.html">Peripherals</a></li>
-                            <li><a href="subcategory.html">Keyboards</a></li>
-                            <li><a href="subcategory.html">Accessories</a></li>
+                            <li><a>Laptop Gaming</a></li>
+                            <li><a>Laptop văn phòng</a></li>
+                            <li><a>Laptop mỏng nhẹ</a></li>
+                            <li><a>Laptop đồ hoạ</a></li>
+                            <li><a>Phụ kiện PC</a></li>
                           </ul>
                         </section>
                         <section
                           class="uk-card-body uk-open js-accordion-section"
                         >
                           <h4 class="uk-accordion-title uk-margin-remove">
-                            Prices
+                            Giá thành
                           </h4>
                           <div class="uk-accordion-content">
                             <div
@@ -76,24 +76,24 @@
                               <div>
                                 <div class="uk-inline">
                                   <span class="uk-form-icon uk-text-xsmall"
-                                    >from</span
+                                    >Từ</span
                                   >
                                   <input
                                     class="uk-input"
                                     type="text"
-                                    placeholder="$59"
+                                    placeholder="~"
                                   />
                                 </div>
                               </div>
                               <div>
                                 <div class="uk-inline">
                                   <span class="uk-form-icon uk-text-xsmall"
-                                    >to</span
+                                    >Tới</span
                                   >
                                   <input
                                     class="uk-input"
                                     type="text"
-                                    placeholder="$6559"
+                                    placeholder="~"
                                   />
                                 </div>
                               </div>
@@ -104,7 +104,7 @@
                           class="uk-card-body js-accordion-section uk-open"
                         >
                           <h4 class="uk-accordion-title uk-margin-remove">
-                            Brands
+                            Thương hiệu
                           </h4>
                           <div class="uk-accordion-content">
                             <ul class="uk-list tm-scrollbox">
@@ -255,7 +255,7 @@
                               class="uk-margin-xsmall-right"
                               uk-icon="icon: close; ratio: .75;"
                             ></span
-                            >Reset all filters
+                            >Bỏ lọc
                           </button>
                         </div>
                       </div>
@@ -290,30 +290,26 @@
                               >
                                 <span
                                   class="uk-margin-small-right uk-text-muted"
-                                  >Sort by:</span
+                                  >Sắp xếp theo:</span
                                 >
                                 <ul class="uk-subnav uk-margin-remove">
                                   <li class="uk-active uk-padding-remove">
-                                    <a class="uk-text-lowercase" href="#"
-                                      >relevant<span
+                                    <a class="uk-text-lowercase"
+                                      >Liên quan<span
                                         class="uk-margin-xsmall-left"
                                         uk-icon="icon: chevron-down; ratio: .5;"
                                       ></span
                                     ></a>
                                   </li>
                                   <li>
-                                    <a class="uk-text-lowercase" href="#"
-                                      >price</a
-                                    >
+                                    <a class="uk-text-lowercase">Giá</a>
                                   </li>
                                   <li>
-                                    <a class="uk-text-lowercase" href="#"
-                                      >newest</a
-                                    >
+                                    <a class="uk-text-lowercase">Mới nhất</a>
                                   </li>
                                 </ul>
                               </div>
-                              <div
+                              <!-- <div
                                 class="
                                   uk-width-1-1
                                   uk-width-auto@s
@@ -361,7 +357,7 @@
                                     </li>
                                   </ul>
                                 </div>
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                           <div>
@@ -440,9 +436,23 @@
                                             >Add to favorites</span
                                           ></a
                                         >
-                                        <a class="tm-product-card-action js-add-to js-add-to-compare tm-action-button-active js-added-to" title="Add to compare" @click="compareProduct(item)">
-                                          <span uk-icon="icon: copy; ratio: .75;"></span>
-                                          <span class="tm-product-card-action-text">Add to compare</span>
+                                        <a
+                                          class="
+                                            tm-product-card-action
+                                            js-add-to js-add-to-compare
+                                            tm-action-button-active
+                                            js-added-to
+                                          "
+                                          title="Add to compare"
+                                          @click="compareProduct(item)"
+                                        >
+                                          <span
+                                            uk-icon="icon: copy; ratio: .75;"
+                                          ></span>
+                                          <span
+                                            class="tm-product-card-action-text"
+                                            >Add to compare</span
+                                          >
                                         </a>
                                       </div>
                                       <button
@@ -451,7 +461,14 @@
                                           tm-product-card-add-button tm-shine
                                           js-add-to-cart
                                         "
-                                        @click="addToCart(item.id, item.name, item.photos[0], item.price)"
+                                        @click="
+                                          addToCart(
+                                            item.id,
+                                            item.name,
+                                            item.photos[0],
+                                            item.price
+                                          )
+                                        "
                                       >
                                         <span
                                           class="
@@ -498,14 +515,14 @@
                     <div>
                       <ul class="uk-pagination uk-flex-center">
                         <li class="uk-active"><span>1</span></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
+                        <li><a>2</a></li>
+                        <li><a>3</a></li>
+                        <li><a>4</a></li>
+                        <li><a>5</a></li>
                         <li class="uk-disabled"><span>…</span></li>
-                        <li><a href="#">20</a></li>
+                        <li><a>20</a></li>
                         <li>
-                          <a href="#"><span uk-pagination-next></span></a>
+                          <a><span uk-pagination-next></span></a>
                         </li>
                       </ul>
                     </div>
@@ -615,8 +632,7 @@
 import axios from "axios";
 
 export default {
-  components: {
-  },
+  components: {},
   data() {
     return {
       getData: "",
@@ -646,7 +662,7 @@ export default {
       console.log(pageNum);
     },
     formatPrice(value) {
-      let val = (value / 1).toFixed(2).replace(".", ",");
+      let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getDT() {
@@ -673,38 +689,27 @@ export default {
         params: { item: id },
       });
     },
-    addToCart(id, name, photos, price){
-      let item = { 
-        name: name, 
-        id: id, 
-        photos: photos, 
-        price: price, 
-      }
+    addToCart(id, name, photos, price) {
+      let item = {
+        name: name,
+        id: id,
+        photos: photos,
+        price: price,
+      };
       this.$store.state.StoreCart.push(item);
       console.log(this.$store.state.StoreCart);
+      alert("Đã thêm sản phẩm vào giỏ hàng!");
     },
-    compareProduct(item){
-      // let item = {}
-      // console.log(item)
-      // let productCompare = {
-      //   name : item.name,
-      //   price : item.price,
-      //   photo : item.photos[0],
-      //   // productDetails: item.productDetails,
-      //   ROM : item.productDetails[0].propertyValue,
-      //   card : item.productDetails[1].propertyValue,
-      //   CPU: item.productDetails[2].propertyValue,
-      //   OS : item.productDetails[3].propertyValue,
-      //   connect : item.productDetails[4].propertyValue,
-      //   display : item.productDetails[5].propertyValue,
-      //   battery : item.productDetails[6].propertyValue,
-      //   RAM : item.productDetails[7].propertyValue,
-      //   touchpable : item.productDetails[8].propertyValue,
-      // }
-      // console.log(productCompare)
-      this.$store.state.CompareCart.push(item)
-      console.log(this.$store.state.CompareCart)
-    }
+    compareProduct(item) {
+      console.log(this.$store.state.CompareCart.length);
+      if (this.$store.state.CompareCart.length < 2) {
+        this.$store.state.CompareCart.push(item);
+        alert("Đã thêm sản phẩm vào mục so sánh!");
+      }else{
+        alert("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!")
+      }
+
+    },
   },
 };
 </script>

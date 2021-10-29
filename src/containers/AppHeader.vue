@@ -6,7 +6,7 @@
           <nav>
             <ul class="uk-navbar-nav">
               <li>
-                <a href="#"
+                <a
                   ><span
                     class="uk-margin-xsmall-right"
                     uk-icon="icon: receiver; ratio: .75;"
@@ -20,7 +20,7 @@
                     class="uk-margin-xsmall-right"
                     uk-icon="icon: clock; ratio: .75;"
                   ></span
-                  >Daily 10:00–22:00
+                  >Thời gian mở cửa 08:00–22:00
                 </div>
               </li>
             </ul>
@@ -31,19 +31,14 @@
             <ul class="uk-navbar-nav">
               <li>
                 <router-link to="/news">
-                  <a href="">News</a>
+                  <a style="text-decoration: none">Tin mới</a>
                 </router-link>
               </li>
               <li>
                 <router-link to="/faq">
-                  <a href="">FAQ</a>
+                  <a style="text-decoration: none">FAQ</a>
                 </router-link>
               </li>
-              <!-- <li>
-                <router-link to="">
-                  <a href="">Payment</a>
-                </router-link>
-              </li> -->
             </ul>
           </nav>
         </div>
@@ -64,8 +59,8 @@
             ><a class="uk-navbar-item uk-logo"
               ><img
                 src="images/SOCStore.png"
-                width="90"
-                height="32"
+                width="120px"
+                height="auto"
                 alt="Logo" /></a
           ></router-link>
 
@@ -73,8 +68,8 @@
             <ul class="uk-navbar-nav">
               <li>
                 <router-link to="/catalog">
-                  <a class="a-custom"
-                    >Catalog<span
+                  <a class="a-custom" style="text-decoration: none;"
+                    >Sản phẩm<span
                       class="uk-margin-xsmall-left"
                       uk-icon="icon: chevron-down; ratio: .75;"
                     ></span
@@ -96,8 +91,8 @@
                     >
                       <li>
                         <div class="uk-margin-top uk-margin-bottom">
-                          <router-link to="/category"
-                            ><a class="uk-link-reset">
+                          <router-link to="/category">
+                          <a class="uk-link-reset" style="text-decoration: none;">
                               <img
                                 class="
                                   uk-display-block
@@ -105,54 +100,22 @@
                                   uk-margin-bottom
                                 "
                                 src="images/catalog/computers.svg"
-                                alt="Laptops &amp; Tablets"
                                 width="80"
                                 height="80"
                               />
-                              <div class="uk-text-bolder">
-                                Laptops &amp; Tablets
+                              <div class="uk-text-bolder" style="color:gray;text-decoration: none;">
+                                Laptops và PC
                               </div>
-                            </a></router-link
-                          >
+                            </a>
+                            </router-link>
 
-                          <ul class="uk-nav uk-nav-default">
+                          <!-- <ul class="uk-nav uk-nav-default">
                             <li><a>Laptops</a></li>
                             <li><a>Tablets</a></li>
                             <li><a>Peripherals</a></li>
                             <li><a>Keyboards</a></li>
                             <li><a>Accessories</a></li>
-                          </ul>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="uk-margin-top uk-margin-bottom">
-                          <a class="uk-link-reset" href="#"
-                            ><img
-                              class="
-                                uk-display-block uk-margin-auto uk-margin-bottom
-                              "
-                              src="images/catalog/phones.svg"
-                              alt="Phones &amp; Gadgets"
-                              width="80"
-                              height="80"
-                            />
-                            <div class="uk-text-bolder">
-                              Phones &amp; Gadgets
-                            </div>
-                          </a>
-                          <ul class="uk-nav uk-nav-default">
-                            <li><a>Smartphones</a></li>
-                            <li>
-                              <a>Mobile Phones</a>
-                            </li>
-                            <li>
-                              <a>Smart watches</a>
-                            </li>
-                            <li>
-                              <a>Charging and batteries</a>
-                            </li>
-                            <li><a>Accessories</a></li>
-                          </ul>
+                          </ul> -->
                         </div>
                       </li>
                     </ul>
@@ -162,7 +125,7 @@
               <li>
                 <router-link to="/brands">
                   <a class="a-custom"
-                    >Brands<span
+                    >Thương hiệu<span
                       class="uk-margin-xsmall-left"
                       uk-icon="icon: chevron-down; ratio: .75;"
                     ></span
@@ -197,7 +160,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="Apple"
                           >
                             <figure class="tm-media-box-wrap">
@@ -217,7 +180,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="Samsung"
                           >
                             <figure class="tm-media-box-wrap">
@@ -240,7 +203,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="Sony"
                           >
                             <figure class="tm-media-box-wrap">
@@ -260,7 +223,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="Microsoft"
                           >
                             <figure class="tm-media-box-wrap">
@@ -283,7 +246,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="Intel"
                           >
                             <figure class="tm-media-box-wrap">
@@ -303,7 +266,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="HP"
                           >
                             <figure class="tm-media-box-wrap">
@@ -323,7 +286,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="LG"
                           >
                             <figure class="tm-media-box-wrap">
@@ -343,7 +306,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="Lenovo"
                           >
                             <figure class="tm-media-box-wrap">
@@ -366,7 +329,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="ASUS"
                           >
                             <figure class="tm-media-box-wrap">
@@ -386,7 +349,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="Acer"
                           >
                             <figure class="tm-media-box-wrap">
@@ -406,7 +369,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="Dell"
                           >
                             <figure class="tm-media-box-wrap">
@@ -426,7 +389,7 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                            href="#"
+                          
                             title="Canon"
                           >
                             <figure class="tm-media-box-wrap">
@@ -439,8 +402,8 @@
                     <div class="uk-text-center uk-margin">
                       <a
                         class="uk-link-muted uk-text-uppercase tm-link-to-all"
-                        href="#"
-                        ><span>See all brands</span
+                      
+                        ><span>Xem tất cả</span
                         ><span uk-icon="icon: chevron-right; ratio: .75;"></span
                       ></a>
                     </div>
@@ -449,17 +412,17 @@
               </li>
               <li>
                 <router-link to="/blog"
-                  ><a class="a-custom">Blog</a>
+                  ><a class="a-custom">Blogs</a>
                 </router-link>
               </li>
               <li>
                 <router-link to="/about"
-                  ><a class="a-custom">About</a>
+                  ><a class="a-custom">Về chúng tôi</a>
                 </router-link>
               </li>
               <li>
                 <router-link to="/contacts"
-                  ><a class="a-custom">Contacts</a>
+                  ><a class="a-custom">Liên hệ</a>
                 </router-link>
               </li>
             </ul>
@@ -468,7 +431,7 @@
         <div class="uk-navbar-right">
           <a
             class="uk-navbar-toggle tm-navbar-button"
-            href="#"
+          
             uk-search-icon
           ></a>
           <div
@@ -482,13 +445,13 @@
                     <input
                       class="uk-search-input"
                       type="search"
-                      placeholder="Search…"
+                      placeholder="Tìm kiếm…"
                       autofocus
                     />
                   </form>
                 </div>
                 <div class="uk-width-auto">
-                  <a class="uk-navbar-dropdown-close" href="#" uk-close></a>
+                  <a class="uk-navbar-dropdown-close" uk-close></a>
                 </div>
               </div>
             </div>
@@ -496,14 +459,14 @@
           <router-link to="/compare"
             ><a
               class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button"
-              href="#"
-              ><span uk-icon="copy"></span><span class="uk-badge">3</span></a
+            
+              ><span uk-icon="copy"></span><span class="uk-badge">{{this.$store.state.CompareCart.length}}</span></a
             ></router-link
           >
           <router-link to="/account">
             <a
               class="uk-navbar-item uk-link-muted tm-navbar-button"
-              href="#"
+            
               uk-icon="user"
             ></a>
           </router-link>
@@ -515,41 +478,42 @@
           >
             <ul class="uk-nav uk-dropdown-nav">
               <li>
-                <a href="#">
-                  Orders
+                <a>
+                  Đơn đã đặt
                   <span>(2)</span></a
                 >
               </li>
               <li>
                 <router-link to="/favorites">
-                  <a href="#">
-                    Favorites
+                  <a style="text-decoration: none">
+                    Sản phẩm yêu thích
                     <span>(3)</span></a
                   >
                 </router-link>
               </li>
               <li>
                 <router-link to="/personal"
-                  ><a href="#">Personal</a></router-link
+                  ><a style="text-decoration: none">Cá nhân</a></router-link
                 >
               </li>
               <li>
                 <router-link to="/setting">
-                  <a href="#">Settings</a>
+                  <a style="text-decoration: none">Cài đặt</a>
                 </router-link>
               </li>
               <li class="uk-nav-divider"></li>
-              <li><a href="#">Log out</a></li>
+              <li><a>Đăng xuất</a></li>
             </ul>
           </div>
           <router-link to="/cart"
             ><a
               class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button"
-              href="#"
+            
               ><span uk-icon="cart"></span
-              ><span class="uk-badge">{{ quantityCart }}</span></a
+              ><span class="uk-badge">{{this.$store.state.StoreCart.length}}</span></a
             ></router-link
           >
+          
         </div>
       </div>
     </div>

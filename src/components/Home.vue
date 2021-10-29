@@ -7,7 +7,7 @@
       >
         <ul class="uk-slideshow-items">
           <li style="background-color: #0b0a12">
-            <a href="#">
+            <a>
               <figure class="uk-container uk-height-1-1">
                 <img
                   src="images/promo/macbook-new.jpg"
@@ -20,7 +20,7 @@
             </a>
           </li>
           <li style="background-color: #ce071e">
-            <a href="#">
+            <a>
               <figure class="uk-container uk-height-1-1">
                 <img
                   src="images/promo/iphone.jpg"
@@ -33,7 +33,7 @@
             </a>
           </li>
           <li style="background-color: #1f2024">
-            <a href="#">
+            <a>
               <figure class="uk-container uk-height-1-1">
                 <img
                   src="images/promo/ipad.jpg"
@@ -48,13 +48,13 @@
         </ul>
         <a
           class="uk-position-center-left uk-position-small uk-hidden-hover"
-          href="#"
+        
           uk-slideshow-item="previous"
           uk-slidenav-previous
         ></a>
         <a
           class="uk-position-center-right uk-position-small uk-hidden-hover"
-          href="#"
+        
           uk-slideshow-item="next"
           uk-slidenav-next
         ></a>
@@ -83,7 +83,6 @@
                     uk-padding-small
                     uk-box-shadow-hover-large
                   "
-                  href="#"
                 >
                   <div class="tm-ratio tm-ratio-4-3">
                     <div class="tm-media-box">
@@ -97,10 +96,10 @@
                     </div>
                   </div>
                   <div class="uk-margin-small-top">
-                    <div class="uk-text-truncate">Laptops</div>
-                    <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
+                    <div class="uk-text-truncate">Laptops Gaming</div>
+                    <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
                       from $149
-                    </div>
+                    </div> -->
                   </div>
                 </a>
               </router-link>
@@ -114,7 +113,6 @@
                   uk-padding-small
                   uk-box-shadow-hover-large
                 "
-                href="subcategory.html"
               >
                 <div class="tm-ratio tm-ratio-4-3">
                   <div class="tm-media-box">
@@ -128,10 +126,10 @@
                   </div>
                 </div>
                 <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">Smartphones</div>
-                  <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
+                  <div class="uk-text-truncate">Laptop văn phòng</div>
+                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
                     from $99
-                  </div>
+                  </div> -->
                 </div>
               </a>
             </div>
@@ -144,7 +142,6 @@
                   uk-padding-small
                   uk-box-shadow-hover-large
                 "
-                href="subcategory.html"
               >
                 <div class="tm-ratio tm-ratio-4-3">
                   <div class="tm-media-box">
@@ -158,10 +155,10 @@
                   </div>
                 </div>
                 <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">Tablets</div>
-                  <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
+                  <div class="uk-text-truncate">Laptop mỏng nhẹ, thời trang</div>
+                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
                     from $129
-                  </div>
+                  </div> -->
                 </div>
               </a>
             </div>
@@ -174,7 +171,6 @@
                   uk-padding-small
                   uk-box-shadow-hover-large
                 "
-                href="subcategory.html"
               >
                 <div class="tm-ratio tm-ratio-4-3">
                   <div class="tm-media-box">
@@ -188,10 +184,10 @@
                   </div>
                 </div>
                 <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">Smart Watches</div>
-                  <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
+                  <div class="uk-text-truncate">Laptops sinh viên</div>
+                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
                     from $49
-                  </div>
+                  </div> -->
                 </div>
               </a>
             </div>
@@ -204,7 +200,6 @@
                   uk-padding-small
                   uk-box-shadow-hover-large
                 "
-                href="subcategory.html"
               >
                 <div class="tm-ratio tm-ratio-4-3">
                   <div class="tm-media-box">
@@ -218,10 +213,10 @@
                   </div>
                 </div>
                 <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">Gaming Consoles</div>
-                  <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
+                  <div class="uk-text-truncate">Laptop đồ hoạ, kiến trúc</div>
+                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
                     from $399
-                  </div>
+                  </div> -->
                 </div>
               </a>
             </div>
@@ -234,7 +229,6 @@
                   uk-padding-small
                   uk-box-shadow-hover-large
                 "
-                href="subcategory.html"
               >
                 <div class="tm-ratio tm-ratio-4-3">
                   <div class="tm-media-box">
@@ -248,10 +242,10 @@
                   </div>
                 </div>
                 <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">Cameras</div>
-                  <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
+                  <div class="uk-text-truncate">PC builds</div>
+                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
                     from $129
-                  </div>
+                  </div> -->
                 </div>
               </a>
             </div>
@@ -259,8 +253,7 @@
           <div class="uk-margin uk-text-center">
             <a
               class="uk-link-muted uk-text-uppercase tm-link-to-all"
-              href="catalog.html"
-              ><span>see all categories</span
+              ><span>Xem tất cả sản phẩm</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
           </div>
@@ -268,7 +261,7 @@
       </section>
       <section class="uk-section uk-section-small">
         <div class="uk-container">
-          <h2 class="uk-text-center">Trending Items</h2>
+          <h2 class="uk-text-center">Sản phẩm nổi bật</h2>
           <div class="uk-card uk-card-default tm-ignore-container">
             <div class="uk-grid-collapse uk-child-width-1-3 uk-child-width-1-4@m tm-products-grid" uk-grid>
               <article class="tm-product-card"  v-for="item in getData" :key="item.id">
@@ -339,7 +332,7 @@
             <router-link to="/category">
               <a
               class="uk-link-muted uk-text-uppercase tm-link-to-all"
-              ><span>shop all</span
+              ><span>Toàn bộ sản phẩm</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
             </router-link>
@@ -349,13 +342,13 @@
       </section>
       <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
-          <h2 class="uk-text-center">Popular Brands</h2>
+          <h2 class="uk-text-center">Thương hiệu phổ biến</h2>
           <div class="uk-margin-medium-top" uk-slider="finite: true">
             <div class="uk-position-relative">
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                 <div class="uk-visible@m">
                   <a
-                    href="#"
+                  
                     uk-slidenav-previous
                     uk-slider-item="previous"
                   ></a>
@@ -374,7 +367,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="Apple"
                         >
                           <figure class="tm-media-box-wrap">
@@ -387,7 +380,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="Samsung"
                         >
                           <figure class="tm-media-box-wrap">
@@ -403,7 +396,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="Sony"
                         >
                           <figure class="tm-media-box-wrap">
@@ -416,7 +409,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="Microsoft"
                         >
                           <figure class="tm-media-box-wrap">
@@ -432,7 +425,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="Intel"
                         >
                           <figure class="tm-media-box-wrap">
@@ -445,7 +438,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="HP"
                         >
                           <figure class="tm-media-box-wrap">
@@ -458,7 +451,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="LG"
                         >
                           <figure class="tm-media-box-wrap">
@@ -471,7 +464,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="Lenovo"
                         >
                           <figure class="tm-media-box-wrap">
@@ -484,7 +477,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="ASUS"
                         >
                           <figure class="tm-media-box-wrap">
@@ -497,7 +490,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="Acer"
                         >
                           <figure class="tm-media-box-wrap">
@@ -510,7 +503,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="Dell"
                         >
                           <figure class="tm-media-box-wrap">
@@ -523,7 +516,7 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                          href="#"
+                        
                           title="Canon"
                         >
                           <figure class="tm-media-box-wrap">
@@ -535,7 +528,7 @@
                   </ul>
                 </div>
                 <div class="uk-visible@m">
-                  <a href="#" uk-slider-item="next" uk-slidenav-next></a>
+                  <a uk-slider-item="next" uk-slidenav-next></a>
                 </div>
               </div>
             </div>
@@ -552,8 +545,7 @@
           <div class="uk-margin uk-text-center">
             <a
               class="uk-link-muted uk-text-uppercase tm-link-to-all"
-              href="brands.html"
-              ><span>see all brands</span
+              ><span>Xem tất cả thương hiệu</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
           </div>
@@ -572,7 +564,7 @@
             uk-grid
           >
             <div>
-              <a href="article.html">
+              <a>
                 <article
                   class="
                     uk-card
@@ -620,7 +612,7 @@
               </a>
             </div>
             <div>
-              <a href="article.html">
+              <a>
                 <article
                   class="
                     uk-card
@@ -672,8 +664,7 @@
           <div class="uk-margin uk-text-center">
             <a
               class="uk-link-muted uk-text-uppercase tm-link-to-all"
-              href="blog.html"
-              ><span>see all articles</span
+              ><span>Xem tất cả bài viết</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
           </div>
@@ -686,7 +677,7 @@
             uk-grid
           >
             <section>
-              <h2 class="uk-text-center uk-text-left@s">About</h2>
+              <h2 class="uk-text-center uk-text-left@s">Về chúng tôi</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at
                 neque vulputate, vestibulum magna in, accumsan urna. Nulla
@@ -705,14 +696,14 @@
               <div class="uk-text-center uk-text-left@s">
                 <a
                   class="uk-link-muted uk-text-uppercase tm-link-to-all"
-                  href="about.html"
-                  ><span>read more</span
+                  
+                  ><span>Xem thêm</span
                   ><span uk-icon="icon: chevron-right; ratio: .75;"></span
                 ></a>
               </div>
             </section>
             <section>
-              <h2 class="uk-text-center uk-text-left@s">Latest News</h2>
+              <h2 class="uk-text-center uk-text-left@s">Tin tức mới nhất</h2>
               <ul class="uk-list uk-list-small uk-list-divider">
                 <li>
                   <article class="uk-article">
@@ -721,7 +712,7 @@
                         <time>June 4, 2018</time>
                       </div>
                       <h3 class="uk-h4 uk-margin-remove">
-                        <a class="uk-link-heading" href="article.html"
+                        <a class="uk-link-heading"
                           >Highlights from WWDC</a
                         >
                       </h3>
@@ -743,7 +734,7 @@
                         <time>June 4, 2018</time>
                       </div>
                       <h3 class="uk-h4 uk-margin-remove">
-                        <a class="uk-link-heading" href="article.html"
+                        <a class="uk-link-heading"
                           >Apple introduces macOS Mojave</a
                         >
                       </h3>
@@ -765,7 +756,7 @@
                         <time>May 29, 2018</time>
                       </div>
                       <h3 class="uk-h4 uk-margin-remove">
-                        <a class="uk-link-heading" href="article.html"
+                        <a class="uk-link-heading"
                           >iOS 11.4 brings stereo pairs and multi-room audio
                           with AirPlay 2</a
                         >
@@ -785,8 +776,7 @@
               <div class="uk-margin uk-text-center uk-text-left@s">
                 <a
                   class="uk-link-muted uk-text-uppercase tm-link-to-all"
-                  href="news.html"
-                  ><span>see all news</span
+                  ><span>Xem các tin khác</span
                   ><span uk-icon="icon: chevron-right; ratio: .75;"></span
                 ></a>
               </div>
@@ -794,7 +784,7 @@
           </div>
         </div>
       </section>
-      <section class="uk-section uk-section-primary uk-section-small uk-light">
+      <!-- <section class="uk-section uk-section-primary uk-section-small uk-light">
         <div class="uk-container">
           <div class="uk-text-center">
             <div class="uk-h2 uk-margin-remove">Subscribe for updates</div>
@@ -821,7 +811,7 @@
             </form>
           </div>
         </div>
-      </section>
+      </section> -->
       <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>

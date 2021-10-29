@@ -53,12 +53,36 @@
                                     <section class="uk-card uk-card-default uk-card-small" uk-sticky="offset: 90; bottom: true;">
                                         <nav>
                                             <ul class="uk-nav uk-nav-default tm-nav">
-                                                <li><a href="about.html">About</a></li>
-                                                <li class="uk-active"><a href="contacts.html">Contacts</a></li>
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="news.html">News</a></li>
-                                                <li><a href="faq.html">FAQ</a></li>
-                                                <li><a href="delivery.html">Delivery</a></li>
+                                                <li>
+                                                    <router-link to="/about">
+                                                        Về chúng tôi
+                                                    </router-link>
+                                                </li>
+                                                <li class="uk-active">
+                                                    <router-link to="/about">
+                                                        Liên hệ với của hàng
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/blog">
+                                                        Blog
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/news">
+                                                        News
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/faq">
+                                                        FAQ
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/delivery">
+                                                        Delivery
+                                                    </router-link>
+                                                </li>
                                             </ul>
                                         </nav>
                                     </section>

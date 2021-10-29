@@ -13,12 +13,12 @@
               <a class="uk-logo" href="index.html"
                 ><img
                   src="images/SOCFooter.png"
-                  width="150"
+                  width="150px"
                   height="auto"
                   alt="Logo"
               /></a>
               <p class="uk-text-small"></p>
-              <ul class="uk-iconnav">
+              <!-- <ul class="uk-iconnav">
                 <li>
                   <a href="#" title="Facebook" uk-icon="facebook"></a>
                 </li>
@@ -31,7 +31,7 @@
                 <li>
                   <a href="#" title="Instagram" uk-icon="instagram"></a>
                 </li>
-              </ul>
+              </ul> -->
             </div>
             <div>
               <nav >
@@ -79,7 +79,7 @@
               <form class="uk-form-stacked">
                 <label>
                   <div class="uk-form-label uk-text-muted">
-                    Subscribe for updates
+                    Đăng ký ngay !
                   </div>
                   <div class="uk-inline uk-width-1-1">
                     <a

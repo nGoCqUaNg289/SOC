@@ -26,11 +26,11 @@
                       <h1 class="uk-article-title">
                         {{getData.title}}
                       </h1>
-                      <div class="uk-article-meta">
+                      <!-- <div class="uk-article-meta">
                         <time></time>
-                      </div>
+                      </div> -->
                     </header>
-                    <section class="uk-article-body">
+                    <section class=" section-custom">
                       
                       <div class="tm-wrapper uk-text-center">
                         <figure>
@@ -45,20 +45,12 @@
                       
                       <figure class="uk-text-center">
                         <a href="images/articles/macbook-promo-4.jpg"
-                          ><img
-                            src="images/articles/macbook-promo-4.jpg"
-                            alt="MacBook Pro"
-                        /></a>
+                        >
+                        <img src="images/articles/macbook-promo-4.jpg" alt="MacBook Pro"/></a>
                       </figure>
                       
                       <div class="tm-wrapper">
                         <figure class="tm-ratio tm-ratio-16-9">
-                          <!-- <iframe
-                            src="https://www.youtube.com/watch?v=nG1-7gExImU"
-                            frameborder="0"
-                            allow="autoplay; encrypted-media"
-                            allowfullscreen
-                          ></iframe> -->
                           <iframe width="713" height="401" src="https://www.youtube.com/embed/nG1-7gExImU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </figure>
                       </div>
@@ -393,5 +385,8 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
+.section-custom{
+  margin-top: 5%;
+}
 </style>
