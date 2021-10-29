@@ -23,6 +23,9 @@ import product from "../components/product.vue"
 import setting from "../components/setting.vue"
 import subcategory from "../components/subcategory.vue"
 
+
+import Login from "../containers/Login.vue"
+
 Vue.use(Router)
 
 
@@ -40,15 +43,16 @@ const router = new Router({
         { path: "/subcategory", component: subcategory, name: "subcategory" },
         { path: "/compare", component: compare, name: "compare" },
         { path: "/catalog", component: catalog, name: "catalog" },
-        { path: "/article", component: article, name: "article" },
-        { path: "/cart", component: cart, name: "cart" },
+        { path: "/article", component: article, name: "article", props: true },
+        { path: "/cart", component: cart, name: "cart", props: true },
         { path: "/category", component: category, name: "category" },
-        { path: "/checkout", component: checkout, name: "checkout" },
+        { path: "/checkout", component: checkout, name: "checkout", props: true },
         { path: "/delivery", component: delivery, name: "delivery" },
         { path: "/favorites", component: favorites, name: "favorites" },
         { path: "/personal", component: personal, name: "personal" },
         { path: "/product", component: product, name: "product", props: true },
         { path: "/setting", component: setting, name: "setting" },
+        { path: "/login", component: Login, name: "login" },
     ]
 })
 

@@ -62,7 +62,11 @@
           ></button>
           <router-link to="/"
             ><a class="uk-navbar-item uk-logo"
-              ><img src="images/SOCStore.png" width="90" height="32" alt="Logo"/></a
+              ><img
+                src="images/SOCStore.png"
+                width="90"
+                height="32"
+                alt="Logo" /></a
           ></router-link>
 
           <nav class="uk-visible@m">
@@ -78,7 +82,11 @@
                 </router-link>
 
                 <div
-                  class="uk-navbar-dropdown uk-margin-remove uk-padding-remove-vertical"
+                  class="
+                    uk-navbar-dropdown
+                    uk-margin-remove
+                    uk-padding-remove-vertical
+                  "
                   uk-drop="pos: bottom-justify;delay-show: 125;delay-hide: 50;duration: 75;boundary: .tm-navbar-container;boundary-align: true;pos: bottom-justify;flip: x"
                 >
                   <div class="uk-container">
@@ -91,7 +99,11 @@
                           <router-link to="/category"
                             ><a class="uk-link-reset">
                               <img
-                                class="uk-display-block uk-margin-auto uk-margin-bottom"
+                                class="
+                                  uk-display-block
+                                  uk-margin-auto
+                                  uk-margin-bottom
+                                "
                                 src="images/catalog/computers.svg"
                                 alt="Laptops &amp; Tablets"
                                 width="80"
@@ -116,7 +128,9 @@
                         <div class="uk-margin-top uk-margin-bottom">
                           <a class="uk-link-reset" href="#"
                             ><img
-                              class="uk-display-block uk-margin-auto uk-margin-bottom"
+                              class="
+                                uk-display-block uk-margin-auto uk-margin-bottom
+                              "
                               src="images/catalog/phones.svg"
                               alt="Phones &amp; Gadgets"
                               width="80"
@@ -156,17 +170,33 @@
                 </router-link>
 
                 <div
-                  class="uk-navbar-dropdown uk-margin-remove uk-padding-remove-vertical"
+                  class="
+                    uk-navbar-dropdown
+                    uk-margin-remove
+                    uk-padding-remove-vertical
+                  "
                   uk-drop="pos: bottom-justify;delay-show: 125;delay-hide: 50;duration: 75;boundary: .tm-navbar-container;boundary-align: true;pos: bottom-justify;flip: x"
                 >
                   <div
-                    class="uk-container uk-container-small uk-margin-top uk-margin-bottom"
+                    class="
+                      uk-container
+                      uk-container-small
+                      uk-margin-top
+                      uk-margin-bottom
+                    "
                   >
                     <ul class="uk-grid-small uk-child-width-1-6" uk-grid>
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="Apple"
                           >
@@ -179,7 +209,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="Samsung"
                           >
@@ -195,7 +232,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="Sony"
                           >
@@ -208,7 +252,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="Microsoft"
                           >
@@ -224,7 +275,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="Intel"
                           >
@@ -237,7 +295,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="HP"
                           >
@@ -250,7 +315,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="LG"
                           >
@@ -263,7 +335,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="Lenovo"
                           >
@@ -279,7 +358,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="ASUS"
                           >
@@ -292,7 +378,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="Acer"
                           >
@@ -305,7 +398,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="Dell"
                           >
@@ -318,7 +418,14 @@
                       <li>
                         <div class="tm-ratio tm-ratio-4-3">
                           <a
-                            class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large tm-media-box"
+                            class="
+                              uk-link-muted
+                              uk-text-center
+                              uk-display-block
+                              uk-padding-small
+                              uk-box-shadow-hover-large
+                              tm-media-box
+                            "
                             href="#"
                             title="Canon"
                           >
@@ -404,7 +511,7 @@
           <div
             class="uk-padding-small uk-margin-remove"
             uk-dropdown="pos: bottom-right; offset: -10; delay-hide: 200;"
-            style="min-width: 150px;"
+            style="min-width: 150px"
           >
             <ul class="uk-nav uk-dropdown-nav">
               <li>
@@ -439,7 +546,8 @@
             ><a
               class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button"
               href="#"
-              ><span uk-icon="cart"></span><span class="uk-badge">2</span></a
+              ><span uk-icon="cart"></span
+              ><span class="uk-badge">{{ quantityCart }}</span></a
             ></router-link
           >
         </div>
@@ -449,7 +557,27 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "AppHeader",
+  data() {
+    return {
+      quantityCart: "",
+    };
+  },
+  created() {
+    this.getQuantityCart();
+  },
+  methods: {
+    getQuantityCart() {
+      this.quantityCart = this.$store.state.StoreCart.length;
+    },
+  },
+  watch: {
+    changeCart: function(){
+      this.quantityCart = this.$store.state.StoreCart.length;
+    }
+  },
+};
 </script>
 
 <style></style>

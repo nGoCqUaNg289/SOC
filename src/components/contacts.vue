@@ -16,7 +16,8 @@
                                 <section class="uk-width-1-1 uk-width-expand@m">
                                     <article class="uk-card uk-card-default uk-card-small uk-card-body uk-article tm-ignore-container">
                                         <div class="tm-wrapper">
-                                            <figure class="tm-ratio tm-ratio-16-9 js-map" data-latitude="59.9356728" data-longitude="30.3258604" data-zoom="14"></figure>
+                                            <!-- <figure class="tm-ratio tm-ratio-16-9 js-map" data-latitude="59.9356728" data-longitude="30.3258604" data-zoom="14"></figure> -->
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.86385588139!2d105.74459841420217!3d21.03813279283589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b991d80fd5%3A0x53cefc99d6b0bf6f!2zVHLGsOG7nW5nIENhbyDEkeG6s25nIEZQVCBQb2x5dGVjaG5pYw!5e0!3m2!1svi!2s!4v1634951379437!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                                         </div>
                                         <div class="uk-child-width-1-1 uk-child-width-1-2@s uk-margin-top" uk-grid>
                                             <section>
@@ -37,51 +38,13 @@
                                             <section>
                                                 <h3>Feedback</h3>
                                                 <dl class="uk-description-list">
-                                                    <dt>Cooperation</dt>
+                                                    <dt><a uk-icon="facebook"></a> Facebook</dt>
                                                     <dd><a class="uk-link-muted" href="#">cooperation@example.com</a></dd>
-                                                    <dt>Partners</dt>
+                                                    <dt><a uk-icon="mail"></a> Gmail</dt>
                                                     <dd><a class="uk-link-muted" href="#">partners@example.com</a></dd>
-                                                    <dt>Press</dt>
+                                                    <dt><a uk-icon="google"></a> Website</dt>
                                                     <dd><a class="uk-link-muted" href="#">press@example.com</a></dd>
                                                 </dl>
-                                            </section>
-                                            <section class="uk-width-1-1">
-                                                <h2 class="uk-text-center">Contact Us</h2>
-                                                <form>
-                                                    <div class="uk-grid-small uk-child-width-1-1" uk-grid>
-                                                        <div>
-                                                            <label>
-                                      <div class="uk-form-label uk-form-label-required">Name</div>
-                                      <input class="uk-input" type="text" required>
-                                    </label>
-                                                        </div>
-                                                        <div>
-                                                            <label>
-                                      <div class="uk-form-label uk-form-label-required">Email</div>
-                                      <input class="uk-input" type="email" required>
-                                    </label>
-                                                        </div>
-                                                        <div>
-                                                            <label>
-                                      <div class="uk-form-label">Topic</div>
-                                      <select class="uk-select">
-                                        <option>Customer service</option>
-                                        <option>Tech support</option>
-                                        <option>Other</option>
-                                      </select>
-                                    </label>
-                                                        </div>
-                                                        <div>
-                                                            <label>
-                                      <div class="uk-form-label">Message</div>
-                                      <textarea class="uk-textarea" rows="5"></textarea>
-                                    </label>
-                                                        </div>
-                                                        <div class="uk-text-center">
-                                                            <button class="uk-button uk-button-primary">Send</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
                                             </section>
                                         </div>
                                     </article>

@@ -111,7 +111,8 @@
                                             <div>Daily 10:00–22:00</div>
                                         </figure>
                                         <div class="tm-wrapper">
-                                            <figure class="tm-ratio tm-ratio-16-9 js-map" data-latitude="59.9356728" data-longitude="30.3258604" data-zoom="14"></figure>
+                                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.86385588139!2d105.74459841420217!3d21.03813279283589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b991d80fd5%3A0x53cefc99d6b0bf6f!2zVHLGsOG7nW5nIENhbyDEkeG6s25nIEZQVCBQb2x5dGVjaG5pYw!5e0!3m2!1svi!2s!4v1634951379437!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                            <!-- <figure class="tm-ratio tm-ratio-16-9 js-map" data-latitude="59.9356728" data-longitude="30.3258604" data-zoom="14"></figure> -->
                                         </div>
                                     </div>
                                 </article>

@@ -134,7 +134,7 @@
                                         <input class="uk-input tm-quantity-input" id="product-1" type="text" maxlength="3" value="1"/><a onclick="increment(+1, 'product-1')" uk-icon="icon: plus; ratio: .75"></a>
                                       </div>
                                       <div>
-                                        <button class="uk-button uk-button-primary tm-product-add-button tm-shine js-add-to-cart">add to cart</button>
+                                        <button class="uk-button uk-button-primary tm-product-add-button tm-shine js-add-to-cart" @click="addToCart(item.id)"></button>
                                       </div>
                                       <div class="uk-width-auto uk-width-expand@s uk-flex uk-flex-middle uk-text-meta"><a class="uk-margin-small-right js-add-to js-add-to-favorites tm-action-button-active js-added-to" uk-tooltip="Add to favorites"><span uk-icon="heart"></span></a><a class="js-add-to js-add-to-compare tm-action-button-active js-added-to" uk-tooltip="Add to compare"><span uk-icon="copy"></span></a></div>
                                     </div>
@@ -195,9 +195,9 @@
                           <div class="uk-card-body">
                             <div class="uk-switcher js-product-switcher js-tabs">
                               <section>
-                                <article class="uk-article" v-for="item in getData.blogs" :key="item.id">
+                                <article class="uk-article">
                                   <div class="uk-article-body">
-                                    <p>{{item.title}}</p>
+                                    <p></p>
                                     <div class="tm-wrapper uk-text-center">
                                       <figure><a href="images/articles/macbook-photo.jpg"><img src="images/articles/macbook-photo.jpg" alt="MacBook Pro"></a>
                                         <figcaption>MacBook Pro</figcaption>
@@ -205,8 +205,8 @@
                                     </div>
                                     <figure uk-slideshow>
                                       <div class="uk-position-relative uk-visible-toggle uk-light">
-                                        <ul class="uk-slideshow-items" v-for="itemPhoto in getData.photos" :key="itemPhoto.id">
-                                          <li><img :src="itemPhoto" alt="MacBook Pro" uk-cover height="75px" width="100%"></li>
+                                        <ul class="uk-slideshow-items">
+                                          <li><img alt="MacBook Pro" uk-cover height="75px" width="100%"></li>
                                         </ul><a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a><a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
                                       </div>
                                       <ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin"></ul>
@@ -958,71 +958,13 @@
             </div>
           </div>
         </section>
-        <!-- <section class="uk-section uk-section-default uk-section-small">
-          <div class="uk-container">
-            <div uk-slider>
-              <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-5@m uk-grid">
-                <li>
-                  <div class="uk-grid-small uk-flex-center uk-flex-left@s" uk-grid>
-                    <div><span uk-icon="icon: star; ratio: 2.5;"></span>
-                    </div>
-                    <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                      <div>Mauris placerat</div>
-                      <div class="uk-text-meta">Donec mollis nibh dolor, sit amet auctor</div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="uk-grid-small uk-flex-center uk-flex-left@s" uk-grid>
-                    <div><span uk-icon="icon: receiver; ratio: 2.5;"></span>
-                    </div>
-                    <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                      <div>Lorem ipsum</div>
-                      <div class="uk-text-meta">Sit amet, consectetur adipiscing elit</div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="uk-grid-small uk-flex-center uk-flex-left@s" uk-grid>
-                    <div><span uk-icon="icon: location; ratio: 2.5;"></span>
-                    </div>
-                    <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                      <div>Proin pharetra</div>
-                      <div class="uk-text-meta">Nec quam a fermentum ut viverra</div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="uk-grid-small uk-flex-center uk-flex-left@s" uk-grid>
-                    <div><span uk-icon="icon: comments; ratio: 2.5;"></span>
-                    </div>
-                    <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                      <div>Praesent ultrices</div>
-                      <div class="uk-text-meta">Praesent ultrices, orci nec finibus</div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="uk-grid-small uk-flex-center uk-flex-left@s" uk-grid>
-                    <div><span uk-icon="icon: happy; ratio: 2.5;"></span>
-                    </div>
-                    <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                      <div>Duis condimentum</div>
-                      <div class="uk-text-meta">Pellentesque eget varius arcu</div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top"></ul>
-            </div>
-          </div>
-        </section> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
+  name:"product",
 props:{ 
   item: Number,
 },
@@ -1042,6 +984,7 @@ data() {
         cartDetails: "",
         productDetails: [],
       },
+      cartDetails: []
     };
   },
 created() {
@@ -1058,13 +1001,17 @@ created() {
         .get("https://javamahtest.herokuapp.com/api/customer/products/"+ this.item)
         .then((response) => {
           this.getData = response.data.object;
-          console.log("Get Data",this.getData);
+          console.log("GetData",this.getData);
         })
         .catch((e) => {
           console.log(e);
         });
+    },
+    addToCart(id){
+      console.log(id);
+    },
+    compareProducts(){
       
-      // console.log(this.formData)
     }
   }
 };

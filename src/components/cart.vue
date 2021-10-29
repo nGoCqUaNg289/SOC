@@ -24,13 +24,6 @@
                       tm-ignore-container
                     "
                   >
-                    <!-- <div class="tm-wrapper">
-                      <div style="width: 100%; height: 35px">
-                        <input class="checkbox-custom" type="checkbox" />
-                        <div class="title-checkbox-all">Tất cả sản phẩm</div>
-                        <b-icon class="icon-trash" icon="trash"></b-icon>
-                      </div>
-                    </div> -->
                     <table class="table table-custom-border" id="">
                       <tbody>
                         <tr>
@@ -93,114 +86,39 @@
                   >
                     <table class="table">
                       <tbody>
-                        <tr>
+                        <tr v-for="(item,index) in DetailsCart" :key="item.id">
                           <th scope="row" class="checkbox-product">
                             <input type="checkbox" />
                           </th>
                           <td class="size-img-cart-product">
                             <img
                               class="img-product"
-                              src="https://lh3.googleusercontent.com/UYjc4AbXjoU0eaAa0G_ktI2EOceEE8gqrYDa_Pv3Vd9GTx1AywsaMOt9uNhi_b1MyiY4wt0zDTLKndsJnBdPvMpiL20KR6VA1TCYcgWQHK2JfdJoqLVRyFl8TuHLMDaqb-cn_fj2vQrf6mlJE671Vp8Ip0DBIoyAabre31nl6aDlD5ti8T168ryqcKVbPauWWTmwthnvi59C8tMHHS-Gp5g940ytxsgGOuCKQxkAa4LFpIgWdEhWWxNpGXuLZ0iXHeCuD7KSi4Ugh1xY512vlO8HWEjGmfNEwVqk_SvAnaNUtADely-Sfg5r-NT87-0x9FbQBLyh2l4Bb9a2wCYQOnEqB3EIbnDxU6O6LEfIqG0MI2bACKOYXTXxSkeL5BDjqgSTtwezZ6pVYNRD1d99tCvc11AA51tJCgNuoCNCdfYkI5uuyvgfHF3J3lrdObfMnnhwNFlLOZPSJl44fMlB1E_rVlQ25I1Cs5TsgHkoAcT5VkEGXNxDpmhx-c9oOMi4OPM8_AWQSWlU1O87_8Pg2N5O0ZzK-1M8Zru-RWJ8AMnCUokle1HjfnVxTFOAaheVAqbQlAE3m7v5l-UvYn3ZbNHjU42XVLgBPJfZ9yga1r0de0KwKwvFIyS-3vgnYqjqbfPT1M6nxwmJUdjsSuRwlEJ4bsqiB8hvpvnJ-7AsxLa_Cr2hDN0D8x1myMJpNySGf0H2ZaipnS8Qc7gaidROQ1Ci=w236-h150-no?authuser=0"
+                              :src="item.photos"
                               alt=""
                             />
                           </td>
                           <td class="custom-font-size-td custom-size-price">
-                            92.000đ
+                            {{formatPrice(item.price)}}
                           </td>
-                          <td class="custom-font-size-td custom-size-qty">5</td>
+                          <td class="custom-font-size-td custom-size-qty">
+                            <input class="custom-input-total" type="text" placeholder="">
+                          </td>
                           <td
                             class="
                               text-color-red
                               custom-font-size-td custom-size-total
                             "
                           >
-                            92.000đ
+                            {{formatPrice(item.price)}}
                           </td>
                           <td>
-                            <button class="btn-custom-color-product">
-                              <b-icon icon="trash" style="color: red"></b-icon>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class="checkbox-product">
-                            <input type="checkbox" />
-                          </th>
-                          <td>
-                            <img
-                              class="img-product"
-                              src="https://lh3.googleusercontent.com/hxd72Liq365QxDT-JRpZbDCRxbmaIX8LXltTWkRL-jmIswzESz0j0WG_zLnrWx6i4z80APTe015F0YvBIC1qsVgjtLlCvkM4FC85cCl-6TBi1eLl4LbcLazrP6cqBPP1onRHeBmYw-nLlfR0z5bm1m4P0SA2fbWNgxQGCIFVQuK80-A8JLjCOlg5xXeVdf0v_ZbAu5ODMVcRRRNz6OT4LmniS8I6my3WRzaMgFfV623vcJpYUUF0T3KS-kYr81sDeMJ5MlvMZ9adu0_XW8blk-J_yv4ev7fllI8NRVkZtKVNwUXSkIH2dm7NVdBsLx4ur7Q1exSO_zz7qVCuaiIRMPU0U6vRQJoSRw85P9O77gyNqyn_jdt4Q8eYZv7EeTnl5m8WfWVtV3UUOx-m02bENjBVZvsR7fhTOqKIOcdGRb5CUIFxsH93JU7eT0nY1a9mKZbzrmuVZbdCXaD84yNJKrtizfKsBfc4e0xYpo0tZMZ-hCDNC_gkPGUCdTSwFvKuDjdJiLE50QDOWshKi4iAeWh3Y7x8RAeXavhcrQ7zk20QWBzqfxMBGFGotb6SmFxhpz54vu_oELMdiCTu5YPhzPDn9S15cnycSi8ZG5tEaP32n1PCSDSSuN4WekFZoB1UEPODOpjA4Ys2qi37HjFAWKtSazy06rXr1_gL25oixYdTplo8ORC0g3t2S-ghpvwEOwPyBUTI_Bpop64sVC_rWVMs=w261-h150-no?authuser=0"
-                              alt=""
-                            />
-                          </td>
-                          <td class="custom-font-size-td custom-size-price">
-                            92.000đ
-                          </td>
-                          <td class="custom-font-size-td custom-size-qty">5</td>
-                          <td
-                            class="
-                              text-color-red
-                              custom-font-size-td custom-size-total
-                            "
-                          >
-                            92.000đ
-                          </td>
-                          <td>
-                            <button class="btn-custom-color-product">
-                              <b-icon icon="trash" style="color: red"></b-icon>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th scope="row" class="checkbox-product">
-                            <input type="checkbox" />
-                          </th>
-                          <td>
-                            <img
-                              class="img-product"
-                              src="https://lh3.googleusercontent.com/EiBXmBjOE8-J6iAOEYiUx9Pih01swR9e8Y-2F54tg9x4rfuPfAQeLWB4qesJHkSksq8bp7gNxB6KUm17jNaNLWU8y-G3E4FQZAUobZ8dSdYEBHMFAluAKx7ysbNB-GOWxH6lTRlWE5e6alvG8HVWPGPpSWMmFx8vsQBUe_vYgqoGUhtwRSH_0LBzLC7yD7wIMLuZOUkW7VKw355WMKtASvkUAWpuc6WNA1SCrh6gVQ2IhXQ2h3tpT1vd4yqqPaJ0XadZPNXpXTf3EQU-CgEdZpSPUxg3q3pmILrh5MXfDZWbxEOH77uBMeFhDRRuOES9vbJMVuo-o3xJvfEco0PRC0oD7JAJ3SOa-cI4oyHr6rI6OI0McRLQon4mRiAmysbnp37-Y_YSj9dM4cHNrctEjyglfR-Df6cRN-ZZFdINS3rSs4figf4CCoZYclwoCINyPb-8W5Y0WOjzxhP8Qe8IckKcwN6DoI_IG9OFDddzM58kinhQHA7AMNpxB2vzvkEK0Z4crElJzm29tbXqH58sw2v-Xhz6UgkNXoZ263xAXFdV3tOI0nWBdUAP9EBP-8coZEUg-JrT2L9U0ie1ScLWfTUICUrBh3QQO99JpPwJLE5NsDZ7SoL3nOibDrWzZOslqHDaH8gbMe_jX4nxfA56EiCvqpQlytYOO29YRToyiglGcqUu7tT03Tex00maQclRjv7kyfNOroYO8gXLz534f5Qg=w257-h150-no?authuser=0"
-                              alt=""
-                            />
-                          </td>
-                          <td class="custom-font-size-td custom-size-price">
-                            92.000đ
-                          </td>
-                          <td class="custom-font-size-td custom-size-qty">5</td>
-                          <td
-                            class="
-                              text-color-red
-                              custom-font-size-td custom-size-total
-                            "
-                          >
-                            92.000đ
-                          </td>
-                          <td>
-                            <button class="btn-custom-color-product">
+                            <button class="btn-custom-color-product" @click="deleteProduct(index)">
                               <b-icon icon="trash" style="color: red"></b-icon>
                             </button>
                           </td>
                         </tr>
                       </tbody>
                     </table>
-
-                    <!-- <div class="tm-wrapper">
-                      <div class="product-cart">
-                        <input class="checkbox-custom-product" type="checkbox" />
-                        <img
-                          class="img-product"
-                          src="https://lh3.googleusercontent.com/UYjc4AbXjoU0eaAa0G_ktI2EOceEE8gqrYDa_Pv3Vd9GTx1AywsaMOt9uNhi_b1MyiY4wt0zDTLKndsJnBdPvMpiL20KR6VA1TCYcgWQHK2JfdJoqLVRyFl8TuHLMDaqb-cn_fj2vQrf6mlJE671Vp8Ip0DBIoyAabre31nl6aDlD5ti8T168ryqcKVbPauWWTmwthnvi59C8tMHHS-Gp5g940ytxsgGOuCKQxkAa4LFpIgWdEhWWxNpGXuLZ0iXHeCuD7KSi4Ugh1xY512vlO8HWEjGmfNEwVqk_SvAnaNUtADely-Sfg5r-NT87-0x9FbQBLyh2l4Bb9a2wCYQOnEqB3EIbnDxU6O6LEfIqG0MI2bACKOYXTXxSkeL5BDjqgSTtwezZ6pVYNRD1d99tCvc11AA51tJCgNuoCNCdfYkI5uuyvgfHF3J3lrdObfMnnhwNFlLOZPSJl44fMlB1E_rVlQ25I1Cs5TsgHkoAcT5VkEGXNxDpmhx-c9oOMi4OPM8_AWQSWlU1O87_8Pg2N5O0ZzK-1M8Zru-RWJ8AMnCUokle1HjfnVxTFOAaheVAqbQlAE3m7v5l-UvYn3ZbNHjU42XVLgBPJfZ9yga1r0de0KwKwvFIyS-3vgnYqjqbfPT1M6nxwmJUdjsSuRwlEJ4bsqiB8hvpvnJ-7AsxLa_Cr2hDN0D8x1myMJpNySGf0H2ZaipnS8Qc7gaidROQ1Ci=w236-h150-no?authuser=0"
-                          alt=""
-                        />
-                        <div class="checkbox-custom-product col-4">MacBook Pro 2019</div>
-                      </div>
-                    </div> -->
-
-                    <!-- <div
-                      class="
-                        uk-child-width-1-1 uk-child-width-1-2@s uk-margin-top
-                      "
-                      uk-grid
-                    ></div> -->
                   </article>
                 </section>
                 <aside class="uk-width-1-4 uk-visible@m tm-aside-column">
@@ -341,18 +259,41 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "cart",
+  props: {
+    CartDetail: [],
+  },
+  created(){
+    console.log(this.$store.state.StoreCart.length);
+    this.getCartDetail()
+  },
+  data() {
+    return {
+      formData: {
+        CartDetail: this.CartDetail,
+      },
+      DetailsCart: []
+    }
+  },
+  methods: {
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+    getCartDetail() {
+      this.DetailsCart = this.$store.state.StoreCart;
+      console.log(this.DetailsCart);
+    },
+    deleteProduct(index){
+      console.log(index)
+      this.DetailsCart.splice(index, 1);
+    }
+  }
+};
 </script>
 
 <style scope>
-/* .checkbox-custom {
-  float: left;
-  margin: 20px 0px 0px 20px;
-} */
-/* .checkbox-custom-product {
-  float: left;
-  margin: 45px 0px 0px 20px;
-} */
 .checkbox-product {
   vertical-align: middle;
   width: 40px;
@@ -434,5 +375,12 @@ table.table-custom-border {
   font-weight: 600;
   width: 100%;
   height: 35px;
+}
+.custom-input-total{
+  border: none;
+  padding:5px;
+  max-width: 50px;
+  border-bottom: 1px solid silver;
+  box-shadow: none;
 }
 </style>
