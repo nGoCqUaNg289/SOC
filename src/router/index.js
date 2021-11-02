@@ -26,6 +26,8 @@ import vnpay from "../components/vnpay.vue"
 import cartInfo from "../components/cartInfo.vue"
 
 import Login from "../containers/Login.vue"
+import Register from "../containers/Register.vue"
+import loadingform from "../containers/loadingform.vue"
 
 Vue.use(Router)
 
@@ -56,6 +58,8 @@ const router = new Router({
         { path: "/vnpay", component: vnpay, name: "vnpay", props: true },
         { path: "/cartinfo", component: cartInfo, name: "cartinfo", props: true },
         { path: "/login", component: Login, name: "login" },
+        { path: "/register", component: Register, name: "register" },
+        { path: "/loading", component: loadingform, name: "loading" },
     ]
 })
 

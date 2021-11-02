@@ -313,12 +313,12 @@
                           <span uk-icon="icon: heart; ratio: .75;"></span>
                           <span class="tm-product-card-action-text">Add to favorites</span>
                         </a>
-                        <a class="tm-product-card-action js-add-to js-add-to-compare tm-action-button-active js-added-to " title="Add to compare">
+                        <a class="tm-product-card-action js-add-to js-add-to-compare tm-action-button-active js-added-to " title="Add to compare" @click="compareProduct(item)">
                           <span uk-icon="icon: copy; ratio: .75;"></span>
                           <span class="tm-product-card-action-text">Add to compare</span>
                         </a>
                       </div>
-                      <button class="uk-button uk-button-primary tm-product-card-add-button tm-shine js-add-to-cart">
+                      <button class="uk-button uk-button-primary tm-product-card-add-button tm-shine js-add-to-cart" @click="addToCart(item.id,item.name,item.photos[0],item.price)">
                         <span class="tm-product-card-add-button-icon" uk-icon="cart"></span>
                         <span class="tm-product-card-add-button-text">add to cart</span>
                       </button>
@@ -963,7 +963,27 @@ export default {
         name: "product",
         params: { item: id },
       })
-    }
+    },
+    addToCart(id, name, photos, price) {
+      let item = {
+        name: name,
+        id: id,
+        photos: photos,
+        price: price,
+      };
+      this.$store.state.StoreCart.push(item);
+      console.log(this.$store.state.StoreCart);
+      alert("Đã thêm sản phẩm vào giỏ hàng!");
+    },
+    compareProduct(item) {
+      console.log(this.$store.state.CompareCart.length);
+      if (this.$store.state.CompareCart.length < 2) {
+        this.$store.state.CompareCart.push(item);
+        alert("Đã thêm sản phẩm vào mục so sánh!");
+      } else {
+        alert("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!");
+      }
+    },
   },
 };
 </script>

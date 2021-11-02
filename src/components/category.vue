@@ -15,6 +15,7 @@
               </h1>
               <!-- <div class="uk-text-meta uk-margin-xsmall-top">367 items</div> -->
             </div>
+
             <div>
               <div class="uk-grid-medium" uk-grid>
                 <aside
@@ -275,6 +276,7 @@
                           class="uk-grid-collapse uk-child-width-1-1"
                           id="products"
                           uk-grid
+                          v-if="getData.length > 0"
                         >
                           <div class="uk-card-header">
                             <div class="uk-grid-small uk-flex-middle" uk-grid>
@@ -309,7 +311,47 @@
                                   </li>
                                 </ul>
                               </div>
-                              <!-- <div
+                              <a class="uk-navbar-toggle tm-navbar-button" uk-search-icon></a>
+                                <div
+                                  class="
+                                    uk-navbar-dropdown
+                                    uk-padding-small
+                                    uk-margin-remove
+                                  "
+                                  uk-drop="mode: click;cls-drop: uk-navbar-dropdown;boundary: .tm-navbar-container;boundary-align: true;pos: bottom-justify;flip: x"
+                                >
+                                  <div class="uk-container">
+                                    <div
+                                      class="uk-grid-small uk-flex-middle"
+                                      uk-grid
+                                    >
+                                      <div class="uk-width-expand">
+                                        <form
+                                          class="
+                                            uk-search
+                                            uk-search-navbar
+                                            uk-width-1-1
+                                          "
+                                        >
+                                          <input
+                                            class="uk-search-input"
+                                            type="search"
+                                            placeholder="Tìm kiếm…"
+                                            autofocus
+                                            v-model="searchText"
+                                          />
+                                        </form>
+                                      </div>
+                                      <div class="uk-width-auto">
+                                        <a
+                                          class="uk-navbar-dropdown-close"
+                                          uk-close
+                                        ></a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              <div
                                 class="
                                   uk-width-1-1
                                   uk-width-auto@s
@@ -317,47 +359,7 @@
                                   uk-flex-center
                                   uk-flex-middle
                                 "
-                              >
-                                <button
-                                  class="
-                                    uk-button
-                                    uk-button-default
-                                    uk-button-small
-                                    uk-hidden@m
-                                  "
-                                  uk-toggle="target: #filters"
-                                >
-                                  <span
-                                    class="uk-margin-xsmall-right"
-                                    uk-icon="icon: settings; ratio: .75;"
-                                  ></span
-                                  >Filters
-                                </button>
-                                <div
-                                  class="tm-change-view uk-margin-small-left"
-                                >
-                                  <ul
-                                    class="uk-subnav uk-iconnav js-change-view"
-                                    uk-switcher
-                                  >
-                                    <li>
-                                      <a
-                                        class="uk-active"
-                                        data-view="grid"
-                                        uk-icon="grid"
-                                        uk-tooltip="Grid"
-                                      ></a>
-                                    </li>
-                                    <li>
-                                      <a
-                                        data-view="list"
-                                        uk-icon="list"
-                                        uk-tooltip="List"
-                                      ></a>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div> -->
+                              ></div>
                             </div>
                           </div>
                           <div>
@@ -510,9 +512,12 @@
                             </button>
                           </div>
                         </div>
+                        <loadingform v-else></loadingform>
                       </div>
                     </div>
-                    <div>
+
+                    <!-- phân trang -->
+                    <!-- <div>
                       <ul class="uk-pagination uk-flex-center">
                         <li class="uk-active"><span>1</span></li>
                         <li><a>2</a></li>
@@ -525,7 +530,7 @@
                           <a><span uk-pagination-next></span></a>
                         </li>
                       </ul>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -533,7 +538,7 @@
           </div>
         </div>
       </section>
-      <section class="uk-section uk-section-default uk-section-small">
+      <!-- <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>
             <ul
@@ -623,16 +628,19 @@
             ></ul>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import loadingform from "../containers/loadingform.vue";
 
 export default {
-  components: {},
+  components: {
+    loadingform,
+  },
   data() {
     return {
       getData: "",
@@ -651,15 +659,17 @@ export default {
 
       CartDetail: [],
       DetailCompare: [],
+      searchText: "",
     };
   },
   created() {
     this.getDT();
+    // console.log(this.$store.state.searchText);
     // this.callFunction();
   },
   methods: {
-    clickCallback(pageNum) {
-      console.log(pageNum);
+    filteredList() {
+      return this.getData.filter(data => data.toLowerCase().includes(this.searchText.value.toLowerCase()))
     },
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
@@ -705,10 +715,9 @@ export default {
       if (this.$store.state.CompareCart.length < 2) {
         this.$store.state.CompareCart.push(item);
         alert("Đã thêm sản phẩm vào mục so sánh!");
-      }else{
-        alert("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!")
+      } else {
+        alert("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!");
       }
-
     },
   },
 };

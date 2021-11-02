@@ -68,7 +68,7 @@
             <ul class="uk-navbar-nav">
               <li>
                 <router-link to="/catalog">
-                  <a class="a-custom" style="text-decoration: none;"
+                  <a class="a-custom" style="text-decoration: none"
                     >Sản phẩm<span
                       class="uk-margin-xsmall-left"
                       uk-icon="icon: chevron-down; ratio: .75;"
@@ -92,7 +92,10 @@
                       <li>
                         <div class="uk-margin-top uk-margin-bottom">
                           <router-link to="/category">
-                          <a class="uk-link-reset" style="text-decoration: none;">
+                            <a
+                              class="uk-link-reset"
+                              style="text-decoration: none"
+                            >
                               <img
                                 class="
                                   uk-display-block
@@ -103,11 +106,14 @@
                                 width="80"
                                 height="80"
                               />
-                              <div class="uk-text-bolder" style="color:gray;text-decoration: none;">
+                              <div
+                                class="uk-text-bolder"
+                                style="color: gray; text-decoration: none"
+                              >
                                 Laptops và PC
                               </div>
                             </a>
-                            </router-link>
+                          </router-link>
 
                           <!-- <ul class="uk-nav uk-nav-default">
                             <li><a>Laptops</a></li>
@@ -160,7 +166,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="Apple"
                           >
                             <figure class="tm-media-box-wrap">
@@ -180,7 +185,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="Samsung"
                           >
                             <figure class="tm-media-box-wrap">
@@ -203,7 +207,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="Sony"
                           >
                             <figure class="tm-media-box-wrap">
@@ -223,7 +226,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="Microsoft"
                           >
                             <figure class="tm-media-box-wrap">
@@ -246,7 +248,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="Intel"
                           >
                             <figure class="tm-media-box-wrap">
@@ -266,7 +267,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="HP"
                           >
                             <figure class="tm-media-box-wrap">
@@ -286,7 +286,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="LG"
                           >
                             <figure class="tm-media-box-wrap">
@@ -306,7 +305,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="Lenovo"
                           >
                             <figure class="tm-media-box-wrap">
@@ -329,7 +327,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="ASUS"
                           >
                             <figure class="tm-media-box-wrap">
@@ -349,7 +346,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="Acer"
                           >
                             <figure class="tm-media-box-wrap">
@@ -369,7 +365,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="Dell"
                           >
                             <figure class="tm-media-box-wrap">
@@ -389,7 +384,6 @@
                               uk-box-shadow-hover-large
                               tm-media-box
                             "
-                          
                             title="Canon"
                           >
                             <figure class="tm-media-box-wrap">
@@ -400,9 +394,7 @@
                       </li>
                     </ul>
                     <div class="uk-text-center uk-margin">
-                      <a
-                        class="uk-link-muted uk-text-uppercase tm-link-to-all"
-                      
+                      <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
                         ><span>Xem tất cả</span
                         ><span uk-icon="icon: chevron-right; ratio: .75;"></span
                       ></a>
@@ -429,7 +421,7 @@
           </nav>
         </div>
         <div class="uk-navbar-right">
-          <a
+          <!-- <a
             class="uk-navbar-toggle tm-navbar-button"
           
             uk-search-icon
@@ -447,6 +439,7 @@
                       type="search"
                       placeholder="Tìm kiếm…"
                       autofocus
+                      v-model="searchText"
                     />
                   </form>
                 </div>
@@ -455,18 +448,19 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <router-link to="/compare"
             ><a
               class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button"
-            
-              ><span uk-icon="copy"></span><span class="uk-badge">{{this.$store.state.CompareCart.length}}</span></a
+              ><span uk-icon="copy"></span
+              ><span class="uk-badge">{{
+                this.$store.state.CompareCart.length
+              }}</span></a
             ></router-link
           >
           <router-link to="/account">
             <a
               class="uk-navbar-item uk-link-muted tm-navbar-button"
-            
               uk-icon="user"
             ></a>
           </router-link>
@@ -502,18 +496,23 @@
                 </router-link>
               </li>
               <li class="uk-nav-divider"></li>
-              <li><a>Đăng xuất</a></li>
+
+              <li>
+                <router-link to="/login">
+                  <a>Đăng xuất</a>
+                </router-link>
+              </li>
             </ul>
           </div>
           <router-link to="/cart"
             ><a
               class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button"
-            
               ><span uk-icon="cart"></span
-              ><span class="uk-badge">{{this.$store.state.StoreCart.length}}</span></a
+              ><span class="uk-badge">{{
+                this.$store.state.StoreCart.length
+              }}</span></a
             ></router-link
           >
-          
         </div>
       </div>
     </div>
@@ -537,9 +536,9 @@ export default {
     },
   },
   watch: {
-    changeCart: function(){
+    changeCart: function () {
       this.quantityCart = this.$store.state.StoreCart.length;
-    }
+    },
   },
 };
 </script>

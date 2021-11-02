@@ -20,6 +20,7 @@
             <div class="submit-button">
               <button type="button" @click="setUser">Đăng nhập</button>
             </div>
+            <div style="text-align:center; margin-top:25px"><a style="text-decoration:none">Quên mật khẩu</a> | <a>Đăng ký tài khoản mới</a></div>
           </div>
         </div>
       </div>
