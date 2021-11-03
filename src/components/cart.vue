@@ -116,8 +116,8 @@
                                 class="custom-input-total"
                                 type="number"
                                 placeholder=""
-                                v-model="soLuong.value"
-                                min="0"
+                                v-model="item.qty"
+                                min="1"
                               />
                             </td>
                             <td
@@ -126,7 +126,12 @@
                                 custom-font-size-td custom-size-total
                               "
                             >
-                              {{ formatPrice(item.price * formData.number) }} đ
+                              {{
+                                formatPrice(
+                                  (totalPrice.value = item.price * item.qty)
+                                )
+                              }}
+                              đ
                             </td>
                             <td>
                               <button
@@ -167,7 +172,11 @@
                           <li>
                             <a>
                               <div>Tổng cộng</div>
-                              <span class="span-total">120000 đ</span>
+                              <span class="span-total"
+                                >{{ (totalPrice.value += totalPrice.value) }}
+                                <!-- {{ totalPrice }} -->
+                                đ</span
+                              >
                             </a>
                           </li>
                           <br />
@@ -175,7 +184,9 @@
                           <br />
 
                           <li>
-                            <button class="btn-muahang" @click="payment()">Mua Hàng</button>
+                            <button class="btn-muahang" @click="payment()">
+                              Mua Hàng
+                            </button>
                           </li>
                         </ul>
                       </nav>
@@ -184,13 +195,19 @@
                 </div>
               </div>
             </div>
-            <div v-else style="text-align:center">
-              <img src="images/emptycart.png" alt="" width="150px" style="margin-bottom: 25px">
+            <div v-else style="text-align: center">
+              <img
+                src="images/emptycart.png"
+                alt=""
+                width="150px"
+                style="margin-bottom: 25px"
+              />
               <p>Oh ! Có vẻ như bạn chưa có sản phẩm nào cần mua.</p>
-              <p>
-                Hãy tiếp tục mua sắm nào !
-              </p>
-              <button class="btn-custom-back btn btn-outline-primary" @click="backToCategory()">
+              <p>Hãy tiếp tục mua sắm nào !</p>
+              <button
+                class="btn-custom-back btn btn-outline-primary"
+                @click="backToCategory()"
+              >
                 Các sản phẩm khác
               </button>
             </div>
@@ -299,8 +316,9 @@ export default {
     CartDetail: [],
   },
   created() {
-    console.log(this.$store.state.StoreCart.length);
+    console.log(this.$store.state.StoreCart);
     this.getCartDetail();
+    // console.log(this.totalPrice.value);
   },
   data() {
     return {
@@ -311,7 +329,12 @@ export default {
         input: "",
         value: 1,
       },
+      totalPrice: {
+        input: "",
+        value: 0,
+      },
       DetailsCart: [],
+      TotalCart: [],
     };
   },
   methods: {
@@ -327,18 +350,16 @@ export default {
       console.log(index);
       this.DetailsCart.splice(index, 1);
     },
-    backToCategory(){
+    backToCategory() {
       this.$router.push({
         name: "category",
-        // params: { item: id },
-      })
+      });
     },
-    payment(){
+    payment() {
       this.$router.push({
         name: "cartinfo",
-        // params: { item: id },
-      })
-    }
+      });
+    },
   },
 };
 </script>

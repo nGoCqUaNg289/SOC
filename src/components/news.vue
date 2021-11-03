@@ -6,10 +6,10 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a href="index.html">Home</a></li>
-                <li><span>News</span></li>
+                <li><a>Trang chủ</a></li>
+                <li><span>Tin tức</span></li>
               </ul>
-              <h1 class="uk-margin-small-top uk-margin-remove-bottom">News</h1>
+              <h1 class="uk-margin-small-top uk-margin-remove-bottom">Tin tức</h1>
             </div>
             <div>
               <div class="uk-grid-medium" uk-grid>
@@ -31,17 +31,18 @@
                             </div>
                             <div>
                               <h3>
-                                <a class="uk-link-heading" href="article.html"
-                                  >Highlights from WWDC</a
+                                <a
+                                  class="uk-link-heading"
+                                  href="https://www.thegioididong.com/tin-tuc/nghe-don-la-iphone-14-1343505"
+                                  >APPLE chuẩn bị cho ra mắt Iphone 14</a
                                 >
                               </h3>
                             </div>
                             <div class="uk-margin-small-top">
                               <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Proin sodales eget ipsum id
-                                aliquam. Nam consectetur interdum nibh eget
-                                sodales. Cras volutpat efficitur ornare.
+                                APPLE đã bắt tay vào thiết kế Iphone 14 với những
+                                tính năng vượt trội, nhằm đem lại những trải
+                                nghiệm tốt hơn cho người dùng.
                               </p>
                             </div>
                           </div>
@@ -57,17 +58,19 @@
                             </div>
                             <div>
                               <h3>
-                                <a class="uk-link-heading" href="article.html"
-                                  >Apple introduces macOS Mojave</a
+                                <a
+                                  class="uk-link-heading"
+                                  href="https://genk.vn/thu-nghiem-that-bai-facebook-quyet-dinh-se-khong-hoat-dong-duoi-hinh-thuc-2-news-feed-nhu-ke-hoach-ban-dau-20180302100424965.chn"
+                                  >Facebook sẽ bỏ hình thức 2 News Feed riêng
+                                  biệt vì thử nghiệm không thành công</a
                                 >
                               </h3>
                             </div>
                             <div class="uk-margin-small-top">
                               <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Proin sodales eget ipsum id
-                                aliquam. Nam consectetur interdum nibh eget
-                                sodales. Cras volutpat efficitur ornare.
+                                Sau khi thử nghiệm không thành công hình thức
+                                hiển thị bản tin theo 2 news feed. Facebook đã
+                                quyết định từ bỏ hình thức này
                               </p>
                             </div>
                           </div>
@@ -83,18 +86,20 @@
                             </div>
                             <div>
                               <h3>
-                                <a class="uk-link-heading" href="article.html"
-                                  >iOS 11.4 brings stereo pairs and multi-room
-                                  audio with AirPlay 2</a
+                                <a
+                                  class="uk-link-heading"
+                                  href="https://tinhte.vn/thread/facebook-thu-nghiem-nhieu-tinh-nang-xem-video-co-khu-vuc-news-feed-chi-danh-cho-video.2517204/"
+                                  >Facebook thử nghiệm Video Feed - khu News
+                                  Feed chỉ dành riêng cho Video</a
                                 >
                               </h3>
                             </div>
                             <div class="uk-margin-small-top">
                               <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Proin sodales eget ipsum id
-                                aliquam. Nam consectetur interdum nibh eget
-                                sodales. Cras volutpat efficitur ornare.
+                                Với mục tiêu phát triển tương tác của người dùng
+                                Facebook và video trên trang, hãng tiếp tục cho
+                                thử nghiệm Video Feed - khu News Feed chỉ dành
+                                riêng cho Video.
                               </p>
                             </div>
                           </div>

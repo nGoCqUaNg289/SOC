@@ -6,10 +6,10 @@
                     <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
                         <div class="uk-text-center">
                             <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                                <li><a href="index.html">Home</a></li>
-                                <li><span>Contacts</span></li>
+                                <li><a>Trang chủ</a></li>
+                                <li><span>Liên hệ</span></li>
                             </ul>
-                            <h1 class="uk-margin-small-top uk-margin-remove-bottom">Contacts</h1>
+                            <h1 class="uk-margin-small-top uk-margin-remove-bottom">Liên hệ với chúng tôi</h1>
                         </div>
                         <div>
                             <div class="uk-grid-medium" uk-grid>

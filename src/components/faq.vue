@@ -29,106 +29,95 @@
                       uk-accordion="multiple: true"
                     >
                       <li>
-                        <a class="uk-accordion-title" href="#"
-                          >Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit?</a
-                        >
+                        <a class="uk-accordion-title" href="#">
+                          <b
+                            >Tôi mua sản phẩm tại SOC shop sẽ có khác biệt gì
+                            ?</b
+                          >
+                        </a>
                         <div class="uk-accordion-content">
                           <p>
-                            Vivamus imperdiet venenatis est. Phasellus vitae
-                            mauris imperdiet, condimentum eros vel, ullamcorper
-                            turpis. Maecenas sed libero quis orci egestas
-                            vehicula fermentum id diam. In sodales quam quis mi
-                            mollis eleifend id sit amet velit. Sed ultricies
-                            condimentum magna, vel commodo dolor luctus in.
-                            Aliquam et orci nibh. Nunc purus metus, aliquam
-                            vitae venenatis sit amet, porta non est. Proin
-                            vehicula nisi eu molestie varius. Pellentesque
-                            semper ex diam, at tristique ipsum varius sed.
-                            Pellentesque non metus ullamcorper, iaculis nibh
-                            quis, facilisis lorem. Sed malesuada eu lacus sit
-                            amet feugiat. Aenean iaculis dui sed quam
-                            consectetur elementum.
+                            SOC shop là đại lý ủy quyền bán máy tính chính hãng
+                            tại Việt Nam, SOC shop chỉ bán một loại mặt hàng duy
+                            nhất đó là : <b> HÀNG CHÍNH HÃNG.</b>
                           </p>
                         </div>
                       </li>
                       <li>
                         <a class="uk-accordion-title" href="#"
-                          >Nullam massa sem, mollis ut luctus at, tincidunt a
-                          lorem?</a
+                          ><b
+                            >Tại sao hàng chính hãng lại bán đắt hơn hàng xách
+                            tay bán tại các cửa hàng ?</b
+                          ></a
                         >
                         <div class="uk-accordion-content">
                           <p>
-                            Aliquam sed dictum elit, quis consequat metus. Proin
-                            in mauris finibus urna lacinia laoreet sed id orci.
-                            Pellentesque volutpat tellus sit amet enim rutrum,
-                            vel eleifend metus consectetur. Sed lacinia urna a
-                            neque maximus placerat. Praesent blandit hendrerit
-                            dui non placerat. Sed malesuada sem sit amet arcu
-                            faucibus, sit amet accumsan nisl laoreet. Quisque
-                            auctor sit amet nisl rhoncus interdum. Nullam
-                            euismod odio sem, quis pulvinar purus gravida eget.
-                            Nullam molestie, lacus vel vehicula elementum, massa
-                            arcu bibendum lacus, vitae tempus justo orci id
-                            lectus. Duis justo neque, elementum eget ante in,
-                            condimentum condimentum ante. Maecenas quis eleifend
-                            risus. In hac habitasse platea dictumst. Nunc
-                            posuere ultrices dolor, at auctor lacus dignissim
-                            ut. Donec viverra imperdiet nisi, sit amet mattis
-                            massa pellentesque ac.
+                            Hàng chính hãng là hàng được kiểm định chất lượng
+                            bởi Bộ TT & TT, vì vậy chất lượng hàng hoá được đảm
+                            bảo 100% là hàng chuẩn, có nguồn gốc rõ ràng. Với
+                            hàng xách tay bán bên ngoài thị trường, giá tuy rẻ
+                            hơn nhưng chất lượng hoàn toàn không đảm bảo, không
+                            dán tem kiểm định của Bộ TT & TT cũng như tem của
+                            đơn vị nhập khẩu (SOC), các linh kiện cấu thành
+                            thiết bị thường là những linh kiện kém chất lượng
+                            được mua về từ Trung Quốc theo số lượng lớn, các cửa
+                            hàng tự tiến hành lắp ghép bằng tay các linh kiện đó
+                            lại để tạo thành 1 sản phẩm sau đó bán cho người
+                            tiêu dùng.
                           </p>
                         </div>
                       </li>
                       <li>
                         <a class="uk-accordion-title" href="#"
-                          >Aliquam pretium diam et ullamcorper malesuada?</a
+                          ><p>
+                            <b
+                              >Tôi sẽ được ưu đãi và khuyến mại gì khii mua hàng
+                              tại SOC SHOP ?</b
+                            >
+                          </p></a
                         >
                         <div class="uk-accordion-content">
                           <p>
-                            Praesent feugiat lectus faucibus tellus congue
-                            pharetra. In viverra vehicula pellentesque. Etiam
-                            consectetur ultricies magna at bibendum. Sed posuere
-                            libero ut nulla ornare, faucibus pellentesque odio
-                            pulvinar. Vestibulum feugiat ex id ex elementum
-                            egestas. Integer laoreet mollis risus, id efficitur
-                            neque. Pellentesque quis dolor faucibus, ultrices
-                            tellus id, vestibulum neque. Sed eros purus,
-                            dignissim id fermentum ut, lacinia laoreet odio. Sed
-                            mi erat, aliquet at facilisis quis, laoreet in
-                            massa. Pellentesque eu massa accumsan, iaculis erat
-                            eu, tincidunt sem. Quisque id orci id dui congue
-                            pretium. Pellentesque iaculis, dolor aliquet tempor
-                            laoreet, enim metus tincidunt massa, ut porttitor
-                            sem dui sit amet arcu. Vestibulum sodales laoreet
-                            enim, sit amet vestibulum nisl porttitor a.
+                            Tùy từng thời điểm, sản phẩm sẽ có những khuyến mại
+                            khác nhau. SOC Shop cam kết sẽ mang đến anh/chị
+                            những khuyến mại kèm những dịch vụ chăm sóc khách
+                            hàng tốt nhất. Để tìm hiểu về khuyến mại, anh / chị
+                            vui lòng gọi 1800 9999 (miễn phí) để được tư vấn.
                           </p>
                         </div>
                       </li>
                       <li>
                         <a class="uk-accordion-title" href="#"
-                          >Etiam suscipit at nisi eget auctor?</a
+                          ><b
+                            >Những dịch vụ chăm sóc khách hàng của SOC SHOP là
+                            gì ?</b
+                          ></a
                         >
                         <div class="uk-accordion-content">
                           <p>
-                            Mauris id pellentesque metus. In quis arcu sed enim
-                            maximus pellentesque et eget velit. Etiam euismod
-                            enim vitae condimentum tristique.
+                            Sản phẩm có lỗi phần cứng thuộc phạm vi bảo hành sẽ
+                            được hưởng chính sách 1 đổi 1 trong vòng 01 tháng kể
+                            từ ngày mua máy; từ tháng thứ 02 đến tháng thứ 12,
+                            sản phẩm sẽ được bảo hành theo đúng chính sách của
+                            Hãng Apple. Miễn phí cài đặt ứng dụng/ game và bảo
+                            dưỡng trong quá trình sử dụng
                           </p>
                         </div>
                       </li>
                       <li>
                         <a class="uk-accordion-title" href="#"
-                          >Sed porta diam eget enim bibendum laoreet?</a
+                          ><b
+                            >SOC SHOP có giao hàng tại nhà không ? Chất lượng
+                            sản phẩm có bị thay đổi đổi không ?</b
+                          ></a
                         >
                         <div class="uk-accordion-content">
                           <p>
-                            Donec molestie sem et tellus vestibulum venenatis.
-                            Quisque iaculis ornare luctus. Orci varius natoque
-                            penatibus et magnis dis parturient montes, nascetur
-                            ridiculus mus. Morbi velit nibh, ullamcorper eu
-                            imperdiet id, rutrum quis mi. Donec eu aliquet
-                            lorem. Nulla at lectus turpis. Sed et diam ac lorem
-                            iaculis lacinia.
+                            SOC Shop giao hàng miễn phí trên toàn quốc, cam kết
+                            giao hàng trong 60 phút. Và chất lượng hoàn toàn đảm
+                            bảo, 100% hàng chính hãng - nguyên seal khi đến tận
+                            tay Anh/ chị. Anh/chị có thể ấn nút "Mua Ngay" hoặc
+                            gọi số tổng đài 1800 9999để được hỗ trợ
                           </p>
                         </div>
                       </li>
@@ -153,7 +142,7 @@
                         <li>
                           <router-link to="/blog"> Blog </router-link>
                         </li>
-                        <li >
+                        <li>
                           <router-link to="/news"> News </router-link>
                         </li>
                         <li class="uk-active">

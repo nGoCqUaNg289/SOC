@@ -11,16 +11,23 @@
           <div>
             <div class="username">
               <i class="ms-Icon ms-Icon--Contact"></i>
-              <input v-model="uid" type="text" placeholder="Email" />
+              <input v-model="username" type="text" placeholder="User Name" />
             </div>
             <div class="password">
               <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="uad" type="password" placeholder="Password" />
+              <input
+                v-model="password"
+                type="password"
+                placeholder="Password"
+              />
             </div>
             <div class="submit-button">
-              <button type="button" @click="setUser">Đăng nhập</button>
+              <button type="button" @click="LoginJWT()">Đăng nhập</button>
             </div>
-            <div style="text-align:center; margin-top:25px"><a style="text-decoration:none">Quên mật khẩu</a> | <a>Đăng ký tài khoản mới</a></div>
+            <div style="text-align: center; margin-top: 25px">
+              <a style="text-decoration: none">Quên mật khẩu</a> |
+              <a>Đăng ký tài khoản mới</a>
+            </div>
           </div>
         </div>
       </div>
@@ -29,12 +36,13 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "User",
   data() {
     return {
-      //   uid: "",
-      //   uad: ""
+      username: "",
+      password: "",
     };
   },
   methods: {
@@ -43,6 +51,40 @@ export default {
     //   localStorage.setItem('uad', this.uad);
     //   this.$router.push('/');
     // }
+    LoginJWT() {
+      // console.log(this.username);
+      // console.log(this.password);
+
+      axios
+        .post("https://javamahtest.herokuapp.com/api/authentication/login", {
+          username: this.username,
+          password: this.password,
+        })
+        .then((response) => {
+          console.log(response);
+          this.$store.state.tokenUser =
+            response.data.tokenType + " " + response.data.accessToken;
+          console.log(this.$store.state.tokenUser);
+          if (response.data.roles[0] == "Director") {
+            console.log("Chuyển trang admin");
+          } else if (response.data.roles[0] == "Staff") {
+            console.log("Chuyển trang admin");
+          } else if (response.data.roles[0] == "User") {
+            console.log("Đăng nhập user");
+            this.$router.push({
+              name: "Home",
+            });
+          } else {
+            console.log("Tài khoản hoặc mật khẩu không chính xác !");
+          }
+          // this.getData = response.data;
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+      // console.log(this.getData);
+    },
   },
 };
 </script>
