@@ -10,14 +10,23 @@ import VueAxios from 'vue-axios'
 import Paginate from 'vuejs-paginate'
 // import { store } from './store'
 import store from "./store";
+import Toasted from "vue-toasted";
 // import Vuex from 'vuex'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 // Vue.use(Vuex)
+library.add(faUserSecret)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('paginate', Paginate)
 Vue.use(VueAxios, axios)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)
+Vue.use(Toasted, Option)
 Vue.config.productionTip = false
 
 new Vue({

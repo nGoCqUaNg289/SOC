@@ -1,6 +1,6 @@
 <template>
   <header>
-    <!-- {{minWidthWindow}} -->
+    <!-- <button @click="getTotalCart()">click here !</button> -->
     <div>
       <div
         class="uk-navbar-container uk-light uk-visible@m tm-toolbar-container"
@@ -33,6 +33,14 @@
           <div class="uk-navbar-right">
             <nav>
               <ul class="uk-navbar-nav">
+                <li v-if="this.$store.state.userName != ''">
+                  <a style="text-decoration: none"
+                    >Xin chào, {{ this.$store.state.userName }}</a
+                  >
+                </li>
+                <li v-else>
+                  <a style="text-decoration: none">Bạn chưa đăng nhập!</a>
+                </li>
                 <li>
                   <router-link to="/news">
                     <a style="text-decoration: none">Tin tức</a>
@@ -58,10 +66,9 @@
               class="uk-navbar-toggle uk-hidden@m"
               uk-toggle="target: #nav-offcanvas"
               uk-navbar-toggle-icon
-              @click="elem()"
             ></button>
             <router-link to="/"
-              ><a class="uk-navbar-item uk-logo" @click="elem()"
+              ><a class="uk-navbar-item uk-logo"
                 ><img
                   src="images/SOCStore.png"
                   width="120px"
@@ -476,15 +483,13 @@
                 ><span class="uk-badge">{{
                   this.$store.state.CompareCart.length
                 }}</span></a
-              ></router-link
-            >
-            <router-link to="/account">
-              <a
-                class="uk-navbar-item uk-link-muted tm-navbar-button"
-                uk-icon="user"
-              ></a>
+              >
             </router-link>
-
+            <a
+              class="uk-navbar-item uk-link-muted tm-navbar-button"
+              uk-icon="user"
+              @click="switchToAccount()"
+            ></a>
             <div
               class="uk-padding-small uk-margin-remove"
               uk-dropdown="pos: bottom-right; offset: -10; delay-hide: 200;"
@@ -518,24 +523,23 @@
                 <li class="uk-nav-divider"></li>
 
                 <li>
-                  <router-link to="/login">
-                    <a>Đăng xuất</a>
-                  </router-link>
+                  <a @click="clearData()">Đăng xuất</a>
                 </li>
               </ul>
             </div>
-            <router-link to="/cart"
-              ><a
-                class="
-                  uk-navbar-item uk-link-muted uk-visible@m
-                  tm-navbar-button
-                "
-                ><span uk-icon="cart"></span
-                ><span class="uk-badge">{{
-                  this.$store.state.StoreCart.length
-                }}</span></a
-              ></router-link
+
+            <a
+              class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button"
+              @click="switchToCart()"
             >
+              <span uk-icon="cart"></span>
+              <span class="uk-badge" v-if="this.$store.state.tokenUser == ''">
+                {{ this.$store.state.StoreCart.length }}
+              </span>
+              <span class="uk-badge" v-else>
+                {{ this.$store.state.totalCart }}
+              </span>
+            </a>
           </div>
         </div>
       </div>
@@ -1013,41 +1017,102 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "AppHeader",
   data() {
     return {
       quantityCart: "",
       minWidthWindow: "",
+      // totalCart: "",
     };
   },
   created() {
     this.getQuantityCart();
-    this.elem();
-    // console.log(window.resize);
-    // this.resize();
-  },
-  destroyed() {
-    this.elem();
   },
   methods: {
     getQuantityCart() {
       this.quantityCart = this.$store.state.StoreCart.length;
     },
-    elem() {
-      this.minWidthWindow = window.innerWidth;
-      console.log(this.minWidthWindow);
-      return this.minWidthWindow;
+    getTotalCart() {
+      console.log("Chạy hàm này!");
+      axios
+        .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
     },
-    
+    clearData() {
+      this.$store.state.tokenUser = "";
+      this.$store.state.totalCart = "";
+      this.$store.state.CompareCart = [];
+      this.$store.state.StoreCart = [];
+      this.$router.push({
+        name: "login",
+      });
+    },
+    switchToAccount() {
+      if (this.$store.state.tokenUser != "") {
+        axios
+          .get("https://javamahtest.herokuapp.com/api/customer/account", {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          })
+          .then((response) => {
+            // this.$store.state.InfoPersonal = response.data.object.length;
+            // console.log(response.data.object);
+            this.$store.state.InfoPersonal = response.data.object;
+            console.log(this.$store.state.InfoPersonal);
+          })
+          .catch((e) => {
+            this.error.push(e);
+            console.log(e);
+          });
+        console.log("Chuyển qua account");
+        this.$router.push({
+          name: "account",
+        });
+      } else {
+        this.$toasted.show("Bạn cần đăng nhập để sử dụng chức năng này !", {
+          type: "error",
+          duration: 2000,
+        });
+      }
+    },
+    switchToCart() {
+      axios
+        .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          console.log(response.data.object);
+          // this.$store.state.totalCart = response.data.object.length;
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+      this.$router.push({
+        name: "cart",
+      });
+    },
   },
   watch: {
     changeCart: function () {
       this.quantityCart = this.$store.state.StoreCart.length;
     },
-    minWidthWindow() {
-      // console.log(this.minWidthWindow);
-    },
+    minWidthWindow() {},
     resize: function () {
       {
         alert("resize event detected!");

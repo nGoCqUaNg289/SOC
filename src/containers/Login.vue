@@ -1,5 +1,6 @@
 <template>
   <main class="login-background">
+    <!-- <button @click="getTotalCart()">Click here !</button> -->
     <div class="login-form vpi">
       <div class="login-form-bg"></div>
       <div class="login">
@@ -22,7 +23,12 @@
               />
             </div>
             <div class="submit-button">
-              <button type="button" @click="LoginJWT()">Đăng nhập</button>
+              <button
+                type="button"
+                @click="callFunction(), callFunctionTotal()"
+              >
+                Đăng nhập
+              </button>
             </div>
             <div style="text-align: center; margin-top: 25px">
               <a style="text-decoration: none">Quên mật khẩu</a> |
@@ -46,25 +52,33 @@ export default {
     };
   },
   methods: {
-    // setUser() {
-    //   localStorage.setItem('uid', this.uid);
-    //   localStorage.setItem('uad', this.uad);
-    //   this.$router.push('/');
-    // }
+    callFunction: function () {
+      var v = this;
+      setTimeout(function () {
+        v.LoginJWT();
+      }, 0);
+    },
+    callFunctionTotal: function () {
+      var v = this;
+      setInterval(function () {
+        // this.getTotalCart();
+        // console.log("Đây là interval");
+        v.getTotalCart();
+      }, 1000);
+    },
     LoginJWT() {
-      // console.log(this.username);
-      // console.log(this.password);
-
       axios
         .post("https://javamahtest.herokuapp.com/api/authentication/login", {
           username: this.username,
           password: this.password,
         })
         .then((response) => {
-          console.log(response);
+          // console.log(response.data);
           this.$store.state.tokenUser =
             response.data.tokenType + " " + response.data.accessToken;
-          console.log(this.$store.state.tokenUser);
+          this.$store.state.userName = response.data.username;
+          // console.log(this.$store.state.userName);
+          // console.log(this.$store.state.tokenUser);
           if (response.data.roles[0] == "Director") {
             console.log("Chuyển trang admin");
           } else if (response.data.roles[0] == "Staff") {
@@ -77,13 +91,29 @@ export default {
           } else {
             console.log("Tài khoản hoặc mật khẩu không chính xác !");
           }
-          // this.getData = response.data;
+        })
+        .catch((e) => {
+          this.error.push(e);
+          // console.log(e);
+        });
+    },
+
+    getTotalCart() {
+      axios
+        .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+          this.$store.state.StoreCart = response.data.object;
+          // console.log(response.data.object);
         })
         .catch((e) => {
           this.error.push(e);
           console.log(e);
         });
-      // console.log(this.getData);
     },
   },
 };

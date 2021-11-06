@@ -116,7 +116,7 @@
                                 class="custom-input-total"
                                 type="number"
                                 placeholder=""
-                                v-model="item.qty"
+                                v-model="item.quantity"
                                 min="1"
                               />
                             </td>
@@ -128,7 +128,8 @@
                             >
                               {{
                                 formatPrice(
-                                  (totalPrice.value = item.price * item.qty)
+                                  (totalPrice.value =
+                                    item.price * item.quantity)
                                 )
                               }}
                               đ
@@ -159,7 +160,9 @@
                           <li class="uk-active">
                             <a
                               >Tạm tính
-                              <span class="span-right">120000 đ</span></a
+                              <span class="span-right">{{
+                                formatPrice(sumTotal)
+                              }}</span></a
                             >
                           </li>
                           <li class="uk-active">
@@ -173,9 +176,7 @@
                             <a>
                               <div>Tổng cộng</div>
                               <span class="span-total"
-                                >{{ (totalPrice.value += totalPrice.value) }}
-                                <!-- {{ totalPrice }} -->
-                                đ</span
+                                >{{ formatPrice(sumTotal) }} đ</span
                               >
                             </a>
                           </li>
@@ -310,15 +311,18 @@
 </template>
 
 <script>
+// import axios from "axios";
+
 export default {
   name: "cart",
   props: {
     CartDetail: [],
   },
   created() {
-    console.log(this.$store.state.StoreCart);
+    // console.log(this.$store.state.StoreCart);
     this.getCartDetail();
-    // console.log(this.totalPrice.value);
+    this.callFunction();
+    // console.delaySumlog(this.totalPrice.value);
   },
   data() {
     return {
@@ -335,6 +339,8 @@ export default {
       },
       DetailsCart: [],
       TotalCart: [],
+      totalPriceProduct: [],
+      sumTotal: 0,
     };
   },
   methods: {
@@ -343,12 +349,54 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getCartDetail() {
+      // console.log(this.$store.state.tokenUser);
       this.DetailsCart = this.$store.state.StoreCart;
+      // if (this.$store.state.tokenUser != "") {
+      //   console.log("Chạy vào trong đây");
+      //   axios
+      //     .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+      //       headers: {
+      //         Authorization: this.$store.state.tokenUser,
+      //       },
+      //     })
+      //     .then((response) => {
+      //       this.DetailsCart = response.data.object;
+      //       console.log("Đây là detail cart" + this.DetailsCart);
+
+      //       for (let item in this.DetailsCart) {
+      //         console.log(response.data.object[item].price);
+      //         this.totalPriceProduct.push(response.data.object[item].price);
+      //       }
+      //     })
+      //     .catch((e) => {
+      //       this.error.push(e);
+      //       console.log(e);
+      //     });
+      // } else {
+      //   this.DetailsCart = this.$store.state.StoreCart;
+      // }
+    },
+    callFunction: function () {
+      var v = this;
+      setTimeout(function () {
+        v.sumPrice();
+      }, 0);
+    },
+    sumPrice() {
       console.log(this.DetailsCart);
+      for (let i = 0; i < this.DetailsCart.length; i++) {
+        this.sumTotal += this.DetailsCart[i].price;
+      }
+      console.log("Tổng tiền" + this.sumTotal);
+      return this.sumTotal;
     },
     deleteProduct(index) {
-      console.log(index);
-      this.DetailsCart.splice(index, 1);
+      // console.log(index);
+      if (this.$store.state.tokenUser != "") {
+        console.log("Chạy vào đây");
+      } else {
+        this.DetailsCart.splice(index, 1);
+      }
     },
     backToCategory() {
       this.$router.push({

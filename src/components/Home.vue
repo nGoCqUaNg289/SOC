@@ -1,5 +1,6 @@
 <template>
   <div class="uk-offcanvas-content">
+    <loadingDot class="loadingData"></loadingDot>
     <main>
       <section
         class="uk-position-relative uk-visible-toggle uk-light"
@@ -48,13 +49,11 @@
         </ul>
         <a
           class="uk-position-center-left uk-position-small uk-hidden-hover"
-        
           uk-slideshow-item="previous"
           uk-slidenav-previous
         ></a>
         <a
           class="uk-position-center-right uk-position-small uk-hidden-hover"
-        
           uk-slideshow-item="next"
           uk-slidenav-next
         ></a>
@@ -97,9 +96,6 @@
                   </div>
                   <div class="uk-margin-small-top">
                     <div class="uk-text-truncate">Laptops Gaming</div>
-                    <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
-                      from $149
-                    </div> -->
                   </div>
                 </a>
               </router-link>
@@ -127,9 +123,6 @@
                 </div>
                 <div class="uk-margin-small-top">
                   <div class="uk-text-truncate">Laptop văn phòng</div>
-                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
-                    from $99
-                  </div> -->
                 </div>
               </a>
             </div>
@@ -155,10 +148,9 @@
                   </div>
                 </div>
                 <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">Laptop mỏng nhẹ, thời trang</div>
-                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
-                    from $129
-                  </div> -->
+                  <div class="uk-text-truncate">
+                    Laptop mỏng nhẹ, thời trang
+                  </div>
                 </div>
               </a>
             </div>
@@ -185,9 +177,6 @@
                 </div>
                 <div class="uk-margin-small-top">
                   <div class="uk-text-truncate">Laptops sinh viên</div>
-                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
-                    from $49
-                  </div> -->
                 </div>
               </a>
             </div>
@@ -214,9 +203,6 @@
                 </div>
                 <div class="uk-margin-small-top">
                   <div class="uk-text-truncate">Laptop đồ hoạ, kiến trúc</div>
-                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
-                    from $399
-                  </div> -->
                 </div>
               </a>
             </div>
@@ -243,16 +229,12 @@
                 </div>
                 <div class="uk-margin-small-top">
                   <div class="uk-text-truncate">PC builds</div>
-                  <!-- <div class="uk-text-meta uk-text-xsmall uk-text-truncate">
-                    from $129
-                  </div> -->
                 </div>
               </a>
             </div>
           </div>
           <div class="uk-margin uk-text-center">
-            <a
-              class="uk-link-muted uk-text-uppercase tm-link-to-all"
+            <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
               ><span>Xem tất cả sản phẩm</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
@@ -263,19 +245,31 @@
         <div class="uk-container">
           <h2 class="uk-text-center">Sản phẩm nổi bật</h2>
           <div class="uk-card uk-card-default tm-ignore-container">
-            <div class="uk-grid-collapse uk-child-width-1-3 uk-child-width-1-4@m tm-products-grid" uk-grid>
-              <article class="tm-product-card"  v-for="item in getData" :key="item.id">
+            <div
+              class="
+                uk-grid-collapse uk-child-width-1-3 uk-child-width-1-4@m
+                tm-products-grid
+              "
+              uk-grid
+            >
+              <article
+                class="tm-product-card"
+                v-for="item in getData"
+                :key="item.id"
+              >
                 <div class="tm-product-card-media">
                   <div class="tm-ratio tm-ratio-4-3">
-                      <a class="tm-media-box" style="text-decoration: none;">
-                        <div class="tm-product-card-labels">
-                          <span class="uk-label uk-label-warning">top selling</span>
-                          <span class="uk-label uk-label-danger">trade-in</span>
-                        </div>
-                        <figure class="tm-media-box-wrap">
-                          <img :src="item.photos[0]"/>
-                        </figure>
-                      </a>
+                    <a class="tm-media-box" style="text-decoration: none">
+                      <div class="tm-product-card-labels">
+                        <span class="uk-label uk-label-warning"
+                          >top selling</span
+                        >
+                        <span class="uk-label uk-label-danger">trade-in</span>
+                      </div>
+                      <figure class="tm-media-box-wrap">
+                        <img :src="item.photos[0]" />
+                      </figure>
+                    </a>
                   </div>
                 </div>
                 <div class="tm-product-card-body">
@@ -284,43 +278,75 @@
                       Laptop
                     </div>
                     <h3 class="tm-product-card-title">
-                      <a class="uk-link-heading"  @click="detailProduct(item.id)">{{item.name}}</a>
+                      <a
+                        class="uk-link-heading"
+                        @click="detailProduct(item.id)"
+                        >{{ item.name }}</a
+                      >
                     </h3>
-<!--                    <ul class="uk-list uk-text-small tm-product-card-properties">-->
-<!--                      <li>-->
-<!--                        <span class="uk-text-muted">Diagonal display: </span>-->
-<!--                        <span>15.4"</span>-->
-<!--                      </li>-->
-<!--                      <li>-->
-<!--                        <span class="uk-text-muted">CPU: </span><span>Intel®&nbsp;Core™ i7</span>-->
-<!--                      </li>-->
-<!--                      <li>-->
-<!--                        <span class="uk-text-muted">RAM: </span><span>16&nbsp;GB</span>-->
-<!--                      </li>-->
-<!--                      <li>-->
-<!--                        <span class="uk-text-muted">Video Card: </span><span>AMD Radeon Pro 555</span>-->
-<!--                      </li>-->
-<!--                    </ul>-->
                   </div>
                   <div class="tm-product-card-shop">
                     <div class="tm-product-card-prices">
                       <del class="uk-text-meta">$1899.00</del>
-                      <div class="tm-product-card-price">{{ formatPrice(item.price) }}đ</div>
+                      <div class="tm-product-card-price">
+                        {{ formatPrice(item.price) }}đ
+                      </div>
                     </div>
                     <div class="tm-product-card-add">
                       <div class="uk-text-meta tm-product-card-actions">
-                        <a class="tm-product-card-action js-add-to js-add-to-favorites tm-action-button-active js-added-to" title="Add to favorites">
+                        <a
+                          class="
+                            tm-product-card-action
+                            js-add-to js-add-to-favorites
+                            tm-action-button-active
+                            js-added-to
+                          "
+                          title="Add to favorites"
+                          @click="addToFavorite()"
+                        >
                           <span uk-icon="icon: heart; ratio: .75;"></span>
-                          <span class="tm-product-card-action-text">Add to favorites</span>
+                          <span class="tm-product-card-action-text"
+                            >Add to favorites</span
+                          >
                         </a>
-                        <a class="tm-product-card-action js-add-to js-add-to-compare tm-action-button-active js-added-to " title="Add to compare" @click="compareProduct(item)">
+                        <a
+                          class="
+                            tm-product-card-action
+                            js-add-to js-add-to-compare
+                            tm-action-button-active
+                            js-added-to
+                          "
+                          title="Add to compare"
+                          @click="compareProduct(item)"
+                        >
                           <span uk-icon="icon: copy; ratio: .75;"></span>
-                          <span class="tm-product-card-action-text">Add to compare</span>
+                          <span class="tm-product-card-action-text"
+                            >Add to compare</span
+                          >
                         </a>
                       </div>
-                      <button class="uk-button uk-button-primary tm-product-card-add-button tm-shine js-add-to-cart" @click="addToCart(item.id,item.name,item.photos[0],item.price)">
-                        <span class="tm-product-card-add-button-icon" uk-icon="cart"></span>
-                        <span class="tm-product-card-add-button-text">add to cart</span>
+                      <button
+                        class="
+                          uk-button uk-button-primary
+                          tm-product-card-add-button tm-shine
+                          js-add-to-cart
+                        "
+                        @click="
+                          addToCart(
+                            item.id,
+                            item.name,
+                            item.photos[0],
+                            item.price
+                          )
+                        "
+                      >
+                        <span
+                          class="tm-product-card-add-button-icon"
+                          uk-icon="cart"
+                        ></span>
+                        <span class="tm-product-card-add-button-text"
+                          >add to cart</span
+                        >
                       </button>
                     </div>
                   </div>
@@ -330,13 +356,11 @@
           </div>
           <div class="uk-margin uk-text-center">
             <router-link to="/category">
-              <a
-              class="uk-link-muted uk-text-uppercase tm-link-to-all"
-              ><span>Toàn bộ sản phẩm</span
-              ><span uk-icon="icon: chevron-right; ratio: .75;"></span
-            ></a>
+              <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
+                ><span>Toàn bộ sản phẩm</span
+                ><span uk-icon="icon: chevron-right; ratio: .75;"></span
+              ></a>
             </router-link>
-
           </div>
         </div>
       </section>
@@ -347,11 +371,7 @@
             <div class="uk-position-relative">
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                 <div class="uk-visible@m">
-                  <a
-                  
-                    uk-slidenav-previous
-                    uk-slider-item="previous"
-                  ></a>
+                  <a uk-slidenav-previous uk-slider-item="previous"></a>
                 </div>
                 <div class="uk-width-expand uk-slider-container">
                   <ul
@@ -367,7 +387,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="Apple"
                         >
                           <figure class="tm-media-box-wrap">
@@ -380,7 +399,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="Samsung"
                         >
                           <figure class="tm-media-box-wrap">
@@ -396,7 +414,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="Sony"
                         >
                           <figure class="tm-media-box-wrap">
@@ -409,7 +426,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="Microsoft"
                         >
                           <figure class="tm-media-box-wrap">
@@ -425,7 +441,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="Intel"
                         >
                           <figure class="tm-media-box-wrap">
@@ -438,7 +453,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="HP"
                         >
                           <figure class="tm-media-box-wrap">
@@ -451,7 +465,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="LG"
                         >
                           <figure class="tm-media-box-wrap">
@@ -464,7 +477,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="Lenovo"
                         >
                           <figure class="tm-media-box-wrap">
@@ -477,7 +489,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="ASUS"
                         >
                           <figure class="tm-media-box-wrap">
@@ -490,7 +501,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="Acer"
                         >
                           <figure class="tm-media-box-wrap">
@@ -503,7 +513,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="Dell"
                         >
                           <figure class="tm-media-box-wrap">
@@ -516,7 +525,6 @@
                       <div class="tm-ratio tm-ratio-16-9">
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
-                        
                           title="Canon"
                         >
                           <figure class="tm-media-box-wrap">
@@ -543,8 +551,7 @@
             ></ul>
           </div>
           <div class="uk-margin uk-text-center">
-            <a
-              class="uk-link-muted uk-text-uppercase tm-link-to-all"
+            <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
               ><span>Xem tất cả thương hiệu</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
@@ -662,8 +669,7 @@
             </div>
           </div>
           <div class="uk-margin uk-text-center">
-            <a
-              class="uk-link-muted uk-text-uppercase tm-link-to-all"
+            <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
               ><span>Xem tất cả bài viết</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
@@ -694,9 +700,7 @@
                 nascetur ridiculus mus.
               </p>
               <div class="uk-text-center uk-text-left@s">
-                <a
-                  class="uk-link-muted uk-text-uppercase tm-link-to-all"
-                  
+                <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
                   ><span>Xem thêm</span
                   ><span uk-icon="icon: chevron-right; ratio: .75;"></span
                 ></a>
@@ -712,9 +716,7 @@
                         <time>June 4, 2018</time>
                       </div>
                       <h3 class="uk-h4 uk-margin-remove">
-                        <a class="uk-link-heading"
-                          >Highlights from WWDC</a
-                        >
+                        <a class="uk-link-heading">Highlights from WWDC</a>
                       </h3>
                       <div class="uk-margin-xsmall-top uk-text-small">
                         <p>
@@ -774,8 +776,7 @@
                 </li>
               </ul>
               <div class="uk-margin uk-text-center uk-text-left@s">
-                <a
-                  class="uk-link-muted uk-text-uppercase tm-link-to-all"
+                <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
                   ><span>Xem các tin khác</span
                   ><span uk-icon="icon: chevron-right; ratio: .75;"></span
                 ></a>
@@ -784,34 +785,6 @@
           </div>
         </div>
       </section>
-      <!-- <section class="uk-section uk-section-primary uk-section-small uk-light">
-        <div class="uk-container">
-          <div class="uk-text-center">
-            <div class="uk-h2 uk-margin-remove">Subscribe for updates</div>
-            <div>Be aware of new products and special offers.</div>
-          </div>
-          <div class="uk-margin">
-            <form>
-              <div class="uk-grid-small uk-flex-center" uk-grid>
-                <div class="uk-width-1-1 uk-width-medium@s">
-                  <div class="uk-inline uk-width-1-1">
-                    <span class="uk-form-icon" uk-icon="mail"></span>
-                    <input
-                      class="uk-input"
-                      type="email"
-                      placeholder="Your email"
-                      required
-                    />
-                  </div>
-                </div>
-                <div>
-                  <button class="uk-button uk-button-primary">subscribe</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section> -->
       <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>
@@ -909,9 +882,13 @@
 
 <script>
 import axios from "axios";
+import loadingDot from "../containers/loadingDot.vue";
 
 export default {
-
+  name: "HomePage",
+  components: {
+    loadingDot,
+  },
   data() {
     return {
       getData: "",
@@ -927,25 +904,21 @@ export default {
         cartDetails: "",
         productDetails: [],
       },
-
-      // getData: []
     };
   },
   created() {
     this.getDT();
-    // this.callFunction();
   },
   methods: {
     formatPrice(value) {
-        let val = (value/1).toFixed(2).replace('.', ',')
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+      let val = (value / 1).toFixed(2).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getDT() {
       axios
         .get("https://javamahtest.herokuapp.com/api/customer/products/trending")
         .then((response) => {
           this.getData = response.data.object;
-          // console.log(this.getData);
         })
         .catch((e) => {
           console.log(e);
@@ -957,31 +930,103 @@ export default {
         v.getDT();
       }, 2000);
     },
-    detailProduct(id){
+    detailProduct(id) {
       console.log(id);
       this.$router.push({
         name: "product",
         params: { item: id },
-      })
+      });
     },
+    // addToCart(id, name, photos, price) {
+    //   let item = {
+    //     name: name,
+    //     id: id,
+    //     photos: photos,
+    //     price: price,
+    //   };
+    //   this.$store.state.StoreCart.push(item);
+    //   console.log(this.$store.state.StoreCart);
+    //   alert("Đã thêm sản phẩm vào giỏ hàng!");
+    // },
+    // compareProduct(item) {
+    //   console.log(this.$store.state.CompareCart.length);
+    //   if (this.$store.state.CompareCart.length < 2) {
+    //     this.$store.state.CompareCart.push(item);
+    //     alert("Đã thêm sản phẩm vào mục so sánh!");
+    //   } else {
+    //     alert("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!");
+    //   }
+    // },
     addToCart(id, name, photos, price) {
-      let item = {
-        name: name,
-        id: id,
-        photos: photos,
-        price: price,
-      };
-      this.$store.state.StoreCart.push(item);
-      console.log(this.$store.state.StoreCart);
-      alert("Đã thêm sản phẩm vào giỏ hàng!");
+      if (this.$store.state.tokenUser == "") {
+        let item = {
+          name: name,
+          id: id,
+          photos: photos,
+          price: price,
+          quantity: 1,
+        };
+        this.$store.state.StoreCart.push(item);
+        this.$toasted.show("Đã thêm vào giỏ hàng !", {
+          type: "success",
+          duration: 2000,
+        });
+        console.log("chạy vào không có token");
+      } else {
+        console.log("chạy vào có token");
+        let item = {
+          productId: id,
+          price: price,
+          quantity: 1,
+        };
+        this.$store.state.StoreCart.push(item);
+        axios.post(
+          "https://javamahtest.herokuapp.com/api/customer/cart/new",
+          item,
+          {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          }
+        );
+
+        this.$toasted.show("Đã thêm vào giỏ hàng !", {
+          type: "success",
+          duration: 2000,
+        });
+      }
     },
     compareProduct(item) {
       console.log(this.$store.state.CompareCart.length);
       if (this.$store.state.CompareCart.length < 2) {
         this.$store.state.CompareCart.push(item);
-        alert("Đã thêm sản phẩm vào mục so sánh!");
+        this.$toasted.show("Đã chọn sản phẩm để so sánh!", {
+          type: "success",
+          duration: 2000,
+        });
       } else {
-        alert("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!");
+        this.$toasted.show("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!", {
+          type: "error",
+          duration: 2000,
+        });
+      }
+    },
+    addToFavorite() {
+      if (this.$store.state.tokenUser == "") {
+        this.$toasted.show(
+          "Bạn cần đăng nhập để có thể sử dụng chức năng này !",
+          {
+            type: "error",
+            duration: 2000,
+          }
+        );
+      } else {
+        console.log("chạy vào có token");
+
+        this.$toasted.show("Đã thêm vào sản phẩm yêu thích !", {
+          type: "success",
+          duration: 2000,
+        });
       }
     },
   },
@@ -989,7 +1034,7 @@ export default {
 </script>
 
 <style scope>
-a{
+a {
   text-decoration: none;
 }
 </style>

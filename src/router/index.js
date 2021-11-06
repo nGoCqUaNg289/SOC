@@ -28,6 +28,8 @@ import cartInfo from "../components/cartInfo.vue"
 import Login from "../containers/Login.vue"
 import Register from "../containers/Register.vue"
 import loadingform from "../containers/loadingform.vue"
+import loadingDot from "../containers/loadingDot.vue"
+import alertLoginError from "../containers/alertLoginError.vue"
 
 Vue.use(Router)
 
@@ -60,6 +62,8 @@ const router = new Router({
         { path: "/login", component: Login, name: "login" },
         { path: "/register", component: Register, name: "register" },
         { path: "/loading", component: loadingform, name: "loading" },
+        { path: "/loadinglogin", component: loadingDot, name: "loadinglogin" },
+        { path: "/alertlogin", component: alertLoginError, name: "alertlogin" },
     ]
 })
 

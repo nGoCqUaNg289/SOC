@@ -1,5 +1,6 @@
 <template>
   <div class="uk-offcanvas-content">
+    <!-- <i class="fas fa-cart-plus"></i> -->
     <main>
       <section class="uk-section uk-section-small">
         <div class="uk-container">
@@ -114,17 +115,13 @@
                                   class="tm-checkbox"
                                   id="brand-1"
                                   name="brand"
-                                  value="1"
+                                  value="acer"
                                   type="checkbox"
+                                  @click="searchProduct()"
                                 />
-                                <label for="brand-1"
-                                  ><span
-                                    >Acer
-                                    <span class="uk-text-meta uk-text-xsmall"
-                                      >177</span
-                                    ></span
-                                  ></label
-                                >
+                                <label for="brand-1">
+                                  <span>Acer</span>
+                                </label>
                               </li>
                               <li>
                                 <input
@@ -251,6 +248,7 @@
                         <div class="uk-card-body">
                           <button
                             class="uk-button uk-button-default uk-width-1-1"
+                            @click="getDT()"
                           >
                             <span
                               class="uk-margin-xsmall-right"
@@ -348,8 +346,13 @@
                                     <div class="uk-width-auto">
                                       <a
                                         class="uk-navbar-dropdown-close"
-                                        uk-close
+                                        uk-search-icon
+                                        @click="searchProduct(searchText)"
                                       ></a>
+                                      <!-- <a
+                                        class="uk-navbar-dropdown-close"
+                                        uk-close
+                                      ></a> -->
                                     </div>
                                   </div>
                                 </div>
@@ -406,9 +409,11 @@
                                       Laptop
                                     </div>
                                     <h3 class="tm-product-card-title">
-                                      <a class="uk-link-heading">{{
-                                        item.name
-                                      }}</a>
+                                      <a
+                                        class="uk-link-heading"
+                                        @click="detailProduct(item.id)"
+                                        >{{ item.name }}</a
+                                      >
                                     </h3>
                                   </div>
                                   <div class="tm-product-card-shop">
@@ -648,16 +653,9 @@ export default {
     return {
       getData: "",
       formData: {
-        name: "",
+        product_id: "",
+        quantiy: "",
         price: "",
-        status: "",
-        orderDetails: "",
-        blogs: "",
-        productCategories: "",
-        sales: "",
-        productColors: [],
-        cartDetails: "",
-        productDetails: [],
       },
 
       CartDetail: [],
@@ -667,8 +665,6 @@ export default {
   },
   created() {
     this.getDT();
-    // console.log(this.$store.state.searchText);
-    // this.callFunction();
   },
   methods: {
     filteredList() {
@@ -705,25 +701,73 @@ export default {
       });
     },
     addToCart(id, name, photos, price) {
-      let item = {
-        name: name,
-        id: id,
-        photos: photos,
-        price: price,
-        qty: 1,
-      };
-      this.$store.state.StoreCart.push(item);
-      console.log(this.$store.state.StoreCart);
-      alert("Đã thêm sản phẩm vào giỏ hàng!");
+      if (this.$store.state.tokenUser == "") {
+        let item = {
+          name: name,
+          id: id,
+          photos: photos,
+          price: price,
+          quantity: 1,
+        };
+        this.$store.state.StoreCart.push(item);
+        this.$toasted.show("Đã thêm vào giỏ hàng !", {
+          type: "success",
+          duration: 2000,
+        });
+        console.log("chạy vào không có token");
+      } else {
+        console.log("chạy vào có token");
+        let item = {
+          productId: id,
+          price: price,
+          quantity: 1,
+        };
+        this.$store.state.StoreCart.push(item);
+        axios.post(
+          "https://javamahtest.herokuapp.com/api/customer/cart/new",
+          item,
+          {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          }
+        );
+
+        this.$toasted.show("Đã thêm vào giỏ hàng !", {
+          type: "success",
+          duration: 2000,
+        });
+      }
     },
     compareProduct(item) {
       console.log(this.$store.state.CompareCart.length);
       if (this.$store.state.CompareCart.length < 2) {
         this.$store.state.CompareCart.push(item);
-        alert("Đã thêm sản phẩm vào mục so sánh!");
+        this.$toasted.show("Đã chọn sản phẩm để so sánh!", {
+          type: "success",
+          duration: 2000,
+        });
       } else {
-        alert("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!");
+        this.$toasted.show("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!", {
+          type: "error",
+          duration: 2000,
+        });
       }
+    },
+    searchProduct(nameProduct) {
+      // console.log(nameProduct);
+      axios
+        .get(
+          "https://javamahtest.herokuapp.com/api/customer/products?find=" +
+            nameProduct
+        )
+        .then((response) => {
+          this.getData = response.data.object;
+          console.log(response.data.object);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };

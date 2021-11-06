@@ -16,6 +16,10 @@ export default new Vuex.Store({
         searchText: "",
         minWidth: "",
         tokenUser: "",
+        totalCart: "",
+        InfoPersonal: {},
+        userName: "",
+        // StoreCartUser: []
     },
     getters: {},
     mutations: {},

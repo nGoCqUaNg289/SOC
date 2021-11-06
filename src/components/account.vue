@@ -76,20 +76,20 @@
                   <nav>
                     <ul class="uk-nav uk-nav-default tm-nav">
                       <li class="uk-active">
-                        <a
-                          >Orders
-
-                          <span>(2)</span></a
-                        >
+                        <router-link to="account">
+                          <a>Đơn hàng<span>(2)</span></a>
+                        </router-link>
                       </li>
                       <li>
-                        <a
-                          >Favorites
-
-                          <span>(3)</span></a
-                        >
+                        <router-link to="favorites">
+                          <a>Sản phẩm yêu thích<span>(2)</span></a>
+                        </router-link>
                       </li>
-                      <li><a>Personal Info</a></li>
+                      <li>
+                        <router-link to="personal">
+                          <a>Thông tin cá nhân</a>
+                        </router-link>
+                      </li>
                     </ul>
                   </nav>
                 </div>
