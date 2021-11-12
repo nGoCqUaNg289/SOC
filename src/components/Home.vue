@@ -302,7 +302,7 @@
                             js-added-to
                           "
                           title="Add to favorites"
-                          @click="addToFavorite()"
+                          @click="addToFavorite(item.id)"
                         >
                           <span uk-icon="icon: heart; ratio: .75;"></span>
                           <span class="tm-product-card-action-text"
@@ -937,26 +937,6 @@ export default {
         params: { item: id },
       });
     },
-    // addToCart(id, name, photos, price) {
-    //   let item = {
-    //     name: name,
-    //     id: id,
-    //     photos: photos,
-    //     price: price,
-    //   };
-    //   this.$store.state.StoreCart.push(item);
-    //   console.log(this.$store.state.StoreCart);
-    //   alert("Đã thêm sản phẩm vào giỏ hàng!");
-    // },
-    // compareProduct(item) {
-    //   console.log(this.$store.state.CompareCart.length);
-    //   if (this.$store.state.CompareCart.length < 2) {
-    //     this.$store.state.CompareCart.push(item);
-    //     alert("Đã thêm sản phẩm vào mục so sánh!");
-    //   } else {
-    //     alert("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!");
-    //   }
-    // },
     addToCart(id, name, photos, price) {
       if (this.$store.state.tokenUser == "") {
         let item = {
@@ -990,6 +970,20 @@ export default {
           }
         );
 
+        axios
+          .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          })
+          .then((response) => {
+            this.$store.state.totalCart = response.data.object.length;
+          })
+          .catch((e) => {
+            this.error.push(e);
+            console.log(e);
+          });
+
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
           type: "success",
           duration: 2000,
@@ -1011,7 +1005,7 @@ export default {
         });
       }
     },
-    addToFavorite() {
+    addToFavorite(item) {
       if (this.$store.state.tokenUser == "") {
         this.$toasted.show(
           "Bạn cần đăng nhập để có thể sử dụng chức năng này !",
@@ -1021,14 +1015,26 @@ export default {
           }
         );
       } else {
-        console.log("chạy vào có token");
-
-        this.$toasted.show("Đã thêm vào sản phẩm yêu thích !", {
+        // console.log("chạy vào có token");
+        // console.log(item);
+        let productFavorites = { productId: item };
+        console.log(productFavorites);
+        // axios.post(
+        //   "https://javamahtest.herokuapp.com/api/customer/favorite/add",
+        //   productFavorites,
+        //   {
+        //     headers: {
+        //       Authorization: this.$store.state.tokenUser,
+        //     },
+        //   }
+        // );
+        this.$toasted.show("Thêm sản phẩm vào yêu thích !", {
           type: "success",
           duration: 2000,
         });
       }
     },
+    setData() {},
   },
 };
 </script>

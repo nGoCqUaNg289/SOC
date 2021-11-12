@@ -334,7 +334,7 @@ export default {
   methods: {
     getDataUser() {
       this.dataUser = this.$store.state.InfoPersonal;
-      console.log("Đây là data user: " + this.dataUser);
+      console.log(this.dataUser);
     },
   },
 };

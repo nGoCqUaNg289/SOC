@@ -23,10 +23,7 @@
               />
             </div>
             <div class="submit-button">
-              <button
-                type="button"
-                @click="callFunction(), callFunctionTotal()"
-              >
+              <button type="button" @click="LoginJWT(), callFunctionTotal()">
                 Đăng nhập
               </button>
             </div>
@@ -55,16 +52,16 @@ export default {
     callFunction: function () {
       var v = this;
       setTimeout(function () {
-        v.LoginJWT();
+        v.callFunctionTotal();
       }, 0);
     },
     callFunctionTotal: function () {
       var v = this;
-      setInterval(function () {
-        // this.getTotalCart();
-        // console.log("Đây là interval");
-        v.getTotalCart();
-      }, 1000);
+      setTimeout(function () {
+        if (localStorage.userToken != "") {
+          v.getTotalCart();
+        }
+      }, 500);
     },
     LoginJWT() {
       axios
@@ -73,12 +70,11 @@ export default {
           password: this.password,
         })
         .then((response) => {
-          // console.log(response.data);
-          this.$store.state.tokenUser =
+          localStorage.userToken =
             response.data.tokenType + " " + response.data.accessToken;
+          this.$store.state.tokenUser = localStorage.userToken;
           this.$store.state.userName = response.data.username;
-          // console.log(this.$store.state.userName);
-          // console.log(this.$store.state.tokenUser);
+
           if (response.data.roles[0] == "Director") {
             console.log("Chuyển trang admin");
           } else if (response.data.roles[0] == "Staff") {
@@ -107,8 +103,17 @@ export default {
         })
         .then((response) => {
           this.$store.state.totalCart = response.data.object.length;
+          console.log(response.data.object);
           this.$store.state.StoreCart = response.data.object;
-          // console.log(response.data.object);
+          console.log(this.$store.state.StoreCart);
+
+          var detailCart = JSON.parse(localStorage.getItem("detailCart")) || [];
+          detailCart.push(response.data.object);
+          localStorage.setItem("detailCart", JSON.stringify(detailCart));
+
+          this.$store.state.StoreCart = JSON.parse(localStorage.detailCart)[0];
+
+          this.$store.state.StoreCartUser = localStorage;
         })
         .catch((e) => {
           this.error.push(e);

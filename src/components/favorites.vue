@@ -305,7 +305,31 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  name: "favorites",
+  data() {
+    return {};
+  },
+  methods: {
+    getDataFavorites() {
+      axios
+        .get("https://javamahtest.herokuapp.com/api/customer/favorite/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          console.log("Đây là detail cart" + response);
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
+  },
+};
 </script>
 
 <style>

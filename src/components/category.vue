@@ -438,6 +438,7 @@
                                             js-added-to
                                           "
                                           title="Add to favorites"
+                                          @click="addToFavorite()"
                                           ><span
                                             uk-icon="icon: heart; ratio: .75;"
                                           ></span
@@ -768,6 +769,24 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+    addToFavorite() {
+      if (this.$store.state.tokenUser == "") {
+        this.$toasted.show(
+          "Bạn cần đăng nhập để có thể sử dụng chức năng này !",
+          {
+            type: "error",
+            duration: 2000,
+          }
+        );
+      } else {
+        console.log("chạy vào có token");
+
+        this.$toasted.show("Thêm sản phẩm vào yêu thích !", {
+          type: "success",
+          duration: 2000,
+        });
+      }
     },
   },
 };

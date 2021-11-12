@@ -66,11 +66,15 @@
                       <nav>
                         <ul class="uk-nav uk-nav-default tm-nav">
                           <li><a href="about.html">Giao tới</a></li>
-                          <li>
+                          <li v-if="this.$store.state.tokenUser != ''">
                             <div class="font-li">
-                              Trịnh Ngọc Quang | 0829271132
+                              <span>{{ dataUser.fullname }}</span> |
+                              <span>{{ dataUser.phone }}</span>
                             </div>
+                            <!-- {{ this.$store.state.InfoPersonal }} -->
                           </li>
+
+                          <li></li>
                         </ul>
                       </nav>
                     </section>
@@ -95,6 +99,7 @@
                           <tr
                             v-for="(item, index) in DetailsCart"
                             :key="item.id"
+                            @onchange="sumPrice()"
                           >
                             <th scope="row" class="checkbox-product">
                               <input type="checkbox" />
@@ -106,7 +111,6 @@
                                 alt=""
                               />
                               <div class="uk-link-heading"></div>
-                              <!-- {{formatString(item.name)}} -->
                             </td>
                             <td class="custom-font-size-td custom-size-price">
                               {{ formatPrice(item.price) }} đ
@@ -118,6 +122,7 @@
                                 placeholder=""
                                 v-model="item.quantity"
                                 min="1"
+                                @onchange="sumPrice()"
                               />
                             </td>
                             <td
@@ -137,7 +142,7 @@
                             <td>
                               <button
                                 class="btn-custom-color-product"
-                                @click="deleteProduct(index)"
+                                @click="deleteProduct(index, item.id)"
                               >
                                 <b-icon
                                   icon="trash"
@@ -160,9 +165,9 @@
                           <li class="uk-active">
                             <a
                               >Tạm tính
-                              <span class="span-right">{{
-                                formatPrice(sumTotal)
-                              }}</span></a
+                              <span class="span-right"
+                                >{{ formatPrice(sumTotal) }} đ</span
+                              ></a
                             >
                           </li>
                           <li class="uk-active">
@@ -311,7 +316,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   name: "cart",
@@ -321,7 +326,10 @@ export default {
   created() {
     // console.log(this.$store.state.StoreCart);
     this.getCartDetail();
-    this.callFunction();
+    this.sumPrice();
+    this.getDataUser();
+    // this.callFunction();
+    // console.log(this.$store.state.InfoPersonal);
     // console.delaySumlog(this.totalPrice.value);
   },
   data() {
@@ -337,65 +345,143 @@ export default {
         input: "",
         value: 0,
       },
+      sumTotal1: {
+        input: "",
+        value: 0,
+      },
       DetailsCart: [],
       TotalCart: [],
       totalPriceProduct: [],
       sumTotal: 0,
+      dataUser: {},
     };
   },
   methods: {
+    getDataUser() {
+      // // console.log(this.dataUser);
+      // console.log(this.$store.state.InfoPersonal);
+
+      if (this.$store.state.tokenUser != "") {
+        axios
+          .get("https://javamahtest.herokuapp.com/api/customer/account", {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          })
+          .then((response) => {
+            this.$store.state.InfoPersonal = response.data.object;
+            this.dataUser = this.$store.state.InfoPersonal;
+          })
+          .catch((e) => {
+            this.error.push(e);
+            console.log(e);
+          });
+      }
+    },
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getCartDetail() {
-      // console.log(this.$store.state.tokenUser);
       this.DetailsCart = this.$store.state.StoreCart;
-      // if (this.$store.state.tokenUser != "") {
-      //   console.log("Chạy vào trong đây");
-      //   axios
-      //     .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
-      //       headers: {
-      //         Authorization: this.$store.state.tokenUser,
-      //       },
-      //     })
-      //     .then((response) => {
-      //       this.DetailsCart = response.data.object;
-      //       console.log("Đây là detail cart" + this.DetailsCart);
-
-      //       for (let item in this.DetailsCart) {
-      //         console.log(response.data.object[item].price);
-      //         this.totalPriceProduct.push(response.data.object[item].price);
-      //       }
-      //     })
-      //     .catch((e) => {
-      //       this.error.push(e);
-      //       console.log(e);
-      //     });
-      // } else {
-      //   this.DetailsCart = this.$store.state.StoreCart;
-      // }
+      console.log(this.DetailsCart);
     },
+    getDTDT() {
+      axios
+        .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          // this.DetailsCart = response.data.object;
+          this.$store.state.StoreCart = response.data.object;
+          this.getCartDetail();
+
+          for (let item in this.DetailsCart) {
+            this.totalPriceProduct.push(response.data.object[item].price);
+          }
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
+    // getCartDetail() {
+    //   if (this.$store.state.tokenUser != "") {
+    //     console.log("Chạy vào trong đây");
+    //     axios
+    //       .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+    //         headers: {
+    //           Authorization: this.$store.state.tokenUser,
+    //         },
+    //       })
+    //       .then((response) => {
+    //         this.DetailsCart = response.data.object;
+    //         console.log(this.DetailsCart);
+
+    //         for (let item in this.DetailsCart) {
+    //           // console.log(response.data.object[item].price);
+    //           this.totalPriceProduct.push(response.data.object[item].price);
+    //         }
+    //       })
+    //       .catch((e) => {
+    //         this.error.push(e);
+    //         console.log(e);
+    //       });
+    //   } else {
+    //     this.DetailsCart = this.$store.state.StoreCart;
+    //   }
+    // },
     callFunction: function () {
       var v = this;
-      setTimeout(function () {
+      setInterval(function () {
         v.sumPrice();
-      }, 0);
+      }, 1000);
     },
     sumPrice() {
-      console.log(this.DetailsCart);
+      // console.log(this.DetailsCart);
       for (let i = 0; i < this.DetailsCart.length; i++) {
-        this.sumTotal += this.DetailsCart[i].price;
+        this.sumTotal +=
+          this.DetailsCart[i].price * this.DetailsCart[i].quantity;
       }
-      console.log("Tổng tiền" + this.sumTotal);
       return this.sumTotal;
+      // console.log("Tổng tiền :" + this.sumTotal);
     },
-    deleteProduct(index) {
-      // console.log(index);
+    deleteProduct(index, id) {
       if (this.$store.state.tokenUser != "") {
-        console.log("Chạy vào đây");
+        console.log(index);
+        console.log(id);
+        axios
+          .delete(
+            "https://javamahtest.herokuapp.com/api/customer/cart/delete/" + id,
+            {
+              headers: {
+                Authorization: this.$store.state.tokenUser,
+              },
+            }
+          )
+          .then((response) => {
+            console.log(response);
+            this.getDTDT();
+            this.$toasted.show("Đã xoá sản phẩm khỏi giỏ hàng !", {
+              type: "error",
+              duration: 2000,
+            });
+          })
+          .catch(function (error) {
+            alert(error);
+          });
+        // this.sumPrice();
+        // this.getCartDetail();
+        // this.callFunction();
       } else {
         this.DetailsCart.splice(index, 1);
+        this.sumPrice();
+        this.$toasted.show("Đã xoá sản phẩm khỏi giỏ hàng !", {
+          type: "error",
+          duration: 2000,
+        });
       }
     },
     backToCategory() {

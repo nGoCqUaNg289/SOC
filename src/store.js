@@ -19,7 +19,9 @@ export default new Vuex.Store({
         totalCart: "",
         InfoPersonal: {},
         userName: "",
-        // StoreCartUser: []
+        allDataUser: "",
+        StoreCartUser: {},
+        test: [],
     },
     getters: {},
     mutations: {},
