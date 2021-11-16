@@ -315,7 +315,7 @@ export default {
   methods: {
     getDataFavorites() {
       axios
-        .get("https://javamahtest.herokuapp.com/api/customer/favorite/get", {
+        .get("http://socstore.club:8800/api/customer/favorite/get", {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },

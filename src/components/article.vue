@@ -1,7 +1,7 @@
 <template>
   <div class="uk-offcanvas-content">
     <main>
-      <section class="uk-section uk-section-small" >
+      <section class="uk-section uk-section-small">
         <div class="uk-container">
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <section class="uk-text-center">
@@ -24,14 +24,13 @@
                   >
                     <header class="uk-text-center">
                       <h1 class="uk-article-title">
-                        {{getData.title}}
+                        {{ getData.title }}
                       </h1>
                       <!-- <div class="uk-article-meta">
                         <time></time>
                       </div> -->
                     </header>
-                    <section class=" section-custom">
-                      
+                    <section class="section-custom">
                       <div class="tm-wrapper uk-text-center">
                         <figure>
                           <a href="images/articles/macbook-photo.jpg"
@@ -42,19 +41,29 @@
                           <figcaption>MacBook Pro</figcaption>
                         </figure>
                       </div>
-                      
+
                       <figure class="uk-text-center">
-                        <a href="images/articles/macbook-promo-4.jpg"
-                        >
-                        <img src="images/articles/macbook-promo-4.jpg" alt="MacBook Pro"/></a>
+                        <a href="images/articles/macbook-promo-4.jpg">
+                          <img
+                            src="images/articles/macbook-promo-4.jpg"
+                            alt="MacBook Pro"
+                        /></a>
                       </figure>
-                      
+
                       <div class="tm-wrapper">
                         <figure class="tm-ratio tm-ratio-16-9">
-                          <iframe width="713" height="401" src="https://www.youtube.com/embed/nG1-7gExImU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                          <iframe
+                            width="713"
+                            height="401"
+                            src="https://www.youtube.com/embed/nG1-7gExImU"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                          ></iframe>
                         </figure>
                       </div>
-  
+
                       <figure uk-slideshow>
                         <div
                           class="
@@ -365,7 +374,7 @@ export default {
     },
     getBlog() {
       axios
-        .get("https://javamahtest.herokuapp.com/api/customer/blog/" + this.item)
+        .get("http://socstore.club:8800/api/customer/blog/" + this.item)
         .then((response) => {
           this.getData = response.data.object;
           console.log(this.getData);
@@ -386,7 +395,7 @@ export default {
 </script>
 
 <style scope>
-.section-custom{
+.section-custom {
   margin-top: 5%;
 }
 </style>

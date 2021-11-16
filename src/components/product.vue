@@ -3497,7 +3497,7 @@ export default {
     getDetailProduct() {
       axios
         .get(
-          "https://javamahtest.herokuapp.com/api/customer/products/" + this.item
+          "http://socstore.club:8800/api/customer/products/" + this.item
         )
         .then((response) => {
           this.getData = response.data.object;

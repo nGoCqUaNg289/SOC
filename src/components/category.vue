@@ -679,7 +679,7 @@ export default {
     },
     getDT() {
       axios
-        .get("https://javamahtest.herokuapp.com/api/customer/products")
+        .get("http://socstore.club:8800/api/customer/products")
         .then((response) => {
           this.getData = response.data.object;
           // console.log(response.data.object[0]);
@@ -724,15 +724,11 @@ export default {
           quantity: 1,
         };
         this.$store.state.StoreCart.push(item);
-        axios.post(
-          "https://javamahtest.herokuapp.com/api/customer/cart/new",
-          item,
-          {
-            headers: {
-              Authorization: this.$store.state.tokenUser,
-            },
-          }
-        );
+        axios.post("http://socstore.club:8800/api/customer/cart/new", item, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        });
 
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
           type: "success",
@@ -759,8 +755,7 @@ export default {
       // console.log(nameProduct);
       axios
         .get(
-          "https://javamahtest.herokuapp.com/api/customer/products?find=" +
-            nameProduct
+          "http://socstore.club:8800/api/customer/products?find=" + nameProduct
         )
         .then((response) => {
           this.getData = response.data.object;

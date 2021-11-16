@@ -324,13 +324,9 @@ export default {
     CartDetail: [],
   },
   created() {
-    // console.log(this.$store.state.StoreCart);
     this.getCartDetail();
     this.sumPrice();
     this.getDataUser();
-    // this.callFunction();
-    // console.log(this.$store.state.InfoPersonal);
-    // console.delaySumlog(this.totalPrice.value);
   },
   data() {
     return {
@@ -358,12 +354,9 @@ export default {
   },
   methods: {
     getDataUser() {
-      // // console.log(this.dataUser);
-      // console.log(this.$store.state.InfoPersonal);
-
       if (this.$store.state.tokenUser != "") {
         axios
-          .get("https://javamahtest.herokuapp.com/api/customer/account", {
+          .get("http://socstore.club:8800/api/customer/account", {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
@@ -386,9 +379,24 @@ export default {
       this.DetailsCart = this.$store.state.StoreCart;
       console.log(this.DetailsCart);
     },
+    getTotalCart() {
+      axios
+        .get("http://socstore.club:8800/api/customer/cart/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
     getDTDT() {
       axios
-        .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+        .get("http://socstore.club:8800/api/customer/cart/get", {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },
@@ -407,32 +415,6 @@ export default {
           console.log(e);
         });
     },
-    // getCartDetail() {
-    //   if (this.$store.state.tokenUser != "") {
-    //     console.log("Chạy vào trong đây");
-    //     axios
-    //       .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
-    //         headers: {
-    //           Authorization: this.$store.state.tokenUser,
-    //         },
-    //       })
-    //       .then((response) => {
-    //         this.DetailsCart = response.data.object;
-    //         console.log(this.DetailsCart);
-
-    //         for (let item in this.DetailsCart) {
-    //           // console.log(response.data.object[item].price);
-    //           this.totalPriceProduct.push(response.data.object[item].price);
-    //         }
-    //       })
-    //       .catch((e) => {
-    //         this.error.push(e);
-    //         console.log(e);
-    //       });
-    //   } else {
-    //     this.DetailsCart = this.$store.state.StoreCart;
-    //   }
-    // },
     callFunction: function () {
       var v = this;
       setInterval(function () {
@@ -453,17 +435,15 @@ export default {
         console.log(index);
         console.log(id);
         axios
-          .delete(
-            "https://javamahtest.herokuapp.com/api/customer/cart/delete/" + id,
-            {
-              headers: {
-                Authorization: this.$store.state.tokenUser,
-              },
-            }
-          )
+          .delete("http://socstore.club:8800/api/customer/cart/delete/" + id, {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          })
           .then((response) => {
             console.log(response);
             this.getDTDT();
+            this.getTotalCart();
             this.$toasted.show("Đã xoá sản phẩm khỏi giỏ hàng !", {
               type: "error",
               duration: 2000,
@@ -472,9 +452,6 @@ export default {
           .catch(function (error) {
             alert(error);
           });
-        // this.sumPrice();
-        // this.getCartDetail();
-        // this.callFunction();
       } else {
         this.DetailsCart.splice(index, 1);
         this.sumPrice();

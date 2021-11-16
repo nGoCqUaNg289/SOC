@@ -510,7 +510,8 @@
             >
               <span uk-icon="cart"></span>
               <span class="uk-badge" v-if="this.$store.state.tokenUser == ''">
-                {{ this.$store.state.StoreCart.length }}
+                <!-- {{ this.$store.state.StoreCart.length }} -->
+                {{ this.$store.state.totalCart }}
               </span>
               <span class="uk-badge" v-else>
                 {{ this.$store.state.totalCart }}
@@ -550,7 +551,7 @@ export default {
     switchToAccount() {
       if (this.$store.state.tokenUser != "") {
         axios
-          .get("https://javamahtest.herokuapp.com/api/customer/account", {
+          .get("http://socstore.club:8800/api/customer/account", {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
@@ -577,7 +578,7 @@ export default {
     switchToCart() {
       if (this.$store.state.tokenUser != "") {
         axios
-          .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+          .get("http://socstore.club:8800/api/customer/cart/get", {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
@@ -608,7 +609,7 @@ export default {
       // if (this.$store.state.tokenUser != "") {
       //   console.log("Chạy vào trong đây");
       //   axios
-      //     .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+      //     .get("http://socstore.club:8800/api/customer/cart/get", {
       //       headers: {
       //         Authorization: this.$store.state.tokenUser,
       //       },

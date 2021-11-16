@@ -916,7 +916,7 @@ export default {
     },
     getDT() {
       axios
-        .get("https://javamahtest.herokuapp.com/api/customer/products/trending")
+        .get("http://socstore.club:8800/api/customer/products/trending")
         .then((response) => {
           this.getData = response.data.object;
         })
@@ -960,18 +960,14 @@ export default {
           quantity: 1,
         };
         this.$store.state.StoreCart.push(item);
-        axios.post(
-          "https://javamahtest.herokuapp.com/api/customer/cart/new",
-          item,
-          {
-            headers: {
-              Authorization: this.$store.state.tokenUser,
-            },
-          }
-        );
+        axios.post("http://socstore.club:8800/api/customer/cart/new", item, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        });
 
         axios
-          .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+          .get("http://socstore.club:8800/api/customer/cart/get", {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
@@ -1020,7 +1016,7 @@ export default {
         let productFavorites = { productId: item };
         console.log(productFavorites);
         // axios.post(
-        //   "https://javamahtest.herokuapp.com/api/customer/favorite/add",
+        //   "http://socstore.club:8800/api/customer/favorite/add",
         //   productFavorites,
         //   {
         //     headers: {

@@ -65,7 +65,7 @@ export default {
     },
     LoginJWT() {
       axios
-        .post("https://javamahtest.herokuapp.com/api/authentication/login", {
+        .post("http://socstore.club:8800/api/authentication/login", {
           username: this.username,
           password: this.password,
         })
@@ -81,6 +81,10 @@ export default {
             console.log("Chuyển trang admin");
           } else if (response.data.roles[0] == "User") {
             console.log("Đăng nhập user");
+            this.$toasted.show("Đăng nhập thành công !", {
+              type: "success",
+              duration: 2000,
+            });
             this.$router.push({
               name: "Home",
             });
@@ -96,7 +100,7 @@ export default {
 
     getTotalCart() {
       axios
-        .get("https://javamahtest.herokuapp.com/api/customer/cart/get", {
+        .get("http://socstore.club:8800/api/customer/cart/get", {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },
