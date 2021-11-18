@@ -88,7 +88,7 @@ a:hover,
 
 abbr[title] {
     /* 1 */
-    text-decoration: underline dotted;
+    text-decoration: none dotted;
     /* 2 */
     -webkit-text-decoration-style: dotted;
 }
@@ -111,8 +111,8 @@ strong {
  */
 
 :not(pre)>code,
-:not(pre)>kbd,
-:not(pre)>samp {
+ :not(pre)>kbd,
+ :not(pre)>samp {
     /* 1 */
     font-family: Consolas, monaco, monospace;
     /* 2 */
@@ -639,6 +639,7 @@ template {
 a.uk-link-muted,
 .uk-link-muted a {
     color: #999;
+    text-decoration: none;
 }
 
 a.uk-link-muted:hover,
@@ -655,6 +656,7 @@ a.uk-link-muted:hover,
 a.uk-link-text,
 .uk-link-text a {
     color: inherit;
+    text-decoration: none;
 }
 
 a.uk-link-text:hover,
@@ -671,6 +673,7 @@ a.uk-link-text:hover,
 a.uk-link-heading,
 .uk-link-heading a {
     color: inherit;
+    text-decoration: none;
 }
 
 a.uk-link-heading:hover,
@@ -1341,10 +1344,12 @@ a.uk-link-reset,
 .uk-table-link>a {
     display: block;
     padding: 16px 12px;
+    text-decoration: none;
 }
 
 .uk-table-small .uk-table-link>a {
     padding: 10px 12px;
+    text-decoration: none;
 }
 
 
@@ -1377,11 +1382,13 @@ a.uk-link-reset,
     .uk-table-responsive td:not(:first-child):not(.uk-table-link),
     .uk-table-responsive .uk-table-link:not(:first-child)>a {
         padding-top: 5px !important;
+        text-decoration: none;
     }
     .uk-table-responsive th:not(:last-child):not(.uk-table-link),
     .uk-table-responsive td:not(:last-child):not(.uk-table-link),
     .uk-table-responsive .uk-table-link:not(:last-child)>a {
         padding-bottom: 5px !important;
+        text-decoration: none;
     }
     .uk-table-justify.uk-table-responsive th,
     .uk-table-justify.uk-table-responsive td {
@@ -4240,6 +4247,7 @@ select.uk-form-width-xsmall {
 
 .uk-article-meta a {
     color: #999;
+    text-decoration: none;
 }
 
 .uk-article-meta a:hover {
@@ -4635,6 +4643,7 @@ select.uk-form-width-xsmall {
 
 .uk-nav>li>a {
     padding: 5px 0;
+    text-decoration: none;
 }
 
 
@@ -4667,6 +4676,7 @@ ul.uk-nav-sub {
 
 .uk-nav-sub a {
     padding: 2px 0;
+    text-decoration: none;
 }
 
 
@@ -4724,6 +4734,7 @@ ul.uk-nav-sub {
 
 .uk-nav-default>li>a {
     color: #999;
+    text-decoration: none;
 }
 
 
@@ -4739,6 +4750,7 @@ ul.uk-nav-sub {
 
 .uk-nav-default>li.uk-active>a {
     color: #333;
+    text-decoration: none;
 }
 
 
@@ -4766,6 +4778,7 @@ ul.uk-nav-sub {
 
 .uk-nav-default .uk-nav-sub a {
     color: #999;
+    text-decoration: none;
 }
 
 .uk-nav-default .uk-nav-sub a:hover,
@@ -4775,6 +4788,7 @@ ul.uk-nav-sub {
 
 .uk-nav-default .uk-nav-sub li.uk-active>a {
     color: #333;
+    text-decoration: none;
 }
 
 

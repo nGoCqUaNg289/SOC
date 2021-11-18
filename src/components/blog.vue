@@ -6,7 +6,7 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a href="index.html">Home</a></li>
+                <li><a>Trang chủ</a></li>
                 <li><span>Blog</span></li>
               </ul>
               <h1 class="uk-margin-small-top uk-margin-remove-bottom">Blog</h1>
@@ -101,7 +101,7 @@
           </div>
         </div>
       </section>
-      <section class="uk-section uk-section-default uk-section-small">
+      <!-- <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>
             <ul
@@ -191,7 +191,7 @@
             ></ul>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
   </div>
 </template>

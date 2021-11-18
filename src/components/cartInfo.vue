@@ -41,17 +41,27 @@
                               type="text"
                               class="form-control-custom form-control"
                               placeholder="Nhập họ tên"
+                              v-model="dataUser.fullname"
+                            />
+                          </div>
+                          <div class="form-group col-md-12 form-margin-top">
+                            <label class="label-custom">Email</label>
+                            <input
+                              type="text"
+                              class="form-control-custom form-control"
+                              placeholder="Nhập họ tên"
+                              v-model="dataUser.email"
                             />
                           </div>
                           <div class="form-group col-md-12 form-margin-top">
                             <label class="label-custom">Số điện thoại</label>
                             <input
-                              type="number"
                               class="form-control form-control-custom"
                               placeholder="Nhập số điện thoại"
+                              v-model="dataUser.phone"
                             />
                           </div>
-                          <div class="form-group form-margin-top">
+                          <!-- <div class="form-group form-margin-top">
                             <label class="label-custom">Tỉnh/Thành phố</label>
                             <input
                               type="text"
@@ -77,7 +87,7 @@
                               id="inputAddress2"
                               placeholder="Thượng Đình"
                             />
-                          </div>
+                          </div> -->
                           <div class="form-group form-margin-top">
                             <label class="label-custom">Địa chỉ</label>
                             <input
@@ -85,6 +95,7 @@
                               class="form-control form-control-custom"
                               id="inputAddress2"
                               placeholder="Đường Chính Kinh, số nhà ABC123"
+                              v-model="dataUser.address"
                             />
                           </div>
                           <form style="text-align: center">
@@ -125,26 +136,33 @@ export default {
   data() {
     return {
       getData: "",
+      dataUser: {},
     };
   },
-  created() {},
+  created() {
+    this.getDataUser();
+  },
   methods: {
+    getDataUser() {
+      this.dataUser = this.$store.state.InfoPersonal;
+    },
     formatPrice(value) {
       let val = (value / 1).toFixed(2).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     payment() {
+      console.log(this.dataUser);
       this.$router.push({
         name: "vnpay",
         // params: { item: id },
       });
     },
-    cart(){
-        this.$router.push({
+    cart() {
+      this.$router.push({
         name: "cart",
         // params: { item: id },
       });
-    }
+    },
   },
 };
 </script>

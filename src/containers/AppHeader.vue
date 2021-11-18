@@ -81,7 +81,7 @@
             <nav class="uk-visible@m">
               <ul class="uk-navbar-nav">
                 <li>
-                  <router-link to="/catalog">
+                  <router-link to="/category">
                     <a class="a-custom" style="text-decoration: none"
                       >Sản phẩm<span
                         class="uk-margin-xsmall-left"
@@ -465,28 +465,19 @@
               >
                 <ul class="uk-nav uk-dropdown-nav">
                   <li>
-                    <a>
-                      Đơn đã đặt
-                      <span>(2)</span></a
-                    >
+                    <router-link to="/account">
+                      <a> Đơn đã đặt </a>
+                    </router-link>
                   </li>
                   <li>
                     <router-link to="/favorites">
-                      <a style="text-decoration: none">
-                        Sản phẩm yêu thích
-                        <span>(3)</span></a
-                      >
+                      <a style="text-decoration: none"> Sản phẩm yêu thích </a>
                     </router-link>
                   </li>
                   <li>
                     <router-link to="/personal"
                       ><a style="text-decoration: none">Cá nhân</a></router-link
                     >
-                  </li>
-                  <li>
-                    <router-link to="/setting">
-                      <a style="text-decoration: none">Cài đặt</a>
-                    </router-link>
                   </li>
                   <li class="uk-nav-divider"></li>
 
@@ -510,8 +501,8 @@
             >
               <span uk-icon="cart"></span>
               <span class="uk-badge" v-if="this.$store.state.tokenUser == ''">
-                <!-- {{ this.$store.state.StoreCart.length }} -->
-                {{ this.$store.state.totalCart }}
+                {{ this.$store.state.StoreCart.length }}
+                <!-- {{ this.$store.state.totalCart }} -->
               </span>
               <span class="uk-badge" v-else>
                 {{ this.$store.state.totalCart }}
@@ -558,13 +549,13 @@ export default {
           })
           .then((response) => {
             this.$store.state.InfoPersonal = response.data.object;
-            console.log(this.$store.state.InfoPersonal);
+            // console.log(this.$store.state.InfoPersonal);
           })
           .catch((e) => {
             this.error.push(e);
             console.log(e);
           });
-        console.log("Chuyển qua account");
+        // console.log("Chuyển qua account");
         this.$router.push({
           name: "account",
         });
@@ -584,7 +575,8 @@ export default {
             },
           })
           .then((response) => {
-            console.log(response.data.object);
+            // console.log(response.data.object);
+            this.$store.state.StoreCart = response.data.object;
           })
           .catch((e) => {
             this.error.push(e);

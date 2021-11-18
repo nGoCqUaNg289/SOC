@@ -37,9 +37,13 @@
                           tm-ignore-container
                         "
                       >
-                        <table class="table table-custom-border" id="">
+                        <table class="table table-custom-border">
                           <tbody>
-                            <tr style="border-bottom: 1px dashed silver">
+                            <tr
+                              style="border-bottom: 1px dashed silver"
+                              v-for="item in DetailsOrder"
+                              :key="item.id"
+                            >
                               <td
                                 class="
                                   custom-font-size-td
@@ -47,74 +51,18 @@
                                 "
                                 style="width: 15%"
                               >
-                                <img
-                                  src="images/emptycart.png"
-                                  alt=""
-                                  width="50px"
-                                />
+                                <img :src="item.photo" alt="" width="50px" />
                               </td>
                               <td>
-                                Tên sản phẩm
+                                {{ item.productName.substr(6, 25) }} ...
                                 <br />
-                                Số lượng : 1
+                                Số lượng : {{ item.quantity }}
                               </td>
                               <td
                                 class="custom-size-price-total"
                                 style="vertical-align: middle"
                               >
-                                18.000.000 đ
-                              </td>
-                            </tr>
-                            <tr style="border-bottom: 1px dashed silver">
-                              <td
-                                class="
-                                  custom-font-size-td
-                                  size-img-cart-product
-                                "
-                                style="width: 15%"
-                              >
-                                <img
-                                  src="images/emptycart.png"
-                                  alt=""
-                                  width="50px"
-                                />
-                              </td>
-                              <td>
-                                Tên sản phẩm
-                                <br />
-                                Số lượng : 1
-                              </td>
-                              <td
-                                class="custom-size-price-total"
-                                style="vertical-align: middle"
-                              >
-                                18.000.000 đ
-                              </td>
-                            </tr>
-                            <tr style="border-bottom: 1px dashed silver">
-                              <td
-                                class="
-                                  custom-font-size-td
-                                  size-img-cart-product
-                                "
-                                style="width: 15%"
-                              >
-                                <img
-                                  src="images/emptycart.png"
-                                  alt=""
-                                  width="50px"
-                                />
-                              </td>
-                              <td>
-                                Tên sản phẩm
-                                <br />
-                                Số lượng : 1
-                              </td>
-                              <td
-                                class="custom-size-price-total"
-                                style="vertical-align: middle"
-                              >
-                                18.000.000 đ
+                                {{ formatPrice(item.price) }} đ
                               </td>
                             </tr>
                             <tr>
@@ -124,7 +72,7 @@
                                 class="custom-size-price-total"
                                 style="vertical-align: middle; color: red"
                               >
-                                18.000.000 đ
+                                {{ formatPrice(sumTotal) }} đ
                               </td>
                             </tr>
                           </tbody>
@@ -151,16 +99,16 @@
                               <a>Địa chỉ giao hàng</a>
                             </li>
                             <li style="margin-top: 15px">
-                              <div class="font-li">Trịnh Ngọc Quang</div>
+                              <div class="font-li">{{ dataUser.fullname }}</div>
                             </li>
                             <li style="margin-top: 5px">
                               <div class="font-li">
-                                Số nhà 72, ngách 153/30, Tổ 2, Phú Đô
+                                {{ dataUser.address }}
                               </div>
                             </li>
                             <li style="margin-top: 5px">
                               <div class="font-li">
-                                Số điện thoại: 0829271132
+                                Số điện thoại: {{ dataUser.phone }}
                               </div>
                             </li>
                           </ul>
@@ -188,6 +136,8 @@
                             type="radio"
                             name="flexRadioDefault"
                             id="flexRadioDefault1"
+                            value="1"
+                            v-model="typeOfPay"
                           />
                           <label
                             class="form-check-label"
@@ -202,7 +152,8 @@
                             type="radio"
                             name="flexRadioDefault"
                             id="flexRadioDefault2"
-                            checked
+                            v-model="typeOfPay"
+                            value="2"
                           />
                           <label
                             class="form-check-label"
@@ -214,13 +165,20 @@
                       </article>
                       <button
                         type="button"
+                        class="btn btn-outline-secondary btn-danger-custom"
+                      >
+                        Hủy
+                      </button>
+                      <button
+                        type="button"
                         class="btn btn-outline-danger btn-danger-custom"
+                        @click="addToOrder()"
                       >
                         Đặt mua
                       </button>
-                      <p class="p-custom" style="margin-top: 5px">
+                      <em class="p-custom" style="margin-top: 5px">
                         (Vui lòng kiểm tra lại đơn hàng trước khi thanh toán)
-                      </p>
+                      </em>
                     </section>
                   </article>
                 </section>
@@ -234,7 +192,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   props: {
     item: Number,
@@ -242,33 +200,42 @@ export default {
   data() {
     return {
       getData: "",
+      dataUser: {},
+      DetailsOrder: [],
+      sumTotal: 0,
+      typeOfPay: "1",
     };
   },
   created() {
-    this.getBlog();
+    // this.getBlog();
+    this.getDataUser();
+    this.getOrderUser();
+    this.sumPrice();
   },
   methods: {
     formatPrice(value) {
-      let val = (value / 1).toFixed(2).replace(".", ",");
+      let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    getBlog() {
-      axios
-        .get("https://javamahtest.herokuapp.com/api/customer/blog/" + this.item)
-        .then((response) => {
-          this.getData = response.data.object;
-          console.log(this.getData);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+    getDataUser() {
+      this.dataUser = this.$store.state.InfoPersonal;
     },
-    detailBlog(id) {
-      console.log(id);
-      this.$router.push({
-        name: "article",
-        params: { item: id },
-      });
+    getOrderUser() {
+      this.DetailsOrder = this.$store.state.StoreCart;
+      // console.log(this.DetailsOrder);
+    },
+    sumPrice() {
+      for (let i = 0; i < this.DetailsOrder.length; i++) {
+        this.sumTotal +=
+          this.DetailsOrder[i].price * this.DetailsOrder[i].quantity;
+      }
+      return this.sumTotal;
+    },
+    addToOrder() {
+      console.log(this.typeOfPay);
+      // if(this.typeOfPay){
+
+      // }
     },
   },
 };
@@ -282,8 +249,8 @@ td.custom-size-price-total {
   width: 20%;
 }
 .btn-danger-custom {
-  margin-top: 25px;
-  width: 40%;
+  margin: 15px;
+  width: 45%;
   /* text-align: center */
 }
 .p-custom {

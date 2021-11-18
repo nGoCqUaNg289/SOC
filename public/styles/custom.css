@@ -24,6 +24,10 @@ header {
     display: flex;
 }
 
+.text-decoration {
+    text-decoration: none;
+}
+
 h1 {
     flex: 1;
     padding: 0;

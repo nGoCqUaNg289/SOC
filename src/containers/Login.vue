@@ -7,7 +7,9 @@
         <div class="login-bg"></div>
         <div class="login-content">
           <div class="login-logo">
-            <img src="images/SOCStore.png" alt="SOC-Store LOGO" />
+            <a @click="returnHome()">
+              <img src="images/SOCStore.png" alt="SOC-Store LOGO" />
+            </a>
           </div>
           <div>
             <div class="username">
@@ -60,8 +62,10 @@ export default {
       setTimeout(function () {
         if (localStorage.userToken != "") {
           v.getTotalCart();
+          v.getDataFavorites();
+          v.switchToAccount();
         }
-      }, 500);
+      }, 1000);
     },
     LoginJWT() {
       axios
@@ -107,9 +111,9 @@ export default {
         })
         .then((response) => {
           this.$store.state.totalCart = response.data.object.length;
-          console.log(response.data.object);
+          // console.log(response.data.object);
           this.$store.state.StoreCart = response.data.object;
-          console.log(this.$store.state.StoreCart);
+          // console.log(this.$store.state.StoreCart);
 
           var detailCart = JSON.parse(localStorage.getItem("detailCart")) || [];
           detailCart.push(response.data.object);
@@ -118,6 +122,43 @@ export default {
           this.$store.state.StoreCart = JSON.parse(localStorage.detailCart)[0];
 
           this.$store.state.StoreCartUser = localStorage;
+        })
+        .catch((e) => {
+          // this.error.push(e);
+          console.log(e);
+        });
+    },
+    returnHome() {
+      this.$router.push({
+        name: "Home",
+      });
+    },
+    getDataFavorites() {
+      axios
+        .get("http://socstore.club:8800/api/customer/favorite/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalFavorites = response.data.object;
+          // console.log(this.$store.state.totalFavorites);
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
+    switchToAccount() {
+      axios
+        .get("http://socstore.club:8800/api/customer/account", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          this.$store.state.InfoPersonal = response.data.object;
+          // console.log(this.$store.state.InfoPersonal);
         })
         .catch((e) => {
           this.error.push(e);

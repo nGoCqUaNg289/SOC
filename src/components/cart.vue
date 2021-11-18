@@ -104,13 +104,17 @@
                             <th scope="row" class="checkbox-product">
                               <input type="checkbox" />
                             </th>
-                            <td class="size-img-cart-product">
+                            <td class="">
                               <img
                                 class="img-product"
-                                :src="item.photos"
+                                :src="item.photo"
                                 alt=""
                               />
-                              <div class="uk-link-heading"></div>
+                            </td>
+                            <td>
+                              <div class="uk-link-heading">
+                                {{ item.productName.substr(6, 25) }} ...
+                              </div>
                             </td>
                             <td class="custom-font-size-td custom-size-price">
                               {{ formatPrice(item.price) }} đ
@@ -180,10 +184,10 @@
                           <li>
                             <a>
                               <div>Tổng cộng</div>
-                              <span class="span-total"
-                                >{{ formatPrice(sumTotal) }} đ</span
-                              >
                             </a>
+                            <div class="span-total">
+                              {{ formatPrice(sumTotal) }} đ
+                            </div>
                           </li>
                           <br />
                           <br />
@@ -325,8 +329,9 @@ export default {
   },
   created() {
     this.getCartDetail();
-    this.sumPrice();
+    // this.getDTDT();
     this.getDataUser();
+    this.sumPrice();
   },
   data() {
     return {
@@ -364,6 +369,7 @@ export default {
           .then((response) => {
             this.$store.state.InfoPersonal = response.data.object;
             this.dataUser = this.$store.state.InfoPersonal;
+            // console.log(this.$store.state.InfoPersonal);
           })
           .catch((e) => {
             this.error.push(e);
@@ -377,22 +383,6 @@ export default {
     },
     getCartDetail() {
       this.DetailsCart = this.$store.state.StoreCart;
-      console.log(this.DetailsCart);
-    },
-    getTotalCart() {
-      axios
-        .get("http://socstore.club:8800/api/customer/cart/get", {
-          headers: {
-            Authorization: this.$store.state.tokenUser,
-          },
-        })
-        .then((response) => {
-          this.$store.state.totalCart = response.data.object.length;
-        })
-        .catch((e) => {
-          this.error.push(e);
-          console.log(e);
-        });
     },
     getDTDT() {
       axios
@@ -402,16 +392,14 @@ export default {
           },
         })
         .then((response) => {
-          // this.DetailsCart = response.data.object;
+          this.$store.state.totalCart = response.data.object.length;
           this.$store.state.StoreCart = response.data.object;
-          this.getCartDetail();
-
+          this.DetailsCart = this.$store.state.StoreCart;
           for (let item in this.DetailsCart) {
             this.totalPriceProduct.push(response.data.object[item].price);
           }
         })
         .catch((e) => {
-          this.error.push(e);
           console.log(e);
         });
     },
@@ -422,18 +410,14 @@ export default {
       }, 1000);
     },
     sumPrice() {
-      // console.log(this.DetailsCart);
       for (let i = 0; i < this.DetailsCart.length; i++) {
         this.sumTotal +=
           this.DetailsCart[i].price * this.DetailsCart[i].quantity;
       }
       return this.sumTotal;
-      // console.log("Tổng tiền :" + this.sumTotal);
     },
     deleteProduct(index, id) {
       if (this.$store.state.tokenUser != "") {
-        console.log(index);
-        console.log(id);
         axios
           .delete("http://socstore.club:8800/api/customer/cart/delete/" + id, {
             headers: {
@@ -442,8 +426,11 @@ export default {
           })
           .then((response) => {
             console.log(response);
+            // this.getCartDetail();
             this.getDTDT();
-            this.getTotalCart();
+            // this.getTotalCart();
+            this.sumTotal = 0;
+            this.sumPrice();
             this.$toasted.show("Đã xoá sản phẩm khỏi giỏ hàng !", {
               type: "error",
               duration: 2000,
@@ -454,6 +441,7 @@ export default {
           });
       } else {
         this.DetailsCart.splice(index, 1);
+        this.sumTotal = 0;
         this.sumPrice();
         this.$toasted.show("Đã xoá sản phẩm khỏi giỏ hàng !", {
           type: "error",
@@ -504,13 +492,13 @@ export default {
   color: red;
   font-size: 20px;
   font-weight: 700;
-  margin-left: 60px;
+  text-align: center;
 }
 .img-product {
   height: 70px;
 }
 .size-img-cart-product {
-  width: 250px;
+  width: 50%;
 }
 .text-color-red {
   color: red;
@@ -555,6 +543,7 @@ table.table-custom-border {
 .custom-input-total {
   border: none;
   padding: 5px;
+  padding-left: 15px;
   max-width: 50px;
   border-bottom: 1px solid silver;
   box-shadow: none;

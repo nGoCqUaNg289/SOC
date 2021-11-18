@@ -37,19 +37,23 @@
                             uk-hidden-hover
                           "
                         >
-                          <div class="uk-position-center">
+                          <!-- <div class="uk-position-center">
                             <span uk-icon="icon: camera; ratio: 1.25;"></span>
-                          </div>
+                          </div> -->
                         </a>
                       </div>
                     </section>
                     <div class="uk-text-center">
-                      <div class="uk-h4 uk-margin-remove">Thomas Bruns</div>
-                      <div class="uk-text-meta">Joined June 6, 2018</div>
+                      <div class="uk-h4 uk-margin-remove">
+                        {{ this.$store.state.InfoPersonal.fullname }}
+                      </div>
+                      <div class="uk-text-meta">
+                        {{ this.$store.state.InfoPersonal.email }}
+                      </div>
                     </div>
                     <div>
                       <div class="uk-grid-small uk-flex-center" uk-grid>
-                        <div>
+                        <!-- <div>
                           <a
                             class="uk-button uk-button-default uk-button-small"
                             href="settings.html"
@@ -59,11 +63,12 @@
                             ></span
                             ><span>Settings</span></a
                           >
-                        </div>
+                        </div> -->
                         <div>
                           <button
                             class="uk-button uk-button-default uk-button-small"
                             title="Log out"
+                            @click="clearData"
                           >
                             <span uk-icon="icon: sign-out; ratio: .75;"></span>
                           </button>
@@ -77,12 +82,12 @@
                     <ul class="uk-nav uk-nav-default tm-nav">
                       <li class="uk-active">
                         <router-link to="account">
-                          <a>Đơn hàng<span>(2)</span></a>
+                          <a>Đơn hàng</a>
                         </router-link>
                       </li>
                       <li>
                         <router-link to="favorites">
-                          <a>Sản phẩm yêu thích<span>(2)</span></a>
+                          <a>Sản phẩm yêu thích</a>
                         </router-link>
                       </li>
                       <li>
@@ -103,7 +108,7 @@
                 "
               >
                 <header class="uk-card-header">
-                  <h1 class="uk-h2">Orders</h1>
+                  <h1 class="uk-h2">Đơn hàng của bạn</h1>
                 </header>
                 <section class="uk-card-body">
                   <h3>
@@ -200,7 +205,7 @@
           </div>
         </div>
       </section>
-      <section class="uk-section uk-section-default uk-section-small">
+      <!-- <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>
             <ul
@@ -290,13 +295,29 @@
             ></ul>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "account",
+  methods: {
+    clearData() {
+      this.$store.state.tokenUser = "";
+      this.$store.state.totalCart = 0;
+      this.$store.state.InfoPersonal = {};
+      this.$store.state.userName = "";
+      this.$store.state.CompareCart = [];
+      this.$store.state.StoreCart = [];
+      localStorage.clear();
+      this.$router.push({
+        name: "login",
+      });
+    },
+  },
+};
 </script>
 
 <style>

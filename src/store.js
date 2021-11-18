@@ -22,6 +22,7 @@ export default new Vuex.Store({
         allDataUser: "",
         StoreCartUser: {},
         test: [],
+        totalFavorites: [],
     },
     getters: {},
     mutations: {},

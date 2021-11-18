@@ -1,6 +1,7 @@
 <template>
   <div class="uk-offcanvas-content">
-    <loadingDot class="loadingData"></loadingDot>
+    <!-- <loadingDot class="loadingData"></loadingDot> -->
+
     <main>
       <section
         class="uk-position-relative uk-visible-toggle uk-light"
@@ -303,8 +304,10 @@
                           "
                           title="Add to favorites"
                           @click="addToFavorite(item.id)"
+                          v-if="checkFavorites != ''"
                         >
-                          <span uk-icon="icon: heart; ratio: .75;"></span>
+                          <b-icon icon="heart-fill" style="color: red"></b-icon>
+                          <b-icon icon="heart" style="color: red"></b-icon>
                           <span class="tm-product-card-action-text"
                             >Add to favorites</span
                           >
@@ -676,7 +679,7 @@
           </div>
         </div>
       </section>
-      <section class="uk-section uk-section-default uk-section-small">
+      <!-- <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div
             class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@s"
@@ -784,8 +787,8 @@
             </section>
           </div>
         </div>
-      </section>
-      <section class="uk-section uk-section-default uk-section-small">
+      </section> -->
+      <!-- <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>
             <ul
@@ -875,19 +878,19 @@
             ></ul>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import loadingDot from "../containers/loadingDot.vue";
+// import loadingDot from "../containers/loadingDot.vue";
 
 export default {
   name: "HomePage",
   components: {
-    loadingDot,
+    // loadingDot,
   },
   data() {
     return {
@@ -903,7 +906,12 @@ export default {
         productColors: [],
         cartDetails: "",
         productDetails: [],
+        checkFavorites: "",
       },
+      productFavorites: [],
+      // test: {
+      //   id: "",
+      // },
     };
   },
   created() {
@@ -911,14 +919,18 @@ export default {
   },
   methods: {
     formatPrice(value) {
-      let val = (value / 1).toFixed(2).replace(".", ",");
+      let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getDT() {
+      this.checkFavorites = this.$store.state.tokenUser;
+      // console.log(this.checkFavorites);
+      this.getDataFavorites();
       axios
         .get("http://socstore.club:8800/api/customer/products/trending")
         .then((response) => {
           this.getData = response.data.object;
+          // console.log(this.getData);
         })
         .catch((e) => {
           console.log(e);
@@ -940,9 +952,9 @@ export default {
     addToCart(id, name, photos, price) {
       if (this.$store.state.tokenUser == "") {
         let item = {
-          name: name,
+          productName: name,
           id: id,
-          photos: photos,
+          photo: photos,
           price: price,
           quantity: 1,
         };
@@ -976,7 +988,7 @@ export default {
             this.$store.state.totalCart = response.data.object.length;
           })
           .catch((e) => {
-            this.error.push(e);
+            // this.error.push(e);
             console.log(e);
           });
 
@@ -1013,24 +1025,63 @@ export default {
       } else {
         // console.log("chạy vào có token");
         // console.log(item);
+        // this.getDataFavorites();
         let productFavorites = { productId: item };
-        console.log(productFavorites);
-        // axios.post(
-        //   "http://socstore.club:8800/api/customer/favorite/add",
-        //   productFavorites,
-        //   {
-        //     headers: {
-        //       Authorization: this.$store.state.tokenUser,
-        //     },
-        //   }
-        // );
-        this.$toasted.show("Thêm sản phẩm vào yêu thích !", {
-          type: "success",
-          duration: 2000,
-        });
+        // console.log("item" + item);
+        // console.log(productFavorites);
+        // if (item on this.productFavorites) {
+        //   console.log("false");
+        // } else {
+        //   console.log("true");
+        // }
+        axios.post(
+          "http://socstore.club:8800/api/customer/favorite/add",
+          productFavorites,
+          {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          }
+        );
       }
     },
     setData() {},
+    getDataFavorites() {
+      axios
+        .get("http://socstore.club:8800/api/customer/favorite/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          for (let i = 0; i < response.data.object.length; i++) {
+            // console.log(response.data.object[i].id);
+            this.productFavorites.push(response.data.object[i].id);
+          }
+          // console.log(this.productFavorites);
+          this.getTotalFavorites();
+        })
+        .catch((e) => {
+          // this.error.push(e);
+          console.log(e);
+        });
+    },
+    getTotalFavorites() {
+      axios
+        .get("http://socstore.club:8800/api/customer/favorite/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalFavorites = response.data.object.length;
+          // console.log("tổng yêu thích" + this.$store.state.totalFavorites);
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
   },
 };
 </script>

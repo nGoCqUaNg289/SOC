@@ -704,9 +704,9 @@ export default {
     addToCart(id, name, photos, price) {
       if (this.$store.state.tokenUser == "") {
         let item = {
-          name: name,
+          productName: name,
           id: id,
-          photos: photos,
+          photo: photos,
           price: price,
           quantity: 1,
         };
@@ -788,4 +788,7 @@ export default {
 </script>
 
 <style>
+a {
+  text-decoration: none;
+}
 </style>

@@ -45,27 +45,21 @@
                       </div>
                     </section>
                     <div class="uk-text-center">
-                      <div class="uk-h4 uk-margin-remove">Thomas Bruns</div>
-                      <div class="uk-text-meta">Joined June 6, 2018</div>
+                      <div class="uk-h4 uk-margin-remove">
+                        {{ this.$store.state.InfoPersonal.fullname }}
+                      </div>
+                      <div class="uk-text-meta">
+                        {{ this.$store.state.InfoPersonal.email }}
+                      </div>
                     </div>
                     <div>
                       <div class="uk-grid-small uk-flex-center" uk-grid>
-                        <div>
-                          <a
-                            class="uk-button uk-button-default uk-button-small"
-                            href="settings.html"
-                            ><span
-                              class="uk-margin-xsmall-right"
-                              uk-icon="icon: cog; ratio: .75;"
-                            ></span
-                            ><span>Settings</span></a
-                          >
-                        </div>
                         <div>
                           <button
                             class="uk-button uk-button-default uk-button-small"
                             href="#"
                             title="Log out"
+                            @click="clearData"
                           >
                             <span uk-icon="icon: sign-out; ratio: .75;"></span>
                           </button>
@@ -105,10 +99,14 @@
                 "
               >
                 <header class="uk-card-header">
-                  <h1 class="uk-h2">Favorites</h1>
+                  <h1 class="uk-h2">Sản phẩm yêu thích</h1>
                 </header>
                 <div class="uk-grid-collapse tm-products-list" uk-grid>
-                  <article class="tm-product-card">
+                  <article
+                    class="tm-product-card"
+                    v-for="item in productFavorites"
+                    :key="item.id"
+                  >
                     <div class="tm-product-card-media">
                       <div class="tm-ratio tm-ratio-4-3">
                         <a class="tm-media-box" href="product.html">
@@ -120,10 +118,7 @@
                             >
                           </div>
                           <figure class="tm-media-box-wrap">
-                            <img
-                              src="images/products/1/1-medium.jpg"
-                              alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                            />
+                            <img :src="item.photos[0]" />
                           </figure>
                         </a>
                       </div>
@@ -134,12 +129,13 @@
                           Laptop
                         </div>
                         <h3 class="tm-product-card-title">
-                          <a class="uk-link-heading" href="product.html"
-                            >Apple MacBook Pro 15&quot; Touch Bar MPTU2LL/A
-                            256GB (Silver)</a
+                          <a
+                            class="uk-link-heading text-decoration"
+                            href="product.html"
+                            >{{ item.name }}</a
                           >
                         </h3>
-                        <ul
+                        <!-- <ul
                           class="
                             uk-list uk-text-small
                             tm-product-card-properties
@@ -161,12 +157,14 @@
                             <span class="uk-text-muted">Video Card: </span
                             ><span>AMD Radeon Pro 555</span>
                           </li>
-                        </ul>
+                        </ul> -->
                       </div>
                       <div class="tm-product-card-shop">
                         <div class="tm-product-card-prices">
                           <del class="uk-text-meta">$1899.00</del>
-                          <div class="tm-product-card-price">$1599.00</div>
+                          <div class="tm-product-card-price">
+                            {{ formatPrice(item.price) }} đ
+                          </div>
                         </div>
                         <div class="tm-product-card-add">
                           <div class="uk-text-meta tm-product-card-actions">
@@ -178,11 +176,32 @@
                                 js-added-to
                               "
                               title="Add to compare"
-                              ><span uk-icon="icon: copy; ratio: .75;"></span
-                              ><span class="tm-product-card-action-text"
-                                >Thêm vào so sánh</span
-                              ></a
+                              style="text-decoration: none"
+                              @click="compareProduct(item)"
                             >
+                              <span uk-icon="icon: copy; ratio: .75;"></span>
+                              <span class="tm-product-card-action-text"
+                                >Thêm vào so sánh</span
+                              >
+                            </a>
+                          </div>
+                          <div class="uk-text-meta tm-product-card-actions">
+                            <a
+                              class="
+                                tm-product-card-action
+                                js-add-to js-add-to-compare
+                                tm-action-button-active
+                                js-added-to
+                              "
+                              title="Delete favorites"
+                              style="text-decoration: none"
+                              @click="deleteFavorites(item.id)"
+                            >
+                              <span uk-icon="icon: close; ratio: .75;"></span>
+                              <span class="tm-product-card-action-text"
+                                >Bỏ yêu thích</span
+                              >
+                            </a>
                           </div>
                           <button
                             class="
@@ -209,7 +228,7 @@
           </div>
         </div>
       </section>
-      <section class="uk-section uk-section-default uk-section-small">
+      <!-- <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>
             <ul
@@ -299,7 +318,7 @@
             ></ul>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
   </div>
 </template>
@@ -310,9 +329,19 @@ import axios from "axios";
 export default {
   name: "favorites",
   data() {
-    return {};
+    return {
+      productFavorites: [],
+    };
+  },
+  created() {
+    // this.getBlog();
+    this.getDataFavorites();
   },
   methods: {
+    formatPrice(value) {
+      let val = (value / 1).toFixed(0).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
     getDataFavorites() {
       axios
         .get("http://socstore.club:8800/api/customer/favorite/get", {
@@ -321,16 +350,117 @@ export default {
           },
         })
         .then((response) => {
-          console.log("Đây là detail cart" + response);
+          for (let i = 0; i < response.data.object.length; i++) {
+            // console.log(response.data.object[i]);
+            this.productFavorites.push(response.data.object[i]);
+          }
+          // this.productFavorites = response.data.object;
+          console.log(this.productFavorites);
         })
         .catch((e) => {
           this.error.push(e);
           console.log(e);
         });
     },
+    compareProduct(item) {
+      console.log(item);
+      if (this.$store.state.CompareCart.length < 2) {
+        this.$store.state.CompareCart.push(item);
+        this.$toasted.show("Đã chọn sản phẩm để so sánh!", {
+          type: "success",
+          duration: 2000,
+        });
+      } else {
+        this.$toasted.show("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!", {
+          type: "error",
+          duration: 2000,
+        });
+      }
+    },
+    addToCart(id, name, photos, price) {
+      if (this.$store.state.tokenUser == "") {
+        let item = {
+          name: name,
+          id: id,
+          photo: photos,
+          price: price,
+          quantity: 1,
+        };
+        this.$store.state.StoreCart.push(item);
+        this.$toasted.show("Đã thêm vào giỏ hàng !", {
+          type: "success",
+          duration: 2000,
+        });
+        console.log("chạy vào không có token");
+      } else {
+        console.log("chạy vào có token");
+        let item = {
+          productId: id,
+          price: price,
+          quantity: 1,
+        };
+        this.$store.state.StoreCart.push(item);
+        axios.post("http://socstore.club:8800/api/customer/cart/new", item, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        });
+
+        axios
+          .get("http://socstore.club:8800/api/customer/cart/get", {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          })
+          .then((response) => {
+            this.$store.state.totalCart = response.data.object.length;
+          })
+          .catch((e) => {
+            this.error.push(e);
+            console.log(e);
+          });
+
+        this.$toasted.show("Đã thêm vào giỏ hàng !", {
+          type: "success",
+          duration: 2000,
+        });
+      }
+    },
+    clearData() {
+      this.$store.state.tokenUser = "";
+      this.$store.state.totalCart = 0;
+      this.$store.state.InfoPersonal = {};
+      this.$store.state.userName = "";
+      this.$store.state.CompareCart = [];
+      this.$store.state.StoreCart = [];
+      localStorage.clear();
+      this.$router.push({
+        name: "login",
+      });
+    },
+    deleteFavorites(item) {
+      let productFavorites = { productId: item };
+      axios.post(
+        "http://socstore.club:8800/api/customer/favorite/add",
+        productFavorites,
+        {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        }
+      );
+      this.getDataFavorites();
+      this.$toasted.show("Đã xóa khỏi sản phẩm yêu thích!", {
+        type: "error",
+        duration: 2000,
+      });
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.text-decoration {
+  text-decoration: none;
+}
 </style>
