@@ -120,9 +120,7 @@
                               <input
                                 class="uk-input"
                                 type="text"
-                                v-model="
-                                  this.$store.state.InfoPersonal.fullname
-                                "
+                                v-model="dataUser.fullname"
                               />
                             </label>
                           </div>
@@ -132,7 +130,8 @@
                               <input
                                 class="uk-input"
                                 type="tel"
-                                v-model="this.$store.state.InfoPersonal.email"
+                                v-model="dataUser.email"
+                                disabled
                               />
                             </label>
                           </div>
@@ -142,11 +141,11 @@
                               <input
                                 class="uk-input"
                                 type="tel"
-                                v-model="this.$store.state.InfoPersonal.phone"
+                                v-model="dataUser.phone"
                               />
                             </label>
                           </div>
-                          <div>
+                          <!-- <div>
                             <label style="width: 100%">
                               <div class="uk-form-label">Ngày sinh</div>
                               <input
@@ -155,7 +154,7 @@
                                 value="1990-01-01"
                               />
                             </label>
-                          </div>
+                          </div> -->
                         </div>
                       </fieldset>
                       <fieldset class="uk-fieldset">
@@ -178,7 +177,7 @@
                               <input
                                 class="uk-input"
                                 type="text"
-                                v-model="this.$store.state.InfoPersonal.address"
+                                v-model="dataUser.address"
                               />
                             </label>
                           </div>
@@ -210,7 +209,10 @@
                   </form>
                 </div>
                 <div class="uk-card-footer uk-text-center">
-                  <button class="uk-button uk-button-primary">
+                  <button
+                    class="uk-button uk-button-primary"
+                    @click="updateUser(dataUser)"
+                  >
                     Cập nhật tài khoản
                   </button>
                 </div>
@@ -315,6 +317,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "personal",
   data() {
@@ -328,7 +332,7 @@ export default {
   methods: {
     getDataUser() {
       this.dataUser = this.$store.state.InfoPersonal;
-      console.log(this.dataUser);
+      // console.log(this.dataUser);
     },
     clearData() {
       this.$store.state.tokenUser = "";
@@ -341,6 +345,37 @@ export default {
       this.$router.push({
         name: "login",
       });
+    },
+    updateUser(dataUser) {
+      let item = {
+        fullname: dataUser.fullname,
+        phone: dataUser.phone,
+        address: dataUser.address,
+      };
+
+      axios
+        .put("http://socstore.club:8800/api/customer/account/update", item, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          // console.log(response.data.object);
+          this.$store.state.InfoPersonal = response.data.object;
+          this.dataUser = response.data.object;
+
+          this.$toasted.show("Cập nhật thông tin thành công !", {
+            type: "success",
+            duration: 2000,
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+          this.$toasted.show("Cập nhật thất bại !", {
+            type: "error",
+            duration: 2000,
+          });
+        });
     },
   },
 };

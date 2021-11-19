@@ -24,12 +24,14 @@ import setting from "../components/setting.vue"
 import subcategory from "../components/subcategory.vue"
 import vnpay from "../components/vnpay.vue"
 import cartInfo from "../components/cartInfo.vue"
+import vnPayResult from "../components/vnPayResult.vue"
 
 import Login from "../containers/Login.vue"
 import Register from "../containers/Register.vue"
 import loadingform from "../containers/loadingform.vue"
 import loadingDot from "../containers/loadingDot.vue"
 import alertLoginError from "../containers/alertLoginError.vue"
+
 
 Vue.use(Router)
 
@@ -64,6 +66,7 @@ const router = new Router({
         { path: "/loading", component: loadingform, name: "loading" },
         { path: "/loadinglogin", component: loadingDot, name: "loadinglogin" },
         { path: "/alertlogin", component: alertLoginError, name: "alertlogin" },
+        { path: "/vnpayresult", component: vnPayResult, name: "vnpayresult" },
     ]
 })
 

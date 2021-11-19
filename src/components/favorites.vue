@@ -209,6 +209,14 @@
                               tm-product-card-add-button tm-shine
                               js-add-to-cart
                             "
+                            @click="
+                              addToCart(
+                                item.id,
+                                item.name,
+                                item.photos[0],
+                                item.price
+                              )
+                            "
                           >
                             <span
                               class="tm-product-card-add-button-icon"
@@ -350,12 +358,9 @@ export default {
           },
         })
         .then((response) => {
-          for (let i = 0; i < response.data.object.length; i++) {
-            // console.log(response.data.object[i]);
-            this.productFavorites.push(response.data.object[i]);
-          }
-          // this.productFavorites = response.data.object;
-          console.log(this.productFavorites);
+          // console.log(response.data.object);
+          this.$store.state.totalFavorites = response.data.object;
+          this.productFavorites = this.$store.state.totalFavorites;
         })
         .catch((e) => {
           this.error.push(e);
@@ -391,33 +396,38 @@ export default {
           type: "success",
           duration: 2000,
         });
-        console.log("chạy vào không có token");
       } else {
-        console.log("chạy vào có token");
         let item = {
           productId: id,
           price: price,
           quantity: 1,
         };
         this.$store.state.StoreCart.push(item);
-        axios.post("http://socstore.club:8800/api/customer/cart/new", item, {
-          headers: {
-            Authorization: this.$store.state.tokenUser,
-          },
-        });
-
         axios
-          .get("http://socstore.club:8800/api/customer/cart/get", {
+          .post("http://socstore.club:8800/api/customer/cart/new", item, {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
           })
           .then((response) => {
-            this.$store.state.totalCart = response.data.object.length;
-          })
-          .catch((e) => {
-            this.error.push(e);
-            console.log(e);
+            console.log(response);
+            axios
+              .get("http://socstore.club:8800/api/customer/cart/get", {
+                headers: {
+                  Authorization: this.$store.state.tokenUser,
+                },
+              })
+              .then((response) => {
+                this.$store.state.totalCart = response.data.object.length;
+                this.$store.state.StoreCart = response.data.object;
+                this.DetailsCart = this.$store.state.StoreCart;
+                for (let item in this.DetailsCart) {
+                  this.totalPriceProduct.push(response.data.object[item].price);
+                }
+              })
+              .catch((e) => {
+                console.log(e);
+              });
           });
 
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
@@ -439,21 +449,27 @@ export default {
       });
     },
     deleteFavorites(item) {
+      console.log(item);
       let productFavorites = { productId: item };
-      axios.post(
-        "http://socstore.club:8800/api/customer/favorite/add",
-        productFavorites,
-        {
-          headers: {
-            Authorization: this.$store.state.tokenUser,
-          },
-        }
-      );
-      this.getDataFavorites();
-      this.$toasted.show("Đã xóa khỏi sản phẩm yêu thích!", {
-        type: "error",
-        duration: 2000,
-      });
+      axios
+        .post(
+          "http://socstore.club:8800/api/customer/favorite/add",
+          productFavorites,
+          {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          this.productFavorites = [];
+          this.getDataFavorites();
+          this.$toasted.show("Đã xóa khỏi sản phẩm yêu thích!", {
+            type: "error",
+            duration: 2000,
+          });
+        });
     },
   },
 };

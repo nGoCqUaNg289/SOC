@@ -90,7 +90,7 @@
                         <nav>
                           <ul
                             class="uk-nav uk-nav-default tm-nav"
-                            style="height: 150px"
+                            style="height: 200px"
                           >
                             <li
                               class="uk-active"
@@ -100,6 +100,9 @@
                             </li>
                             <li style="margin-top: 15px">
                               <div class="font-li">{{ dataUser.fullname }}</div>
+                            </li>
+                            <li style="margin-top: 5px">
+                              <div class="font-li">{{ dataUser.email }}</div>
                             </li>
                             <li style="margin-top: 5px">
                               <div class="font-li">
@@ -166,6 +169,7 @@
                       <button
                         type="button"
                         class="btn btn-outline-secondary btn-danger-custom"
+                        @click="test()"
                       >
                         Hủy
                       </button>
@@ -192,7 +196,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
   props: {
     item: Number,
@@ -204,13 +208,15 @@ export default {
       DetailsOrder: [],
       sumTotal: 0,
       typeOfPay: "1",
+      orderDetails: [],
     };
   },
   created() {
     // this.getBlog();
-    this.getDataUser();
     this.getOrderUser();
     this.sumPrice();
+    this.getDataUser();
+    // console.log(localStorage.userToken);
   },
   methods: {
     formatPrice(value) {
@@ -218,11 +224,30 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getDataUser() {
-      this.dataUser = this.$store.state.InfoPersonal;
+      this.dataUser = {
+        address: this.$store.state.InfoPersonal.address,
+        email: this.$store.state.InfoPersonal.email,
+        fullname: this.$store.state.InfoPersonal.fullname,
+        phone: this.$store.state.InfoPersonal.phone,
+      };
+      console.log(this.dataUser);
+      console.log(this.sumTotal);
     },
     getOrderUser() {
       this.DetailsOrder = this.$store.state.StoreCart;
-      // console.log(this.DetailsOrder);
+      this.orderDetails = this.$store.state.StoreCart.map((detail) => {
+        return {
+          productId: detail.productId,
+          quantity: detail.quantity,
+          price: detail.price,
+          discount: 0,
+        };
+      });
+      console.log(this.orderDetails);
+      console.log(this.DetailsOrder);
+      // for (let i = 0; i < this.DetailsOrder.length; i++) {
+
+      // }
     },
     sumPrice() {
       for (let i = 0; i < this.DetailsOrder.length; i++) {
@@ -232,10 +257,52 @@ export default {
       return this.sumTotal;
     },
     addToOrder() {
-      console.log(this.typeOfPay);
-      // if(this.typeOfPay){
+      let item = {
+        sumprice: this.sumTotal,
+        customer: this.dataUser,
+        orderDetails: this.orderDetails,
+      };
 
-      // }
+      axios
+        .post("http://socstore.club:8800/api/customer/orders/new", item, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          let infoCart = {
+            OrderInfo: "thanh toán máy tính",
+            ordersId: response.data.object.id,
+            returnURL: "http://localhost:8080/#/vnPayResult",
+          };
+          console.log(infoCart);
+          if (this.typeOfPay == "1") {
+            this.$toasted.show("Đặt hàng thành công !", {
+              type: "success",
+              duration: 2000,
+            });
+          } else {
+            axios
+              .post(
+                "http://socstore.club:8800/api/customer/pay/getpayurl",
+                infoCart
+              )
+              .then((response) => {
+                window.location = response.data.object;
+              });
+          }
+        })
+        .catch((e) => {
+          this.$toasted.show("Đặt hàng thất bại !", {
+            type: "error",
+            duration: 2000,
+          });
+          console.log(e);
+        });
+    },
+    test() {
+      // this.$router.go("https://www.google.com/");
+      window.location = "https://www.google.com/";
     },
   },
 };

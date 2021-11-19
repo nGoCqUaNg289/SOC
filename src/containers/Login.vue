@@ -80,9 +80,15 @@ export default {
           this.$store.state.userName = response.data.username;
 
           if (response.data.roles[0] == "Director") {
-            console.log("Chuyển trang admin");
+            this.$toasted.show("Tài khoản không được sử dụng ở đây !", {
+              type: "error",
+              duration: 2000,
+            });
           } else if (response.data.roles[0] == "Staff") {
-            console.log("Chuyển trang admin");
+            this.$toasted.show("Tài khoản không được sử dụng ở đây !", {
+              type: "error",
+              duration: 2000,
+            });
           } else if (response.data.roles[0] == "User") {
             console.log("Đăng nhập user");
             this.$toasted.show("Đăng nhập thành công !", {
@@ -93,12 +99,22 @@ export default {
               name: "Home",
             });
           } else {
-            console.log("Tài khoản hoặc mật khẩu không chính xác !");
+            this.$toasted.show(
+              "Thông tin không chính xác, vui lòng nhập lại !",
+              {
+                type: "error",
+                duration: 2000,
+              }
+            );
           }
         })
         .catch((e) => {
-          this.error.push(e);
-          // console.log(e);
+          // this.error.push(e);
+          console.log(e);
+          this.$toasted.show("Thông tin không chính xác, vui lòng nhập lại !", {
+            type: "error",
+            duration: 2000,
+          });
         });
     },
 
@@ -142,7 +158,7 @@ export default {
         })
         .then((response) => {
           this.$store.state.totalFavorites = response.data.object;
-          // console.log(this.$store.state.totalFavorites);
+          console.log(this.$store.state.totalFavorites);
         })
         .catch((e) => {
           this.error.push(e);

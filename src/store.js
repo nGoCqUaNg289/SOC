@@ -25,7 +25,9 @@ export default new Vuex.Store({
         totalFavorites: [],
     },
     getters: {},
-    mutations: {},
+    mutations: {
+
+    },
     actions: {
         login() {
 

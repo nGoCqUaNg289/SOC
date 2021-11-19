@@ -438,15 +438,23 @@
                                             js-added-to
                                           "
                                           title="Add to favorites"
-                                          @click="addToFavorite()"
-                                          ><span
-                                            uk-icon="icon: heart; ratio: .75;"
-                                          ></span
-                                          ><span
+                                          @click="addToFavorite(item.id)"
+                                          v-if="checkFavorites != ''"
+                                        >
+                                          <b-icon
+                                            :icon="
+                                              isFavorited(item)
+                                                ? 'heart-fill'
+                                                : 'heart'
+                                            "
+                                            style="color: red"
+                                          ></b-icon>
+                                          <!-- <b-icon icon="heart" style="color: red"></b-icon> -->
+                                          <span
                                             class="tm-product-card-action-text"
                                             >Add to favorites</span
-                                          ></a
-                                        >
+                                          >
+                                        </a>
                                         <a
                                           class="
                                             tm-product-card-action
@@ -491,7 +499,7 @@
                                           class="
                                             tm-product-card-add-button-text
                                           "
-                                          >add to cart</span
+                                          >Add to cart</span
                                         >
                                       </button>
                                     </div>
@@ -500,7 +508,7 @@
                               </article>
                             </div>
                           </div>
-                          <div>
+                          <!-- <div>
                             <button
                               class="
                                 uk-button
@@ -519,27 +527,11 @@
                               ></span
                               ><span>Load more</span>
                             </button>
-                          </div>
+                          </div> -->
                         </div>
                         <loadingform v-else></loadingform>
                       </div>
                     </div>
-
-                    <!-- phân trang -->
-                    <!-- <div>
-                      <ul class="uk-pagination uk-flex-center">
-                        <li class="uk-active"><span>1</span></li>
-                        <li><a>2</a></li>
-                        <li><a>3</a></li>
-                        <li><a>4</a></li>
-                        <li><a>5</a></li>
-                        <li class="uk-disabled"><span>…</span></li>
-                        <li><a>20</a></li>
-                        <li>
-                          <a><span uk-pagination-next></span></a>
-                        </li>
-                      </ul>
-                    </div> -->
                   </div>
                 </div>
               </div>
@@ -547,97 +539,6 @@
           </div>
         </div>
       </section>
-      <!-- <section class="uk-section uk-section-default uk-section-small">
-        <div class="uk-container">
-          <div uk-slider>
-            <ul
-              class="
-                uk-slider-items
-                uk-child-width-1-1
-                uk-child-width-1-2@s
-                uk-child-width-1-5@m
-                uk-grid
-              "
-            >
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: star; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Mauris placerat</div>
-                    <div class="uk-text-meta">
-                      Donec mollis nibh dolor, sit amet auctor
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: receiver; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Lorem ipsum</div>
-                    <div class="uk-text-meta">
-                      Sit amet, consectetur adipiscing elit
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: location; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Proin pharetra</div>
-                    <div class="uk-text-meta">
-                      Nec quam a fermentum ut viverra
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: comments; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Praesent ultrices</div>
-                    <div class="uk-text-meta">
-                      Praesent ultrices, orci nec finibus
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: happy; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Duis condimentum</div>
-                    <div class="uk-text-meta">
-                      Pellentesque eget varius arcu
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <ul
-              class="
-                uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top
-              "
-            ></ul>
-          </div>
-        </div>
-      </section> -->
     </main>
   </div>
 </template>
@@ -658,7 +559,7 @@ export default {
         quantiy: "",
         price: "",
       },
-
+      checkFavorites: "",
       CartDetail: [],
       DetailCompare: [],
       searchText: "",
@@ -678,6 +579,7 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getDT() {
+      this.checkFavorites = this.$store.state.tokenUser;
       axios
         .get("http://socstore.club:8800/api/customer/products")
         .then((response) => {
@@ -695,7 +597,7 @@ export default {
       }, 2000);
     },
     detailProduct(id) {
-      console.log(id);
+      // console.log(id);
       this.$router.push({
         name: "product",
         params: { item: id },
@@ -705,7 +607,7 @@ export default {
       if (this.$store.state.tokenUser == "") {
         let item = {
           productName: name,
-          id: id,
+          productId: id,
           photo: photos,
           price: price,
           quantity: 1,
@@ -715,20 +617,40 @@ export default {
           type: "success",
           duration: 2000,
         });
-        console.log("chạy vào không có token");
+        // console.log("chạy vào không có token");
       } else {
-        console.log("chạy vào có token");
         let item = {
           productId: id,
           price: price,
           quantity: 1,
         };
         this.$store.state.StoreCart.push(item);
-        axios.post("http://socstore.club:8800/api/customer/cart/new", item, {
-          headers: {
-            Authorization: this.$store.state.tokenUser,
-          },
-        });
+        axios
+          .post("http://socstore.club:8800/api/customer/cart/new", item, {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            axios
+              .get("http://socstore.club:8800/api/customer/cart/get", {
+                headers: {
+                  Authorization: this.$store.state.tokenUser,
+                },
+              })
+              .then((response) => {
+                this.$store.state.totalCart = response.data.object.length;
+                this.$store.state.StoreCart = response.data.object;
+                this.DetailsCart = this.$store.state.StoreCart;
+                for (let item in this.DetailsCart) {
+                  this.totalPriceProduct.push(response.data.object[item].price);
+                }
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+          });
 
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
           type: "success",
@@ -765,22 +687,48 @@ export default {
           console.log(e);
         });
     },
-    addToFavorite() {
-      if (this.$store.state.tokenUser == "") {
-        this.$toasted.show(
-          "Bạn cần đăng nhập để có thể sử dụng chức năng này !",
+    addToFavorite(item) {
+      let productFavorites = { productId: item };
+      axios
+        .post(
+          "http://socstore.club:8800/api/customer/favorite/add",
+          productFavorites,
           {
-            type: "error",
-            duration: 2000,
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
           }
-        );
-      } else {
-        console.log("chạy vào có token");
-
-        this.$toasted.show("Thêm sản phẩm vào yêu thích !", {
-          type: "success",
-          duration: 2000,
+        )
+        .then((response) => {
+          console.log(response);
+          this.getDataFavorites();
         });
+    },
+    getDataFavorites() {
+      axios
+        .get("http://socstore.club:8800/api/customer/favorite/get", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          // console.log(response.data.object);
+          this.$store.state.totalFavorites = response.data.object;
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
+    isFavorited(product) {
+      if (this.$store.state.tokenUser == "") {
+        return false;
+      } else {
+        return (
+          this.$store.state.totalFavorites.filter(
+            (Prct) => Prct.id == product.id
+          ).length > 0
+        );
       }
     },
   },

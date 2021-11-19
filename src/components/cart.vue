@@ -328,10 +328,10 @@ export default {
     CartDetail: [],
   },
   created() {
-    this.getCartDetail();
-    // this.getDTDT();
+    // this.getCartDetail();
+    this.getDTDT();
     this.getDataUser();
-    this.sumPrice();
+    this.callFunction();
   },
   data() {
     return {
@@ -369,7 +369,6 @@ export default {
           .then((response) => {
             this.$store.state.InfoPersonal = response.data.object;
             this.dataUser = this.$store.state.InfoPersonal;
-            // console.log(this.$store.state.InfoPersonal);
           })
           .catch((e) => {
             this.error.push(e);
@@ -381,33 +380,35 @@ export default {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    getCartDetail() {
-      this.DetailsCart = this.$store.state.StoreCart;
-    },
     getDTDT() {
-      axios
-        .get("http://socstore.club:8800/api/customer/cart/get", {
-          headers: {
-            Authorization: this.$store.state.tokenUser,
-          },
-        })
-        .then((response) => {
-          this.$store.state.totalCart = response.data.object.length;
-          this.$store.state.StoreCart = response.data.object;
-          this.DetailsCart = this.$store.state.StoreCart;
-          for (let item in this.DetailsCart) {
-            this.totalPriceProduct.push(response.data.object[item].price);
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      if (this.$store.state.tokenUser != "") {
+        axios
+          .get("http://socstore.club:8800/api/customer/cart/get", {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          })
+          .then((response) => {
+            this.$store.state.totalCart = response.data.object.length;
+            this.$store.state.StoreCart = response.data.object;
+            this.DetailsCart = this.$store.state.StoreCart;
+            for (let item in this.DetailsCart) {
+              this.totalPriceProduct.push(response.data.object[item].price);
+            }
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else {
+        this.DetailsCart = this.$store.state.StoreCart;
+        console.log(this.$store.state.StoreCart);
+      }
     },
     callFunction: function () {
       var v = this;
-      setInterval(function () {
+      setTimeout(function () {
         v.sumPrice();
-      }, 1000);
+      }, 500);
     },
     sumPrice() {
       for (let i = 0; i < this.DetailsCart.length; i++) {
@@ -426,11 +427,9 @@ export default {
           })
           .then((response) => {
             console.log(response);
-            // this.getCartDetail();
             this.getDTDT();
-            // this.getTotalCart();
             this.sumTotal = 0;
-            this.sumPrice();
+            this.callFunction();
             this.$toasted.show("Đã xoá sản phẩm khỏi giỏ hàng !", {
               type: "error",
               duration: 2000,

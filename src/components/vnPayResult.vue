@@ -1,5 +1,6 @@
 <template>
   <div class="uk-offcanvas-content">
+    <!-- <loadingform></loadingform> -->
     <main>
       <section class="uk-section uk-section-small">
         <div class="uk-container">
@@ -7,8 +8,8 @@
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
                 <li><a>Trang chủ</a></li>
-                <li><a>Giỏ hàng</a></li>
                 <li><a>Thanh toán</a></li>
+                <li><a>Hóa đơn</a></li>
               </ul>
             </div>
             <div>
@@ -21,7 +22,7 @@
                     "
                   >
                     <header class="uk-text-center">
-                      <h1 class="uk-article-title">Thông tin giao hàng</h1>
+                      <h1 class="uk-article-title">Thông tin thanh toán</h1>
                     </header>
                     <section class="uk-width-1-1 uk-width-expand@m">
                       <article
@@ -36,21 +37,50 @@
                       >
                         <form>
                           <div class="form-group col-md-12 form-margin-top">
-                            <label class="label-custom">Họ tên</label>
-                            <input
-                              type="text"
-                              class="form-control-custom form-control"
-                              placeholder="Nhập họ tên"
-                              v-model="dataUser.fullname"
-                            />
+                            <label class="label-custom"
+                              >Tình trạng thanh toán:</label
+                            >
+                            <label
+                              class="label-custom-detail"
+                              v-if="(vnResult.TransactionStatus = '00')"
+                              >Thanh toán thành công!</label
+                            >
+                            <label
+                              class="label-custom-detail label-custom-red"
+                              v-else
+                              >Thanh toán thất bại!</label
+                            >
                           </div>
                           <div class="form-group col-md-12 form-margin-top">
-                            <label class="label-custom">Email</label>
+                            <label class="label-custom">Giá tiền:</label>
+                            <label class="label-custom-detail"
+                              >{{ formatPrice(vnResult.Amount / 100) }} đ</label
+                            >
+                          </div>
+                          <div class="form-group col-md-12 form-margin-top">
+                            <label class="label-custom"
+                              >Thời gian thanh toán:</label
+                            >
+                            <label class="label-custom-detail"
+                              >{{ getDate(vnResult.PayDate) }} -
+                              {{ getTime(vnResult.PayDate) }}
+                            </label>
+                          </div>
+                          <!-- <div class="form-group col-md-12 form-margin-top">
+                            <label class="label-custom"
+                              >Tình trạng thanh toán:</label
+                            >
+                            <label class="label-custom-detail">{{
+                              vnResult.TransactionStatus
+                            }}</label>
+                          </div> -->
+                          <!-- <div class="form-group col-md-12 form-margin-top">
+                            <label class="label-custom">Số tiền:</label>
                             <input
                               type="text"
                               class="form-control-custom form-control"
                               placeholder="Nhập họ tên"
-                              v-model="dataUser.email"
+                              v-model="vnResult.Amount"
                             />
                           </div>
                           <div class="form-group col-md-12 form-margin-top">
@@ -58,7 +88,6 @@
                             <input
                               class="form-control form-control-custom"
                               placeholder="Nhập số điện thoại"
-                              v-model="dataUser.phone"
                             />
                           </div>
                           <div class="form-group form-margin-top">
@@ -68,23 +97,16 @@
                               class="form-control form-control-custom"
                               id="inputAddress2"
                               placeholder="Đường Chính Kinh, số nhà ABC123"
-                              v-model="dataUser.address"
                             />
-                          </div>
+                          </div> -->
                           <form style="text-align: center">
                             <button
                               type="button"
-                              class="btn btn-outline-danger btn-size"
-                              @click="cart()"
-                            >
-                              Huỷ
-                            </button>
-                            <button
-                              type="button"
                               class="btn btn-outline-primary btn-size"
-                              @click="payment()"
+                              style="width: 30%"
+                              @click="backToHome()"
                             >
-                              Lưu
+                              Tiếp tục mua hàng!
                             </button>
                           </form>
                         </form>
@@ -102,37 +124,52 @@
 </template>
 
 <script>
+// import loadingform from "../containers/loadingform.vue";
+import moment from "moment";
+
 export default {
-  props: {
-    item: Number,
+  name: "vnpayresult",
+  components: {
+    // loadingform,
   },
   data() {
     return {
-      getData: "",
-      dataUser: {},
+      vnResult: {},
     };
   },
   created() {
-    this.getDataUser();
+    this.callFunction();
+    // console.log(this.vnResult);
   },
   methods: {
-    getDataUser() {
-      this.dataUser = this.$store.state.InfoPersonal;
-    },
+    getDate: (time, format = "YYYYMMDD") =>
+      time ? moment(time, format).format("DD/MM/YYYY") : "",
+    getTime: (time, format = "ssmmhh") =>
+      time ? moment(time, format).format("hh:mm:ss") : "",
     formatPrice(value) {
-      let val = (value / 1).toFixed(2).replace(".", ",");
+      let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    payment() {
-      // console.log(this.dataUser);
-      this.$router.push({
-        name: "vnpay",
-        // params: { item: id },
-      });
+    callFunction: function () {
+      var v = this;
+      setTimeout(function () {
+        v.getDataResult();
+      }, 0);
     },
-    cart() {
+    getDataResult() {
+      this.vnResult = {
+        Amount: this.$route.query.vnp_Amount,
+        TransactionStatus: this.$route.query.vnp_TransactionStatus,
+        PayDate: this.$route.query.vnp_PayDate,
+        // payDone: this.$route.query.vnp_Pay,
+        TransactionNo: this.$route.query.vnp_TransactionNo,
+      };
+      //   console.log(this.$route.query.vnp_TransactionStatus);
+      console.log(this.vnResult);
+    },
+    backToHome() {
       this.$router.push({
-        name: "cart",
+        name: "Home",
         // params: { item: id },
       });
     },
@@ -140,29 +177,15 @@ export default {
 };
 </script>
 
-<style scope>
-.section-custom {
-  margin-top: 5%;
-}
-td.custom-size-price-total {
-  width: 20%;
-}
-.label-custom {
+<style scoped>
+.label-custom-detail {
   float: left;
-  width: 20%;
+  width: 60%;
   margin: 5px 5px 5px 5px;
   margin-bottom: 25px;
   font-weight: 600;
 }
-input.form-control-custom {
-  width: 75%;
-  float: left;
-  margin-bottom: 25px;
-  /* border: none;
-  border-bottom: 1px solid silver; */
-}
-.btn-size {
-  width: 150px;
-  margin: 15px;
+.label-custom-red {
+  color: red;
 }
 </style>

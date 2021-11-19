@@ -2,7 +2,7 @@
   <div id="app">
     <AppHeader></AppHeader>
     <router-view></router-view>
-    <AppFooter></AppFooter>
+    <AppFooter id="footer"></AppFooter>
   </div>
 </template>
 
@@ -14,17 +14,14 @@ export default {
   name: "App",
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
   },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  color: #2c3e50;
+#footer {
+  bottom: 0;
+  width: 100%;
 }
 </style>

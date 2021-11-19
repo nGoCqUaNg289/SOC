@@ -18,7 +18,7 @@ export default {};
   height: 100%;
   position: absolute;
   width: 100%;
-  min-height: 150px;
+  min-height: 750px;
 }
 
 .formLoader ul {

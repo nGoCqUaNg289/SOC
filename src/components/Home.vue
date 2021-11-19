@@ -306,8 +306,11 @@
                           @click="addToFavorite(item.id)"
                           v-if="checkFavorites != ''"
                         >
-                          <b-icon icon="heart-fill" style="color: red"></b-icon>
-                          <b-icon icon="heart" style="color: red"></b-icon>
+                          <b-icon
+                            :icon="isFavorited(item) ? 'heart-fill' : 'heart'"
+                            style="color: red"
+                          ></b-icon>
+                          <!-- <b-icon icon="heart" style="color: red"></b-icon> -->
                           <span class="tm-product-card-action-text"
                             >Add to favorites</span
                           >
@@ -916,6 +919,7 @@ export default {
   },
   created() {
     this.getDT();
+    // console.log(this.$store.state.totalFavorites);
   },
   methods: {
     formatPrice(value) {
@@ -925,7 +929,7 @@ export default {
     getDT() {
       this.checkFavorites = this.$store.state.tokenUser;
       // console.log(this.checkFavorites);
-      this.getDataFavorites();
+      // this.getDataFavorites();
       axios
         .get("http://socstore.club:8800/api/customer/products/trending")
         .then((response) => {
@@ -943,7 +947,7 @@ export default {
       }, 2000);
     },
     detailProduct(id) {
-      console.log(id);
+      // console.log(id);
       this.$router.push({
         name: "product",
         params: { item: id },
@@ -953,7 +957,7 @@ export default {
       if (this.$store.state.tokenUser == "") {
         let item = {
           productName: name,
-          id: id,
+          productId: id,
           photo: photos,
           price: price,
           quantity: 1,
@@ -963,33 +967,38 @@ export default {
           type: "success",
           duration: 2000,
         });
-        console.log("chạy vào không có token");
       } else {
-        console.log("chạy vào có token");
         let item = {
           productId: id,
           price: price,
           quantity: 1,
         };
         this.$store.state.StoreCart.push(item);
-        axios.post("http://socstore.club:8800/api/customer/cart/new", item, {
-          headers: {
-            Authorization: this.$store.state.tokenUser,
-          },
-        });
-
         axios
-          .get("http://socstore.club:8800/api/customer/cart/get", {
+          .post("http://socstore.club:8800/api/customer/cart/new", item, {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
           })
           .then((response) => {
-            this.$store.state.totalCart = response.data.object.length;
-          })
-          .catch((e) => {
-            // this.error.push(e);
-            console.log(e);
+            console.log(response);
+            axios
+              .get("http://socstore.club:8800/api/customer/cart/get", {
+                headers: {
+                  Authorization: this.$store.state.tokenUser,
+                },
+              })
+              .then((response) => {
+                this.$store.state.totalCart = response.data.object.length;
+                this.$store.state.StoreCart = response.data.object;
+                this.DetailsCart = this.$store.state.StoreCart;
+                for (let item in this.DetailsCart) {
+                  this.totalPriceProduct.push(response.data.object[item].price);
+                }
+              })
+              .catch((e) => {
+                console.log(e);
+              });
           });
 
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
@@ -999,7 +1008,7 @@ export default {
       }
     },
     compareProduct(item) {
-      console.log(this.$store.state.CompareCart.length);
+      // console.log(this.$store.state.CompareCart.length);
       if (this.$store.state.CompareCart.length < 2) {
         this.$store.state.CompareCart.push(item);
         this.$toasted.show("Đã chọn sản phẩm để so sánh!", {
@@ -1014,27 +1023,10 @@ export default {
       }
     },
     addToFavorite(item) {
-      if (this.$store.state.tokenUser == "") {
-        this.$toasted.show(
-          "Bạn cần đăng nhập để có thể sử dụng chức năng này !",
-          {
-            type: "error",
-            duration: 2000,
-          }
-        );
-      } else {
-        // console.log("chạy vào có token");
-        // console.log(item);
-        // this.getDataFavorites();
-        let productFavorites = { productId: item };
-        // console.log("item" + item);
-        // console.log(productFavorites);
-        // if (item on this.productFavorites) {
-        //   console.log("false");
-        // } else {
-        //   console.log("true");
-        // }
-        axios.post(
+      let productFavorites = { productId: item };
+      // console.log(productFavorites);
+      axios
+        .post(
           "http://socstore.club:8800/api/customer/favorite/add",
           productFavorites,
           {
@@ -1042,10 +1034,13 @@ export default {
               Authorization: this.$store.state.tokenUser,
             },
           }
-        );
-      }
+        )
+        .then((response) => {
+          console.log(response);
+          this.getDataFavorites();
+        });
+      // this.getDataFavorites();
     },
-    setData() {},
     getDataFavorites() {
       axios
         .get("http://socstore.club:8800/api/customer/favorite/get", {
@@ -1054,33 +1049,24 @@ export default {
           },
         })
         .then((response) => {
-          for (let i = 0; i < response.data.object.length; i++) {
-            // console.log(response.data.object[i].id);
-            this.productFavorites.push(response.data.object[i].id);
-          }
-          // console.log(this.productFavorites);
-          this.getTotalFavorites();
-        })
-        .catch((e) => {
-          // this.error.push(e);
-          console.log(e);
-        });
-    },
-    getTotalFavorites() {
-      axios
-        .get("http://socstore.club:8800/api/customer/favorite/get", {
-          headers: {
-            Authorization: this.$store.state.tokenUser,
-          },
-        })
-        .then((response) => {
-          this.$store.state.totalFavorites = response.data.object.length;
-          // console.log("tổng yêu thích" + this.$store.state.totalFavorites);
+          console.log(response.data.object);
+          this.$store.state.totalFavorites = response.data.object;
         })
         .catch((e) => {
           this.error.push(e);
           console.log(e);
         });
+    },
+    isFavorited(product) {
+      if (this.$store.state.tokenUser == "") {
+        return false;
+      } else {
+        return (
+          this.$store.state.totalFavorites.filter(
+            (Prct) => Prct.id == product.id
+          ).length > 0
+        );
+      }
     },
   },
 };
