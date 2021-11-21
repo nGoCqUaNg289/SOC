@@ -542,7 +542,7 @@ export default {
     switchToAccount() {
       if (this.$store.state.tokenUser != "") {
         axios
-          .get("http://socstore.club:8800/api/customer/account", {
+          .get(this.$store.state.MainLink + "customer/account", {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
@@ -569,7 +569,7 @@ export default {
     switchToCart() {
       if (this.$store.state.tokenUser != "") {
         axios
-          .get("http://socstore.club:8800/api/customer/cart/get", {
+          .get(this.$store.state.MainLink + "customer/cart/get", {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },

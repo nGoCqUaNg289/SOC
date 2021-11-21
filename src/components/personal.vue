@@ -354,7 +354,7 @@ export default {
       };
 
       axios
-        .put("http://socstore.club:8800/api/customer/account/update", item, {
+        .put(this.$store.state.MainLink + "customer/account/update", item, {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },

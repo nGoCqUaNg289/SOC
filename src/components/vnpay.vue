@@ -264,7 +264,7 @@ export default {
       };
 
       axios
-        .post("http://socstore.club:8800/api/customer/orders/new", item, {
+        .post(this.$store.state.MainLink + "customer/orders/new", item, {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },
@@ -273,7 +273,7 @@ export default {
           let infoCart = {
             OrderInfo: "thanh toán máy tính",
             ordersId: response.data.object.id,
-            returnURL: "http://localhost:8080/#/vnPayResult",
+            returnURL: "http://150.95.105.29/#/vnPayResult",
           };
           console.log(infoCart);
           if (this.typeOfPay == "1") {
@@ -284,7 +284,7 @@ export default {
           } else {
             axios
               .post(
-                "http://socstore.club:8800/api/customer/pay/getpayurl",
+                this.$store.state.MainLink + "customer/pay/getpayurl",
                 infoCart
               )
               .then((response) => {
@@ -301,8 +301,11 @@ export default {
         });
     },
     test() {
+      this.$router.push({
+        name: "Home",
+      });
       // this.$router.go("https://www.google.com/");
-      window.location = "https://www.google.com/";
+      // window.location = "https://www.google.com/";
     },
   },
 };

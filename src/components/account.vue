@@ -37,9 +37,6 @@
                             uk-hidden-hover
                           "
                         >
-                          <!-- <div class="uk-position-center">
-                            <span uk-icon="icon: camera; ratio: 1.25;"></span>
-                          </div> -->
                         </a>
                       </div>
                     </section>
@@ -205,104 +202,23 @@
           </div>
         </div>
       </section>
-      <!-- <section class="uk-section uk-section-default uk-section-small">
-        <div class="uk-container">
-          <div uk-slider>
-            <ul
-              class="
-                uk-slider-items
-                uk-child-width-1-1
-                uk-child-width-1-2@s
-                uk-child-width-1-5@m
-                uk-grid
-              "
-            >
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: star; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Mauris placerat</div>
-                    <div class="uk-text-meta">
-                      Donec mollis nibh dolor, sit amet auctor
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: receiver; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Lorem ipsum</div>
-                    <div class="uk-text-meta">
-                      Sit amet, consectetur adipiscing elit
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: location; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Proin pharetra</div>
-                    <div class="uk-text-meta">
-                      Nec quam a fermentum ut viverra
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: comments; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Praesent ultrices</div>
-                    <div class="uk-text-meta">
-                      Praesent ultrices, orci nec finibus
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: happy; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Duis condimentum</div>
-                    <div class="uk-text-meta">
-                      Pellentesque eget varius arcu
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <ul
-              class="
-                uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top
-              "
-            ></ul>
-          </div>
-        </div>
-      </section> -->
     </main>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "account",
+  data() {
+    return {
+      listOrder: "",
+    };
+  },
+  created() {
+    this.getDataUserOrder();
+  },
   methods: {
     clearData() {
       this.$store.state.tokenUser = "";
@@ -315,6 +231,23 @@ export default {
       this.$router.push({
         name: "login",
       });
+    },
+    getDataUserOrder() {
+      axios
+        .get(this.$store.state.MainLink + "customer/orders", {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          // console.log(response.data.object);
+          this.listOrder = response.data.object;
+          console.log(this.listOrder);
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
     },
   },
 };

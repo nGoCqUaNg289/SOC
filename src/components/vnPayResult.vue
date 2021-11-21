@@ -66,39 +66,6 @@
                               {{ getTime(vnResult.PayDate) }}
                             </label>
                           </div>
-                          <!-- <div class="form-group col-md-12 form-margin-top">
-                            <label class="label-custom"
-                              >Tình trạng thanh toán:</label
-                            >
-                            <label class="label-custom-detail">{{
-                              vnResult.TransactionStatus
-                            }}</label>
-                          </div> -->
-                          <!-- <div class="form-group col-md-12 form-margin-top">
-                            <label class="label-custom">Số tiền:</label>
-                            <input
-                              type="text"
-                              class="form-control-custom form-control"
-                              placeholder="Nhập họ tên"
-                              v-model="vnResult.Amount"
-                            />
-                          </div>
-                          <div class="form-group col-md-12 form-margin-top">
-                            <label class="label-custom">Số điện thoại</label>
-                            <input
-                              class="form-control form-control-custom"
-                              placeholder="Nhập số điện thoại"
-                            />
-                          </div>
-                          <div class="form-group form-margin-top">
-                            <label class="label-custom">Địa chỉ</label>
-                            <input
-                              type="text"
-                              class="form-control form-control-custom"
-                              id="inputAddress2"
-                              placeholder="Đường Chính Kinh, số nhà ABC123"
-                            />
-                          </div> -->
                           <form style="text-align: center">
                             <button
                               type="button"

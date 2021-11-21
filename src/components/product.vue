@@ -3496,9 +3496,7 @@ export default {
     },
     getDetailProduct() {
       axios
-        .get(
-          "http://socstore.club:8800/api/customer/products/" + this.item
-        )
+        .get(this.$store.state.MainLink + "customer/products/" + this.item)
         .then((response) => {
           this.getData = response.data.object;
           console.log("GetData", this.getData);

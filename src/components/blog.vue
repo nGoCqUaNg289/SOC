@@ -230,7 +230,7 @@ export default {
     },
     getBlog() {
       axios
-        .get("http://socstore.club:8800/api/customer/blog")
+        .get(this.$store.state.MainLink + "customer/blog")
         .then((response) => {
           this.getData = response.data.object;
           //   console.log(this.getData);

@@ -361,7 +361,7 @@ export default {
     getDataUser() {
       if (this.$store.state.tokenUser != "") {
         axios
-          .get("http://socstore.club:8800/api/customer/account", {
+          .get(this.$store.state.MainLink + "customer/account", {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
@@ -383,7 +383,7 @@ export default {
     getDTDT() {
       if (this.$store.state.tokenUser != "") {
         axios
-          .get("http://socstore.club:8800/api/customer/cart/get", {
+          .get(this.$store.state.MainLink + "customer/cart/get", {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
@@ -420,7 +420,7 @@ export default {
     deleteProduct(index, id) {
       if (this.$store.state.tokenUser != "") {
         axios
-          .delete("http://socstore.club:8800/api/customer/cart/delete/" + id, {
+          .delete(this.$store.state.MainLink + "customer/cart/delete/" + id, {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },

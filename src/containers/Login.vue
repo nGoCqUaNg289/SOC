@@ -69,7 +69,7 @@ export default {
     },
     LoginJWT() {
       axios
-        .post("http://socstore.club:8800/api/authentication/login", {
+        .post(this.$store.state.MainLink + "authentication/login", {
           username: this.username,
           password: this.password,
         })
@@ -120,7 +120,7 @@ export default {
 
     getTotalCart() {
       axios
-        .get("http://socstore.club:8800/api/customer/cart/get", {
+        .get(this.$store.state.MainLink + "customer/cart/get", {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },
@@ -151,7 +151,7 @@ export default {
     },
     getDataFavorites() {
       axios
-        .get("http://socstore.club:8800/api/customer/favorite/get", {
+        .get(this.$store.state.MainLink + "customer/favorite/get", {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },
@@ -167,7 +167,7 @@ export default {
     },
     switchToAccount() {
       axios
-        .get("http://socstore.club:8800/api/customer/account", {
+        .get(this.$store.state.MainLink + "customer/account", {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },

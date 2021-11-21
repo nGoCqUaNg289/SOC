@@ -931,7 +931,7 @@ export default {
       // console.log(this.checkFavorites);
       // this.getDataFavorites();
       axios
-        .get("http://socstore.club:8800/api/customer/products/trending")
+        .get(this.$store.state.MainLink + "customer/products/trending")
         .then((response) => {
           this.getData = response.data.object;
           // console.log(this.getData);
@@ -975,7 +975,7 @@ export default {
         };
         this.$store.state.StoreCart.push(item);
         axios
-          .post("http://socstore.club:8800/api/customer/cart/new", item, {
+          .post(this.$store.state.MainLink + "customer/cart/new", item, {
             headers: {
               Authorization: this.$store.state.tokenUser,
             },
@@ -983,7 +983,7 @@ export default {
           .then((response) => {
             console.log(response);
             axios
-              .get("http://socstore.club:8800/api/customer/cart/get", {
+              .get(this.$store.state.MainLink + "customer/cart/get", {
                 headers: {
                   Authorization: this.$store.state.tokenUser,
                 },
@@ -1027,7 +1027,7 @@ export default {
       // console.log(productFavorites);
       axios
         .post(
-          "http://socstore.club:8800/api/customer/favorite/add",
+          this.$store.state.MainLink + "customer/favorite/add",
           productFavorites,
           {
             headers: {
@@ -1043,7 +1043,7 @@ export default {
     },
     getDataFavorites() {
       axios
-        .get("http://socstore.club:8800/api/customer/favorite/get", {
+        .get(this.$store.state.MainLink + "customer/favorite/get", {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },
