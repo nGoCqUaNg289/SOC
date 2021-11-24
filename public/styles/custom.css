@@ -6,6 +6,14 @@ body {
     position: relative;
 }
 
+body a {
+    text-decoration: none;
+}
+
+a.uk-accordion-title {
+    text-decoration: none;
+}
+
 .wrapper {
     background-color: #fff;
     padding: 25px;

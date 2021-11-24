@@ -557,7 +557,7 @@ export default {
           });
         // console.log("Chuyển qua account");
         this.$router.push({
-          name: "account",
+          name: "personal",
         });
       } else {
         this.$toasted.show("Bạn cần đăng nhập để sử dụng chức năng này !", {

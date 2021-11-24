@@ -5,16 +5,15 @@
         <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
           <div class="uk-text-center">
             <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="catalog.html">Catalog</a></li>
-              <li><a href="category.html">Laptops &amp; Tablets</a></li>
-              <li><a href="subcategory.html">Laptops</a></li>
-              <li>
-                <span>{{ getData.name }}</span>
-              </li>
+              <li><a>Trang chủ</a></li>
+              <li><a>Laptops</a></li>
+              <li><a>Thông tin sản phẩm</a></li>
+              <!-- <li>
+                <span>{{ getData.name.substr(6, 25) }} ...</span>
+              </li> -->
             </ul>
             <h1 class="uk-margin-small-top uk-margin-remove-bottom">
-              {{ getData.name }}
+              <!-- {{ getData.name.substr(6, 25) }} ... -->
             </h1>
           </div>
           <div>
@@ -38,80 +37,21 @@
                       >
                         <div>
                           <ul class="uk-slideshow-items" uk-lightbox>
-                            <li>
+                            <li
+                              v-for="(item, index) in getData.photos"
+                              :key="index"
+                            >
                               <a
                                 class="
                                   uk-card-body
                                   tm-media-box tm-media-box-zoom
                                 "
-                                href="images/products/1/1-large.jpg"
+                                :href="item"
                               >
                                 <figure class="tm-media-box-wrap">
-                                  <img
-                                    src="images/products/1/1-large.jpg"
-                                    alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                  /></figure
-                              ></a>
-                            </li>
-                            <li>
-                              <a
-                                class="
-                                  uk-card-body
-                                  tm-media-box tm-media-box-zoom
-                                "
-                                href="images/products/1/1-add-1-large.jpg"
-                              >
-                                <figure class="tm-media-box-wrap">
-                                  <img
-                                    src="images/products/1/1-add-1-large.jpg"
-                                    alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                  /></figure
-                              ></a>
-                            </li>
-                            <li>
-                              <a
-                                class="
-                                  uk-card-body
-                                  tm-media-box tm-media-box-zoom
-                                "
-                                href="images/products/1/1-add-2-large.jpg"
-                              >
-                                <figure class="tm-media-box-wrap">
-                                  <img
-                                    src="images/products/1/1-add-2-large.jpg"
-                                    alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                  /></figure
-                              ></a>
-                            </li>
-                            <li>
-                              <a
-                                class="
-                                  uk-card-body
-                                  tm-media-box tm-media-box-zoom
-                                "
-                                href="images/products/1/1-add-3-large.jpg"
-                              >
-                                <figure class="tm-media-box-wrap">
-                                  <img
-                                    src="images/products/1/1-add-3-large.jpg"
-                                    alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                  /></figure
-                              ></a>
-                            </li>
-                            <li>
-                              <a
-                                class="
-                                  uk-card-body
-                                  tm-media-box tm-media-box-zoom
-                                "
-                                href="images/products/1/1-add-4-large.jpg"
-                              >
-                                <figure class="tm-media-box-wrap">
-                                  <img
-                                    src="images/products/1/1-add-4-large.jpg"
-                                    alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                  /></figure
-                              ></a>
+                                  <img :src="item" />
+                                </figure>
+                              </a>
                             </li>
                           </ul>
                         </div>
@@ -130,7 +70,11 @@
                                         uk-grid-small
                                       "
                                     >
-                                      <li uk-slideshow-item="0">
+                                      <li
+                                        :uk-slideshow-item="index"
+                                        v-for="(item, index) in getData.photos"
+                                        :key="index"
+                                      >
                                         <div class="tm-ratio tm-ratio-1-1">
                                           <a
                                             class="
@@ -139,78 +83,14 @@
                                           >
                                             <figure class="tm-media-box-wrap">
                                               <img
-                                                src="images/products/1/1-small.jpg"
-                                                alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                              /></figure
-                                          ></a>
-                                        </div>
-                                      </li>
-                                      <li uk-slideshow-item="1">
-                                        <div class="tm-ratio tm-ratio-1-1">
-                                          <a
-                                            class="
-                                              tm-media-box tm-media-box-frame
-                                            "
-                                            href="#"
-                                          >
-                                            <figure class="tm-media-box-wrap">
-                                              <img
-                                                src="images/products/1/1-add-1-small.jpg"
-                                                alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                              /></figure
-                                          ></a>
-                                        </div>
-                                      </li>
-                                      <li uk-slideshow-item="2">
-                                        <div class="tm-ratio tm-ratio-1-1">
-                                          <a
-                                            class="
-                                              tm-media-box tm-media-box-frame
-                                            "
-                                            href="#"
-                                          >
-                                            <figure class="tm-media-box-wrap">
-                                              <img
-                                                src="images/products/1/1-add-2-small.jpg"
-                                                alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                              /></figure
-                                          ></a>
-                                        </div>
-                                      </li>
-                                      <li uk-slideshow-item="3">
-                                        <div class="tm-ratio tm-ratio-1-1">
-                                          <a
-                                            class="
-                                              tm-media-box tm-media-box-frame
-                                            "
-                                            href="#"
-                                          >
-                                            <figure class="tm-media-box-wrap">
-                                              <img
-                                                src="images/products/1/1-add-3-small.jpg"
-                                                alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                              /></figure
-                                          ></a>
-                                        </div>
-                                      </li>
-                                      <li uk-slideshow-item="4">
-                                        <div class="tm-ratio tm-ratio-1-1">
-                                          <a
-                                            class="
-                                              tm-media-box tm-media-box-frame
-                                            "
-                                            href="#"
-                                          >
-                                            <figure class="tm-media-box-wrap">
-                                              <img
-                                                src="images/products/1/1-add-4-small.jpg"
+                                                :src="item"
                                                 alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
                                               /></figure
                                           ></a>
                                         </div>
                                       </li>
                                     </ul>
-                                    <div>
+                                    <!-- <div>
                                       <a
                                         class="
                                           uk-position-center-left-out
@@ -229,7 +109,7 @@
                                         uk-slider-item="next"
                                         uk-slidenav-next
                                       ></a>
-                                    </div>
+                                    </div> -->
                                   </div>
                                 </div>
                               </div>
@@ -243,125 +123,18 @@
                     </div>
                     <div class="uk-width-1-1 uk-width-1-3@m tm-product-info">
                       <div class="uk-card-body">
-                        <div>
-                          <a href="#" title="Apple"
-                            ><img
-                              src="images/brands/apple.svg"
-                              alt="Apple"
-                              style="height: 40px"
-                          /></a>
-                        </div>
-                        <div class="uk-margin">
-                          <div class="uk-grid-small" uk-grid>
-                            <div class="uk-flex uk-flex-middle">
-                              <ul
-                                class="
-                                  uk-iconnav uk-margin-xsmall-bottom
-                                  tm-rating
-                                "
-                              >
-                                <li>
-                                  <span
-                                    class="uk-text-warning"
-                                    uk-icon="star"
-                                  ></span>
-                                </li>
-                                <li>
-                                  <span
-                                    class="uk-text-warning"
-                                    uk-icon="star"
-                                  ></span>
-                                </li>
-                                <li>
-                                  <span
-                                    class="uk-text-warning"
-                                    uk-icon="star"
-                                  ></span>
-                                </li>
-                                <li>
-                                  <span
-                                    class="uk-text-warning"
-                                    uk-icon="star"
-                                  ></span>
-                                </li>
-                                <li>
-                                  <span
-                                    class="uk-text-warning"
-                                    uk-icon="star"
-                                  ></span>
-                                </li>
-                              </ul>
-                              <div class="uk-margin-xsmall-left">
-                                <a
-                                  class="uk-text-meta js-scroll-to-description"
-                                  href="#description"
-                                  onclick="UIkit.switcher('.js-product-switcher').show(3);"
-                                  >(2)</a
-                                >
-                              </div>
-                            </div>
-                            <div>
-                              <span
-                                class="
-                                  uk-label
-                                  uk-label-warning
-                                  uk-margin-xsmall-right
-                                "
-                                >top selling</span
-                              ><span
-                                class="
-                                  uk-label
-                                  uk-label-danger
-                                  uk-margin-xsmall-right
-                                "
-                                >trade-in</span
-                              >
-                            </div>
-                          </div>
-                        </div>
                         <div class="uk-margin">
                           <div class="uk-grid-medium" uk-grid>
                             <div>
                               <div
-                                class="uk-text-small uk-margin-xsmall-bottom"
+                                class="
+                                  uk-text-large
+                                  uk-margin-xsmall-bottom
+                                  uk-text-bold
+                                "
                               >
-                                Color
+                                <p>{{ getData.name }}</p>
                               </div>
-                              <ul
-                                class="uk-subnav uk-subnav-pill tm-variations"
-                                uk-switcher
-                              >
-                                <li>
-                                  <a
-                                    class="tm-variation-color"
-                                    uk-tooltip="Space Grey"
-                                  >
-                                    <div style="background-color: #aaaeb1"></div
-                                  ></a>
-                                </li>
-                                <li>
-                                  <a
-                                    class="tm-variation-color"
-                                    uk-tooltip="Silver"
-                                  >
-                                    <div style="background-color: #dddfde"></div
-                                  ></a>
-                                </li>
-                              </ul>
-                            </div>
-                            <div>
-                              <div
-                                class="uk-text-small uk-margin-xsmall-bottom"
-                              >
-                                SSD Storage
-                              </div>
-                              <ul
-                                class="uk-subnav uk-subnav-pill tm-variations"
-                                uk-switcher
-                              >
-                                <li><a>256 GB</a></li>
-                                <li><a>512 GB</a></li>
-                              </ul>
                             </div>
                           </div>
                         </div>
@@ -378,7 +151,7 @@
                               uk-grid
                             >
                               <div>
-                                <del class="uk-text-meta">$1899.00</del>
+                                <!-- <del class="uk-text-meta">$1899.00</del> -->
                                 <div class="tm-product-price">
                                   {{ formatPrice(getData.price) }}đ
                                 </div>
@@ -408,8 +181,17 @@
                                         tm-product-add-button tm-shine
                                         js-add-to-cart
                                       "
-                                      @click="addToCart(item.id)"
-                                    ></button>
+                                      @click="
+                                        addToCart(
+                                          item.id,
+                                          item.name,
+                                          item.photos,
+                                          item.price
+                                        )
+                                      "
+                                    >
+                                      Thêm vào giỏ hàng
+                                    </button>
                                   </div>
                                   <div
                                     class="
@@ -420,7 +202,7 @@
                                       uk-text-meta
                                     "
                                   >
-                                    <a
+                                    <!-- <a
                                       class="
                                         uk-margin-small-right
                                         js-add-to js-add-to-favorites
@@ -437,7 +219,7 @@
                                       "
                                       uk-tooltip="Add to compare"
                                       ><span uk-icon="copy"></span
-                                    ></a>
+                                    ></a> -->
                                   </div>
                                 </div>
                               </div>
@@ -466,9 +248,11 @@
                                     uk-icon="cart"
                                   ></span>
                                   <div>
-                                    <div class="uk-text-bolder">Delivery</div>
+                                    <div class="uk-text-bolder">
+                                      Đặt hàng trực tuyến
+                                    </div>
                                     <div class="uk-text-xsmall uk-text-muted">
-                                      In stock, free, tomorrow
+                                      {{ getData.status }}
                                     </div>
                                   </div>
                                 </div>
@@ -481,10 +265,10 @@
                                   ></span>
                                   <div>
                                     <div class="uk-text-bolder">
-                                      Pick up from store
+                                      Mua tại cửa hàng
                                     </div>
                                     <div class="uk-text-xsmall uk-text-muted">
-                                      In stock, free, tomorrow
+                                      {{ getData.status }}
                                     </div>
                                   </div>
                                 </div>
@@ -493,32 +277,12 @@
                           </div>
                         </div>
                         <div class="uk-margin">
-                          <ul class="uk-list uk-text-small uk-margin-remove">
-                            <li>
-                              <span class="uk-text-muted"
-                                >Diagonal display: </span
-                              ><span>15.4"</span>
-                            </li>
-                            <li>
-                              <span class="uk-text-muted">CPU: </span
-                              ><span>Intel®&nbsp;Core™ i7</span>
-                            </li>
-                            <li>
-                              <span class="uk-text-muted">RAM: </span
-                              ><span>16&nbsp;GB</span>
-                            </li>
-                            <li>
-                              <span class="uk-text-muted">Video Card: </span
-                              ><span>AMD Radeon Pro 555</span>
-                            </li>
-                          </ul>
                           <div class="uk-margin-small-top">
                             <a
                               class="uk-link-heading js-scroll-to-description"
-                              href="#description"
                               onclick="UIkit.switcher('.js-product-switcher').show(1);"
                               ><span class="tm-pseudo"
-                                >Detailed specifications</span
+                                >Thông số kỹ thuật chi tiết</span
                               ><span
                                 class="uk-margin-xsmall-left"
                                 uk-icon="icon: chevron-down; ratio: .75;"
@@ -542,43 +306,27 @@
                             uk-switcher="connect: .js-tabs"
                           >
                             <li>
-                              <a
-                                class="js-scroll-to-description"
-                                href="#description"
-                                >Overview</a
-                              >
+                              <a class="js-scroll-to-description">Tổng quan</a>
                             </li>
                             <li>
-                              <a
-                                class="js-scroll-to-description"
-                                href="#description"
-                                >Specifications</a
+                              <a class="js-scroll-to-description"
+                                >Thông số kỹ thuật</a
                               >
                             </li>
+                            <!-- <li>
+                              <a class="js-scroll-to-description">
+                                Các máy tương tự
+                                <span>(8)</span></a
+                              >
+                            </li> -->
                             <li>
-                              <a
-                                class="js-scroll-to-description"
-                                href="#description"
-                              >
-                                Accessories
-                                <span>(9)</span></a
-                              >
-                            </li>
-                            <li>
-                              <a
-                                class="js-scroll-to-description"
-                                href="#description"
-                              >
-                                Reviews
+                              <a class="js-scroll-to-description">
+                                Đánh giá sản phẩm
                                 <span>(2)</span></a
                               >
                             </li>
                             <li>
-                              <a
-                                class="js-scroll-to-description"
-                                href="#description"
-                                >Q&A</a
-                              >
+                              <a class="js-scroll-to-description">Q&A</a>
                             </li>
                           </ul>
                         </nav>
@@ -588,104 +336,39 @@
                           <section>
                             <article class="uk-article">
                               <div class="uk-article-body">
-                                <p></p>
-                                <div class="tm-wrapper uk-text-center">
-                                  <figure>
-                                    <a href="images/articles/macbook-photo.jpg"
-                                      ><img
-                                        src="images/articles/macbook-photo.jpg"
-                                        alt="MacBook Pro"
-                                    /></a>
-                                    <figcaption>MacBook Pro</figcaption>
-                                  </figure>
-                                </div>
-                                <figure uk-slideshow>
-                                  <div
-                                    class="
-                                      uk-position-relative
-                                      uk-visible-toggle
-                                      uk-light
-                                    "
+                                <div
+                                  v-for="(item, index) in getBlog"
+                                  :key="index"
+                                >
+                                  <h5
+                                    style="margin-top: 15px"
+                                    class="tm-product-card-title"
+                                    v-if="item.type == 'header'"
                                   >
-                                    <ul class="uk-slideshow-items">
-                                      <li>
-                                        <img
+                                    {{ item.content }}
+                                  </h5>
+                                  <div
+                                    class="tm-wrapper"
+                                    style="margin: 15px 15px 15px 15px"
+                                  >
+                                    <figure class="uk-text-center">
+                                      <a
+                                        ><img
+                                          :src="item.content"
                                           alt="MacBook Pro"
-                                          uk-cover
-                                          height="75px"
-                                          width="100%"
-                                        />
-                                      </li>
-                                    </ul>
-                                    <a
-                                      class="
-                                        uk-position-center-left
-                                        uk-position-small
-                                        uk-hidden-hover
-                                      "
-                                      href="#"
-                                      uk-slidenav-previous
-                                      uk-slideshow-item="previous"
-                                    ></a
-                                    ><a
-                                      class="
-                                        uk-position-center-right
-                                        uk-position-small
-                                        uk-hidden-hover
-                                      "
-                                      href="#"
-                                      uk-slidenav-next
-                                      uk-slideshow-item="next"
-                                    ></a>
+                                          v-if="item.type == 'photo'"
+                                      /></a>
+                                    </figure>
+                                    <p></p>
                                   </div>
-                                  <ul
-                                    class="
-                                      uk-slideshow-nav
-                                      uk-dotnav
-                                      uk-flex-center
-                                      uk-margin
-                                    "
-                                  ></ul>
-                                </figure>
-                                <p>
-                                  Sed at diam aliquet, fringilla turpis ac,
-                                  consequat ante. Duis id maximus purus. Cras
-                                  rutrum erat non nibh accumsan, vitae maximus
-                                  sapien elementum. Maecenas tellus libero,
-                                  vulputate vitae mi eu, volutpat ornare felis.
-                                  Nulla malesuada nunc urna, quis rutrum massa
-                                  consequat id. Pellentesque elit diam,
-                                  dignissim a lorem eu, tincidunt mollis erat.
-                                </p>
-                                <div class="tm-wrapper">
-                                  <figure class="uk-text-center">
-                                    <a
-                                      href="images/articles/macbook-promo-3.jpg"
-                                      ><img
-                                        src="images/articles/macbook-promo-3.jpg"
-                                        alt="MacBook Pro"
-                                    /></a>
-                                    <figcaption>13-inch and 15-inch</figcaption>
-                                  </figure>
-                                </div>
-                                <p>
-                                  Sed at diam aliquet, fringilla turpis ac,
-                                  consequat ante. Duis id maximus purus. Cras
-                                  rutrum erat non nibh accumsan, vitae maximus
-                                  sapien elementum. Maecenas tellus libero,
-                                  vulputate vitae mi eu, volutpat ornare felis.
-                                  Nulla malesuada nunc urna, quis rutrum massa
-                                  consequat id. Pellentesque elit diam,
-                                  dignissim a lorem eu, tincidunt mollis erat.
-                                </p>
-                                <blockquote cite="#">
-                                  <p class="uk-margin-small-bottom">
-                                    You can converge a toaster and refrigerator,
-                                    but these things are probably not going to
-                                    be pleasing to the user.
+                                  <!-- <img
+                                    :src="item.content"
+                                    v-if="item.type == 'photo'"
+                                  /> -->
+                                  <p v-if="item.type == 'content'">
+                                    {{ item.content }}
                                   </p>
-                                  <footer>Tim Cook</footer>
-                                </blockquote>
+                                </div>
                               </div>
                             </article>
                           </section>
@@ -713,7 +396,7 @@
                               </tr>
                             </table>
                           </section>
-                          <section>
+                          <!-- <section>
                             <div class="tm-wrapper">
                               <div
                                 class="
@@ -833,1074 +516,16 @@
                                             class="
                                               tm-product-card-add-button-text
                                             "
-                                            >add to cart</span
+                                            >Add to cart</span
                                           >
                                         </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </article>
-                                <article class="tm-product-card">
-                                  <div class="tm-product-card-media">
-                                    <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
-                                        <div class="tm-product-card-labels">
-                                          <span
-                                            class="uk-label uk-label-success"
-                                            >new</span
-                                          ><span
-                                            class="uk-label uk-label-danger"
-                                            >trade-in</span
-                                          >
-                                        </div>
-                                        <figure class="tm-media-box-wrap">
-                                          <img
-                                            src="images/products/2/2-medium.jpg"
-                                            alt='Apple MacBook 12" MNYN2LL/A 512GB (Rose Gold)'
-                                          /></figure
-                                      ></a>
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-body">
-                                    <div class="tm-product-card-info">
-                                      <div
-                                        class="
-                                          uk-text-meta uk-margin-xsmall-bottom
-                                        "
-                                      >
-                                        Laptop
-                                      </div>
-                                      <h3 class="tm-product-card-title">
-                                        <a
-                                          class="uk-link-heading"
-                                          href="product.html"
-                                          >Apple MacBook 12&quot; MNYN2LL/A
-                                          512GB (Rose Gold)</a
-                                        >
-                                      </h3>
-                                      <ul
-                                        class="
-                                          uk-list uk-text-small
-                                          tm-product-card-properties
-                                        "
-                                      >
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Diagonal display: </span
-                                          ><span>12"</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >CPU: </span
-                                          ><span>Intel®&nbsp;Core™ i5</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >RAM: </span
-                                          ><span>8&nbsp;GB</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Video Card: </span
-                                          ><span>Intel® HD Graphics 615</span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="tm-product-card-shop">
-                                      <div class="tm-product-card-prices">
-                                        <div class="tm-product-card-price">
-                                          $1549.00
-                                        </div>
-                                      </div>
-                                      <div class="tm-product-card-add">
-                                        <div
-                                          class="
-                                            uk-text-meta
-                                            tm-product-card-actions
-                                          "
-                                        >
-                                          <a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-favorites
-                                              tm-action-button-active
-                                              js-added-to
-                                            "
-                                            title="Add to favorites"
-                                            ><span
-                                              uk-icon="icon: heart; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to favorites</span
-                                            ></a
-                                          ><a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-compare
-                                              tm-action-button-active
-                                              js-added-to
-                                            "
-                                            title="Add to compare"
-                                            ><span
-                                              uk-icon="icon: copy; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to compare</span
-                                            ></a
-                                          >
-                                        </div>
-                                        <button
-                                          class="
-                                            uk-button uk-button-primary
-                                            tm-product-card-add-button tm-shine
-                                            js-add-to-cart
-                                          "
-                                        >
-                                          <span
-                                            class="
-                                              tm-product-card-add-button-icon
-                                            "
-                                            uk-icon="cart"
-                                          ></span
-                                          ><span
-                                            class="
-                                              tm-product-card-add-button-text
-                                            "
-                                            >add to cart</span
-                                          >
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </article>
-                                <article class="tm-product-card">
-                                  <div class="tm-product-card-media">
-                                    <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
-                                        <figure class="tm-media-box-wrap">
-                                          <img
-                                            src="images/products/3/3-medium.jpg"
-                                            alt="Lenovo IdeaPad YOGA 920-13IKB 80Y7001RRK (Copper)"
-                                          /></figure
-                                      ></a>
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-body">
-                                    <div class="tm-product-card-info">
-                                      <div
-                                        class="
-                                          uk-text-meta uk-margin-xsmall-bottom
-                                        "
-                                      >
-                                        Laptop
-                                      </div>
-                                      <h3 class="tm-product-card-title">
-                                        <a
-                                          class="uk-link-heading"
-                                          href="product.html"
-                                          >Lenovo IdeaPad YOGA 920-13IKB
-                                          80Y7001RRK (Copper)</a
-                                        >
-                                      </h3>
-                                      <ul
-                                        class="
-                                          uk-list uk-text-small
-                                          tm-product-card-properties
-                                        "
-                                      >
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Diagonal display: </span
-                                          ><span>13.9"</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >CPU: </span
-                                          ><span
-                                            >Intel®&nbsp;Core™ i7 8550U</span
-                                          >
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >RAM: </span
-                                          ><span>16&nbsp;GB</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Video Card: </span
-                                          ><span>Intel® HD Graphics 620</span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="tm-product-card-shop">
-                                      <div class="tm-product-card-prices">
-                                        <div class="tm-product-card-price">
-                                          $1199.00
-                                        </div>
-                                      </div>
-                                      <div class="tm-product-card-add">
-                                        <div
-                                          class="
-                                            uk-text-meta
-                                            tm-product-card-actions
-                                          "
-                                        >
-                                          <a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-favorites
-                                              tm-action-button-active
-                                              js-added-to
-                                            "
-                                            title="Add to favorites"
-                                            ><span
-                                              uk-icon="icon: heart; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to favorites</span
-                                            ></a
-                                          ><a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-compare
-                                            "
-                                            title="Add to compare"
-                                            ><span
-                                              uk-icon="icon: copy; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to compare</span
-                                            ></a
-                                          >
-                                        </div>
-                                        <button
-                                          class="
-                                            uk-button uk-button-primary
-                                            tm-product-card-add-button tm-shine
-                                            js-add-to-cart
-                                          "
-                                        >
-                                          <span
-                                            class="
-                                              tm-product-card-add-button-icon
-                                            "
-                                            uk-icon="cart"
-                                          ></span
-                                          ><span
-                                            class="
-                                              tm-product-card-add-button-text
-                                            "
-                                            >add to cart</span
-                                          >
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </article>
-                                <article class="tm-product-card">
-                                  <div class="tm-product-card-media">
-                                    <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
-                                        <div class="tm-product-card-labels">
-                                          <span
-                                            class="uk-label uk-label-warning"
-                                            >top selling</span
-                                          >
-                                        </div>
-                                        <figure class="tm-media-box-wrap">
-                                          <img
-                                            src="images/products/4/4-medium.jpg"
-                                            alt="ASUS Zenbook UX330UA-FC020T (Rose Gold)"
-                                          /></figure
-                                      ></a>
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-body">
-                                    <div class="tm-product-card-info">
-                                      <div
-                                        class="
-                                          uk-text-meta uk-margin-xsmall-bottom
-                                        "
-                                      >
-                                        Laptop
-                                      </div>
-                                      <h3 class="tm-product-card-title">
-                                        <a
-                                          class="uk-link-heading"
-                                          href="product.html"
-                                          >ASUS Zenbook UX330UA-FC020T (Rose
-                                          Gold)</a
-                                        >
-                                      </h3>
-                                      <ul
-                                        class="
-                                          uk-list uk-text-small
-                                          tm-product-card-properties
-                                        "
-                                      >
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Diagonal display: </span
-                                          ><span>13.3"</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >CPU: </span
-                                          ><span
-                                            >Intel®&nbsp;Core™ i7-6500U</span
-                                          >
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >RAM: </span
-                                          ><span>8&nbsp;GB</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Video Card: </span
-                                          ><span>Intel® HD Graphics 520</span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="tm-product-card-shop">
-                                      <div class="tm-product-card-prices">
-                                        <div class="tm-product-card-price">
-                                          $749.00
-                                        </div>
-                                      </div>
-                                      <div class="tm-product-card-add">
-                                        <div
-                                          class="
-                                            uk-text-meta
-                                            tm-product-card-actions
-                                          "
-                                        >
-                                          <a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-favorites
-                                            "
-                                            title="Add to favorites"
-                                            ><span
-                                              uk-icon="icon: heart; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to favorites</span
-                                            ></a
-                                          ><a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-compare
-                                            "
-                                            title="Add to compare"
-                                            ><span
-                                              uk-icon="icon: copy; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to compare</span
-                                            ></a
-                                          >
-                                        </div>
-                                        <button
-                                          class="
-                                            uk-button uk-button-primary
-                                            tm-product-card-add-button tm-shine
-                                            js-add-to-cart
-                                          "
-                                        >
-                                          <span
-                                            class="
-                                              tm-product-card-add-button-icon
-                                            "
-                                            uk-icon="cart"
-                                          ></span
-                                          ><span
-                                            class="
-                                              tm-product-card-add-button-text
-                                            "
-                                            >add to cart</span
-                                          >
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </article>
-                                <article class="tm-product-card">
-                                  <div class="tm-product-card-media">
-                                    <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
-                                        <figure class="tm-media-box-wrap">
-                                          <img
-                                            src="images/products/5/5-medium.jpg"
-                                            alt="Dell XPS 15 9560-8968 (Silver)"
-                                          /></figure
-                                      ></a>
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-body">
-                                    <div class="tm-product-card-info">
-                                      <div
-                                        class="
-                                          uk-text-meta uk-margin-xsmall-bottom
-                                        "
-                                      >
-                                        Laptop
-                                      </div>
-                                      <h3 class="tm-product-card-title">
-                                        <a
-                                          class="uk-link-heading"
-                                          href="product.html"
-                                          >Dell XPS 15 9560-8968 (Silver)</a
-                                        >
-                                      </h3>
-                                      <ul
-                                        class="
-                                          uk-list uk-text-small
-                                          tm-product-card-properties
-                                        "
-                                      >
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Diagonal display: </span
-                                          ><span>15.6"</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >CPU: </span
-                                          ><span
-                                            >Intel®&nbsp;Core™ i7 7700HQ</span
-                                          >
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >RAM: </span
-                                          ><span>16&nbsp;GB</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Video Card: </span
-                                          ><span>NVIDIA GeForce GTX 960M</span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="tm-product-card-shop">
-                                      <div class="tm-product-card-prices">
-                                        <del class="uk-text-meta">$999.00</del>
-                                        <div class="tm-product-card-price">
-                                          $949.00
-                                        </div>
-                                      </div>
-                                      <div class="tm-product-card-add">
-                                        <div
-                                          class="
-                                            uk-text-meta
-                                            tm-product-card-actions
-                                          "
-                                        >
-                                          <a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-favorites
-                                            "
-                                            title="Add to favorites"
-                                            ><span
-                                              uk-icon="icon: heart; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to favorites</span
-                                            ></a
-                                          ><a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-compare
-                                            "
-                                            title="Add to compare"
-                                            ><span
-                                              uk-icon="icon: copy; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to compare</span
-                                            ></a
-                                          >
-                                        </div>
-                                        <button
-                                          class="
-                                            uk-button uk-button-primary
-                                            tm-product-card-add-button tm-shine
-                                            js-add-to-cart
-                                          "
-                                        >
-                                          <span
-                                            class="
-                                              tm-product-card-add-button-icon
-                                            "
-                                            uk-icon="cart"
-                                          ></span
-                                          ><span
-                                            class="
-                                              tm-product-card-add-button-text
-                                            "
-                                            >add to cart</span
-                                          >
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </article>
-                                <article class="tm-product-card">
-                                  <div class="tm-product-card-media">
-                                    <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
-                                        <div class="tm-product-card-labels">
-                                          <span class="uk-label uk-label-danger"
-                                            >trade-in</span
-                                          >
-                                        </div>
-                                        <figure class="tm-media-box-wrap">
-                                          <img
-                                            src="images/products/6/6-medium.jpg"
-                                            alt='Apple MacBook Air 13" MQD32LL/A 128GB (Silver)'
-                                          /></figure
-                                      ></a>
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-body">
-                                    <div class="tm-product-card-info">
-                                      <div
-                                        class="
-                                          uk-text-meta uk-margin-xsmall-bottom
-                                        "
-                                      >
-                                        Laptop
-                                      </div>
-                                      <h3 class="tm-product-card-title">
-                                        <a
-                                          class="uk-link-heading"
-                                          href="product.html"
-                                          >Apple MacBook Air 13&quot; MQD32LL/A
-                                          128GB (Silver)</a
-                                        >
-                                      </h3>
-                                      <ul
-                                        class="
-                                          uk-list uk-text-small
-                                          tm-product-card-properties
-                                        "
-                                      >
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Diagonal display: </span
-                                          ><span>13.3"</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >CPU: </span
-                                          ><span>Intel®&nbsp;Core™ i5</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >RAM: </span
-                                          ><span>8&nbsp;GB</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Video Card: </span
-                                          ><span>Intel® HD Graphics 6000</span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="tm-product-card-shop">
-                                      <div class="tm-product-card-prices">
-                                        <div class="tm-product-card-price">
-                                          $849.00
-                                        </div>
-                                      </div>
-                                      <div class="tm-product-card-add">
-                                        <div
-                                          class="
-                                            uk-text-meta
-                                            tm-product-card-actions
-                                          "
-                                        >
-                                          <a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-favorites
-                                            "
-                                            title="Add to favorites"
-                                            ><span
-                                              uk-icon="icon: heart; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to favorites</span
-                                            ></a
-                                          ><a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-compare
-                                              tm-action-button-active
-                                              js-added-to
-                                            "
-                                            title="Add to compare"
-                                            ><span
-                                              uk-icon="icon: copy; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to compare</span
-                                            ></a
-                                          >
-                                        </div>
-                                        <button
-                                          class="
-                                            uk-button uk-button-primary
-                                            tm-product-card-add-button tm-shine
-                                            js-add-to-cart
-                                          "
-                                        >
-                                          <span
-                                            class="
-                                              tm-product-card-add-button-icon
-                                            "
-                                            uk-icon="cart"
-                                          ></span
-                                          ><span
-                                            class="
-                                              tm-product-card-add-button-text
-                                            "
-                                            >add to cart</span
-                                          >
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </article>
-                                <article class="tm-product-card">
-                                  <div class="tm-product-card-media">
-                                    <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
-                                        <figure class="tm-media-box-wrap">
-                                          <img
-                                            src="images/products/7/7-medium.jpg"
-                                            alt="Dell Inspiron 5378-2063 (Gray)"
-                                          /></figure
-                                      ></a>
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-body">
-                                    <div class="tm-product-card-info">
-                                      <div
-                                        class="
-                                          uk-text-meta uk-margin-xsmall-bottom
-                                        "
-                                      >
-                                        Laptop
-                                      </div>
-                                      <h3 class="tm-product-card-title">
-                                        <a
-                                          class="uk-link-heading"
-                                          href="product.html"
-                                          >Dell Inspiron 5378-2063 (Gray)</a
-                                        >
-                                      </h3>
-                                      <ul
-                                        class="
-                                          uk-list uk-text-small
-                                          tm-product-card-properties
-                                        "
-                                      >
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Diagonal display: </span
-                                          ><span>13.3"</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >CPU: </span
-                                          ><span
-                                            >Intel®&nbsp;Core™ i3-7100U</span
-                                          >
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >RAM: </span
-                                          ><span>4&nbsp;GB</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >HDD Capacity: </span
-                                          ><span>1&nbsp;TB</span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="tm-product-card-shop">
-                                      <div class="tm-product-card-prices">
-                                        <del class="uk-text-meta">$599.00</del>
-                                        <div class="tm-product-card-price">
-                                          $579.00
-                                        </div>
-                                      </div>
-                                      <div class="tm-product-card-add">
-                                        <div
-                                          class="
-                                            uk-text-meta
-                                            tm-product-card-actions
-                                          "
-                                        >
-                                          <a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-favorites
-                                            "
-                                            title="Add to favorites"
-                                            ><span
-                                              uk-icon="icon: heart; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to favorites</span
-                                            ></a
-                                          ><a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-compare
-                                            "
-                                            title="Add to compare"
-                                            ><span
-                                              uk-icon="icon: copy; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to compare</span
-                                            ></a
-                                          >
-                                        </div>
-                                        <button
-                                          class="
-                                            uk-button uk-button-primary
-                                            tm-product-card-add-button tm-shine
-                                            js-add-to-cart
-                                          "
-                                        >
-                                          <span
-                                            class="
-                                              tm-product-card-add-button-icon
-                                            "
-                                            uk-icon="cart"
-                                          ></span
-                                          ><span
-                                            class="
-                                              tm-product-card-add-button-text
-                                            "
-                                            >add to cart</span
-                                          >
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </article>
-                                <article class="tm-product-card">
-                                  <div class="tm-product-card-media">
-                                    <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
-                                        <div class="tm-product-card-labels">
-                                          <span
-                                            class="uk-label uk-label-success"
-                                            >new</span
-                                          >
-                                        </div>
-                                        <figure class="tm-media-box-wrap">
-                                          <img
-                                            src="images/products/8/8-medium.jpg"
-                                            alt="Lenovo Yoga 720-13IKB 80X60059RK (Silver)"
-                                          /></figure
-                                      ></a>
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-body">
-                                    <div class="tm-product-card-info">
-                                      <div
-                                        class="
-                                          uk-text-meta uk-margin-xsmall-bottom
-                                        "
-                                      >
-                                        Laptop
-                                      </div>
-                                      <h3 class="tm-product-card-title">
-                                        <a
-                                          class="uk-link-heading"
-                                          href="product.html"
-                                          >Lenovo Yoga 720-13IKB 80X60059RK
-                                          (Silver)</a
-                                        >
-                                      </h3>
-                                      <ul
-                                        class="
-                                          uk-list uk-text-small
-                                          tm-product-card-properties
-                                        "
-                                      >
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Diagonal display: </span
-                                          ><span>13.3"</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >CPU: </span
-                                          ><span
-                                            >Intel®&nbsp;Core™ i5-7200U</span
-                                          >
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >RAM: </span
-                                          ><span>8&nbsp;GB</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Video Card: </span
-                                          ><span>Intel® HD Graphics 620</span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="tm-product-card-shop">
-                                      <div class="tm-product-card-prices">
-                                        <div class="tm-product-card-price">
-                                          $1099.00
-                                        </div>
-                                      </div>
-                                      <div class="tm-product-card-add">
-                                        <div
-                                          class="
-                                            uk-text-meta
-                                            tm-product-card-actions
-                                          "
-                                        >
-                                          <a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-favorites
-                                            "
-                                            title="Add to favorites"
-                                            ><span
-                                              uk-icon="icon: heart; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to favorites</span
-                                            ></a
-                                          ><a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-compare
-                                            "
-                                            title="Add to compare"
-                                            ><span
-                                              uk-icon="icon: copy; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to compare</span
-                                            ></a
-                                          >
-                                        </div>
-                                        <button
-                                          class="
-                                            uk-button uk-button-primary
-                                            tm-product-card-add-button tm-shine
-                                            js-add-to-cart
-                                          "
-                                        >
-                                          <span
-                                            class="
-                                              tm-product-card-add-button-icon
-                                            "
-                                            uk-icon="cart"
-                                          ></span
-                                          ><span
-                                            class="
-                                              tm-product-card-add-button-text
-                                            "
-                                            >add to cart</span
-                                          >
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </article>
-                                <article class="tm-product-card">
-                                  <div class="tm-product-card-media">
-                                    <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
-                                        <figure class="tm-media-box-wrap">
-                                          <span
-                                            class="uk-text-muted"
-                                            uk-icon="icon: image; ratio: 3;"
-                                          ></span></figure
-                                      ></a>
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-body">
-                                    <div class="tm-product-card-info">
-                                      <div
-                                        class="
-                                          uk-text-meta uk-margin-xsmall-bottom
-                                        "
-                                      >
-                                        Laptop
-                                      </div>
-                                      <h3 class="tm-product-card-title">
-                                        <a
-                                          class="uk-link-heading"
-                                          href="product.html"
-                                          >Lenovo ThinkPad X380 Yoga 20LH000MUS
-                                          (Black)</a
-                                        >
-                                      </h3>
-                                      <ul
-                                        class="
-                                          uk-list uk-text-small
-                                          tm-product-card-properties
-                                        "
-                                      >
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Diagonal display: </span
-                                          ><span>13.3"</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >CPU: </span
-                                          ><span
-                                            >Intel®&nbsp;Core™ i7 8550U</span
-                                          >
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >RAM: </span
-                                          ><span>4&nbsp;GB</span>
-                                        </li>
-                                        <li>
-                                          <span class="uk-text-muted"
-                                            >Video Card: </span
-                                          ><span>Intel® UHD Graphics 620</span>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="tm-product-card-shop">
-                                      <div class="tm-product-card-prices">
-                                        <div class="uk-text-muted">
-                                          Product not available
-                                        </div>
-                                      </div>
-                                      <div class="tm-product-card-add">
-                                        <div
-                                          class="
-                                            uk-text-meta
-                                            tm-product-card-actions
-                                          "
-                                        >
-                                          <a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-favorites
-                                            "
-                                            title="Add to favorites"
-                                            ><span
-                                              uk-icon="icon: heart; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to favorites</span
-                                            ></a
-                                          ><a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-compare
-                                            "
-                                            title="Add to compare"
-                                            ><span
-                                              uk-icon="icon: copy; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to compare</span
-                                            ></a
-                                          >
-                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </article>
                               </div>
                             </div>
-                          </section>
+                          </section> -->
                           <section>
                             <div class="uk-grid-small uk-grid-divider" uk-grid>
                               <div
@@ -2220,61 +845,102 @@
                               uk-accordion="multiple: true"
                             >
                               <li>
-                                <a class="uk-accordion-title" href="#"
-                                  >Lorem ipsum dolor sit amet, consectetur
-                                  adipiscing elit?</a
-                                >
+                                <a class="uk-accordion-title" href="#">
+                                  <b
+                                    >Tôi mua sản phẩm tại SOC shop sẽ có khác
+                                    biệt gì ?</b
+                                  >
+                                </a>
                                 <div class="uk-accordion-content">
-                                  Vivamus imperdiet venenatis est. Phasellus
-                                  vitae mauris imperdiet, condimentum eros vel,
-                                  ullamcorper turpis. Maecenas sed libero quis
-                                  orci egestas vehicula fermentum id diam.
+                                  <p>
+                                    SOC shop là đại lý ủy quyền bán máy tính
+                                    chính hãng tại Việt Nam, SOC shop chỉ bán
+                                    một loại mặt hàng duy nhất đó là :
+                                    <b> HÀNG CHÍNH HÃNG.</b>
+                                  </p>
                                 </div>
                               </li>
                               <li>
                                 <a class="uk-accordion-title" href="#"
-                                  >Nullam massa sem, mollis ut luctus at,
-                                  tincidunt a lorem?</a
+                                  ><b
+                                    >Tại sao hàng chính hãng lại bán đắt hơn
+                                    hàng xách tay bán tại các cửa hàng ?</b
+                                  ></a
                                 >
                                 <div class="uk-accordion-content">
-                                  Aliquam sed dictum elit, quis consequat metus.
-                                  Proin in mauris finibus urna lacinia laoreet
-                                  sed id orci.
+                                  <p>
+                                    Hàng chính hãng là hàng được kiểm định chất
+                                    lượng bởi Bộ TT & TT, vì vậy chất lượng hàng
+                                    hoá được đảm bảo 100% là hàng chuẩn, có
+                                    nguồn gốc rõ ràng. Với hàng xách tay bán bên
+                                    ngoài thị trường, giá tuy rẻ hơn nhưng chất
+                                    lượng hoàn toàn không đảm bảo, không dán tem
+                                    kiểm định của Bộ TT & TT cũng như tem của
+                                    đơn vị nhập khẩu (SOC), các linh kiện cấu
+                                    thành thiết bị thường là những linh kiện kém
+                                    chất lượng được mua về từ Trung Quốc theo số
+                                    lượng lớn, các cửa hàng tự tiến hành lắp
+                                    ghép bằng tay các linh kiện đó lại để tạo
+                                    thành 1 sản phẩm sau đó bán cho người tiêu
+                                    dùng.
+                                  </p>
                                 </div>
                               </li>
                               <li>
                                 <a class="uk-accordion-title" href="#"
-                                  >Aliquam pretium diam et ullamcorper
-                                  malesuada?</a
+                                  ><p>
+                                    <b
+                                      >Tôi sẽ được ưu đãi và khuyến mại gì khii
+                                      mua hàng tại SOC SHOP ?</b
+                                    >
+                                  </p></a
                                 >
                                 <div class="uk-accordion-content">
-                                  Praesent feugiat lectus faucibus tellus congue
-                                  pharetra. In viverra vehicula pellentesque.
-                                  Etiam consectetur ultricies magna at bibendum.
+                                  <p>
+                                    Tùy từng thời điểm, sản phẩm sẽ có những
+                                    khuyến mại khác nhau. SOC Shop cam kết sẽ
+                                    mang đến anh/chị những khuyến mại kèm những
+                                    dịch vụ chăm sóc khách hàng tốt nhất. Để tìm
+                                    hiểu về khuyến mại, anh / chị vui lòng gọi
+                                    1800 9999 (miễn phí) để được tư vấn.
+                                  </p>
                                 </div>
                               </li>
                               <li>
                                 <a class="uk-accordion-title" href="#"
-                                  >Nulla fringilla sollicitudin mauris eu
-                                  volutpat?</a
+                                  ><b
+                                    >Những dịch vụ chăm sóc khách hàng của SOC
+                                    SHOP là gì ?</b
+                                  ></a
                                 >
                                 <div class="uk-accordion-content">
-                                  Mauris quis neque nec lectus aliquet
-                                  malesuada. Nunc ullamcorper purus id gravida
-                                  aliquam. Integer eget blandit urna.
+                                  <p>
+                                    Sản phẩm có lỗi phần cứng thuộc phạm vi bảo
+                                    hành sẽ được hưởng chính sách 1 đổi 1 trong
+                                    vòng 01 tháng kể từ ngày mua máy; từ tháng
+                                    thứ 02 đến tháng thứ 12, sản phẩm sẽ được
+                                    bảo hành theo đúng chính sách của Hãng
+                                    Apple. Miễn phí cài đặt ứng dụng/ game và
+                                    bảo dưỡng trong quá trình sử dụng
+                                  </p>
                                 </div>
                               </li>
                               <li>
                                 <a class="uk-accordion-title" href="#"
-                                  >Nam luctus velit ante, id pulvinar nisl
-                                  gravida eget?</a
+                                  ><b
+                                    >SOC SHOP có giao hàng tại nhà không ? Chất
+                                    lượng sản phẩm có bị thay đổi đổi không ?</b
+                                  ></a
                                 >
                                 <div class="uk-accordion-content">
-                                  Vestibulum gravida nisi tempor malesuada
-                                  iaculis. Phasellus finibus, nisl quis
-                                  pellentesque scelerisque, erat erat mollis
-                                  massa, eu semper diam eros id risus. Cras
-                                  vitae nisi porta.
+                                  <p>
+                                    SOC Shop giao hàng miễn phí trên toàn quốc,
+                                    cam kết giao hàng trong 60 phút. Và chất
+                                    lượng hoàn toàn đảm bảo, 100% hàng chính
+                                    hãng - nguyên seal khi đến tận tay Anh/ chị.
+                                    Anh/chị có thể ấn nút "Mua Ngay" hoặc gọi số
+                                    tổng đài 1800 9999để được hỗ trợ
+                                  </p>
                                 </div>
                               </li>
                             </ul>
@@ -2454,932 +1120,6 @@
                                 </div>
                               </div>
                             </article>
-                            <article class="tm-product-card">
-                              <div class="tm-product-card-media">
-                                <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box" href="product.html">
-                                    <div class="tm-product-card-labels">
-                                      <span class="uk-label uk-label-success"
-                                        >new</span
-                                      ><span class="uk-label uk-label-danger"
-                                        >trade-in</span
-                                      >
-                                    </div>
-                                    <figure class="tm-media-box-wrap">
-                                      <img
-                                        src="images/products/2/2-medium.jpg"
-                                        alt='Apple MacBook 12" MNYN2LL/A 512GB (Rose Gold)'
-                                      /></figure
-                                  ></a>
-                                </div>
-                              </div>
-                              <div class="tm-product-card-body">
-                                <div class="tm-product-card-info">
-                                  <div
-                                    class="uk-text-meta uk-margin-xsmall-bottom"
-                                  >
-                                    Laptop
-                                  </div>
-                                  <h3 class="tm-product-card-title">
-                                    <a
-                                      class="uk-link-heading"
-                                      href="product.html"
-                                      >Apple MacBook 12&quot; MNYN2LL/A 512GB
-                                      (Rose Gold)</a
-                                    >
-                                  </h3>
-                                  <ul
-                                    class="
-                                      uk-list uk-text-small
-                                      tm-product-card-properties
-                                    "
-                                  >
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Diagonal display: </span
-                                      ><span>12"</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">CPU: </span
-                                      ><span>Intel®&nbsp;Core™ i5</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">RAM: </span
-                                      ><span>8&nbsp;GB</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Video Card: </span
-                                      ><span>Intel® HD Graphics 615</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="tm-product-card-shop">
-                                  <div class="tm-product-card-prices">
-                                    <div class="tm-product-card-price">
-                                      $1549.00
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-add">
-                                    <div
-                                      class="
-                                        uk-text-meta
-                                        tm-product-card-actions
-                                      "
-                                    >
-                                      <a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-favorites
-                                          tm-action-button-active
-                                          js-added-to
-                                        "
-                                        title="Add to favorites"
-                                        ><span
-                                          uk-icon="icon: heart; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to favorites</span
-                                        ></a
-                                      ><a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-compare
-                                          tm-action-button-active
-                                          js-added-to
-                                        "
-                                        title="Add to compare"
-                                        ><span
-                                          uk-icon="icon: copy; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to compare</span
-                                        ></a
-                                      >
-                                    </div>
-                                    <button
-                                      class="
-                                        uk-button uk-button-primary
-                                        tm-product-card-add-button tm-shine
-                                        js-add-to-cart
-                                      "
-                                    >
-                                      <span
-                                        class="tm-product-card-add-button-icon"
-                                        uk-icon="cart"
-                                      ></span
-                                      ><span
-                                        class="tm-product-card-add-button-text"
-                                        >add to cart</span
-                                      >
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
-                            <article class="tm-product-card">
-                              <div class="tm-product-card-media">
-                                <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box" href="product.html">
-                                    <figure class="tm-media-box-wrap">
-                                      <img
-                                        src="images/products/3/3-medium.jpg"
-                                        alt="Lenovo IdeaPad YOGA 920-13IKB 80Y7001RRK (Copper)"
-                                      /></figure
-                                  ></a>
-                                </div>
-                              </div>
-                              <div class="tm-product-card-body">
-                                <div class="tm-product-card-info">
-                                  <div
-                                    class="uk-text-meta uk-margin-xsmall-bottom"
-                                  >
-                                    Laptop
-                                  </div>
-                                  <h3 class="tm-product-card-title">
-                                    <a
-                                      class="uk-link-heading"
-                                      href="product.html"
-                                      >Lenovo IdeaPad YOGA 920-13IKB 80Y7001RRK
-                                      (Copper)</a
-                                    >
-                                  </h3>
-                                  <ul
-                                    class="
-                                      uk-list uk-text-small
-                                      tm-product-card-properties
-                                    "
-                                  >
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Diagonal display: </span
-                                      ><span>13.9"</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">CPU: </span
-                                      ><span>Intel®&nbsp;Core™ i7 8550U</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">RAM: </span
-                                      ><span>16&nbsp;GB</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Video Card: </span
-                                      ><span>Intel® HD Graphics 620</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="tm-product-card-shop">
-                                  <div class="tm-product-card-prices">
-                                    <div class="tm-product-card-price">
-                                      $1199.00
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-add">
-                                    <div
-                                      class="
-                                        uk-text-meta
-                                        tm-product-card-actions
-                                      "
-                                    >
-                                      <a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-favorites
-                                          tm-action-button-active
-                                          js-added-to
-                                        "
-                                        title="Add to favorites"
-                                        ><span
-                                          uk-icon="icon: heart; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to favorites</span
-                                        ></a
-                                      ><a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-compare
-                                        "
-                                        title="Add to compare"
-                                        ><span
-                                          uk-icon="icon: copy; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to compare</span
-                                        ></a
-                                      >
-                                    </div>
-                                    <button
-                                      class="
-                                        uk-button uk-button-primary
-                                        tm-product-card-add-button tm-shine
-                                        js-add-to-cart
-                                      "
-                                    >
-                                      <span
-                                        class="tm-product-card-add-button-icon"
-                                        uk-icon="cart"
-                                      ></span
-                                      ><span
-                                        class="tm-product-card-add-button-text"
-                                        >add to cart</span
-                                      >
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
-                            <article class="tm-product-card">
-                              <div class="tm-product-card-media">
-                                <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box" href="product.html">
-                                    <div class="tm-product-card-labels">
-                                      <span class="uk-label uk-label-warning"
-                                        >top selling</span
-                                      >
-                                    </div>
-                                    <figure class="tm-media-box-wrap">
-                                      <img
-                                        src="images/products/4/4-medium.jpg"
-                                        alt="ASUS Zenbook UX330UA-FC020T (Rose Gold)"
-                                      /></figure
-                                  ></a>
-                                </div>
-                              </div>
-                              <div class="tm-product-card-body">
-                                <div class="tm-product-card-info">
-                                  <div
-                                    class="uk-text-meta uk-margin-xsmall-bottom"
-                                  >
-                                    Laptop
-                                  </div>
-                                  <h3 class="tm-product-card-title">
-                                    <a
-                                      class="uk-link-heading"
-                                      href="product.html"
-                                      >ASUS Zenbook UX330UA-FC020T (Rose
-                                      Gold)</a
-                                    >
-                                  </h3>
-                                  <ul
-                                    class="
-                                      uk-list uk-text-small
-                                      tm-product-card-properties
-                                    "
-                                  >
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Diagonal display: </span
-                                      ><span>13.3"</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">CPU: </span
-                                      ><span>Intel®&nbsp;Core™ i7-6500U</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">RAM: </span
-                                      ><span>8&nbsp;GB</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Video Card: </span
-                                      ><span>Intel® HD Graphics 520</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="tm-product-card-shop">
-                                  <div class="tm-product-card-prices">
-                                    <div class="tm-product-card-price">
-                                      $749.00
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-add">
-                                    <div
-                                      class="
-                                        uk-text-meta
-                                        tm-product-card-actions
-                                      "
-                                    >
-                                      <a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-favorites
-                                        "
-                                        title="Add to favorites"
-                                        ><span
-                                          uk-icon="icon: heart; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to favorites</span
-                                        ></a
-                                      ><a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-compare
-                                        "
-                                        title="Add to compare"
-                                        ><span
-                                          uk-icon="icon: copy; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to compare</span
-                                        ></a
-                                      >
-                                    </div>
-                                    <button
-                                      class="
-                                        uk-button uk-button-primary
-                                        tm-product-card-add-button tm-shine
-                                        js-add-to-cart
-                                      "
-                                    >
-                                      <span
-                                        class="tm-product-card-add-button-icon"
-                                        uk-icon="cart"
-                                      ></span
-                                      ><span
-                                        class="tm-product-card-add-button-text"
-                                        >add to cart</span
-                                      >
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
-                            <article class="tm-product-card">
-                              <div class="tm-product-card-media">
-                                <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box" href="product.html">
-                                    <figure class="tm-media-box-wrap">
-                                      <img
-                                        src="images/products/5/5-medium.jpg"
-                                        alt="Dell XPS 15 9560-8968 (Silver)"
-                                      /></figure
-                                  ></a>
-                                </div>
-                              </div>
-                              <div class="tm-product-card-body">
-                                <div class="tm-product-card-info">
-                                  <div
-                                    class="uk-text-meta uk-margin-xsmall-bottom"
-                                  >
-                                    Laptop
-                                  </div>
-                                  <h3 class="tm-product-card-title">
-                                    <a
-                                      class="uk-link-heading"
-                                      href="product.html"
-                                      >Dell XPS 15 9560-8968 (Silver)</a
-                                    >
-                                  </h3>
-                                  <ul
-                                    class="
-                                      uk-list uk-text-small
-                                      tm-product-card-properties
-                                    "
-                                  >
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Diagonal display: </span
-                                      ><span>15.6"</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">CPU: </span
-                                      ><span>Intel®&nbsp;Core™ i7 7700HQ</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">RAM: </span
-                                      ><span>16&nbsp;GB</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Video Card: </span
-                                      ><span>NVIDIA GeForce GTX 960M</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="tm-product-card-shop">
-                                  <div class="tm-product-card-prices">
-                                    <del class="uk-text-meta">$999.00</del>
-                                    <div class="tm-product-card-price">
-                                      $949.00
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-add">
-                                    <div
-                                      class="
-                                        uk-text-meta
-                                        tm-product-card-actions
-                                      "
-                                    >
-                                      <a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-favorites
-                                        "
-                                        title="Add to favorites"
-                                        ><span
-                                          uk-icon="icon: heart; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to favorites</span
-                                        ></a
-                                      ><a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-compare
-                                        "
-                                        title="Add to compare"
-                                        ><span
-                                          uk-icon="icon: copy; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to compare</span
-                                        ></a
-                                      >
-                                    </div>
-                                    <button
-                                      class="
-                                        uk-button uk-button-primary
-                                        tm-product-card-add-button tm-shine
-                                        js-add-to-cart
-                                      "
-                                    >
-                                      <span
-                                        class="tm-product-card-add-button-icon"
-                                        uk-icon="cart"
-                                      ></span
-                                      ><span
-                                        class="tm-product-card-add-button-text"
-                                        >add to cart</span
-                                      >
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
-                            <article class="tm-product-card">
-                              <div class="tm-product-card-media">
-                                <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box" href="product.html">
-                                    <div class="tm-product-card-labels">
-                                      <span class="uk-label uk-label-danger"
-                                        >trade-in</span
-                                      >
-                                    </div>
-                                    <figure class="tm-media-box-wrap">
-                                      <img
-                                        src="images/products/6/6-medium.jpg"
-                                        alt='Apple MacBook Air 13" MQD32LL/A 128GB (Silver)'
-                                      /></figure
-                                  ></a>
-                                </div>
-                              </div>
-                              <div class="tm-product-card-body">
-                                <div class="tm-product-card-info">
-                                  <div
-                                    class="uk-text-meta uk-margin-xsmall-bottom"
-                                  >
-                                    Laptop
-                                  </div>
-                                  <h3 class="tm-product-card-title">
-                                    <a
-                                      class="uk-link-heading"
-                                      href="product.html"
-                                      >Apple MacBook Air 13&quot; MQD32LL/A
-                                      128GB (Silver)</a
-                                    >
-                                  </h3>
-                                  <ul
-                                    class="
-                                      uk-list uk-text-small
-                                      tm-product-card-properties
-                                    "
-                                  >
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Diagonal display: </span
-                                      ><span>13.3"</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">CPU: </span
-                                      ><span>Intel®&nbsp;Core™ i5</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">RAM: </span
-                                      ><span>8&nbsp;GB</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Video Card: </span
-                                      ><span>Intel® HD Graphics 6000</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="tm-product-card-shop">
-                                  <div class="tm-product-card-prices">
-                                    <div class="tm-product-card-price">
-                                      $849.00
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-add">
-                                    <div
-                                      class="
-                                        uk-text-meta
-                                        tm-product-card-actions
-                                      "
-                                    >
-                                      <a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-favorites
-                                        "
-                                        title="Add to favorites"
-                                        ><span
-                                          uk-icon="icon: heart; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to favorites</span
-                                        ></a
-                                      ><a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-compare
-                                          tm-action-button-active
-                                          js-added-to
-                                        "
-                                        title="Add to compare"
-                                        ><span
-                                          uk-icon="icon: copy; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to compare</span
-                                        ></a
-                                      >
-                                    </div>
-                                    <button
-                                      class="
-                                        uk-button uk-button-primary
-                                        tm-product-card-add-button tm-shine
-                                        js-add-to-cart
-                                      "
-                                    >
-                                      <span
-                                        class="tm-product-card-add-button-icon"
-                                        uk-icon="cart"
-                                      ></span
-                                      ><span
-                                        class="tm-product-card-add-button-text"
-                                        >add to cart</span
-                                      >
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
-                            <article class="tm-product-card">
-                              <div class="tm-product-card-media">
-                                <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box" href="product.html">
-                                    <figure class="tm-media-box-wrap">
-                                      <img
-                                        src="images/products/7/7-medium.jpg"
-                                        alt="Dell Inspiron 5378-2063 (Gray)"
-                                      /></figure
-                                  ></a>
-                                </div>
-                              </div>
-                              <div class="tm-product-card-body">
-                                <div class="tm-product-card-info">
-                                  <div
-                                    class="uk-text-meta uk-margin-xsmall-bottom"
-                                  >
-                                    Laptop
-                                  </div>
-                                  <h3 class="tm-product-card-title">
-                                    <a
-                                      class="uk-link-heading"
-                                      href="product.html"
-                                      >Dell Inspiron 5378-2063 (Gray)</a
-                                    >
-                                  </h3>
-                                  <ul
-                                    class="
-                                      uk-list uk-text-small
-                                      tm-product-card-properties
-                                    "
-                                  >
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Diagonal display: </span
-                                      ><span>13.3"</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">CPU: </span
-                                      ><span>Intel®&nbsp;Core™ i3-7100U</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">RAM: </span
-                                      ><span>4&nbsp;GB</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >HDD Capacity: </span
-                                      ><span>1&nbsp;TB</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="tm-product-card-shop">
-                                  <div class="tm-product-card-prices">
-                                    <del class="uk-text-meta">$599.00</del>
-                                    <div class="tm-product-card-price">
-                                      $579.00
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-add">
-                                    <div
-                                      class="
-                                        uk-text-meta
-                                        tm-product-card-actions
-                                      "
-                                    >
-                                      <a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-favorites
-                                        "
-                                        title="Add to favorites"
-                                        ><span
-                                          uk-icon="icon: heart; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to favorites</span
-                                        ></a
-                                      ><a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-compare
-                                        "
-                                        title="Add to compare"
-                                        ><span
-                                          uk-icon="icon: copy; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to compare</span
-                                        ></a
-                                      >
-                                    </div>
-                                    <button
-                                      class="
-                                        uk-button uk-button-primary
-                                        tm-product-card-add-button tm-shine
-                                        js-add-to-cart
-                                      "
-                                    >
-                                      <span
-                                        class="tm-product-card-add-button-icon"
-                                        uk-icon="cart"
-                                      ></span
-                                      ><span
-                                        class="tm-product-card-add-button-text"
-                                        >add to cart</span
-                                      >
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
-                            <article class="tm-product-card">
-                              <div class="tm-product-card-media">
-                                <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box" href="product.html">
-                                    <div class="tm-product-card-labels">
-                                      <span class="uk-label uk-label-success"
-                                        >new</span
-                                      >
-                                    </div>
-                                    <figure class="tm-media-box-wrap">
-                                      <img
-                                        src="images/products/8/8-medium.jpg"
-                                        alt="Lenovo Yoga 720-13IKB 80X60059RK (Silver)"
-                                      /></figure
-                                  ></a>
-                                </div>
-                              </div>
-                              <div class="tm-product-card-body">
-                                <div class="tm-product-card-info">
-                                  <div
-                                    class="uk-text-meta uk-margin-xsmall-bottom"
-                                  >
-                                    Laptop
-                                  </div>
-                                  <h3 class="tm-product-card-title">
-                                    <a
-                                      class="uk-link-heading"
-                                      href="product.html"
-                                      >Lenovo Yoga 720-13IKB 80X60059RK
-                                      (Silver)</a
-                                    >
-                                  </h3>
-                                  <ul
-                                    class="
-                                      uk-list uk-text-small
-                                      tm-product-card-properties
-                                    "
-                                  >
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Diagonal display: </span
-                                      ><span>13.3"</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">CPU: </span
-                                      ><span>Intel®&nbsp;Core™ i5-7200U</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">RAM: </span
-                                      ><span>8&nbsp;GB</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Video Card: </span
-                                      ><span>Intel® HD Graphics 620</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="tm-product-card-shop">
-                                  <div class="tm-product-card-prices">
-                                    <div class="tm-product-card-price">
-                                      $1099.00
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-add">
-                                    <div
-                                      class="
-                                        uk-text-meta
-                                        tm-product-card-actions
-                                      "
-                                    >
-                                      <a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-favorites
-                                        "
-                                        title="Add to favorites"
-                                        ><span
-                                          uk-icon="icon: heart; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to favorites</span
-                                        ></a
-                                      ><a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-compare
-                                        "
-                                        title="Add to compare"
-                                        ><span
-                                          uk-icon="icon: copy; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to compare</span
-                                        ></a
-                                      >
-                                    </div>
-                                    <button
-                                      class="
-                                        uk-button uk-button-primary
-                                        tm-product-card-add-button tm-shine
-                                        js-add-to-cart
-                                      "
-                                    >
-                                      <span
-                                        class="tm-product-card-add-button-icon"
-                                        uk-icon="cart"
-                                      ></span
-                                      ><span
-                                        class="tm-product-card-add-button-text"
-                                        >add to cart</span
-                                      >
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
-                            <article class="tm-product-card">
-                              <div class="tm-product-card-media">
-                                <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box" href="product.html">
-                                    <figure class="tm-media-box-wrap">
-                                      <span
-                                        class="uk-text-muted"
-                                        uk-icon="icon: image; ratio: 3;"
-                                      ></span></figure
-                                  ></a>
-                                </div>
-                              </div>
-                              <div class="tm-product-card-body">
-                                <div class="tm-product-card-info">
-                                  <div
-                                    class="uk-text-meta uk-margin-xsmall-bottom"
-                                  >
-                                    Laptop
-                                  </div>
-                                  <h3 class="tm-product-card-title">
-                                    <a
-                                      class="uk-link-heading"
-                                      href="product.html"
-                                      >Lenovo ThinkPad X380 Yoga 20LH000MUS
-                                      (Black)</a
-                                    >
-                                  </h3>
-                                  <ul
-                                    class="
-                                      uk-list uk-text-small
-                                      tm-product-card-properties
-                                    "
-                                  >
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Diagonal display: </span
-                                      ><span>13.3"</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">CPU: </span
-                                      ><span>Intel®&nbsp;Core™ i7 8550U</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">RAM: </span
-                                      ><span>4&nbsp;GB</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Video Card: </span
-                                      ><span>Intel® UHD Graphics 620</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div class="tm-product-card-shop">
-                                  <div class="tm-product-card-prices">
-                                    <div class="uk-text-muted">
-                                      Product not available
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-add">
-                                    <div
-                                      class="
-                                        uk-text-meta
-                                        tm-product-card-actions
-                                      "
-                                    >
-                                      <a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-favorites
-                                        "
-                                        title="Add to favorites"
-                                        ><span
-                                          uk-icon="icon: heart; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to favorites</span
-                                        ></a
-                                      ><a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-compare
-                                        "
-                                        title="Add to compare"
-                                        ><span
-                                          uk-icon="icon: copy; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to compare</span
-                                        ></a
-                                      >
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
                           </div>
                         </div>
                       </div>
@@ -3469,6 +1209,7 @@ export default {
   data() {
     return {
       getData: "",
+      getBlog: "",
       formData: {
         id: this.item,
         name: "",
@@ -3499,14 +1240,68 @@ export default {
         .get(this.$store.state.MainLink + "customer/products/" + this.item)
         .then((response) => {
           this.getData = response.data.object;
+          this.getBlog = response.data.object.blogs.blogDetails;
           console.log("GetData", this.getData);
+          // console.log("GetBlog", this.getBlog);
         })
         .catch((e) => {
           console.log(e);
         });
     },
-    addToCart(id) {
-      console.log(id);
+    addToCart(id, name, photos, price) {
+      console.log(id, name, photos, price);
+      if (this.$store.state.tokenUser == "") {
+        let item = {
+          productName: name,
+          productId: id,
+          photo: photos,
+          price: price,
+          quantity: 1,
+        };
+        this.$store.state.StoreCart.push(item);
+        this.$toasted.show("Đã thêm vào giỏ hàng !", {
+          type: "success",
+          duration: 2000,
+        });
+      } else {
+        let item = {
+          productId: id,
+          price: price,
+          quantity: 1,
+        };
+        this.$store.state.StoreCart.push(item);
+        axios
+          .post(this.$store.state.MainLink + "customer/cart/new", item, {
+            headers: {
+              Authorization: this.$store.state.tokenUser,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            axios
+              .get(this.$store.state.MainLink + "customer/cart/get", {
+                headers: {
+                  Authorization: this.$store.state.tokenUser,
+                },
+              })
+              .then((response) => {
+                this.$store.state.totalCart = response.data.object.length;
+                this.$store.state.StoreCart = response.data.object;
+                this.DetailsCart = this.$store.state.StoreCart;
+                for (let item in this.DetailsCart) {
+                  this.totalPriceProduct.push(response.data.object[item].price);
+                }
+              })
+              .catch((e) => {
+                console.log(e);
+              });
+          });
+
+        this.$toasted.show("Đã thêm vào giỏ hàng !", {
+          type: "success",
+          duration: 2000,
+        });
+      }
     },
     compareProducts() {},
   },
@@ -3514,4 +1309,10 @@ export default {
 </script>
 
 <style>
+a {
+  text-decoration: none;
+}
+a.uk-accordion-title, a.js-scroll-to-description {
+  text-decoration: none;
+}
 </style>

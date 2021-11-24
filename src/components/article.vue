@@ -6,11 +6,8 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <section class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <!-- <li>
-                  <span>{{getData.title}}</span>
-                </li> -->
+                <li><a>Trang chủ</a></li>
+                <li><a>Blog</a></li>
               </ul>
             </section>
             <section>
@@ -26,122 +23,35 @@
                       <h1 class="uk-article-title">
                         {{ getData.title }}
                       </h1>
-                      <!-- <div class="uk-article-meta">
-                        <time></time>
-                      </div> -->
                     </header>
-                    <section class="section-custom">
+                    <section
+                      class="section-custom"
+                      v-for="(item, index) in getBlogDetail"
+                      :key="index"
+                    >
                       <div class="tm-wrapper uk-text-center">
                         <figure>
-                          <a href="images/articles/macbook-photo.jpg"
+                          <a
                             ><img
-                              src="images/articles/macbook-photo.jpg"
-                              alt="MacBook Pro"
+                              :src="item.content"
+                              v-if="item.type == 'photo'"
                           /></a>
-                          <figcaption>MacBook Pro</figcaption>
                         </figure>
                       </div>
-
-                      <figure class="uk-text-center">
-                        <a href="images/articles/macbook-promo-4.jpg">
-                          <img
-                            src="images/articles/macbook-promo-4.jpg"
-                            alt="MacBook Pro"
-                        /></a>
-                      </figure>
-
-                      <div class="tm-wrapper">
-                        <figure class="tm-ratio tm-ratio-16-9">
-                          <iframe
-                            width="713"
-                            height="401"
-                            src="https://www.youtube.com/embed/nG1-7gExImU"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                          ></iframe>
-                        </figure>
-                      </div>
-
-                      <figure uk-slideshow>
-                        <div
-                          class="
-                            uk-position-relative uk-visible-toggle uk-light
-                          "
-                        >
-                          <ul class="uk-slideshow-items">
-                            <li>
-                              <img
-                                src="images/articles/macbook-promo-1.jpg"
-                                alt="MacBook Pro"
-                                uk-cover
-                              />
-                            </li>
-                            <li>
-                              <img
-                                src="images/articles/macbook-promo-2.jpg"
-                                alt="MacBook Pro"
-                                uk-cover
-                              />
-                            </li>
-                          </ul>
-                          <a
-                            class="
-                              uk-position-center-left
-                              uk-position-small
-                              uk-hidden-hover
-                            "
-                            href="#"
-                            uk-slidenav-previous
-                            uk-slideshow-item="previous"
-                          ></a>
-                          <a
-                            class="
-                              uk-position-center-right
-                              uk-position-small
-                              uk-hidden-hover
-                            "
-                            href="#"
-                            uk-slidenav-next
-                            uk-slideshow-item="next"
-                          ></a>
-                        </div>
-                        <ul
-                          class="
-                            uk-slideshow-nav uk-dotnav uk-flex-center uk-margin
-                          "
-                        ></ul>
-                      </figure>
-                      <blockquote class="twitter-tweet" data-lang="en">
+                      <p v-if="item.type == 'content'">
+                        {{ item.content }}
+                      </p>
+                      <!-- <blockquote class="twitter-tweet" data-lang="en">
                         <p lang="en" dir="ltr">
                           Mophie&apos;s latest battery pack is powerful enough
-                          to charge your 15-inch MacBook Pro<a
-                            href="https://t.co/jN4RzcxOyG"
-                            >https://t.co/jN4RzcxOyG</a
-                          ><a href="https://t.co/5oJBKZRVBx"
-                            >pic.twitter.com/5oJBKZRVBx</a
-                          >
+                          to charge your 15-inch MacBook Pro
                         </p>
-                        &mdash; The Verge (@verge)<a
-                          href="https://twitter.com/verge/status/948539601265872896?ref_src=twsrc%5Etfw"
-                          >January 3, 2018</a
-                        >
-                      </blockquote>
-                      <div class="tm-wrapper">
-                        <figure class="uk-text-center">
-                          <a href="images/articles/macbook-promo-3.jpg"
-                            ><img
-                              src="images/articles/macbook-promo-3.jpg"
-                              alt="MacBook Pro"
-                          /></a>
-                          <figcaption>13-inch and 15-inch</figcaption>
-                        </figure>
-                      </div>
+                        &mdash; The Verge (@verge)
+                      </blockquote> -->
                     </section>
                   </article>
                 </section>
-                <section>
+                <!-- <section>
                   <h2 class="uk-text-center">Related Articles</h2>
                   <div
                     class="
@@ -236,13 +146,13 @@
                       </a>
                     </div>
                   </div>
-                </section>
+                </section> -->
               </div>
             </section>
           </div>
         </div>
       </section>
-      <section class="uk-section uk-section-default uk-section-small">
+      <!-- <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>
             <ul
@@ -332,7 +242,7 @@
             ></ul>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
   </div>
 </template>
@@ -346,6 +256,7 @@ export default {
   data() {
     return {
       getData: "",
+      getBlogDetail: "",
       // formData: {
       //   // id: this.item,
       //   name: "",
@@ -377,7 +288,8 @@ export default {
         .get(this.$store.state.MainLink + "customer/blog/" + this.item)
         .then((response) => {
           this.getData = response.data.object;
-          console.log(this.getData);
+          this.getBlogDetail = response.data.object.blogDetails;
+          console.log(this.getBlogDetail);
         })
         .catch((e) => {
           console.log(e);

@@ -31,12 +31,14 @@ import Register from "../containers/Register.vue"
 import loadingform from "../containers/loadingform.vue"
 import loadingDot from "../containers/loadingDot.vue"
 import alertLoginError from "../containers/alertLoginError.vue"
+import slideShow from "../containers/slideShow.vue"
 
 
 Vue.use(Router)
 
 
 const router = new Router({
+    mode: 'history',
     routes: [
         { path: "/", component: Home, name: "Home" },
         { path: "/account", component: account, name: "account" },
@@ -64,6 +66,7 @@ const router = new Router({
         { path: "/login", component: Login, name: "login" },
         { path: "/register", component: Register, name: "register" },
         { path: "/loading", component: loadingform, name: "loading" },
+        { path: "/slideshow", component: slideShow, name: "slideshow" },
         { path: "/loadinglogin", component: loadingDot, name: "loadinglogin" },
         { path: "/alertlogin", component: alertLoginError, name: "alertlogin" },
         { path: "/vnpayresult", component: vnPayResult, name: "vnpayresult" },

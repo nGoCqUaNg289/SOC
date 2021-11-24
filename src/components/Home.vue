@@ -643,7 +643,7 @@
                       class="tm-media-box uk-cover-container uk-margin-remove"
                     >
                       <img
-                        src="images/articles/macos.jpg"
+                        :src="getBlogHL"
                         alt="Apple introduces macOS Mojave"
                         uk-cover="uk-cover"
                       />
@@ -675,220 +675,19 @@
             </div>
           </div>
           <div class="uk-margin uk-text-center">
-            <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
+            <a class="uk-link-muted uk-text-uppercase tm-link-to-all" @click="switchToBlog()"
               ><span>Xem tất cả bài viết</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
           </div>
         </div>
       </section>
-      <!-- <section class="uk-section uk-section-default uk-section-small">
-        <div class="uk-container">
-          <div
-            class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@s"
-            uk-grid
-          >
-            <section>
-              <h2 class="uk-text-center uk-text-left@s">Về chúng tôi</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at
-                neque vulputate, vestibulum magna in, accumsan urna. Nulla
-                feugiat ipsum ex, molestie porttitor nibh faucibus at. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                hendrerit lorem ut finibus semper. Donec ac vehicula erat, nec
-                consequat massa.
-              </p>
-              <p>
-                Quisque rhoncus fermentum sapien id congue. Nam at rutrum
-                turpis. Aliquam sagittis imperdiet tortor vel dignissim. Ut
-                ipsum nunc, egestas et odio id, vestibulum posuere orci. Orci
-                varius natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus.
-              </p>
-              <div class="uk-text-center uk-text-left@s">
-                <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
-                  ><span>Xem thêm</span
-                  ><span uk-icon="icon: chevron-right; ratio: .75;"></span
-                ></a>
-              </div>
-            </section>
-            <section>
-              <h2 class="uk-text-center uk-text-left@s">Tin tức mới nhất</h2>
-              <ul class="uk-list uk-list-small uk-list-divider">
-                <li>
-                  <article class="uk-article">
-                    <div class="uk-article-body">
-                      <div class="uk-article-meta uk-margin-xsmall-bottom">
-                        <time>June 4, 2018</time>
-                      </div>
-                      <h3 class="uk-h4 uk-margin-remove">
-                        <a class="uk-link-heading">Highlights from WWDC</a>
-                      </h3>
-                      <div class="uk-margin-xsmall-top uk-text-small">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Proin sodales eget ipsum id aliquam. Nam
-                          consectetur interdum nibh eget sodales. Cras volutpat
-                          efficitur ornare.
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                </li>
-                <li>
-                  <article class="uk-article">
-                    <div class="uk-article-body">
-                      <div class="uk-article-meta uk-margin-xsmall-bottom">
-                        <time>June 4, 2018</time>
-                      </div>
-                      <h3 class="uk-h4 uk-margin-remove">
-                        <a class="uk-link-heading"
-                          >Apple introduces macOS Mojave</a
-                        >
-                      </h3>
-                      <div class="uk-margin-xsmall-top uk-text-small">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Proin sodales eget ipsum id aliquam. Nam
-                          consectetur interdum nibh eget sodales. Cras volutpat
-                          efficitur ornare.
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                </li>
-                <li>
-                  <article class="uk-article">
-                    <div class="uk-article-body">
-                      <div class="uk-article-meta uk-margin-xsmall-bottom">
-                        <time>May 29, 2018</time>
-                      </div>
-                      <h3 class="uk-h4 uk-margin-remove">
-                        <a class="uk-link-heading"
-                          >iOS 11.4 brings stereo pairs and multi-room audio
-                          with AirPlay 2</a
-                        >
-                      </h3>
-                      <div class="uk-margin-xsmall-top uk-text-small">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Proin sodales eget ipsum id aliquam. Nam
-                          consectetur interdum nibh eget sodales. Cras volutpat
-                          efficitur ornare.
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                </li>
-              </ul>
-              <div class="uk-margin uk-text-center uk-text-left@s">
-                <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
-                  ><span>Xem các tin khác</span
-                  ><span uk-icon="icon: chevron-right; ratio: .75;"></span
-                ></a>
-              </div>
-            </section>
-          </div>
-        </div>
-      </section> -->
-      <!-- <section class="uk-section uk-section-default uk-section-small">
-        <div class="uk-container">
-          <div uk-slider>
-            <ul
-              class="
-                uk-slider-items
-                uk-child-width-1-1
-                uk-child-width-1-2@s
-                uk-child-width-1-5@m
-                uk-grid
-              "
-            >
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: star; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Mauris placerat</div>
-                    <div class="uk-text-meta">
-                      Donec mollis nibh dolor, sit amet auctor
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: receiver; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Lorem ipsum</div>
-                    <div class="uk-text-meta">
-                      Sit amet, consectetur adipiscing elit
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: location; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Proin pharetra</div>
-                    <div class="uk-text-meta">
-                      Nec quam a fermentum ut viverra
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: comments; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Praesent ultrices</div>
-                    <div class="uk-text-meta">
-                      Praesent ultrices, orci nec finibus
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: happy; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Duis condimentum</div>
-                    <div class="uk-text-meta">
-                      Pellentesque eget varius arcu
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <ul
-              class="
-                uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top
-              "
-            ></ul>
-          </div>
-        </div>
-      </section> -->
     </main>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-// import loadingDot from "../containers/loadingDot.vue";
 
 export default {
   name: "HomePage",
@@ -898,6 +697,7 @@ export default {
   data() {
     return {
       getData: "",
+      getBlogHL: "",
       formData: {
         name: "",
         price: "",
@@ -922,6 +722,11 @@ export default {
     // console.log(this.$store.state.totalFavorites);
   },
   methods: {
+    switchToBlog(){
+      this.$router.push({
+          name: "blog",
+        });
+    },
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -1067,6 +872,17 @@ export default {
           ).length > 0
         );
       }
+    },
+    getBlog() {
+      axios
+        .get(this.$store.state.MainLink + "customer/blog")
+        .then((response) => {
+          this.getBlogHL = response.data.object;
+          //   console.log(this.getData);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };

@@ -18,7 +18,10 @@ import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import moment from 'moment'
+import JwPagination from 'jw-vue-pagination';
 
+
+Vue.component('jw-pagination', JwPagination);
 // Vue.use(Vuex)
 library.add(faUserSecret)
 

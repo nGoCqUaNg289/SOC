@@ -6,10 +6,10 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a>Home</a></li>
-                <li><span>Carts</span></li>
+                <li><a>Trang chủ</a></li>
+                <li><span>Giỏ hàng</span></li>
               </ul>
-              <h1 class="uk-margin-small-top uk-margin-remove-bottom">Carts</h1>
+              <h1 class="uk-margin-small-top uk-margin-remove-bottom">Giỏ hàng</h1>
             </div>
             <div v-if="this.DetailsCart.length > 0">
               <div style="margin-bottom: 25px">
@@ -28,14 +28,15 @@
                       <table class="table table-custom-border" id="">
                         <tbody>
                           <tr>
-                            <th scope="row" class="checkbox-product">
+                            <!-- <th scope="row" class="checkbox-product">
                               <input type="checkbox" />
-                            </th>
+                            </th> -->
                             <td
                               class="custom-font-size-td size-img-cart-product"
                             >
                               Tất cả sản phẩm
                             </td>
+                            <td style="width: 5%"></td>
                             <td class="custom-font-size-td custom-size-price">
                               Đơn giá
                             </td>
@@ -101,9 +102,9 @@
                             :key="item.id"
                             @onchange="sumPrice()"
                           >
-                            <th scope="row" class="checkbox-product">
+                            <!-- <th scope="row" class="checkbox-product">
                               <input type="checkbox" />
-                            </th>
+                            </th> -->
                             <td class="">
                               <img
                                 class="img-product"
@@ -112,9 +113,10 @@
                               />
                             </td>
                             <td>
-                              <div class="uk-link-heading">
-                                {{ item.productName.substr(6, 25) }} ...
-                              </div>
+                              {{ item.productName.substr(6, 25) }} ...
+                              <!-- <div class="uk-link-heading">
+                                
+                              </div> -->
                             </td>
                             <td class="custom-font-size-td custom-size-price">
                               {{ formatPrice(item.price) }} đ

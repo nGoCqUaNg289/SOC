@@ -28,7 +28,7 @@
                           uk-light
                         "
                       >
-                        <img class="uk-width-1-1" src="images/avatar.jpg" />
+                        <img class="uk-width-1-1" src="images/pngegg.png" />
                         <a
                           class="
                             uk-link-reset
@@ -107,12 +107,16 @@
                 <header class="uk-card-header">
                   <h1 class="uk-h2">Đơn hàng của bạn</h1>
                 </header>
-                <section class="uk-card-body">
+                <section
+                  class="uk-card-body"
+                  v-for="(item, index) in listOrder"
+                  :key="index"
+                >
                   <h3>
                     <a class="uk-link-heading"
-                      >#36637649
+                      >#{{ item.id }}
                       <span class="uk-text-muted uk-text-small"
-                        >from June 17, 2018</span
+                        >Từ ngày {{ getDate(item.dateCreated) }}</span
                       ></a
                     >
                   </h3>
@@ -129,29 +133,28 @@
                   >
                     <tbody>
                       <tr>
-                        <th class="uk-width-medium">Items</th>
+                        <th class="uk-width-medium">Tổng số sản phẩm</th>
                         <td>7</td>
                       </tr>
                       <tr>
-                        <th class="uk-width-medium">Shipping</th>
-                        <td>Pick up from store</td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">Payment</th>
+                        <th class="uk-width-medium">Hình thức thanh toán</th>
                         <td>Online by card</td>
                       </tr>
                       <tr>
-                        <th class="uk-width-medium">Total</th>
-                        <td>$4896.00</td>
+                        <th class="uk-width-medium">Tổng tiền</th>
+                        <td>{{formatPrice(item.sumprice)}} đ</td>
                       </tr>
                       <tr>
-                        <th class="uk-width-medium">Status</th>
-                        <td><span class="uk-label">Processing</span></td>
+                        <th class="uk-width-medium">Trạng thái</th>
+                        <td><span class="uk-label" v-if="item.status == 'Chờ xác nhận'">Chờ xác nhận</span></td>
+                        <td>
+                          <span class="uk-label uk-label-danger" v-if="item.status == 'Hủy'">Đơn hàng bị hủy</span>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
                 </section>
-                <section class="uk-card-body">
+                <!-- <section class="uk-card-body">
                   <h3>
                     <a class="uk-link-heading"
                       >#36637648
@@ -196,7 +199,7 @@
                       </tr>
                     </tbody>
                   </table>
-                </section>
+                </section> -->
               </div>
             </div>
           </div>
@@ -208,6 +211,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   name: "account",
@@ -232,6 +236,12 @@ export default {
         name: "login",
       });
     },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(0).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+    getDate: (time, format = "YYYY-MM-DD") =>
+      time ? moment(time, format).format("DD/MM/YYYY") : "",
     getDataUserOrder() {
       axios
         .get(this.$store.state.MainLink + "customer/orders", {
