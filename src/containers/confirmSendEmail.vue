@@ -1,36 +1,45 @@
 <template>
   <main class="login-background">
+    <!-- <button @click="getTotalCart()">Click here !</button> -->
     <div class="login-form vpi">
       <div class="login-form-bg"></div>
       <div class="login">
         <div class="login-bg"></div>
         <div class="login-content">
           <div class="login-logo">
-            <img src="images/SOCStore.png" alt="SOC-Store LOGO" />
+            <a @click="returnHome()">
+              <img src="images/SOCStore.png" alt="SOC-Store LOGO" />
+            </a>
           </div>
           <div>
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Contact"></i>
-              <input v-model="uid" type="text" placeholder="Tài khoản đăng nhập" />
-            </div>
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Contact"></i>
-              <input v-model="uad" type="password" placeholder="Mật khẩu" />
-            </div>        
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="uad" type="text" placeholder="Tên người dùng" />
-            </div>
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="uad" type="text" placeholder="Email" />
-            </div>
-            <!-- <div class="username">
-              <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="uad" type="text" placeholder="Số điện thoại" />
-            </div> -->
+            <p>
+              Thư xác nhận đã được gửi tới email của bạn! Vui lòng kiểm tra.
+            </p>
+          </div>
+          <div>
+            <p>Sau 60s nếu không có thư, vui lòng gửi xác nhận lại tại đây !</p>
             <div class="submit-button">
-              <button type="button" @click="setUser">Đăng ký</button>
+              <button
+                class="abled"
+                type="button"
+                @click="forgotPass()"
+                disabled
+                v-if="confirmEmail == 0"
+              >
+                <div class="text-light" style="margin-bottom: 10px;">Gửi xác nhận</div>
+
+                <div class="spinner-border text-light" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              </button>
+              <button
+                class="abled"
+                type="button"
+                @click="resetEmail()"
+                v-if="confirmEmail == 1"
+              >
+                Gửi xác nhận
+              </button>
             </div>
           </div>
         </div>
@@ -40,20 +49,44 @@
 </template>
 
 <script>
+// import axios from "axios";
 export default {
   name: "User",
   data() {
     return {
-      //   uid: "",
-      //   uad: ""
+      //   email: "",
+      confirmEmail: "",
     };
   },
+  created() {
+    this.callFunction();
+  },
   methods: {
-    // setUser() {
-    //   localStorage.setItem('uid', this.uid);
-    //   localStorage.setItem('uad', this.uad);
-    //   this.$router.push('/');
-    // }
+    returnHome() {
+      this.$router.push({
+        name: "Home",
+      });
+    },
+    callFunction: function () {
+      var v = this;
+      setTimeout(function () {
+        v.changeButton();
+      }, 5000);
+    },
+    changeButton() {
+      this.confirmEmail = 1;
+    },
+    resetEmail(){
+      this.confirmEmail = 0;
+      this.callFunction();
+      this.$toasted.show(
+              "Đã gửi lại email !",
+              {
+                type: "success",
+                duration: 2000,
+              }
+            );
+    }
   },
 };
 </script>
@@ -163,7 +196,7 @@ main {
   border: 0;
   padding: 10px;
   font-size: 15px;
-  background: linear-gradient(90deg, #f89021, #db2927 80%);
+  /* background: linear-gradient(90deg, #f89021, #db2927 80%); */
   color: #fff !important;
 }
 .sps-am-ban button {
@@ -173,7 +206,12 @@ main {
 .login-form .submit-button {
   text-align: center;
 }
-.login-form.vpi button {
+.login-form.vpi button.disabled {
+  background: #33ccff;
+  color: #fff;
+  border-radius: 4px;
+}
+.login-form.vpi button.abled {
   background: #1a3e70;
   color: #fff;
   border-radius: 4px;

@@ -73,12 +73,12 @@
                     <ul class="uk-nav uk-nav-default tm-nav">
                       <li>
                         <router-link to="account">
-                          <a>Đơn hàng<span>(2)</span></a>
+                          <a>Đơn hàng</a>
                         </router-link>
                       </li>
                       <li class="uk-active">
                         <router-link to="favorites">
-                          <a>Sản phẩm yêu thích<span>(2)</span></a>
+                          <a>Sản phẩm yêu thích</a>
                         </router-link>
                       </li>
                       <li>

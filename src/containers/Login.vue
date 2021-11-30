@@ -30,8 +30,8 @@
               </button>
             </div>
             <div style="text-align: center; margin-top: 25px">
-              <a style="text-decoration: none">Quên mật khẩu</a> |
-              <a>Đăng ký tài khoản mới</a>
+              <a style="text-decoration: none" @click="forgot()">Quên mật khẩu</a> |
+              <a @click="register()">Đăng ký tài khoản mới</a>
             </div>
           </div>
         </div>
@@ -149,6 +149,11 @@ export default {
         name: "Home",
       });
     },
+    forgot(){
+      this.$router.push({
+        name: "forgotpass",
+      });
+    },
     getDataFavorites() {
       axios
         .get(this.$store.state.MainLink + "customer/favorite/get", {
@@ -181,6 +186,11 @@ export default {
           console.log(e);
         });
     },
+    register(){
+       this.$router.push({
+        name: "register",
+      });
+    }
   },
 };
 </script>

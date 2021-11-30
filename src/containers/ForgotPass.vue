@@ -1,37 +1,34 @@
 <template>
   <main class="login-background">
+    <!-- <button @click="getTotalCart()">Click here !</button> -->
     <div class="login-form vpi">
       <div class="login-form-bg"></div>
       <div class="login">
         <div class="login-bg"></div>
         <div class="login-content">
           <div class="login-logo">
-            <img src="images/SOCStore.png" alt="SOC-Store LOGO" />
+            <a @click="returnHome()">
+              <img src="images/SOCStore.png" alt="SOC-Store LOGO" />
+            </a>
           </div>
           <div>
             <div class="username">
               <i class="ms-Icon ms-Icon--Contact"></i>
-              <input v-model="uid" type="text" placeholder="Tài khoản đăng nhập" />
+              <input
+                v-model="email"
+                type="text"
+                placeholder="Nhập vào đây email của bạn"
+              />
             </div>
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Contact"></i>
-              <input v-model="uad" type="password" placeholder="Mật khẩu" />
-            </div>        
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="uad" type="text" placeholder="Tên người dùng" />
-            </div>
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="uad" type="text" placeholder="Email" />
-            </div>
-            <!-- <div class="username">
-              <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="uad" type="text" placeholder="Số điện thoại" />
-            </div> -->
             <div class="submit-button">
-              <button type="button" @click="setUser">Đăng ký</button>
+              <button type="button" @click="forgotPass()">Gửi xác nhận</button>
+              <!-- <button type="button" @click="LoginJWT(), callFunctionTotal()">
+                Hủy
+              </button> -->
             </div>
+            <!-- <div style="text-align: center; margin-top: 25px">
+              <a @click="register()">Hủy</a>
+            </div> -->
           </div>
         </div>
       </div>
@@ -40,20 +37,42 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "User",
   data() {
     return {
-      //   uid: "",
-      //   uad: ""
+      email: "",
     };
   },
   methods: {
-    // setUser() {
-    //   localStorage.setItem('uid', this.uid);
-    //   localStorage.setItem('uad', this.uad);
-    //   this.$router.push('/');
-    // }
+    returnHome() {
+      this.$router.push({
+        name: "Home",
+      });
+    },
+    forgotPass() {
+      console.log(this.email);
+      axios
+        .put(
+          this.$store.state.MainLink +
+            "customer/account/resetpass?email=" +
+            this.email
+        )
+        .then((response) => {
+          console.log(response);
+          this.$router.push({
+            name: "sendmail",
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+          this.$toasted.show("Thông tin không chính xác, vui lòng nhập lại !", {
+            type: "error",
+            duration: 2000,
+          });
+        });
+    },
   },
 };
 </script>

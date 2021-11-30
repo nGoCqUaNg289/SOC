@@ -32,6 +32,8 @@ import loadingform from "../containers/loadingform.vue"
 import loadingDot from "../containers/loadingDot.vue"
 import alertLoginError from "../containers/alertLoginError.vue"
 import slideShow from "../containers/slideShow.vue"
+import ForgotPass from "../containers/ForgotPass.vue"
+import confirmSendEmail from "../containers/confirmSendEmail.vue"
 
 
 Vue.use(Router)
@@ -70,6 +72,8 @@ const router = new Router({
         { path: "/loadinglogin", component: loadingDot, name: "loadinglogin" },
         { path: "/alertlogin", component: alertLoginError, name: "alertlogin" },
         { path: "/vnpayresult", component: vnPayResult, name: "vnpayresult" },
+        { path: "/forgotpass", component: ForgotPass, name: "forgotpass" },
+        { path: "/sendmail", component: confirmSendEmail, name: "sendmail" },
     ]
 })
 
