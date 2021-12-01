@@ -133,14 +133,14 @@
                           <router-link to="/blog"> Blog </router-link>
                         </li>
                         <li class="uk-active">
-                          <router-link to="/news"> News </router-link>
+                          <router-link to="/news"> Tin mới </router-link>
                         </li>
                         <li>
                           <router-link to="/faq"> FAQ </router-link>
                         </li>
-                        <li>
+                        <!-- <li>
                           <router-link to="/delivery"> Delivery </router-link>
-                        </li>
+                        </li> -->
                       </ul>
                     </nav>
                   </section>

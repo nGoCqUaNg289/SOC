@@ -86,9 +86,7 @@
                                             "
                                           >
                                             <figure class="tm-media-box-wrap">
-                                              <img
-                                                :src="item"
-                                              /></figure
+                                              <img :src="item" /></figure
                                           ></a>
                                         </div>
                                       </li>
@@ -155,13 +153,13 @@
                             >
                               <div>
                                 <!-- <del class="uk-text-meta">$1899.00</del> -->
-                                <div class="tm-product-price">
+                                <div class="tm-product-price" style="text-align: center">
                                   {{ formatPrice(getData.price) }}đ
                                 </div>
                               </div>
                               <div>
                                 <div class="uk-grid-small" uk-grid>
-                                  <div>
+                                  <!-- <div>
                                     <a
                                       onclick="increment(-1, 'product-1')"
                                       uk-icon="icon: minus; ratio: .75"
@@ -177,7 +175,7 @@
                                       onclick="increment(+1, 'product-1')"
                                       uk-icon="icon: plus; ratio: .75"
                                     ></a>
-                                  </div>
+                                  </div> -->
                                   <div>
                                     <button
                                       class="
@@ -185,12 +183,12 @@
                                         tm-product-add-button tm-shine
                                         js-add-to-cart
                                       "
-                                      @click="
-                                        addToCart(
-                                          getData
-                                        )
-                                      "
+                                      @click="addToCart(getData)"
                                     >
+                                      <b-icon
+                                        icon="cart-plus"
+                                        style="margin-right: 15px"
+                                      ></b-icon>
                                       Thêm vào giỏ hàng
                                     </button>
                                   </div>
@@ -203,7 +201,7 @@
                                       uk-text-meta
                                     "
                                   >
-                                    <!-- <a
+                                    <a v-if="this.$store.state.tokenUser"
                                       class="
                                         uk-margin-small-right
                                         js-add-to js-add-to-favorites
@@ -220,7 +218,7 @@
                                       "
                                       uk-tooltip="Add to compare"
                                       ><span uk-icon="copy"></span
-                                    ></a> -->
+                                    ></a>
                                   </div>
                                 </div>
                               </div>
@@ -277,7 +275,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="uk-margin">
+                        <!-- <div class="uk-margin">
                           <div class="uk-margin-small-top">
                             <a
                               class="uk-link-heading js-scroll-to-description"
@@ -290,7 +288,7 @@
                               ></span
                             ></a>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <div
@@ -1250,7 +1248,7 @@ export default {
     },
     addToCart(getData) {
       // console.log(id, name, photos, price);
-      console.log(getData)
+      console.log(getData);
       if (this.$store.state.tokenUser == "") {
         let item = {
           productName: getData.name,

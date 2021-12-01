@@ -48,7 +48,7 @@
                   <li>
                     <a class="uk-link-muted" href="#"
                       ><span class="uk-margin-small-right" uk-icon="mail"></span
-                      ><span class="tm-pseudo">example@example.com</span></a
+                      ><span class="tm-pseudo">socstorehanoi@gmail.com</span></a
                     >
                   </li>
                 </ul>

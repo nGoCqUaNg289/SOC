@@ -138,14 +138,14 @@
                           <router-link to="/blog"> Blog </router-link>
                         </li>
                         <li>
-                          <router-link to="/news"> News </router-link>
+                          <router-link to="/news"> Tin mới </router-link>
                         </li>
                         <li>
                           <router-link to="/faq"> FAQ </router-link>
                         </li>
-                        <li>
+                        <!-- <li>
                           <router-link to="/delivery"> Delivery </router-link>
-                        </li>
+                        </li> -->
                       </ul>
                     </nav>
                   </section>
@@ -155,7 +155,7 @@
           </div>
         </div>
       </section>
-      <section class="uk-section uk-section-default uk-section-small">
+      <!-- <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>
             <ul
@@ -245,7 +245,7 @@
             ></ul>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
   </div>
 </template>

@@ -12,7 +12,7 @@
                     <a>Trang chủ</a>
                   </router-link>
                 </li>
-                <li><a>Danh mục sản phẩm</a></li>
+                <li><span>Danh mục sản phẩm</span></li>
                 <li><span>Laptops</span></li>
               </ul>
               <h1 class="uk-margin-small-top uk-margin-remove-bottom">

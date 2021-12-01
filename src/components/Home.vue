@@ -235,10 +235,12 @@
             </div>
           </div>
           <div class="uk-margin uk-text-center">
-            <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
-              ><span>Xem tất cả sản phẩm</span
-              ><span uk-icon="icon: chevron-right; ratio: .75;"></span
-            ></a>
+            <router-link to="/category">
+              <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
+                ><span>Xem tất cả sản phẩm</span
+                ><span uk-icon="icon: chevron-right; ratio: .75;"></span
+              ></a>
+            </router-link>
           </div>
         </div>
       </section>
@@ -576,7 +578,7 @@
             "
             uk-grid
           >
-            <div>
+            <div v-for="items in getBlogHL" :key="items.id">
               <a>
                 <article
                   class="
@@ -595,7 +597,7 @@
                       class="tm-media-box uk-cover-container uk-margin-remove"
                     >
                       <img
-                        src="images/articles/macbook-photo.jpg"
+                        :src="items.photo"
                         alt="Everything You Need to Know About the MacBook Pro"
                         uk-cover="uk-cover"
                       />
@@ -604,19 +606,16 @@
                   <div class="uk-card-body">
                     <div class="uk-article-body">
                       <div class="uk-article-meta uk-margin-xsmall-bottom">
-                        <time>May 21, 2018</time>
+                        <time>{{ items.timeCreated }}</time>
                       </div>
                       <div>
                         <h3 class="uk-margin-remove">
-                          Everything You Need to Know About the MacBook Pro
+                          {{ items.title }}
                         </h3>
                       </div>
                       <div class="uk-margin-small-top">
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Proin sodales eget ipsum id aliquam. Nam
-                          consectetur interdum nibh eget sodales. Cras volutpat
-                          efficitur ornare.
+                          {{ items.shortText }}
                         </p>
                       </div>
                     </div>
@@ -624,7 +623,7 @@
                 </article>
               </a>
             </div>
-            <div>
+            <!-- <div>
               <a>
                 <article
                   class="
@@ -672,10 +671,12 @@
                   </div>
                 </article>
               </a>
-            </div>
+            </div> -->
           </div>
           <div class="uk-margin uk-text-center">
-            <a class="uk-link-muted uk-text-uppercase tm-link-to-all" @click="switchToBlog()"
+            <a
+              class="uk-link-muted uk-text-uppercase tm-link-to-all"
+              @click="switchToBlog()"
               ><span>Xem tất cả bài viết</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
@@ -719,13 +720,14 @@ export default {
   },
   created() {
     this.getDT();
+    this.getBlog();
     // console.log(this.$store.state.totalFavorites);
   },
   methods: {
-    switchToBlog(){
+    switchToBlog() {
       this.$router.push({
-          name: "blog",
-        });
+        name: "blog",
+      });
     },
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
@@ -878,7 +880,7 @@ export default {
         .get(this.$store.state.MainLink + "customer/blog")
         .then((response) => {
           this.getBlogHL = response.data.object;
-          //   console.log(this.getData);
+          console.log(this.getBlogHL);
         })
         .catch((e) => {
           console.log(e);
