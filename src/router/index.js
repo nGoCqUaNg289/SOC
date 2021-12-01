@@ -34,6 +34,7 @@ import alertLoginError from "../containers/alertLoginError.vue"
 import slideShow from "../containers/slideShow.vue"
 import ForgotPass from "../containers/ForgotPass.vue"
 import confirmSendEmail from "../containers/confirmSendEmail.vue"
+import resetPassword from "../containers/resetPassword.vue"
 
 
 Vue.use(Router)
@@ -74,6 +75,7 @@ const router = new Router({
         { path: "/vnpayresult", component: vnPayResult, name: "vnpayresult" },
         { path: "/forgotpass", component: ForgotPass, name: "forgotpass" },
         { path: "/sendmail", component: confirmSendEmail, name: "sendmail" },
+        { path: "/resetpass", component: resetPassword, name: "resetpass" },
     ]
 })
 

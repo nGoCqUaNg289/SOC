@@ -17,7 +17,7 @@
             </p>
           </div>
           <div>
-            <p>Sau 60s nếu không có thư, vui lòng gửi xác nhận lại tại đây !</p>
+            <p>Sau 30s nếu không có thư, vui lòng gửi xác nhận lại tại đây !</p>
             <div class="submit-button">
               <button
                 class="abled"
@@ -26,8 +26,6 @@
                 disabled
                 v-if="confirmEmail == 0"
               >
-                <div class="text-light" style="margin-bottom: 10px;">Gửi xác nhận</div>
-
                 <div class="spinner-border text-light" role="status">
                   <span class="sr-only"></span>
                 </div>
@@ -71,7 +69,7 @@ export default {
       var v = this;
       setTimeout(function () {
         v.changeButton();
-      }, 5000);
+      }, 30000);
     },
     changeButton() {
       this.confirmEmail = 1;

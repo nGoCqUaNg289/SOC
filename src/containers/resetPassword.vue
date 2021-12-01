@@ -1,10 +1,10 @@
 <template>
   <main class="login-background">
-    <div v-if="checkEmail != 0">
+    <div v-if="checkReToken == 0">
       <loadingDot style="margin-left: -25px; margin-top: -150px"></loadingDot>
     </div>
 
-    <div class="login-form vpi" v-else>
+    <div class="login-form vpi" v-else-if="checkReToken == 1">
       <div class="login-form-bg"></div>
       <div class="login">
         <div class="login-bg"></div>
@@ -18,13 +18,70 @@
             <div class="username">
               <i class="ms-Icon ms-Icon--Contact"></i>
               <input
-                v-model="email"
-                type="text"
-                placeholder="Nhập vào đây email của bạn"
+                v-model="password"
+                type="password"
+                placeholder="Mật khẩu mới"
               />
             </div>
+            <div class="password">
+              <i class="ms-Icon ms-Icon--Lock"></i>
+              <input
+                v-model="rePass"
+                type="password"
+                placeholder="Nhập lại mật khẩu"
+              />
+              <p v-if="password == rePass"></p>
+              <p
+                v-else
+                style="color: red; margin-top: 10px; text-align: center"
+              >
+                Nhập lại mật khẩu không chính xác!
+              </p>
+            </div>
             <div class="submit-button">
-              <button type="button" @click="forgotPass()">Gửi xác nhận</button>
+              <button
+                type="button"
+                @click="changePass()"
+                v-if="
+                  password == rePass &&
+                  password != '' &&
+                  rePass != '' &&
+                  buttonReload == 0
+                "
+              >
+                Đổi lại mật khẩu mới
+              </button>
+              <button type="button" v-else-if="buttonReload == 1">
+                <div class="spinner-border text-light" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              </button>
+              <button type="button" v-else disabled>
+                Đổi lại mật khẩu mới
+              </button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-form vpi" v-else>
+      <div class="login-form-bg"></div>
+      <div class="login">
+        <div class="login-bg"></div>
+        <div class="login-content">
+          <div class="login-logo">
+            <a @click="returnHome()">
+              <img src="images/SOCStore.png" alt="SOC-Store LOGO" />
+            </a>
+          </div>
+          <div>
+            <div style="text-align: center">
+              Token sai hoặc đã hết hạn, vui lòng thử lại!
+            </div>
+            <div class="submit-button">
+              <button type="button" @click="returnHome()">Hủy</button>
             </div>
           </div>
         </div>
@@ -37,15 +94,21 @@
 import axios from "axios";
 import loadingDot from "../containers/loadingDot.vue";
 export default {
-  name: "User",
+  name: "resetPass",
   components: {
     loadingDot,
   },
   data() {
     return {
-      email: "",
-      checkEmail: 0,
+      password: "",
+      rePass: "",
+      checkRePass: "",
+      checkReToken: 0,
+      buttonReload: 0,
     };
+  },
+  created() {
+    this.callFunction();
   },
   methods: {
     returnHome() {
@@ -53,28 +116,72 @@ export default {
         name: "Home",
       });
     },
-    forgotPass() {
-      this.checkEmail = 1;
-      console.log(this.email);
+    callFunctionLogin: function () {
+      var v = this;
+      setTimeout(function () {
+        v.returnLogin();
+      }, 2000);
+    },
+    returnLogin() {
+      this.$router.push({
+        name: "login",
+      });
+    },
+    callFunctionLoading: function () {
+      var v = this;
+      setTimeout(function () {
+        v.loadingFormDot();
+      }, 1000);
+    },
+    loadingFormDot() {
+      this.$toasted.show("Đổi mật khẩu thành công !", {
+        type: "success",
+        duration: 2000,
+      });
+    },
+    callFunction: function () {
+      var v = this;
+      setTimeout(function () {
+        v.checkToken();
+      }, 2000);
+    },
+    checkToken() {
+      console.log(this.$route.query.token);
       axios
         .put(
           this.$store.state.MainLink +
-            "customer/account/resetpass?email=" +
-            this.email
+            "customer/account/checkTokenReset?token=" +
+            this.$route.query.token
         )
         .then((response) => {
-          console.log(response);
-          // this.callFunction();
-          this.$router.push({
-            name: "sendmail",
-          });
+          if (response.data.object == true) {
+            this.checkReToken = 1;
+          } else {
+            this.checkReToken = 2;
+          }
+          console.log(this.checkReToken);
         })
         .catch((e) => {
+          this.error.push(e);
           console.log(e);
-          this.$toasted.show("Thông tin không chính xác, vui lòng nhập lại !", {
-            type: "error",
-            duration: 2000,
-          });
+        });
+    },
+    changePass() {
+      let item = {
+        password: this.password,
+        token: this.$route.query.token,
+      };
+      this.buttonReload = 1;
+      axios
+        .put(this.$store.state.MainLink + "authentication/forgot", item)
+        .then((response) => {
+          console.log(response);
+          this.callFunctionLoading();
+          this.callFunctionLogin();
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
         });
     },
   },

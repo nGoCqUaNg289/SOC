@@ -38,17 +38,26 @@
                 <ul class="uk-list uk-text-small">
                   <li>
                     <a class="uk-link-muted" href="#"
-                      ><span
+                      >
+                      <!-- <span
                         class="uk-margin-small-right"
                         uk-icon="receiver"
                       ></span
-                      ><span class="tm-pseudo">8 800 799 99 99</span></a
+                      > -->
+                      <span
+                        class="uk-margin-small-right"
+                      ></span
+                      >
+                      <span class="tm-pseudo">8 800 799 99 99</span></a
                     >
                   </li>
                   <li>
                     <a class="uk-link-muted" href="#"
-                      ><span class="uk-margin-small-right" uk-icon="mail"></span
-                      ><span class="tm-pseudo">socstorehanoi@gmail.com</span></a
+                      >
+                      <!-- <span class="uk-margin-small-right" uk-icon="mail"></span
+                      > -->
+                      <span class="uk-margin-small-right"></span>
+                      <span class="tm-pseudo">socstorehanoi@gmail.com</span></a
                     >
                   </li>
                 </ul>
@@ -58,19 +67,27 @@
               <ul class="uk-list uk-text-small">
                 <li>
                   <div class="uk-text-muted">
-                    <span
+                    <!-- <span
                       class="uk-margin-small-right"
                       uk-icon="location"
                     ></span
-                    ><span
+                    > -->
+                    <span
+                      class="uk-margin-small-right"
+                    ></span
+                    >
+                    <span
                       >St.&nbsp;Petersburg, Nevsky&nbsp;Prospect&nbsp;28</span
                     >
                   </div>
                 </li>
                 <li>
                   <div class="uk-text-muted">
-                    <span class="uk-margin-small-right" uk-icon="clock"></span
-                    ><span>Daily 10:00–22:00</span>
+                    <!-- <span class="uk-margin-small-right" uk-icon="clock"></span
+                    > -->
+                    <span class="uk-margin-small-right"></span
+                    >
+                    <span>Daily 10:00–22:00</span>
                   </div>
                 </li>
               </ul>
@@ -85,14 +102,13 @@
                     <a
                       class="uk-form-icon uk-form-icon-flip"
                       href="#"
-                      uk-icon="mail"
                     ></a>
-                    <input
+                    <!-- <input
                       class="uk-input"
                       type="email"
                       placeholder="Your email"
                       required
-                    />
+                    /> -->
                   </div>
                 </label>
               </form>

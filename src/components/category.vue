@@ -103,6 +103,21 @@
                                   />
                                 </div>
                               </div>
+                              <!-- <a
+                                class="uk-navbar-toggle tm-navbar-button"
+                                uk-search-icon
+                              ></a> -->
+                              <button
+                                class="uk-button uk-button-default uk-width-1-1"
+                                @click="getDT()" style="    margin-left: 15px;"
+                              >
+                                <span
+                                  class="uk-margin-xsmall-right"
+                                  uk-search-icon
+                                >
+                                </span
+                                >Tìm kiếm
+                              </button>
                             </div>
                           </div>
                         </section>

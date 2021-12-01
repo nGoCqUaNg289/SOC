@@ -80,17 +80,23 @@ export default {
           this.$store.state.userName = response.data.username;
 
           if (response.data.roles[0] == "Director") {
-            this.$toasted.show("Tài khoản không được sử dụng ở đây !", {
-              type: "error",
+            this.$toasted.show("Đăng nhập bằng tài khoản quản trị viên !", {
+              type: "success",
               duration: 2000,
+            });
+            this.$router.push({
+              name: "Home",
             });
           } else if (response.data.roles[0] == "Staff") {
-            this.$toasted.show("Tài khoản không được sử dụng ở đây !", {
-              type: "error",
+            this.$toasted.show("Đăng nhập bằng tài khoản nhân viên !", {
+              type: "success",
               duration: 2000,
             });
+            this.$router.push({
+              name: "Home",
+            });
           } else if (response.data.roles[0] == "User") {
-            console.log("Đăng nhập user");
+            // console.log("Đăng nhập user");
             this.$toasted.show("Đăng nhập thành công !", {
               type: "success",
               duration: 2000,
