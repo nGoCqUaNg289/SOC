@@ -7,7 +7,11 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a>Trang chủ</a></li>
+                <li>
+                  <router-link to="/" style="text-decoration: none">
+                    <a>Trang chủ</a>
+                  </router-link>
+                </li>
                 <li><a>Danh mục sản phẩm</a></li>
                 <li><span>Laptops</span></li>
               </ul>
@@ -301,12 +305,12 @@
                                       ></span
                                     ></a>
                                   </li>
-                                  <li>
+                                  <!-- <li>
                                     <a class="uk-text-lowercase">Giá</a>
                                   </li>
                                   <li>
                                     <a class="uk-text-lowercase">Mới nhất</a>
-                                  </li>
+                                  </li> -->
                                 </ul>
                               </div>
                               <a
@@ -674,7 +678,6 @@ export default {
       }
     },
     searchProduct(nameProduct) {
-      // console.log(nameProduct);
       axios
         .get(
           this.$store.state.MainLink + "customer/products?find=" + nameProduct

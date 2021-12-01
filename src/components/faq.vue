@@ -6,7 +6,11 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a href="index.html">Home</a></li>
+                <li>
+                  <router-link to="/" style="text-decoration: none">
+                    <a>Trang chủ</a>
+                  </router-link>
+                </li>
                 <li><span>FAQ</span></li>
               </ul>
               <h1 class="uk-margin-small-top uk-margin-remove-bottom">FAQ</h1>

@@ -6,7 +6,11 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a>Trang chủ</a></li>
+                <li>
+                  <router-link to="/" style="text-decoration: none">
+                    <a>Trang chủ</a>
+                  </router-link>
+                </li>
                 <li><span>Blog</span></li>
               </ul>
               <h1 class="uk-margin-small-top uk-margin-remove-bottom">Blog</h1>
@@ -233,7 +237,7 @@ export default {
         .get(this.$store.state.MainLink + "customer/blog")
         .then((response) => {
           this.getData = response.data.object;
-            console.log(this.getData);
+          console.log(this.getData);
         })
         .catch((e) => {
           console.log(e);

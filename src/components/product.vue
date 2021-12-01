@@ -5,7 +5,11 @@
         <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
           <div class="uk-text-center">
             <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-              <li><a>Trang chủ</a></li>
+              <li>
+                <router-link to="/" style="text-decoration: none">
+                  <a>Trang chủ</a>
+                </router-link>
+              </li>
               <li><a>Laptops</a></li>
               <li><a>Thông tin sản phẩm</a></li>
               <!-- <li>
@@ -84,7 +88,6 @@
                                             <figure class="tm-media-box-wrap">
                                               <img
                                                 :src="item"
-                                                alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
                                               /></figure
                                           ></a>
                                         </div>
@@ -168,6 +171,7 @@
                                       id="product-1"
                                       type="text"
                                       maxlength="3"
+                                      min="1"
                                       value="1"
                                     /><a
                                       onclick="increment(+1, 'product-1')"
@@ -183,10 +187,7 @@
                                       "
                                       @click="
                                         addToCart(
-                                          item.id,
-                                          item.name,
-                                          item.photos,
-                                          item.price
+                                          getData
                                         )
                                       "
                                     >
@@ -322,8 +323,7 @@
                             <li>
                               <a class="js-scroll-to-description">
                                 Đánh giá sản phẩm
-                                <span>(2)</span></a
-                              >
+                              </a>
                             </li>
                             <li>
                               <a class="js-scroll-to-description">Q&A</a>
@@ -1248,14 +1248,15 @@ export default {
           console.log(e);
         });
     },
-    addToCart(id, name, photos, price) {
-      console.log(id, name, photos, price);
+    addToCart(getData) {
+      // console.log(id, name, photos, price);
+      console.log(getData)
       if (this.$store.state.tokenUser == "") {
         let item = {
-          productName: name,
-          productId: id,
-          photo: photos,
-          price: price,
+          productName: getData.name,
+          productId: getData.id,
+          photo: getData.photos[0],
+          price: getData.price,
           quantity: 1,
         };
         this.$store.state.StoreCart.push(item);
@@ -1265,8 +1266,8 @@ export default {
         });
       } else {
         let item = {
-          productId: id,
-          price: price,
+          productId: getData.id,
+          price: getData.price,
           quantity: 1,
         };
         this.$store.state.StoreCart.push(item);
@@ -1312,7 +1313,8 @@ export default {
 a {
   text-decoration: none;
 }
-a.uk-accordion-title, a.js-scroll-to-description {
+a.uk-accordion-title,
+a.js-scroll-to-description {
   text-decoration: none;
 }
 </style>

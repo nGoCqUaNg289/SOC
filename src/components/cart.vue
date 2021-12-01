@@ -6,10 +6,16 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a>Trang chủ</a></li>
+                <li>
+                  <router-link to="/" style="text-decoration: none">
+                    <a>Trang chủ</a>
+                  </router-link>
+                </li>
                 <li><span>Giỏ hàng</span></li>
               </ul>
-              <h1 class="uk-margin-small-top uk-margin-remove-bottom">Giỏ hàng</h1>
+              <h1 class="uk-margin-small-top uk-margin-remove-bottom">
+                Giỏ hàng
+              </h1>
             </div>
             <div v-if="this.DetailsCart.length > 0">
               <div style="margin-bottom: 25px">

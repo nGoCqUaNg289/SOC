@@ -7,7 +7,11 @@
             <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
               <div class="uk-text-center">
                 <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                  <li><a href="index.html">Home</a></li>
+                  <li>
+                    <router-link to="/" style="text-decoration: none;">
+                      <a>Trang chủ</a>
+                    </router-link>
+                  </li>
                   <li><span>Compare</span></li>
                 </ul>
                 <h1 class="uk-margin-small-top uk-margin-remove-bottom">
@@ -134,13 +138,23 @@
               </div>
               <div
                 class="uk-section uk-section-default uk-section-small"
-                v-else style="text-align: center">
-                <img src="images/compare.png" alt="" width="150px" style="margin-bottom: 25px">
-                <p>Bạn đang phân vân chưa biết mình nên chọn máy nào? </p>
+                v-else
+                style="text-align: center"
+              >
+                <img
+                  src="images/compare.png"
+                  alt=""
+                  width="150px"
+                  style="margin-bottom: 25px"
+                />
+                <p>Bạn đang phân vân chưa biết mình nên chọn máy nào?</p>
                 <p>Hãy để chúng tôi giúp bạn có lựa chọn tốt nhất !</p>
-                <button class="btn-custom-back btn btn-outline-primary" @click="backToCategory()">
-                Các sản phẩm khác
-              </button>
+                <button
+                  class="btn-custom-back btn btn-outline-primary"
+                  @click="backToCategory()"
+                >
+                  Các sản phẩm khác
+                </button>
               </div>
             </div>
           </div>
@@ -272,11 +286,11 @@ export default {
     // this.getCompare();
   },
   methods: {
-    backToCategory(){
+    backToCategory() {
       this.$router.push({
         name: "category",
         // params: { item: id },
-      })
+      });
     },
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");

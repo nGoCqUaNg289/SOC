@@ -7,7 +7,11 @@
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <div class="uk-text-center">
               <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li><a>Trang chủ</a></li>
+                <li>
+                  <router-link to="/" style="text-decoration: none">
+                    <a>Trang chủ</a>
+                  </router-link>
+                </li>
                 <li><a>Thanh toán</a></li>
                 <li><a>Hóa đơn</a></li>
               </ul>
