@@ -88,6 +88,7 @@
                                     class="uk-input"
                                     type="text"
                                     placeholder="~"
+                                    v-model="start"
                                   />
                                 </div>
                               </div>
@@ -100,6 +101,7 @@
                                     class="uk-input"
                                     type="text"
                                     placeholder="~"
+                                    v-model="end"
                                   />
                                 </div>
                               </div>
@@ -109,7 +111,7 @@
                               ></a> -->
                               <button
                                 class="uk-button uk-button-default uk-width-1-1"
-                                @click="getDT()" style="    margin-left: 15px;"
+                                @click="searchPrice()" style="    margin-left: 15px;"
                               >
                                 <span
                                   class="uk-margin-xsmall-right"
@@ -582,6 +584,8 @@ export default {
       CartDetail: [],
       DetailCompare: [],
       searchText: "",
+      start: "",
+      end: "",
     };
   },
   created() {
@@ -696,6 +700,20 @@ export default {
       axios
         .get(
           this.$store.state.MainLink + "customer/products?find=" + nameProduct
+        )
+        .then((response) => {
+          this.getData = response.data.object;
+          console.log(response.data.object);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    searchPrice() {
+      console.log(this.start + this.end)
+      axios
+        .get(
+          this.$store.state.MainLink + "customer/products/price?end="+this.end+"&start="+this.start
         )
         .then((response) => {
           this.getData = response.data.object;
