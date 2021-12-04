@@ -97,6 +97,7 @@
 <script>
 // import loadingform from "../containers/loadingform.vue";
 import moment from "moment";
+import axios from "axios";
 
 export default {
   name: "vnpayresult",
@@ -110,6 +111,7 @@ export default {
   },
   created() {
     this.callFunction();
+    this.getDataAccount();
     // console.log(this.vnResult);
   },
   methods: {
@@ -143,6 +145,40 @@ export default {
         name: "Home",
         // params: { item: id },
       });
+    },
+    getDataAccount() {
+      this.getTotalCart();
+      axios
+        .get(this.$store.state.MainLink + "customer/account", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.userName = response.data.object.fullname;
+          this.$store.state.tokenUser = localStorage.userToken
+          this.$store.state.InfoPersonal = response.data.object;
+          console.log(response.data.object);
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
+    getTotalCart() {
+      axios
+        .get(this.$store.state.MainLink + "customer/cart/get", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+          this.$store.state.StoreCart = response.data.object;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };

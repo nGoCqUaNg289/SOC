@@ -721,6 +721,7 @@ export default {
   created() {
     this.getDT();
     this.getBlog();
+    this.getDataAccount();
     // console.log(this.$store.state.totalFavorites);
   },
   methods: {
@@ -741,7 +742,7 @@ export default {
         .get(this.$store.state.MainLink + "customer/products/trending")
         .then((response) => {
           this.getData = response.data.object;
-          // console.log(this.getData);
+          console.log(this.getData);
         })
         .catch((e) => {
           console.log(e);
@@ -881,6 +882,40 @@ export default {
         .then((response) => {
           this.getBlogHL = response.data.object;
           // console.log(this.getBlogHL);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    getDataAccount() {
+      this.getTotalCart();
+      axios
+        .get(this.$store.state.MainLink + "customer/account", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.userName = response.data.object.fullname;
+          this.$store.state.tokenUser = localStorage.userToken
+          this.$store.state.InfoPersonal = response.data.object;
+          console.log(response.data.object);
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
+    getTotalCart() {
+      axios
+        .get(this.$store.state.MainLink + "customer/cart/get", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+          this.$store.state.StoreCart = response.data.object;
         })
         .catch((e) => {
           console.log(e);

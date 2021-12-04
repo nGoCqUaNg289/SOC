@@ -333,7 +333,7 @@ export default {
         });
       }
 
-      console.log(this.detailProduct);
+      // console.log(this.detailProduct);
     },
 
     deleteProduct(index) {

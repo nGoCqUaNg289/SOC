@@ -28,7 +28,7 @@
                           uk-light
                         "
                       >
-                        <img class="uk-width-1-1" src="images/avatar.jpg" />
+                        <img class="uk-width-1-1" src="images/pngegg.png" />
                         <a
                           class="
                             uk-link-reset
@@ -327,7 +327,7 @@ export default {
     };
   },
   created() {
-    this.getDataUser();
+    this.getDataAccount();
   },
   methods: {
     getDataUser() {
@@ -341,7 +341,7 @@ export default {
       this.$store.state.userName = "";
       this.$store.state.CompareCart = [];
       this.$store.state.StoreCart = [];
-      localStorage.clear();
+      window.localStorage.clear();
       this.$router.push({
         name: "login",
       });
@@ -356,7 +356,7 @@ export default {
       axios
         .put(this.$store.state.MainLink + "customer/account/update", item, {
           headers: {
-            Authorization: this.$store.state.tokenUser,
+            Authorization: localStorage.userToken,
           },
         })
         .then((response) => {
@@ -375,6 +375,41 @@ export default {
             type: "error",
             duration: 2000,
           });
+        });
+    },
+    getDataAccount() {
+      this.getTotalCart();
+      axios
+        .get(this.$store.state.MainLink + "customer/account", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.userName = response.data.object.fullname;
+          this.$store.state.tokenUser = localStorage.userToken
+          this.$store.state.InfoPersonal = response.data.object;
+          this.getDataUser();
+          // console.log(response.data.object);
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
+    getTotalCart() {
+      axios
+        .get(this.$store.state.MainLink + "customer/cart/get", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+          this.$store.state.StoreCart = response.data.object;
+        })
+        .catch((e) => {
+          console.log(e);
         });
     },
   },

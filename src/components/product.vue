@@ -178,6 +178,7 @@
                                   </div> -->
                                   <div>
                                     <button
+                                      v-if="getData.status == 'Đang bán'"
                                       class="
                                         uk-button uk-button-primary
                                         tm-product-add-button tm-shine
@@ -201,7 +202,7 @@
                                       uk-text-meta
                                     "
                                   >
-                                    <a v-if="this.$store.state.tokenUser"
+                                    <!-- <a v-if="this.$store.state.tokenUser"
                                       class="
                                         uk-margin-small-right
                                         js-add-to js-add-to-favorites
@@ -210,15 +211,11 @@
                                       "
                                       uk-tooltip="Add to favorites"
                                       ><span uk-icon="heart"></span></a
-                                    ><a
-                                      class="
-                                        js-add-to js-add-to-compare
-                                        tm-action-button-active
-                                        js-added-to
-                                      "
-                                      uk-tooltip="Add to compare"
-                                      ><span uk-icon="copy"></span
-                                    ></a>
+                                    > -->
+                                    
+                                    <a class="js-add-to js-add-to-compare tm-action-button-active js-added-to" uk-tooltip="Add to compare" @click="compareProduct(getData)">
+                                      <span uk-icon="copy"></span>
+                                    </a>
                                   </div>
                                 </div>
                               </div>
@@ -1239,7 +1236,7 @@ export default {
         .then((response) => {
           this.getData = response.data.object;
           this.getBlog = response.data.object.blogs.blogDetails;
-          console.log("GetData", this.getData);
+          // console.log("GetData", this.getData);
           // console.log("GetBlog", this.getBlog);
         })
         .catch((e) => {
@@ -1302,7 +1299,22 @@ export default {
         });
       }
     },
-    compareProducts() {},
+    compareProduct(item) {
+      // console.log(item)
+      // console.log(this.$store.state.CompareCart.length);
+      if (this.$store.state.CompareCart.length < 2) {
+        this.$store.state.CompareCart.push(item);
+        this.$toasted.show("Đã chọn sản phẩm để so sánh!", {
+          type: "success",
+          duration: 2000,
+        });
+      } else {
+        this.$toasted.show("Bạn đã chọn tối đa 2 sản phẩm cần so sánh!", {
+          type: "error",
+          duration: 2000,
+        });
+      }
+    },
   },
 };
 </script>

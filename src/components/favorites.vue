@@ -28,7 +28,7 @@
                           uk-light
                         "
                       >
-                        <img class="uk-width-1-1" src="images/avatar.jpg" />
+                        <img class="uk-width-1-1" src="images/pngegg.png" />
                         <a
                           class="
                             uk-link-reset

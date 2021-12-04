@@ -32,7 +32,7 @@
           <div class="uk-navbar-right">
             <nav>
               <ul class="uk-navbar-nav">
-                <li v-if="this.$store.state.userName != ''">
+                <li v-if="this.$store.state.userName">
                   <a style="text-decoration: none"
                     >Xin chào, {{ this.$store.state.userName }}</a
                   >
@@ -515,10 +515,13 @@ export default {
     return {
       quantityCart: "",
       minWidthWindow: "",
+      userName: "",
     };
   },
   created() {
     this.getCategory();
+    this.setUserName();
+    console.log(localStorage.nameUser)
   },
   methods: {
     clearData() {
@@ -528,22 +531,26 @@ export default {
       this.$store.state.userName = "";
       this.$store.state.CompareCart = [];
       this.$store.state.StoreCart = [];
-      localStorage.clear();
+      window.localStorage.clear();
       this.$router.push({
         name: "login",
       });
+    },
+    setUserName(){
+      this.userName = localStorage.nameUser
+      console.log(this.userName);
     },
     switchToAccount() {
       if (this.$store.state.tokenUser != "") {
         axios
           .get(this.$store.state.MainLink + "customer/account", {
             headers: {
-              Authorization: this.$store.state.tokenUser,
+              Authorization: localStorage.userToken,
             },
           })
           .then((response) => {
             this.$store.state.InfoPersonal = response.data.object;
-            // console.log(this.$store.state.InfoPersonal);
+            console.log(this.$store.state.InfoPersonal);
           })
           .catch((e) => {
             this.error.push(e);
@@ -565,7 +572,7 @@ export default {
         axios
           .get(this.$store.state.MainLink + "customer/cart/get", {
             headers: {
-              Authorization: this.$store.state.tokenUser,
+              Authorization: localStorage.userToken,
             },
           })
           .then((response) => {

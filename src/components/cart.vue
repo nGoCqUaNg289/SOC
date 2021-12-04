@@ -232,7 +232,7 @@
           </div>
         </div>
       </section>
-      <section class="uk-section uk-section-default uk-section-small">
+      <!-- <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
           <div uk-slider>
             <ul
@@ -322,7 +322,7 @@
             ></ul>
           </div>
         </div>
-      </section>
+      </section> -->
     </main>
   </div>
 </template>
@@ -337,6 +337,7 @@ export default {
   },
   created() {
     // this.getCartDetail();
+    this.getDataAccount();
     this.getDTDT();
     this.getDataUser();
     this.callFunction();
@@ -357,6 +358,9 @@ export default {
       sumTotal1: {
         input: "",
         value: 0,
+      },
+      item: {
+        quantity: 1,
       },
       DetailsCart: [],
       TotalCart: [],
@@ -389,11 +393,11 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getDTDT() {
-      if (this.$store.state.tokenUser != "") {
+      if (localStorage.userToken != "") {
         axios
           .get(this.$store.state.MainLink + "customer/cart/get", {
             headers: {
-              Authorization: this.$store.state.tokenUser,
+              Authorization: localStorage.userToken,
             },
           })
           .then((response) => {
@@ -409,16 +413,17 @@ export default {
           });
       } else {
         this.DetailsCart = this.$store.state.StoreCart;
-        console.log(this.$store.state.StoreCart);
+        // console.log(this.$store.state.StoreCart);
       }
     },
     callFunction: function () {
       var v = this;
       setTimeout(function () {
         v.sumPrice();
-      }, 500);
+      }, 200);
     },
     sumPrice() {
+      this.sumTotal = 0
       for (let i = 0; i < this.DetailsCart.length; i++) {
         this.sumTotal +=
           this.DetailsCart[i].price * this.DetailsCart[i].quantity;
@@ -430,7 +435,7 @@ export default {
         axios
           .delete(this.$store.state.MainLink + "customer/cart/delete/" + id, {
             headers: {
-              Authorization: this.$store.state.tokenUser,
+              Authorization: localStorage.userToken,
             },
           })
           .then((response) => {
@@ -466,7 +471,50 @@ export default {
         name: "cartinfo",
       });
     },
+    getDataAccount() {
+      this.getTotalCart();
+      axios
+        .get(this.$store.state.MainLink + "customer/account", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.userName = response.data.object.fullname;
+          this.$store.state.tokenUser = localStorage.userToken
+          this.$store.state.InfoPersonal = response.data.object;
+          console.log(response.data.object);
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
+    },
+    getTotalCart() {
+      axios
+        .get(this.$store.state.MainLink + "customer/cart/get", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+          this.$store.state.StoreCart = response.data.object;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
+  watch: {
+    'totalPrice.value': function (value) {
+      if(value){
+        console.log(value);
+        this.sumPrice()
+      }
+      
+    }
+  }
 };
 </script>
 

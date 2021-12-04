@@ -77,7 +77,9 @@ export default {
           localStorage.userToken =
             response.data.tokenType + " " + response.data.accessToken;
           this.$store.state.tokenUser = localStorage.userToken;
-          this.$store.state.userName = response.data.username;
+          // localStorage.nameUser = response.data.username;
+          // this.$store.state.userName = response.data.username;
+          // console.log(response.data)
 
           if (response.data.roles[0] == "Director") {
             this.$toasted.show("Đăng nhập bằng tài khoản quản trị viên !", {
@@ -128,7 +130,7 @@ export default {
       axios
         .get(this.$store.state.MainLink + "customer/cart/get", {
           headers: {
-            Authorization: this.$store.state.tokenUser,
+            Authorization: localStorage.userToken,
           },
         })
         .then((response) => {
@@ -164,7 +166,7 @@ export default {
       axios
         .get(this.$store.state.MainLink + "customer/favorite/get", {
           headers: {
-            Authorization: this.$store.state.tokenUser,
+            Authorization: localStorage.userToken,
           },
         })
         .then((response) => {
@@ -180,7 +182,7 @@ export default {
       axios
         .get(this.$store.state.MainLink + "customer/account", {
           headers: {
-            Authorization: this.$store.state.tokenUser,
+            Authorization: localStorage.userToken,
           },
         })
         .then((response) => {

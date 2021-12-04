@@ -236,7 +236,7 @@ export default {
           },
         })
         .then((response) => {
-          // console.log(response.data.object);
+          console.log(response.data.object);
           this.listOrder = response.data.object;
           // console.log(this.listOrder);
         })
@@ -246,7 +246,7 @@ export default {
         });
     },
     detailOrder(id){
-      console.log(id);
+      // console.log(id);
       this.$router.push({
         name: "detailorder",
         params: { item: id },

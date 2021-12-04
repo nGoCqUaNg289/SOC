@@ -496,7 +496,7 @@ export default {
           )
           .then((response) => {
             this.getData = response.data.object;
-            console.log(this.getData);
+            // console.log(this.getData);
           })
           .catch((e) => {
             console.log(e);
@@ -506,6 +506,7 @@ export default {
           .get(this.$store.state.MainLink + "customer/products")
           .then((response) => {
             this.getData = response.data.object;
+            // console.log(this.getData)
           })
           .catch((e) => {
             console.log(e);
@@ -592,7 +593,7 @@ export default {
       }
     },
     compareProduct(item) {
-      console.log(this.$store.state.CompareCart.length);
+      // console.log(this.$store.state.CompareCart.length);
       if (this.$store.state.CompareCart.length < 2) {
         this.$store.state.CompareCart.push(item);
         this.$toasted.show("Đã chọn sản phẩm để so sánh!", {
@@ -607,7 +608,7 @@ export default {
       }
     },
     searchProduct(nameProduct) {
-      console.log(nameProduct)
+      // console.log(nameProduct)
       axios
         .get(
           this.$store.state.MainLink + "customer/products?find=" + nameProduct
@@ -621,7 +622,7 @@ export default {
         });
     },
     searchPrice() {
-      console.log(this.start + this.end);
+      // console.log(this.start + this.end);
       axios
         .get(
           this.$store.state.MainLink +
@@ -632,7 +633,7 @@ export default {
         )
         .then((response) => {
           this.getData = response.data.object;
-          console.log(response.data.object);
+          // console.log(response.data.object);
         })
         .catch((e) => {
           console.log(e);
@@ -686,7 +687,7 @@ export default {
       axios
           .get(this.$store.state.MainLink + "customer/categories?active=true")
           .then((response) => {
-            console.log(response.data.object);
+            // console.log(response.data.object);
             this.getAllCate = response.data.object
             this.getNeed = response.data.object[3].categories
             this.getTypeMachine = response.data.object[0].categories

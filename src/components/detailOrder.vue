@@ -98,16 +98,15 @@
                 </header>
                 <section
                   class="uk-card-body"
-                  v-for="(item, index) in listOrder"
-                  :key="index"
                 >
                   <h3>
                     <a class="uk-link-heading"
-                      >#{{ item.id }}
+                      >#{{  detailOrder.id }}
                       <span class="uk-text-muted uk-text-small"
-                        >Từ ngày {{ getDate(item.dateCreated) }}</span
+                        >Từ ngày {{ getDate(detailOrder.dateCreated) }}</span
                       ></a
                     >
+                    <!-- {{  detailOrder.orderDetails.length }} -->
                   </h3>
                   <table
                     class="
@@ -122,8 +121,24 @@
                   >
                     <tbody>
                       <tr>
+                        <th class="uk-width-medium">Họ tên người mua</th>
+                        <td>{{  detailOrder.customer.fullname }}</td>
+                      </tr>
+                      <tr>
+                        <th class="uk-width-medium">Email</th>
+                        <td>{{  detailOrder.customer.email }}</td>
+                      </tr>
+                      <tr>
+                        <th class="uk-width-medium">Điện thoại</th>
+                        <td>{{  detailOrder.customer.phone }}</td>
+                      </tr>
+                      <tr>
+                        <th class="uk-width-medium">Địa chỉ giao hàng</th>
+                        <td>{{  detailOrder.customer.address }}</td>
+                      </tr>
+                      <tr>
                         <th class="uk-width-medium">Tổng số sản phẩm</th>
-                        <td>7</td>
+                        <td>{{ detailOrder.orderDetails.length }}</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Hình thức thanh toán</th>
@@ -131,14 +146,34 @@
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Tổng tiền</th>
-                        <td>{{formatPrice(item.sumprice)}} đ</td>
+                        <td>{{formatPrice(detailOrder.sumprice)}} đ</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Trạng thái</th>
-                        <td><span class="uk-label" v-if="item.status == 'Chờ xác nhận'">Chờ xác nhận</span></td>
+                        <td><span class="uk-label" v-if="detailOrder.status == 'Chờ xác nhận'">Chờ xác nhận</span></td>
                         <td>
-                          <span class="uk-label uk-label-danger" v-if="item.status == 'Hủy'">Đơn hàng bị hủy</span>
+                          <span class="uk-label uk-label-danger" v-if="detailOrder.status == 'Hủy'">Đơn hàng bị hủy</span>
                         </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <br>
+                  <br>
+                  <table class="table" v-for="(item, index) in detailOrder.orderDetails" :key="index">
+                    <thead>
+                      <tr>
+                        <th scope="col">#{{index + 1}}</th>
+                        <th scope="col">{{item.productName.substr(6,35)}} ... </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td scope="row">Giá sản phẩm</td>
+                        <td>{{formatPrice(item.price)}} đ</td>
+                      </tr>
+                      <tr>
+                        <td scope="row">Số lượng</td>
+                        <td>{{item.quantity}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -163,12 +198,12 @@ export default {
   },
   data() {
     return {
-      listOrder: "",
+      detailOrder: "",
     };
   },
   created() {
     this.getDataUserOrder();
-    console.log(this.item)
+    // console.log(this.item)
   },
   methods: {
     clearData() {
@@ -191,15 +226,15 @@ export default {
       time ? moment(time, format).format("DD/MM/YYYY") : "",
     getDataUserOrder() {
       axios
-        .get(this.$store.state.MainLink + "admin/orders/" + this.item, {
+        .get(this.$store.state.MainLink + "customer/orders/" + this.item, {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },
         })
         .then((response) => {
-          console.log(response.data.object);
-        //   this.listOrder = response.data.object;
-        //   console.log(this.listOrder);
+          // console.log(response.data.object);
+          this.detailOrder = response.data.object;
+          console.log(this.detailOrder);
         })
         .catch((e) => {
           this.error.push(e);
