@@ -23,6 +23,7 @@ export default new Vuex.Store({
         StoreCartUser: {},
         test: [],
         totalFavorites: [],
+        getDanhMucCategory: [],
         MainLink: "http://150.95.105.29:8800/api/"
     },
     getters: {},

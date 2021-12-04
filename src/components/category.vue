@@ -56,34 +56,45 @@
                         uk-accordion="multiple: true; targets: &gt; .js-accordion-section"
                         style="flex-basis: auto"
                       >
-                        <section class="uk-card-small uk-card-body">
-                          <h4 class="uk-margin-small-bottom">Thể loại</h4>
-                          <ul class="uk-nav uk-nav-default">
-                            <li><a>Laptop Gaming</a></li>
-                            <li><a>Laptop văn phòng</a></li>
-                            <li><a>Laptop mỏng nhẹ</a></li>
-                            <li><a>Laptop đồ hoạ</a></li>
-                            <li><a>Phụ kiện PC</a></li>
-                          </ul>
+                        <section class="uk-card-small uk-card-body" style="border-top: none;">
+                          <h4 class="uk-margin-small-bottom">Danh mục</h4>
+                          <div v-for="item in getAllCate" :key="item.id">
+                            <section class="uk-card-small uk-card-body" style="padding: 10px 0px 0px 20px;">
+                              <h6 class="uk-margin-small-bottom" v-if="item.name != 'Thương hiệu'">{{item.name}}
+                                <!-- <span>
+                                  <button class="btn-custom-color" @click="changToDash()" v-if="plusdash == 0">
+                                    <b-icon icon="plus" style="color: gray" ></b-icon>
+                                  </button>
+                                  <button class="btn-custom-color" @click="changToPlus()" v-else>
+                                    <b-icon icon="dash" style="color: gray"></b-icon>
+                                  </button>
+                                </span> -->
+                              </h6>
+                              <div class="uk-accordion-content" v-if="item.name != 'Thương hiệu' && plusdash == 0" style="margin-top: 0">
+                                <ul class="uk-nav uk-nav-default" >
+                                  <li v-for="items in item.categories" :key="items.id"><a @click="findByCate(items.id)"><b-icon icon="dash" style="color: gray"></b-icon> {{items.name}}</a></li>
+                                </ul>
+                              </div>
+                              <!-- <div class="uk-accordion-content" v-else>
+                              </div> -->
+                           </section>
+                          </div>
+                          
+                          <!-- <ul class="uk-nav uk-nav-default" >
+                            <li v-for="item in getNeed" :key="item.id"><a @click="findByCate(item.id)">{{item.name}}</a></li>
+                            <li v-for="item in getTypeMachine" :key="item.id"><a @click="findByCate(item.id)">{{item.name}}</a></li>
+                            <li v-for="item in getTypeProduct" :key="item.id"><a @click="findByCate(item.id)">{{item.name}}</a></li>
+                          </ul> -->
                         </section>
-                        <section
-                          class="uk-card-body uk-open js-accordion-section"
-                        >
+                        <section class="uk-card-body uk-open js-accordion-section">
                           <h4 class="uk-accordion-title uk-margin-remove">
                             Giá thành
                           </h4>
                           <div class="uk-accordion-content">
-                            <div
-                              class="
-                                uk-grid-small uk-child-width-1-2 uk-text-small
-                              "
-                              uk-grid
-                            >
+                            <div class="uk-grid-small uk-child-width-1-2 uk-text-small" uk-grid>
                               <div>
                                 <div class="uk-inline">
-                                  <span class="uk-form-icon uk-text-xsmall"
-                                    >Từ</span
-                                  >
+                                  <span class="uk-form-icon uk-text-xsmall">Từ</span>
                                   <input
                                     class="uk-input"
                                     type="text"
@@ -94,9 +105,7 @@
                               </div>
                               <div>
                                 <div class="uk-inline">
-                                  <span class="uk-form-icon uk-text-xsmall"
-                                    >Tới</span
-                                  >
+                                  <span class="uk-form-icon uk-text-xsmall">Tới</span>
                                   <input
                                     class="uk-input"
                                     type="text"
@@ -105,20 +114,13 @@
                                   />
                                 </div>
                               </div>
-                              <!-- <a
-                                class="uk-navbar-toggle tm-navbar-button"
-                                uk-search-icon
-                              ></a> -->
                               <button
                                 class="uk-button uk-button-default uk-width-1-1"
-                                @click="searchPrice()" style="    margin-left: 15px;"
+                                @click="searchPrice()"
+                                style="margin-left: 15px"
                               >
-                                <span
-                                  class="uk-margin-xsmall-right"
-                                  uk-search-icon
-                                >
-                                </span
-                                >Tìm kiếm
+                                <span class="uk-margin-xsmall-right" uk-search-icon>
+                                </span>Tìm kiếm
                               </button>
                             </div>
                           </div>
@@ -131,137 +133,13 @@
                           </h4>
                           <div class="uk-accordion-content">
                             <ul class="uk-list tm-scrollbox">
-                              <li>
-                                <input
-                                  class="tm-checkbox"
-                                  id="brand-1"
-                                  name="brand"
-                                  value="acer"
-                                  type="checkbox"
-                                  @click="searchProduct()"
-                                />
-                                <label for="brand-1">
-                                  <span>Acer</span>
-                                </label>
-                              </li>
-                              <li>
-                                <input
-                                  class="tm-checkbox"
-                                  id="brand-2"
-                                  name="brand"
-                                  value="2"
-                                  type="checkbox"
-                                />
-                                <label for="brand-2"
-                                  ><span
-                                    >Apple
-                                    <span class="uk-text-meta uk-text-xsmall"
-                                      >18</span
-                                    ></span
-                                  ></label
-                                >
-                              </li>
-                              <li>
-                                <input
-                                  class="tm-checkbox"
-                                  id="brand-3"
-                                  name="brand"
-                                  value="3"
-                                  type="checkbox"
-                                />
-                                <label for="brand-3"
-                                  ><span
-                                    >ASUS
-                                    <span class="uk-text-meta uk-text-xsmall"
-                                      >150</span
-                                    ></span
-                                  ></label
-                                >
-                              </li>
-                              <li>
-                                <input
-                                  class="tm-checkbox"
-                                  id="brand-4"
-                                  name="brand"
-                                  value="4"
-                                  type="checkbox"
-                                />
-                                <label for="brand-4"
-                                  ><span
-                                    >Dell
-                                    <span class="uk-text-meta uk-text-xsmall"
-                                      >170</span
-                                    ></span
-                                  ></label
-                                >
-                              </li>
-                              <li>
-                                <input
-                                  class="tm-checkbox"
-                                  id="brand-5"
-                                  name="brand"
-                                  value="5"
-                                  type="checkbox"
-                                />
-                                <label for="brand-5"
-                                  ><span
-                                    >HP
-                                    <span class="uk-text-meta uk-text-xsmall"
-                                      >498</span
-                                    ></span
-                                  ></label
-                                >
-                              </li>
-                              <li>
-                                <input
-                                  class="tm-checkbox"
-                                  id="brand-6"
-                                  name="brand"
-                                  value="6"
-                                  type="checkbox"
-                                />
-                                <label for="brand-6"
-                                  ><span
-                                    >MSI
-                                    <span class="uk-text-meta uk-text-xsmall"
-                                      >54</span
-                                    ></span
-                                  ></label
-                                >
-                              </li>
-                              <li>
-                                <input
-                                  class="tm-checkbox"
-                                  id="brand-7"
-                                  name="brand"
-                                  value="7"
-                                  type="checkbox"
-                                />
-                                <label for="brand-7"
-                                  ><span
-                                    >Samsung
-                                    <span class="uk-text-meta uk-text-xsmall"
-                                      >1</span
-                                    ></span
-                                  ></label
-                                >
-                              </li>
-                              <li>
-                                <input
-                                  class="tm-checkbox"
-                                  id="brand-8"
-                                  name="brand"
-                                  value="8"
-                                  type="checkbox"
-                                />
-                                <label for="brand-8"
-                                  ><span
-                                    >Sony
-                                    <span class="uk-text-meta uk-text-xsmall"
-                                      >1</span
-                                    ></span
-                                  ></label
-                                >
+                              <li v-for="item in getBrands" :key="item.id">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" v-model="selected" @click="searchProduct(item.name)">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                      {{item.name}}
+                                    </label>
+                                </div>
                               </li>
                             </ul>
                           </div>
@@ -269,7 +147,7 @@
                         <div class="uk-card-body">
                           <button
                             class="uk-button uk-button-default uk-width-1-1"
-                            @click="getDT()"
+                            @click="resetData()"
                           >
                             <span
                               class="uk-margin-xsmall-right"
@@ -315,12 +193,9 @@
                                 >
                                 <ul class="uk-subnav uk-margin-remove">
                                   <li class="uk-active uk-padding-remove">
-                                    <a class="uk-text-lowercase"
-                                      >Liên quan<span
-                                        class="uk-margin-xsmall-left"
-                                        uk-icon="icon: chevron-down; ratio: .5;"
-                                      ></span
-                                    ></a>
+                                    <a class="" style="text-decoration: none;">Giá tiền
+                                      <span class="uk-margin-xsmall-left" uk-icon="icon: chevron-down; ratio: .5;"></span>
+                                    </a>
                                   </li>
                                   <!-- <li>
                                     <a class="uk-text-lowercase">Giá</a>
@@ -569,6 +444,9 @@ import axios from "axios";
 import loadingform from "../containers/loadingform.vue";
 
 export default {
+  props: {
+    item: Number,
+  },
   components: {
     loadingform,
   },
@@ -586,10 +464,18 @@ export default {
       searchText: "",
       start: "",
       end: "",
+      getNeed: "",
+      getTypeMachine: "",
+      getTypeProduct: "",
+      getAllCate: "",
+      plusdash: 0,
+      getBrands: "",
+      selected: false,
     };
   },
   created() {
     this.getDT();
+    this.getCategory();
   },
   methods: {
     filteredList() {
@@ -603,11 +489,35 @@ export default {
     },
     getDT() {
       this.checkFavorites = this.$store.state.tokenUser;
+      if (this.item) {
+        axios
+          .get(
+            this.$store.state.MainLink + "customer/products?cate=" + this.item
+          )
+          .then((response) => {
+            this.getData = response.data.object;
+            console.log(this.getData);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else {
+        axios
+          .get(this.$store.state.MainLink + "customer/products")
+          .then((response) => {
+            this.getData = response.data.object;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      }
+    },
+    resetData() {
+      this.selected = false;
       axios
         .get(this.$store.state.MainLink + "customer/products")
         .then((response) => {
           this.getData = response.data.object;
-          // console.log(response.data.object[0]);
         })
         .catch((e) => {
           console.log(e);
@@ -697,6 +607,7 @@ export default {
       }
     },
     searchProduct(nameProduct) {
+      console.log(nameProduct)
       axios
         .get(
           this.$store.state.MainLink + "customer/products?find=" + nameProduct
@@ -710,10 +621,14 @@ export default {
         });
     },
     searchPrice() {
-      console.log(this.start + this.end)
+      console.log(this.start + this.end);
       axios
         .get(
-          this.$store.state.MainLink + "customer/products/price?end="+this.end+"&start="+this.start
+          this.$store.state.MainLink +
+            "customer/products/price?end=" +
+            this.end +
+            "&start=" +
+            this.start
         )
         .then((response) => {
           this.getData = response.data.object;
@@ -766,6 +681,37 @@ export default {
           ).length > 0
         );
       }
+    },
+    getCategory() {
+      axios
+          .get(this.$store.state.MainLink + "customer/categories?active=true")
+          .then((response) => {
+            console.log(response.data.object);
+            this.getAllCate = response.data.object
+            this.getNeed = response.data.object[3].categories
+            this.getTypeMachine = response.data.object[0].categories
+            this.getTypeProduct = response.data.object[1].categories
+            this.getBrands = response.data.object[2].categories
+            // this.$store.state.StoreCart = response.data.object;
+          })
+          .catch((e) => {
+            this.error.push(e);
+            console.log(e);
+          });
+    },
+    findByCate(id){
+      // console.log(id);
+      axios
+          .get(
+            this.$store.state.MainLink + "customer/products?cate=" +id
+          )
+          .then((response) => {
+            this.getData = response.data.object;
+            // console.log(this.getData);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
   },
 };

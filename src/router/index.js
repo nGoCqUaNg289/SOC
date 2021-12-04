@@ -25,6 +25,7 @@ import subcategory from "../components/subcategory.vue"
 import vnpay from "../components/vnpay.vue"
 import cartInfo from "../components/cartInfo.vue"
 import vnPayResult from "../components/vnPayResult.vue"
+import detailOrder from "../components/detailOrder.vue"
 
 import Login from "../containers/Login.vue"
 import Register from "../containers/Register.vue"
@@ -57,7 +58,7 @@ const router = new Router({
         { path: "/catalog", component: catalog, name: "catalog" },
         { path: "/article", component: article, name: "article", props: true },
         { path: "/cart", component: cart, name: "cart", props: true },
-        { path: "/category", component: category, name: "category" },
+        { path: "/category", component: category, name: "category", props: true },
         { path: "/checkout", component: checkout, name: "checkout", props: true },
         { path: "/delivery", component: delivery, name: "delivery" },
         { path: "/favorites", component: favorites, name: "favorites" },
@@ -65,6 +66,7 @@ const router = new Router({
         { path: "/product", component: product, name: "product", props: true },
         { path: "/setting", component: setting, name: "setting" },
         { path: "/vnpay", component: vnpay, name: "vnpay", props: true },
+        { path: "/detailorder", component: detailOrder, name: "detailorder", props: true },
         { path: "/cartinfo", component: cartInfo, name: "cartinfo", props: true },
         { path: "/login", component: Login, name: "login" },
         { path: "/register", component: Register, name: "register" },

@@ -102,9 +102,12 @@
                   :key="index"
                 >
                   <h3>
-                    <a class="uk-link-heading" @click="detailOrder(item.id)">#{{ item.id }}
-                      <span class="uk-text-muted uk-text-small">Từ ngày {{ getDate(item.dateCreated) }}</span>
-                    </a>
+                    <a class="uk-link-heading"
+                      >#{{ item.id }}
+                      <span class="uk-text-muted uk-text-small"
+                        >Từ ngày {{ getDate(item.dateCreated) }}</span
+                      ></a
+                    >
                   </h3>
                   <table
                     class="
@@ -140,52 +143,6 @@
                     </tbody>
                   </table>
                 </section>
-                <!-- <section class="uk-card-body">
-                  <h3>
-                    <a class="uk-link-heading"
-                      >#36637648
-                      <span class="uk-text-muted uk-text-small"
-                        >from June 16, 2018</span
-                      ></a
-                    >
-                  </h3>
-                  <table
-                    class="
-                      uk-table
-                      uk-table-small
-                      uk-table-justify
-                      uk-table-responsive
-                      uk-table-divider
-                      uk-margin-small-top
-                      uk-margin-remove-bottom
-                    "
-                  >
-                    <tbody>
-                      <tr>
-                        <th class="uk-width-medium">Items</th>
-                        <td>2</td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">Shipping</th>
-                        <td>Pick up from store</td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">Payment</th>
-                        <td>Online by card</td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">Total</th>
-                        <td>$599.00</td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">Status</th>
-                        <td>
-                          <span class="uk-label uk-label-danger">Canceled</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </section> -->
               </div>
             </div>
           </div>
@@ -200,7 +157,10 @@ import axios from "axios";
 import moment from "moment";
 
 export default {
-  name: "account",
+  name: "detailOrder",
+  props: {
+    item: Number,
+  },
   data() {
     return {
       listOrder: "",
@@ -208,6 +168,7 @@ export default {
   },
   created() {
     this.getDataUserOrder();
+    console.log(this.item)
   },
   methods: {
     clearData() {
@@ -230,28 +191,21 @@ export default {
       time ? moment(time, format).format("DD/MM/YYYY") : "",
     getDataUserOrder() {
       axios
-        .get(this.$store.state.MainLink + "customer/orders", {
+        .get(this.$store.state.MainLink + "admin/orders/" + this.item, {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },
         })
         .then((response) => {
-          // console.log(response.data.object);
-          this.listOrder = response.data.object;
-          // console.log(this.listOrder);
+          console.log(response.data.object);
+        //   this.listOrder = response.data.object;
+        //   console.log(this.listOrder);
         })
         .catch((e) => {
           this.error.push(e);
           console.log(e);
         });
     },
-    detailOrder(id){
-      console.log(id);
-      this.$router.push({
-        name: "detailorder",
-        params: { item: id },
-      });
-    }
   },
 };
 </script>

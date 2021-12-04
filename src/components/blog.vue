@@ -237,7 +237,7 @@ export default {
         .get(this.$store.state.MainLink + "customer/blog")
         .then((response) => {
           this.getData = response.data.object;
-          console.log(this.getData);
+          // console.log(this.getData);
         })
         .catch((e) => {
           console.log(e);

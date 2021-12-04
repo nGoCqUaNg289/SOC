@@ -81,9 +81,9 @@
             <nav class="uk-visible@m">
               <ul class="uk-navbar-nav">
                 <li>
-                  <router-link to="/category">
+                  <router-link to="/category" style="text-decoration: none">
                     <a class="a-custom" style="text-decoration: none"
-                      >Sản phẩm<span
+                      >Danh mục<span
                         class="uk-margin-xsmall-left"
                         uk-icon="icon: chevron-down; ratio: .75;"
                       ></span
@@ -103,31 +103,23 @@
                         class="uk-navbar-dropdown-grid uk-child-width-1-5"
                         uk-grid
                       >
-                        <li>
+                        <li v-for="item in getCategory" :key="item.id">
                           <div class="uk-margin-top uk-margin-bottom">
-                            <router-link to="/category">
-                              <a
-                                class="uk-link-reset"
-                                style="text-decoration: none"
-                              >
-                                <img
-                                  class="
-                                    uk-display-block
-                                    uk-margin-auto
-                                    uk-margin-bottom
-                                  "
+                            <router-link to="/category" style="text-decoration: none">
+                              <a class="uk-link-reset" style="text-decoration: none">
+                                <img class="uk-display-block uk-margin-auto uk-margin-bottom"
                                   src="images/catalog/computers.svg"
                                   width="80"
                                   height="80"
                                 />
-                                <div
-                                  class="uk-text-bolder"
-                                  style="color: gray; text-decoration: none"
-                                >
-                                  Laptops và PC
+                                <div class="uk-text-bolder" style="color: gray; text-decoration: none">
+                                  {{item.name}}
                                 </div>
                               </a>
                             </router-link>
+                            <ul class="uk-nav uk-nav-default">
+                                <li v-for="items in item.categories" :key="items.id"><a @click="getByCate(items.id)">{{items.name}}</a></li>
+                              </ul>
                           </div>
                         </li>
                       </ul>
@@ -525,7 +517,9 @@ export default {
       minWidthWindow: "",
     };
   },
-  created() {},
+  created() {
+    this.getCategory();
+  },
   methods: {
     clearData() {
       this.$store.state.tokenUser = "";
@@ -597,30 +591,27 @@ export default {
         name: "login",
       });
     },
-    getCartDetail() {
-      // if (this.$store.state.tokenUser != "") {
-      //   console.log("Chạy vào trong đây");
-      //   axios
-      //     .get("http://socstore.club:8800/api/customer/cart/get", {
-      //       headers: {
-      //         Authorization: this.$store.state.tokenUser,
-      //       },
-      //     })
-      //     .then((response) => {
-      //       this.DetailsCart = response.data.object;
-      //       console.log(this.DetailsCart);
-      //       for (let item in this.DetailsCart) {
-      //         this.totalPriceProduct.push(response.data.object[item].price);
-      //       }
-      //     })
-      //     .catch((e) => {
-      //       this.error.push(e);
-      //       console.log(e);
-      //     });
-      // } else {
-      //   this.DetailsCart = this.$store.state.StoreCart;
-      // }
+    getCategory() {
+      axios
+          .get(this.$store.state.MainLink + "customer/categories?active=true")
+          .then((response) => {
+            // console.log(response.data.object);
+            this.getCategory = response.data.object
+            this.$store.state.getDanhMucCategory = response.data.object
+            // this.$store.state.StoreCart = response.data.object;
+          })
+          .catch((e) => {
+            this.error.push(e);
+            console.log(e);
+          });
     },
+    getByCate(item){
+      // console.log(item)
+      this.$router.push({
+        path: "category",
+        params: { item: item}
+      });
+    }
   },
   watch: {
     changeCart: function () {

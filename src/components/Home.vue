@@ -880,7 +880,7 @@ export default {
         .get(this.$store.state.MainLink + "customer/blog")
         .then((response) => {
           this.getBlogHL = response.data.object;
-          console.log(this.getBlogHL);
+          // console.log(this.getBlogHL);
         })
         .catch((e) => {
           console.log(e);
