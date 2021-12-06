@@ -73,7 +73,7 @@
                       <nav>
                         <ul class="uk-nav uk-nav-default tm-nav">
                           <li><a href="about.html">Giao tới</a></li>
-                          <li v-if="this.$store.state.tokenUser != ''">
+                          <li v-if="this.$store.state.tokenUser">
                             <div class="font-li">
                               <span>{{ dataUser.fullname }}</span> |
                               <span>{{ dataUser.phone }}</span>
@@ -134,7 +134,6 @@
                                 placeholder=""
                                 v-model="item.quantity"
                                 min="1"
-                                @onchange="sumPrice()"
                               />
                             </td>
                             <td
@@ -371,7 +370,7 @@ export default {
   },
   methods: {
     getDataUser() {
-      if (this.$store.state.tokenUser != "") {
+      if (this.$store.state.tokenUser) {
         axios
           .get(this.$store.state.MainLink + "customer/account", {
             headers: {
@@ -393,7 +392,7 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getDTDT() {
-      if (localStorage.userToken != "") {
+      if (this.$store.state.tokenUser) {
         axios
           .get(this.$store.state.MainLink + "customer/cart/get", {
             headers: {
@@ -401,6 +400,7 @@ export default {
             },
           })
           .then((response) => {
+            console.log(response);
             this.$store.state.totalCart = response.data.object.length;
             this.$store.state.StoreCart = response.data.object;
             this.DetailsCart = this.$store.state.StoreCart;
@@ -431,7 +431,7 @@ export default {
       return this.sumTotal;
     },
     deleteProduct(index, id) {
-      if (this.$store.state.tokenUser != "") {
+      if (this.$store.state.tokenUser) {
         axios
           .delete(this.$store.state.MainLink + "customer/cart/delete/" + id, {
             headers: {
@@ -472,7 +472,8 @@ export default {
       });
     },
     getDataAccount() {
-      this.getTotalCart();
+      
+      if(this.$store.state.tokenUser){
       axios
         .get(this.$store.state.MainLink + "customer/account", {
           headers: {
@@ -483,15 +484,18 @@ export default {
           this.$store.state.userName = response.data.object.fullname;
           this.$store.state.tokenUser = localStorage.userToken
           this.$store.state.InfoPersonal = response.data.object;
-          console.log(response.data.object);
+          this.getTotalCart();
+          // console.log(response.data.object);
         })
         .catch((e) => {
-          this.error.push(e);
+          // this.error.push(e);
           console.log(e);
         });
+      }      
     },
     getTotalCart() {
-      axios
+      if(this.$store.state.tokenUser){
+        axios
         .get(this.$store.state.MainLink + "customer/cart/get", {
           headers: {
             Authorization: localStorage.userToken,
@@ -504,6 +508,8 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+      }
+      
     },
   },
   watch: {
@@ -512,8 +518,7 @@ export default {
         console.log(value);
         this.sumPrice()
       }
-      
-    }
+    },
   }
 };
 </script>

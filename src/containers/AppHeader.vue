@@ -568,7 +568,7 @@ export default {
       }
     },
     switchToCart() {
-      if (this.$store.state.tokenUser != "") {
+      if (this.$store.state.tokenUser) {
         axios
           .get(this.$store.state.MainLink + "customer/cart/get", {
             headers: {
