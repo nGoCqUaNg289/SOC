@@ -20,6 +20,7 @@ export default new Vuex.Store({
         InfoPersonal: {},
         userName: "",
         allDataUser: "",
+        categorySearch: 0,
         StoreCartUser: {},
         test: [],
         totalFavorites: [],

@@ -235,7 +235,7 @@
             </div>
           </div>
           <div class="uk-margin uk-text-center">
-            <router-link to="/category">
+            <router-link to="/category" style="text-decoration: none">
               <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
                 ><span>Xem tất cả sản phẩm</span
                 ><span uk-icon="icon: chevron-right; ratio: .75;"></span
@@ -363,7 +363,7 @@
             </div>
           </div>
           <div class="uk-margin uk-text-center">
-            <router-link to="/category">
+            <router-link to="/category" style="text-decoration: none">
               <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
                 ><span>Toàn bộ sản phẩm</span
                 ><span uk-icon="icon: chevron-right; ratio: .75;"></span
@@ -579,7 +579,7 @@
             uk-grid
           >
             <div v-for="items in getBlogHL" :key="items.id">
-              <a>
+              <a @click="switchToBlog(items.id)">
                 <article
                   class="
                     uk-card
@@ -623,63 +623,14 @@
                 </article>
               </a>
             </div>
-            <!-- <div>
-              <a>
-                <article
-                  class="
-                    uk-card
-                    uk-card-default
-                    uk-card-small
-                    uk-article
-                    uk-overflow-hidden
-                    uk-box-shadow-hover-large
-                    uk-height-1-1
-                    tm-ignore-container
-                  "
-                >
-                  <div class="tm-ratio tm-ratio-16-9">
-                    <figure
-                      class="tm-media-box uk-cover-container uk-margin-remove"
-                    >
-                      <img
-                        :src="getBlogHL"
-                        alt="Apple introduces macOS Mojave"
-                        uk-cover="uk-cover"
-                      />
-                    </figure>
-                  </div>
-                  <div class="uk-card-body">
-                    <div class="uk-article-body">
-                      <div class="uk-article-meta uk-margin-xsmall-bottom">
-                        <time>May 21, 2018</time>
-                      </div>
-                      <div>
-                        <h3 class="uk-margin-remove">
-                          Apple introduces macOS Mojave
-                        </h3>
-                      </div>
-                      <div class="uk-margin-small-top">
-                        <p>
-                          Praesent consequat justo eu massa malesuada posuere.
-                          Donec ultricies tincidunt nisl, sed euismod nulla
-                          venenatis maximus. Maecenas sit amet semper tellus.
-                          Pellentesque imperdiet finibus sapien, a consectetur
-                          eros auctor a.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </a>
-            </div> -->
           </div>
           <div class="uk-margin uk-text-center">
-            <a
-              class="uk-link-muted uk-text-uppercase tm-link-to-all"
-              @click="switchToBlog()"
-              ><span>Xem tất cả bài viết</span
-              ><span uk-icon="icon: chevron-right; ratio: .75;"></span
-            ></a>
+            <router-link to="/blog" style="text-decoration: none">
+            <a class="uk-link-muted uk-text-uppercase tm-link-to-all">
+              <span>Xem tất cả bài viết</span>
+              <span uk-icon="icon: chevron-right; ratio: .75;"></span>
+            </a>
+            </router-link>
           </div>
         </div>
       </section>
@@ -713,21 +664,18 @@ export default {
         checkFavorites: "",
       },
       productFavorites: [],
-      // test: {
-      //   id: "",
-      // },
     };
   },
   created() {
     this.getDT();
     this.getBlog();
     this.getDataAccount();
-    // console.log(this.$store.state.totalFavorites);
   },
   methods: {
-    switchToBlog() {
+    switchToBlog(id) {
       this.$router.push({
-        name: "blog",
+        name: "article",
+        params: { item: id },
       });
     },
     switchToBrand(){
@@ -741,13 +689,11 @@ export default {
     },
     getDT() {
       this.checkFavorites = this.$store.state.tokenUser;
-      // console.log(this.checkFavorites);
-      // this.getDataFavorites();
       axios
         .get(this.$store.state.MainLink + "customer/products/trending")
         .then((response) => {
           this.getData = response.data.object;
-          console.log(this.getData);
+          // console.log(this.getData);
         })
         .catch((e) => {
           console.log(e);
@@ -760,7 +706,7 @@ export default {
       }, 2000);
     },
     detailProduct(id) {
-      console.log(id);
+      // console.log(id);
       this.$router.push({
         name: "product",
         params: { item: id },
@@ -793,8 +739,8 @@ export default {
               Authorization: this.$store.state.tokenUser,
             },
           })
-          .then((response) => {
-            console.log(response);
+          .then(() => {
+            // console.log(response);
             axios
               .get(this.$store.state.MainLink + "customer/cart/get", {
                 headers: {
@@ -821,7 +767,6 @@ export default {
       }
     },
     compareProduct(item) {
-      // console.log(this.$store.state.CompareCart.length);
       if (this.$store.state.CompareCart.length < 2) {
         this.$store.state.CompareCart.push(item);
         this.$toasted.show("Đã chọn sản phẩm để so sánh!", {
@@ -848,8 +793,8 @@ export default {
             },
           }
         )
-        .then((response) => {
-          console.log(response);
+        .then(() => {
+          // console.log(response);
           this.getDataFavorites();
         });
       // this.getDataFavorites();
@@ -862,7 +807,7 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data.object);
+          // console.log(response.data.object);
           this.$store.state.totalFavorites = response.data.object;
         })
         .catch((e) => {
@@ -904,7 +849,7 @@ export default {
           this.$store.state.userName = response.data.object.fullname;
           this.$store.state.tokenUser = localStorage.userToken
           this.$store.state.InfoPersonal = response.data.object;
-          console.log(response.data.object);
+          // console.log(response.data.object);
         })
         .catch((e) => {
           this.error.push(e);

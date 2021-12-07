@@ -444,9 +444,9 @@ import axios from "axios";
 import loadingform from "../containers/loadingform.vue";
 
 export default {
-  props: {
-    item: Number,
-  },
+  // props: {
+  //   item: Number,
+  // },
   components: {
     loadingform,
   },
@@ -489,7 +489,9 @@ export default {
     },
     getDT() {
       this.checkFavorites = this.$store.state.tokenUser;
-      if (this.item) {
+      this.item = this.$store.state.categorySearch
+      // console.log(this.item);
+      if (this.item != 0) {
         axios
           .get(
             this.$store.state.MainLink + "customer/products?cate=" + this.item
@@ -506,7 +508,7 @@ export default {
           .get(this.$store.state.MainLink + "customer/products")
           .then((response) => {
             this.getData = response.data.object;
-            console.log(this.getData)
+            // console.log(this.getData)
           })
           .catch((e) => {
             console.log(e);
@@ -716,6 +718,11 @@ export default {
           });
     },
   },
+  watch: {
+    '$store.state.categorySearch': function (){
+      this.getDT()
+    }
+  }
 };
 </script>
 

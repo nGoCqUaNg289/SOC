@@ -293,19 +293,19 @@ export default {
         .then((response) => {
           this.getData = response.data.object;
           this.getBlogDetail = response.data.object.blogDetails;
-          console.log(this.getBlogDetail);
+          // console.log(this.getBlogDetail);
         })
         .catch((e) => {
           console.log(e);
         });
     },
-    detailBlog(id) {
-      console.log(id);
-      this.$router.push({
-        name: "article",
-        params: { item: id },
-      });
-    },
+    // detailBlog(id) {
+    //   console.log(id);
+    //   this.$router.push({
+    //     name: "article",
+    //     params: { item: id },
+    //   });
+    // },
   },
 };
 </script>

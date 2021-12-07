@@ -250,7 +250,7 @@ export default {
       }, 2000);
     },
     detailBlog(id) {
-      console.log(id);
+      // console.log(id);
       this.$router.push({
         name: "article",
         params: { item: id },

@@ -105,8 +105,7 @@
                       >
                         <li v-for="item in getCategory" :key="item.id">
                           <div class="uk-margin-top uk-margin-bottom">
-                            <router-link to="/category" style="text-decoration: none">
-                              <a class="uk-link-reset" style="text-decoration: none">
+                              <a class="uk-link-reset" style="text-decoration: none" @click="switchToCategory()">
                                 <img class="uk-display-block uk-margin-auto uk-margin-bottom"
                                   src="images/catalog/computers.svg"
                                   width="80"
@@ -116,7 +115,6 @@
                                   {{item.name}}
                                 </div>
                               </a>
-                            </router-link>
                             <ul class="uk-nav uk-nav-default">
                                 <li v-for="items in item.categories" :key="items.id"><a @click="getByCate(items.id)">{{items.name}}</a></li>
                               </ul>
@@ -617,11 +615,20 @@ export default {
       if(this.$router.currentRoute.fullPath != '/category'){
           this.$router.push({
             path: "category",
-            params: { item: item}
+            // params: { item: item}
           });
+          this.$store.state.categorySearch = item;
+          console.log(this.$store.state.categorySearch)
       }else{
-        console.log(this.$router.currentRoute.fullPath)
+        this.$store.state.categorySearch = item;
+        // console.log(this.$store.state.categorySearch)
       }
+    },
+    switchToCategory(){
+      this.$store.state.categorySearch = 0;
+      this.$router.push({
+            path: "category",
+      });
     }
   },
   watch: {
@@ -634,6 +641,7 @@ export default {
         alert("resize event detected!");
       }
     },
+
   },
 };
 </script>
