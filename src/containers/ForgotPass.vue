@@ -1,10 +1,10 @@
 <template>
   <main class="login-background">
-    <div v-if="checkEmail != 0">
+    <!-- <div v-if="checkEmail != 0">
       <loadingDot style="margin-left: -25px; margin-top: -150px"></loadingDot>
-    </div>
+    </div> -->
 
-    <div class="login-form vpi" v-else>
+    <div class="login-form vpi">
       <div class="login-form-bg"></div>
       <div class="login">
         <div class="login-bg"></div>
@@ -19,12 +19,30 @@
               <i class="ms-Icon ms-Icon--Contact"></i>
               <input
                 v-model="email"
-                type="text"
+                type="email"
+                id="email"
                 placeholder="Nhập vào đây email của bạn"
               />
+              <div style="text-align: center;color: red;margin-top: 15px;">
+                {{ error }}
+              </div>
+              
             </div>
+            
             <div class="submit-button">
-              <button type="button" @click="forgotPass()">Gửi xác nhận</button>
+              <button type="submit" @click="forgotPass()" v-if="checkEmail == 0" style="width: 35%;margin: 15px;">Gửi xác nhận</button>
+              <button type="submit" @click="returnHome()" v-if="checkEmail == 0" style="width: 35%;margin: 15px;">Hủy</button>
+              <button
+                class="abled"
+                type="submit"
+                @click="forgotPass()"
+                disabled
+                v-else
+              >
+                <div class="spinner-border text-light" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              </button>
             </div>
           </div>
         </div>
@@ -35,15 +53,16 @@
 
 <script>
 import axios from "axios";
-import loadingDot from "../containers/loadingDot.vue";
+// import loadingDot from "../containers/loadingDot.vue";
 export default {
   name: "User",
-  components: {
-    loadingDot,
-  },
+  // components: {
+  //   loadingDot,
+  // },
   data() {
     return {
       email: "",
+      error: "",
       checkEmail: 0,
     };
   },
@@ -53,8 +72,15 @@ export default {
         name: "Home",
       });
     },
+    callFunction: function () {
+      var v = this;
+      setTimeout(function () {
+        v.callFunctionTotal();
+      }, 0);
+    },
     forgotPass() {
       this.checkEmail = 1;
+      this.error = ""
       console.log(this.email);
       axios
         .put(
@@ -65,18 +91,31 @@ export default {
         .then((response) => {
           console.log(response);
           // this.callFunction();
+          this.checkEmail = 1;
           this.$router.push({
             name: "sendmail",
           });
         })
         .catch((e) => {
+          this.checkEmail = 0;
           console.log(e);
-          this.$toasted.show("Thông tin không chính xác, vui lòng nhập lại !", {
-            type: "error",
-            duration: 2000,
-          });
+          this.error = "Email không tồn tại hoặc sai định dạng!"
         });
     },
+    checkForm:function(e) {
+      this.errors = [];
+      if(!this.email) {
+        this.errors.push("Email bắt buộc phải nhập");
+      } else if(!this.validEmail(this.email)) {
+        this.errors.push("Email sai định dạng");        
+      }
+      if(!this.errors.length) return true;
+      e.preventDefault();
+    },
+    // validEmail:function(email) {
+    //   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // return re.test(email);
+    // }
   },
 };
 </script>

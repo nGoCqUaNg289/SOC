@@ -1231,12 +1231,13 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     getDetailProduct() {
+      console.log(this.item)
       axios
         .get(this.$store.state.MainLink + "customer/products/" + this.item)
         .then((response) => {
           this.getData = response.data.object;
-          this.getBlog = response.data.object.blogs.blogDetails;
-          // console.log("GetData", this.getData);
+          // this.getBlog = response.data.object.blogs.blogDetails;
+          console.log("GetData", this.getData);
           // console.log("GetBlog", this.getBlog);
         })
         .catch((e) => {

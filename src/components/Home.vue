@@ -290,9 +290,9 @@
                   </div>
                   <div class="tm-product-card-shop">
                     <div class="tm-product-card-prices">
-                      <del class="uk-text-meta">$1899.00</del>
-                      <div class="tm-product-card-price">
-                        {{ formatPrice(item.price) }}đ
+                      <del class="uk-text-meta" style="color:red" v-if="item.discount != 0">{{ formatPrice(item.price) }}đ</del>
+                      <div class="tm-product-card-price" v-if="item.discount == 0">
+                        {{ formatPrice(item.price - item.discount) }}đ
                       </div>
                     </div>
                     <div class="tm-product-card-add">
@@ -559,7 +559,7 @@
             ></ul>
           </div>
           <div class="uk-margin uk-text-center">
-            <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
+            <a class="uk-link-muted uk-text-uppercase tm-link-to-all" @click="switchToBrand()"
               ><span>Xem tất cả thương hiệu</span
               ><span uk-icon="icon: chevron-right; ratio: .75;"></span
             ></a>
@@ -730,6 +730,11 @@ export default {
         name: "blog",
       });
     },
+    switchToBrand(){
+      this.$router.push({
+        name: "brands",
+      });
+    },
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -755,7 +760,7 @@ export default {
       }, 2000);
     },
     detailProduct(id) {
-      // console.log(id);
+      console.log(id);
       this.$router.push({
         name: "product",
         params: { item: id },

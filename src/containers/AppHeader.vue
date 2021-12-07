@@ -521,7 +521,7 @@ export default {
   created() {
     this.getCategory();
     this.setUserName();
-    console.log(localStorage.nameUser)
+    // console.log(localStorage.nameUser)
   },
   methods: {
     clearData() {
@@ -538,7 +538,7 @@ export default {
     },
     setUserName(){
       this.userName = localStorage.nameUser
-      console.log(this.userName);
+      // console.log(this.userName);
     },
     switchToAccount() {
       if (this.$store.state.tokenUser != "") {
@@ -614,10 +614,14 @@ export default {
     },
     getByCate(item){
       // console.log(item)
-      this.$router.push({
-        path: "category",
-        params: { item: item}
-      });
+      if(this.$router.currentRoute.fullPath != '/category'){
+          this.$router.push({
+            path: "category",
+            params: { item: item}
+          });
+      }else{
+        console.log(this.$router.currentRoute.fullPath)
+      }
     }
   },
   watch: {

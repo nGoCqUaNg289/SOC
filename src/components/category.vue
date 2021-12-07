@@ -314,9 +314,9 @@
                                   </div>
                                   <div class="tm-product-card-shop">
                                     <div class="tm-product-card-prices">
-                                      <del class="uk-text-meta">$1899.00</del>
+                                      <del class="uk-text-meta" style="color:red" v-if="item.discount != 0">{{ formatPrice(item.price) }}đ</del>
                                       <div class="tm-product-card-price">
-                                        {{ formatPrice(item.price) }}đ
+                                        {{ formatPrice(item.price - item.discount) }}đ
                                       </div>
                                     </div>
                                     <div class="tm-product-card-add">
@@ -506,7 +506,7 @@ export default {
           .get(this.$store.state.MainLink + "customer/products")
           .then((response) => {
             this.getData = response.data.object;
-            // console.log(this.getData)
+            console.log(this.getData)
           })
           .catch((e) => {
             console.log(e);

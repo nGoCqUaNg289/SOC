@@ -18,14 +18,10 @@
                 type="text"
                 placeholder="Tài khoản đăng nhập"
               />
-            </div>
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Contact"></i>
-              <input
-                v-model="password"
-                type="password"
-                placeholder="Mật khẩu"
-              />
+              <div style="text-align: center;color: red;margin-top: 10px;">
+                {{errorsUsername}}
+              </div>
+              
             </div>
             <div class="username">
               <i class="ms-Icon ms-Icon--Lock"></i>
@@ -34,17 +30,59 @@
                 type="text"
                 placeholder="Tên người dùng"
               />
+              <div style="text-align: center;color: red;margin-top: 10px;">
+                {{errorsFullname}}
+              </div>
+              
             </div>
             <div class="username">
               <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="email" type="text" placeholder="Email" />
+              <input v-model="email" type="email" id="email" placeholder="Email" />
+              <div style="text-align: center;color: red;margin-top: 10px;">
+                {{errorsEmail}}
+              </div>
+              
             </div>
-            <!-- <div class="username">
-              <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="uad" type="text" placeholder="Số điện thoại" />
-            </div> -->
+            
+            <div class="username">
+              <i class="ms-Icon ms-Icon--Contact"></i>
+              <input
+                v-model="password"
+                type="password"
+                placeholder="Mật khẩu"
+              />
+              <div style="text-align: center;color: red;margin-top: 10px;">
+                {{errorsPassword}} 
+              </div>
+              
+            </div>
+            <div class="username">
+              <i class="ms-Icon ms-Icon--Contact"></i>
+              <input
+                v-model="repassword"
+                type="password"
+                placeholder="Xác nhận mật khẩu"
+              />
+              <div style="text-align: center;color: red;margin-top: 10px;">
+                {{errorsRePassword}} 
+              </div>
+              <div v-if="password != repassword" style="text-align: center;color: red;margin-top: 15px;">
+                Xác nhận mật khẩu không chính xác!
+              </div>
+            </div>
             <div class="submit-button">
-              <button type="button" @click="createUser()">Đăng ký</button>
+              <button type="submit" @click="checkEmail()" v-if="checkReg == 0" style="width: 35%;margin: 15px;">Đăng ký</button>
+              <button type="submit" @click="returnHome()" v-if="checkReg == 0" style="width: 35%;margin: 15px;">Hủy</button>
+              <button
+                class="abled"
+                type="submit"
+                disabled
+                v-else
+              >
+                <div class="spinner-border text-light" role="status">
+                  <span class="sr-only"></span>
+                </div>
+              </button>
             </div>
           </div>
         </div>
@@ -64,8 +102,14 @@ export default {
       password: "",
       fullname: "",
       email: "",
-      //   uid: "",
-      //   uad: ""
+      repassword: "",
+      errorsEmail: "",
+       errorsUsername: "",
+        errorsFullname: "",
+         errorsPassword: "",
+          errorsRePassword: "",
+      checkReg: 0,
+          // errorsPassword: "",
     };
   },
   methods: {
@@ -74,7 +118,52 @@ export default {
         name: "Home",
       });
     },
+    checkEmail:function() {
+      this.errorsEmail = this.errorsFullname = this.errorsUsername = this.errorsPassword = this.errorsRePassword = "";
+      if(!this.email) {
+        this.errorsEmail="Email không được bỏ trống";
+      } else if(!this.validEmail(this.email)) {
+        this.errorsEmail="Email không đúng định dạng";        
+      }
+
+      if(!this.username){
+          this.errorsUsername="Tài khoản không được bỏ trống";
+      } else if (!this.validUserName(this.username)) {
+          this.errorsUsername="Tài khoản chỉ được chứa chữ hoặc số viết liền không dấu";
+      }
+
+      if(!this.fullname){
+          this.errorsFullname="Tên người dùng không được bỏ trống";
+      }
+
+      if(!this.password){
+          this.errorsPassword="Mật khẩu không được bỏ trống";
+      }
+
+      if(!this.repassword){
+          this.errorsRePassword="Nhập lại mật khẩu không được bỏ trống";
+      }
+
+      if( this.errorsEmail != "Email không được bỏ trống" && this.errorsFullname !="Tên người dùng không được bỏ trống" && this.errorsUsername !="Tài khoản không được bỏ trống" && this.errorsPassword !="Mật khẩu không được bỏ trống" && this.errorsRePassword !="Nhập lại mật khẩu không được bỏ trống" ){
+        this.createUser();
+      }else{
+        console.error("Sai")
+      }
+      // if(!this.errors.length) return true;
+      // e.preventDefault();
+    },
+    validEmail:function(email) {
+      var re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+      // var re = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]/
+      return re.test(email);
+    },
+    validUserName:function(username) {
+      var re = /^[a-zA-Z0-9]*$/
+      // var re = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\]/
+      return re.test(username);
+    },
     createUser() {
+      console.log("Chạy lỗi")
       let item = {
         username: this.username,
         password: this.password,
@@ -89,6 +178,7 @@ export default {
             type: "success",
             duration: 2000,
           });
+          this.checkReg =  1
           this.$router.push({
             name: "login",
           });

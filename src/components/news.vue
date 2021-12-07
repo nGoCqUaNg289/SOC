@@ -38,6 +38,7 @@
                             <div>
                               <h3>
                                 <a
+                                  target="_blank"
                                   class="uk-link-heading"
                                   href="https://www.thegioididong.com/tin-tuc/nghe-don-la-iphone-14-1343505"
                                   >APPLE chuẩn bị cho ra mắt Iphone 14</a
@@ -65,6 +66,7 @@
                             <div>
                               <h3>
                                 <a
+                                 target="_blank"
                                   class="uk-link-heading"
                                   href="https://genk.vn/thu-nghiem-that-bai-facebook-quyet-dinh-se-khong-hoat-dong-duoi-hinh-thuc-2-news-feed-nhu-ke-hoach-ban-dau-20180302100424965.chn"
                                   >Facebook sẽ bỏ hình thức 2 News Feed riêng
@@ -93,6 +95,7 @@
                             <div>
                               <h3>
                                 <a
+                                 target="_blank"
                                   class="uk-link-heading"
                                   href="https://tinhte.vn/thread/facebook-thu-nghiem-nhieu-tinh-nang-xem-video-co-khu-vuc-news-feed-chi-danh-cho-video.2517204/"
                                   >Facebook thử nghiệm Video Feed - khu News
@@ -147,97 +150,6 @@
                 </aside>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <section class="uk-section uk-section-default uk-section-small">
-        <div class="uk-container">
-          <div uk-slider>
-            <ul
-              class="
-                uk-slider-items
-                uk-child-width-1-1
-                uk-child-width-1-2@s
-                uk-child-width-1-5@m
-                uk-grid
-              "
-            >
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: star; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Mauris placerat</div>
-                    <div class="uk-text-meta">
-                      Donec mollis nibh dolor, sit amet auctor
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: receiver; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Lorem ipsum</div>
-                    <div class="uk-text-meta">
-                      Sit amet, consectetur adipiscing elit
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: location; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Proin pharetra</div>
-                    <div class="uk-text-meta">
-                      Nec quam a fermentum ut viverra
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: comments; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Praesent ultrices</div>
-                    <div class="uk-text-meta">
-                      Praesent ultrices, orci nec finibus
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: happy; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Duis condimentum</div>
-                    <div class="uk-text-meta">
-                      Pellentesque eget varius arcu
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <ul
-              class="
-                uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top
-              "
-            ></ul>
           </div>
         </div>
       </section>
