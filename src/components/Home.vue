@@ -291,7 +291,135 @@
                   <div class="tm-product-card-shop">
                     <div class="tm-product-card-prices">
                       <del class="uk-text-meta" style="color:red" v-if="item.discount != 0">{{ formatPrice(item.price) }}đ</del>
-                      <div class="tm-product-card-price" v-if="item.discount == 0">
+                      <div class="tm-product-card-price">
+                        {{ formatPrice(item.price - item.discount) }}đ
+                      </div>
+                    </div>
+                    <div class="tm-product-card-add">
+                      <div class="uk-text-meta tm-product-card-actions">
+                        <a
+                          class="
+                            tm-product-card-action
+                            js-add-to js-add-to-favorites
+                            tm-action-button-active
+                            js-added-to
+                          "
+                          title="Add to favorites"
+                          @click="addToFavorite(item.id)"
+                          v-if="checkFavorites != ''"
+                        >
+                          <b-icon
+                            :icon="isFavorited(item) ? 'heart-fill' : 'heart'"
+                            style="color: red"
+                          ></b-icon>
+                          <!-- <b-icon icon="heart" style="color: red"></b-icon> -->
+                          <span class="tm-product-card-action-text"
+                            >Add to favorites</span
+                          >
+                        </a>
+                        <a
+                          class="
+                            tm-product-card-action
+                            js-add-to js-add-to-compare
+                            tm-action-button-active
+                            js-added-to
+                          "
+                          title="Add to compare"
+                          @click="compareProduct(item)"
+                        >
+                          <span uk-icon="icon: copy; ratio: .75;"></span>
+                          <span class="tm-product-card-action-text"
+                            >Add to compare</span
+                          >
+                        </a>
+                      </div>
+                      <button
+                        class="
+                          uk-button uk-button-primary
+                          tm-product-card-add-button tm-shine
+                          js-add-to-cart
+                        "
+                        @click="
+                          addToCart(
+                            item.id,
+                            item.name,
+                            item.photos[0],
+                            item.price
+                          )
+                        "
+                      >
+                        <span
+                          class="tm-product-card-add-button-icon"
+                          uk-icon="cart"
+                        ></span>
+                        <span class="tm-product-card-add-button-text"
+                          >add to cart</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="uk-margin uk-text-center">
+            <router-link to="/category" style="text-decoration: none">
+              <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
+                ><span>Toàn bộ sản phẩm</span
+                ><span uk-icon="icon: chevron-right; ratio: .75;"></span
+              ></a>
+            </router-link>
+          </div>
+        </div>
+      </section>
+      <section class="uk-section uk-section-small">
+        <div class="uk-container">
+          <h2 class="uk-text-center">Sản phẩm nổi bật</h2>
+          <div class="uk-card uk-card-default tm-ignore-container">
+            <div
+              class="
+                uk-grid-collapse uk-child-width-1-3 uk-child-width-1-4@m
+                tm-products-grid
+              "
+              uk-grid
+            >
+              <article
+                class="tm-product-card"
+                v-for="item in getData"
+                :key="item.id"
+              >
+                <div class="tm-product-card-media">
+                  <div class="tm-ratio tm-ratio-4-3">
+                    <a class="tm-media-box" style="text-decoration: none">
+                      <div class="tm-product-card-labels">
+                        <span class="uk-label uk-label-warning"
+                          >top selling</span
+                        >
+                        <span class="uk-label uk-label-danger">trade-in</span>
+                      </div>
+                      <figure class="tm-media-box-wrap">
+                        <img :src="item.photos[0]" />
+                      </figure>
+                    </a>
+                  </div>
+                </div>
+                <div class="tm-product-card-body">
+                  <div class="tm-product-card-info">
+                    <div class="uk-text-meta uk-margin-xsmall-bottom">
+                      Laptop
+                    </div>
+                    <h3 class="tm-product-card-title">
+                      <a
+                        class="uk-link-heading"
+                        @click="detailProduct(item.id)"
+                        >{{ item.name }}</a
+                      >
+                    </h3>
+                  </div>
+                  <div class="tm-product-card-shop">
+                    <div class="tm-product-card-prices">
+                      <del class="uk-text-meta" style="color:red" v-if="item.discount != 0">{{ formatPrice(item.price) }}đ</del>
+                      <div class="tm-product-card-price">
                         {{ formatPrice(item.price - item.discount) }}đ
                       </div>
                     </div>
@@ -830,7 +958,8 @@ export default {
       axios
         .get(this.$store.state.MainLink + "customer/blog")
         .then((response) => {
-          this.getBlogHL = response.data.object;
+          this.getBlogHL = response.data.object.slice(0, 2);
+
           // console.log(this.getBlogHL);
         })
         .catch((e) => {

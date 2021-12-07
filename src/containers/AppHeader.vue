@@ -1,9 +1,8 @@
 <template>
+<div>
   <header>
     <div>
-      <div
-        class="uk-navbar-container uk-light uk-visible@m tm-toolbar-container"
-      >
+      <div class="uk-navbar-container uk-light uk-visible@m tm-toolbar-container">
         <div class="uk-container" uk-navbar>
           <div class="uk-navbar-left">
             <nav>
@@ -58,10 +57,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="uk-navbar-container tm-navbar-container"
-        uk-sticky="cls-active: tm-navbar-container-fixed"
-      >
+      <div class="uk-navbar-container tm-navbar-container" uk-sticky="cls-active: tm-navbar-container-fixed">
         <div class="uk-container" uk-navbar>
           <div class="uk-navbar-left">
             <button
@@ -503,6 +499,70 @@
       </div>
     </div>
   </header>
+  <div id="nav-offcanvas" uk-offcanvas="overlay: true">
+        <aside class="uk-offcanvas-bar uk-padding-remove">
+          <div class="uk-card uk-card-default uk-card-small tm-shadow-remove">
+            <header class="uk-card-header uk-flex uk-flex-middle">
+              <div><a class="uk-link-muted uk-text-bold" href="#">8 800 799 99 99</a>
+                <div class="uk-text-xsmall uk-text-muted" style="margin-top: -2px;">
+                  <div>Thời gian mở cửa 08:00–22:00</div>
+                </div>
+              </div>
+            </header>
+            <nav class="uk-card-small uk-card-body">
+              <ul class="uk-nav-default uk-nav-parent-icon uk-list-divider" uk-nav>
+                <li class="uk-parent"><a >Danh mục</a>
+                  <ul class="uk-nav-sub uk-list-divider">
+                    <li v-for="item in getCategory" :key="item.id"><a @click="getByCate(item.id)">{{item.name}}</a></li>
+                  </ul>
+                </li>
+                <li class="uk-parent"><a>Thương hiệu</a>
+                  <ul class="uk-nav-sub uk-list-divider">
+                    <li><a >Apple</a></li>
+                    <li><a >Samsung</a></li>
+                    <li><a >Sony</a></li>
+                    <li><a >Microsoft</a></li>
+                    <li><a >Intel</a></li>
+                    <li><a >HP</a></li>
+                    <li><a >LG</a></li>
+                    <li><a >Lenovo</a></li>
+                    <li><a >ASUS</a></li>
+                    <li><a >Acer</a></li>
+                    <li><a >Dell</a></li>
+                    <li><a >Canon</a></li>
+                    <li class="uk-text-center"><a class="uk-link-muted uk-text-uppercase tm-link-to-all"><span>Xem tất cả</span><span uk-icon="icon: chevron-right; ratio: .75;"></span></a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <router-link to="/blog"><a >Blog</a></router-link>
+                </li>
+                <li><router-link to="/about"><a >Về chúng tôi</a></router-link>
+                </li>
+                <li><router-link to="/contacts"><a >Liên hệ</a></router-link>
+                </li>
+                <li><router-link to="/compare"><a >So sánh</a></router-link></li>
+              </ul>
+            </nav>
+            <nav class="uk-card-small uk-card-body">
+              <ul class="uk-nav uk-nav-default">
+                <li><router-link to="/news"><a >Tin tức</a></router-link></li>
+                <li><router-link to="/faq"><a >FAQ</a></router-link></li>
+              </ul>
+            </nav>
+            <nav class="uk-card-body">
+              <ul class="uk-iconnav uk-flex-center">
+                <li><a title="Facebook" uk-icon="facebook"></a></li>
+                <li><a title="Twitter" uk-icon="twitter"></a></li>
+                <li><a title="YouTube" uk-icon="youtube"></a></li>
+                <li><a title="Instagram" uk-icon="instagram"></a></li>
+              </ul>
+            </nav>
+          </div>
+        </aside>
+      </div>
+</div>
+
 </template>
 
 <script>
@@ -559,10 +619,7 @@ export default {
           name: "personal",
         });
       } else {
-        this.$toasted.show("Bạn cần đăng nhập để sử dụng chức năng này !", {
-          type: "error",
-          duration: 2000,
-        });
+        this.clearData()
       }
     },
     switchToCart() {

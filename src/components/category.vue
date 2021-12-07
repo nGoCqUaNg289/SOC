@@ -169,67 +169,35 @@
                           tm-ignore-container
                         "
                       >
-                        <div
-                          class="uk-grid-collapse uk-child-width-1-1"
-                          id="products"
-                          uk-grid
-                          v-if="getData.length > 0"
-                        >
+                        <div class="uk-grid-collapse uk-child-width-1-1" id="products" uk-grid v-if="getData.length > 0">
                           <div class="uk-card-header">
                             <div class="uk-grid-small uk-flex-middle" uk-grid>
-                              <div
-                                class="
-                                  uk-width-1-1
-                                  uk-width-expand@s
-                                  uk-flex
-                                  uk-flex-center
-                                  uk-flex-left@s
-                                  uk-text-small
-                                "
-                              >
-                                <span
-                                  class="uk-margin-small-right uk-text-muted"
-                                  >Sắp xếp theo:</span
-                                >
+                              <div class="uk-width-1-1 uk-width-expand@s uk-flex uk-flex-center uk-flex-left@s uk-text-small">
+                                <span class="uk-margin-small-right uk-text-muted">Sắp xếp theo:</span>
                                 <ul class="uk-subnav uk-margin-remove">
                                   <li class="uk-active uk-padding-remove">
                                     <a class="" style="text-decoration: none;">Giá tiền
                                       <span class="uk-margin-xsmall-left" uk-icon="icon: chevron-down; ratio: .5;"></span>
                                     </a>
                                   </li>
-                                  <!-- <li>
-                                    <a class="uk-text-lowercase">Giá</a>
-                                  </li>
-                                  <li>
-                                    <a class="uk-text-lowercase">Mới nhất</a>
-                                  </li> -->
                                 </ul>
                               </div>
-                              <a
-                                class="uk-navbar-toggle tm-navbar-button"
-                                uk-search-icon
-                              ></a>
-                              <div
-                                class="
-                                  uk-navbar-dropdown
-                                  uk-padding-small
-                                  uk-margin-remove
-                                "
-                                uk-drop="mode: click;cls-drop: uk-navbar-dropdown;boundary: .tm-navbar-container;boundary-align: true;pos: bottom-justify;flip: x"
-                              >
+                              <!-- <div class="uk-width-1-1 uk-width-auto@s uk-flex uk-flex-center uk-flex-middle">
+                                  <button class="uk-button uk-button-default uk-button-small uk-hidden@m" uk-toggle="target: #filters"><span class="uk-margin-xsmall-right" uk-icon="icon: settings; ratio: .75;"></span>Filters
+                                  </button>
+                                  <div class="tm-change-view uk-margin-small-left">
+                                    <ul class="uk-subnav uk-iconnav js-change-view" uk-switcher>
+                                      <li><a class="uk-active" data-view="grid" uk-icon="grid" uk-tooltip="Grid"></a></li>
+                                      <li><a data-view="list" uk-icon="list" uk-tooltip="List"></a></li>
+                                    </ul>
+                                  </div>
+                              </div> -->
+                              <a class="uk-navbar-toggle tm-navbar-button" uk-search-icon></a>
+                              <div class="uk-navbar-dropdown uk-padding-small uk-margin-remove" uk-drop="mode: click;cls-drop: uk-navbar-dropdown;boundary: .tm-navbar-container;boundary-align: true;pos: bottom-justify;flip: x">
                                 <div class="uk-container">
-                                  <div
-                                    class="uk-grid-small uk-flex-middle"
-                                    uk-grid
-                                  >
+                                  <div class="uk-grid-small uk-flex-middle" uk-grid>
                                     <div class="uk-width-expand">
-                                      <form
-                                        class="
-                                          uk-search
-                                          uk-search-navbar
-                                          uk-width-1-1
-                                        "
-                                      >
+                                      <form class="uk-search uk-search-navbar uk-width-1-1">
                                         <input
                                           class="uk-search-input"
                                           type="search"
@@ -245,49 +213,21 @@
                                         uk-search-icon
                                         @click="searchProduct(searchText)"
                                       ></a>
-                                      <!-- <a
-                                        class="uk-navbar-dropdown-close"
-                                        uk-close
-                                      ></a> -->
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div
-                                class="
-                                  uk-width-1-1
-                                  uk-width-auto@s
-                                  uk-flex
-                                  uk-flex-center
-                                  uk-flex-middle
-                                "
-                              ></div>
                             </div>
                           </div>
                           <div>
-                            <div
-                              class="
-                                uk-grid-collapse uk-child-width-1-3
-                                tm-products-grid
-                                js-products-grid
-                              "
-                              uk-grid
-                            >
-                              <article
-                                class="tm-product-card"
-                                v-for="item in getData"
-                                :key="item.id"
-                              >
+                            <div class="uk-grid-collapse uk-child-width-1-3 tm-products-grid js-products-grid" uk-grid>
+                              <article class="tm-product-card" v-for="item in getData" :key="item.id">
                                 <div class="tm-product-card-media">
                                   <div class="tm-ratio tm-ratio-4-3">
                                     <a class="tm-media-box">
                                       <div class="tm-product-card-labels">
-                                        <span class="uk-label uk-label-warning"
-                                          >top selling</span
-                                        >
-                                        <span class="uk-label uk-label-danger"
-                                          >trade-in</span
-                                        >
+                                        <span class="uk-label uk-label-warning" v-if="item.discount != 0">Khuyến mại</span>
+                                        <!-- <span class="uk-label uk-label-danger">Khuyến mại</span> -->
                                       </div>
                                       <figure class="tm-media-box-wrap">
                                         <img :src="item.photos[0]" />
@@ -297,20 +237,18 @@
                                 </div>
                                 <div class="tm-product-card-body">
                                   <div class="tm-product-card-info">
-                                    <div
-                                      class="
-                                        uk-text-meta uk-margin-xsmall-bottom
-                                      "
-                                    >
+                                    <div class="uk-text-meta uk-margin-xsmall-bottom">
                                       Laptop
                                     </div>
                                     <h3 class="tm-product-card-title">
-                                      <a
-                                        class="uk-link-heading"
-                                        @click="detailProduct(item.id)"
-                                        >{{ item.name }}</a
-                                      >
+                                      <a class="uk-link-heading" @click="detailProduct(item.id)">{{ item.name }}</a>
                                     </h3>
+                                    <ul class="uk-list uk-text-small tm-product-card-properties">
+                                        <li><span class="uk-text-muted">Diagonal display: </span><span>15.4"</span></li>
+                                        <li><span class="uk-text-muted">CPU: </span><span>Intel®&nbsp;Core™ i7</span></li>
+                                        <li><span class="uk-text-muted">RAM: </span><span>16&nbsp;GB</span></li>
+                                        <li><span class="uk-texưt-muted">Video Card: </span><span>AMD Radeon Pro 555</span></li>
+                                      </ul>
                                   </div>
                                   <div class="tm-product-card-shop">
                                     <div class="tm-product-card-prices">
@@ -404,26 +342,6 @@
                               </article>
                             </div>
                           </div>
-                          <!-- <div>
-                            <button
-                              class="
-                                uk-button
-                                uk-button-default
-                                uk-button-large
-                                uk-width-1-1
-                              "
-                              style="
-                                border-top-left-radius: 0;
-                                border-top-right-radius: 0;
-                              "
-                            >
-                              <span
-                                class="uk-margin-small-right"
-                                uk-icon="icon: plus; ratio: .75;"
-                              ></span
-                              ><span>Load more</span>
-                            </button>
-                          </div> -->
                         </div>
                         <loadingform v-else></loadingform>
                       </div>
