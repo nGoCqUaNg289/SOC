@@ -77,28 +77,12 @@
             <nav class="uk-visible@m">
               <ul class="uk-navbar-nav">
                 <li>
-                  <router-link to="/category" style="text-decoration: none">
-                    <a class="a-custom" style="text-decoration: none"
-                      >Danh mục<span
-                        class="uk-margin-xsmall-left"
-                        uk-icon="icon: chevron-down; ratio: .75;"
-                      ></span
-                    ></a>
-                  </router-link>
-
-                  <div
-                    class="
-                      uk-navbar-dropdown
-                      uk-margin-remove
-                      uk-padding-remove-vertical
-                    "
-                    uk-drop="pos: bottom-justify;delay-show: 125;delay-hide: 50;duration: 75;boundary: .tm-navbar-container;boundary-align: true;pos: bottom-justify;flip: x"
-                  >
+                    <a class="a-custom" style="text-decoration: none" @click="switchToCategory()">Danh mục
+                      <span class="uk-margin-xsmall-left" uk-icon="icon: chevron-down; ratio: .75;"></span>
+                    </a>
+                  <div class="uk-navbar-dropdown uk-margin-remove uk-padding-remove-vertical" uk-drop="pos: bottom-justify;delay-show: 125;delay-hide: 50;duration: 75;boundary: .tm-navbar-container;boundary-align: true;pos: bottom-justify;flip: x">
                     <div class="uk-container">
-                      <ul
-                        class="uk-navbar-dropdown-grid uk-child-width-1-5"
-                        uk-grid
-                      >
+                      <ul class="uk-navbar-dropdown-grid uk-child-width-1-5" uk-grid>
                         <li v-for="item in getCategory" :key="item.id">
                           <div class="uk-margin-top uk-margin-bottom">
                               <a class="uk-link-reset" style="text-decoration: none" @click="switchToCategory()">
@@ -511,7 +495,8 @@
             </header>
             <nav class="uk-card-small uk-card-body">
               <ul class="uk-nav-default uk-nav-parent-icon uk-list-divider" uk-nav>
-                <li class="uk-parent"><a >Danh mục</a>
+                <li class="uk-parent">
+                    <a @click="switchToCategory()">Danh mục</a>
                   <ul class="uk-nav-sub uk-list-divider">
                     <li v-for="item in getCategory" :key="item.id"><a @click="getByCate(item.id)">{{item.name}}</a></li>
                   </ul>
@@ -682,10 +667,15 @@ export default {
       }
     },
     switchToCategory(){
-      this.$store.state.categorySearch = 0;
-      this.$router.push({
+      if(this.$router.currentRoute.fullPath != '/category'){
+          this.$router.push({
             path: "category",
-      });
+          });
+          this.$store.state.categorySearch = 0;
+          // console.log(this.$store.state.categorySearch)
+      }else{
+        this.$store.state.categorySearch = 0;
+      }
     }
   },
   watch: {
