@@ -284,7 +284,7 @@
                       <a
                         class="uk-link-heading"
                         @click="detailProduct(item.id)"
-                        >{{ item.name }}</a
+                        >{{ item.name.substr(6,40) }} ...</a
                       >
                     </h3>
                   </div>
@@ -412,7 +412,7 @@
                       <a
                         class="uk-link-heading"
                         @click="detailProduct(item.id)"
-                        >{{ item.name }}</a
+                        >{{ item.name.substr(6, 40) }} ...</a
                       >
                     </h3>
                   </div>
