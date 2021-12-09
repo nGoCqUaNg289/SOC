@@ -70,8 +70,9 @@
                                     uk-width-1-1
                                   "
                                   uk-toggle="target: #review"
+                                  
                                 >
-                                  VIết nhận xét
+                                  Viết nhận xét
                                 </button>
                               </div>
                               <div class="uk-width-1-1 uk-width-expand@s" v-if="getData.comments != null">
@@ -234,7 +235,7 @@
                       </label>
                     </div>
                     <div class="uk-text-center">
-                      <button type="button" class="uk-button uk-button-primary" @click="sendComments(getData.id)">
+                      <button type="button" class="uk-button uk-button-primary" @click="sendComments(getData.id)" > 
                       Gửi
                       </button>
                     </div>
@@ -258,6 +259,7 @@ export default {
     return {
       getData: "",
       getBlogDetail: "",
+      review: 0,
       comments: {
         email: "",
         name: "",
@@ -314,6 +316,10 @@ export default {
         .post(this.$store.state.MainLink + "customer/comment/new", item)
         .then(() => {
           this.getBlog();
+          this.$toasted.show("Đã đăng bình luận!", {
+          type: "success",
+          duration: 2000,
+        });
         })
         .catch((e) => {
           console.log(e);

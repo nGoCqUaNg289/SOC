@@ -24,6 +24,7 @@
                 placeholder="Password"
               />
             </div>
+            <div class="text-center" style="margin-top: 15px;color: red;">{{loginFail}}</div>
             <div class="submit-button">
               <button type="button" @click="LoginJWT(), callFunctionTotal()">
                 Đăng nhập
@@ -48,6 +49,7 @@ export default {
     return {
       username: "",
       password: "",
+      loginFail: ""
     };
   },
   methods: {
@@ -114,15 +116,17 @@ export default {
                 duration: 2000,
               }
             );
+            
           }
         })
         .catch((e) => {
           // this.error.push(e);
+          this.loginFail = "Thông tin đăng nhập không chính xác!"
           console.log(e);
-          this.$toasted.show("Thông tin không chính xác, vui lòng nhập lại !", {
-            type: "error",
-            duration: 2000,
-          });
+          // this.$toasted.show("Thông tin không chính xác, vui lòng nhập lại !", {
+          //   type: "error",
+          //   duration: 2000,
+          // });
         });
     },
 

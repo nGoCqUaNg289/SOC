@@ -422,17 +422,9 @@
               >
             </router-link>
 
-            <div v-if="this.$store.state.tokenUser">
-              <a
-                class="uk-navbar-item uk-link-muted tm-navbar-button"
-                uk-icon="user"
-                @click="switchToAccount()"
-              ></a>
-              <div
-                class="uk-padding-small uk-margin-remove"
-                uk-dropdown="pos: bottom-right; offset: -10; delay-hide: 200;"
-                style="min-width: 150px"
-              >
+            <div>
+              <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="user" @click="switchToAccount()"></a>
+              <div class="uk-padding-small uk-margin-remove" uk-dropdown="pos: bottom-right; offset: -10; delay-hide: 200;" style="min-width: 150px" >
                 <ul class="uk-nav uk-dropdown-nav">
                   <li>
                     <router-link to="/account">
@@ -457,27 +449,26 @@
                 </ul>
               </div>
             </div>
-            <div v-else>
-              <a
-                class="uk-navbar-item uk-link-muted tm-navbar-button"
-                uk-icon="user"
-                @click="switchToAccount()"
-              ></a>
+            <div>
+              <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="cart" @click="switchToCart()">
+                <span class="uk-badge" v-if="this.$store.state.tokenUser == ''">
+                  {{ this.$store.state.StoreCart.length }}
+                </span>
+                <span class="uk-badge" v-else>
+                  {{ this.$store.state.totalCart }}
+                </span>
+              </a>
             </div>
-
-            <a
-              class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button"
-              @click="switchToCart()"
-            >
-              <span uk-icon="cart"></span>
-              <span class="uk-badge" v-if="this.$store.state.tokenUser == ''">
-                {{ this.$store.state.StoreCart.length }}
-                <!-- {{ this.$store.state.totalCart }} -->
-              </span>
-              <span class="uk-badge" v-else>
-                {{ this.$store.state.totalCart }}
-              </span>
-            </a>
+            <!-- <div>
+              <a class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button" uk-icon="cart" @click="switchToCart()">
+                <span class="uk-badge" v-if="this.$store.state.tokenUser == ''">
+                  {{ this.$store.state.StoreCart.length }}
+                </span>
+                <span class="uk-badge" v-else>
+                  {{ this.$store.state.totalCart }}
+                </span>
+              </a>
+            </div> -->
           </div>
         </div>
       </div>

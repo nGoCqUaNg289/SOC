@@ -277,8 +277,8 @@ export default {
           let infoCart = {
             OrderInfo: "thanh toán máy tính",
             ordersId: response.data.object.id,
-            // returnURL: "http://150.95.105.29/vnPayResult"
-            returnURL: "http://localhost:8080/vnPayResult"
+            returnURL: "http://150.95.105.29/vnPayResult"
+            // returnURL: "http://localhost:8080/vnPayResult"
           };
           console.log(infoCart);
           if (this.typeOfPay == "1") {
