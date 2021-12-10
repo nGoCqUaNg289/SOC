@@ -146,10 +146,10 @@ export default {
         // params: { item: id },
       });
     },
-    getDataAccount() {
-      this.getTotalCart();
+    getDetailResult() {
+      // this.getTotalCart();
       axios
-        .get(this.$store.state.MainLink + "customer/account", {
+        .get(this.$store.state.MainLink + "customer/pay/getpaydetail?trandate=20211210&tranno=13650461", {
           headers: {
             Authorization: localStorage.userToken,
           },

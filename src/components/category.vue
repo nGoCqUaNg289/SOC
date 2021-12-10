@@ -319,7 +319,8 @@
                                             item.id,
                                             item.name,
                                             item.photos[0],
-                                            item.price
+                                            item.price,
+                                            item.discount
                                           )
                                         "
                                       >
@@ -416,7 +417,7 @@ export default {
           )
           .then((response) => {
             this.getData = response.data.object;
-            // console.log(this.getData);
+            console.log(this.getData);
           })
           .catch((e) => {
             console.log(e);
@@ -457,7 +458,7 @@ export default {
         params: { item: id },
       });
     },
-    addToCart(id, name, photos, price) {
+    addToCart(id, name, photos, price, discount) {
       if (this.$store.state.tokenUser == "") {
         let item = {
           productName: name,
@@ -465,6 +466,7 @@ export default {
           photo: photos,
           price: price,
           quantity: 1,
+          discount: discount
         };
         this.$store.state.StoreCart.push(item);
         this.$toasted.show("Đã thêm vào giỏ hàng !", {

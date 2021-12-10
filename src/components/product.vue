@@ -136,6 +136,15 @@
                               >
                                 <p>{{ getData.name }}</p>
                               </div>
+                              <p>
+                                  Màu sắc
+                                </p>
+                              <div style=" display: flex">
+                                
+                                  <button style="width: 35px; height: 35px; margin-right: 1rem; border-radius: 1rem" :style="{backgroundColor: '#'+item.color.code}" v-for="item in getData.productColors" :key="item.id">
+                                  </button>
+                                
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -153,6 +162,7 @@
                             >
                               <div>
                                 <!-- <del class="uk-text-meta">$1899.00</del> -->
+                                
                                 <div class="tm-product-price" style="text-align: center">
                                   {{ formatPrice(getData.price) }}đ
                                 </div>

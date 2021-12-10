@@ -34,19 +34,18 @@
                       <table class="table table-custom-border" id="">
                         <tbody>
                           <tr>
-                            <th scope="row" class="checkbox-product">
-                              <!-- <input type="checkbox" /> -->
-                            </th>
+                            <!-- <th scope="row" class="checkbox-product">
+                              <input type="checkbox" />
+                            </th> -->
                             <td
                               class="custom-font-size-td size-img-cart-product"
                             >
                               Tất cả sản phẩm
                             </td>
-                            <!-- <td style="width: 5%"></td> -->
+                            <td style="width: 5%"></td>
                             <td class="custom-font-size-td custom-size-price">
                               Đơn giá
                             </td>
-                            <td class="custom-font-size-td custom-size-price">Giảm giá</td>
                             <td class="custom-font-size-td custom-size-qty">
                               Số lượng
                             </td>
@@ -129,9 +128,6 @@
                             <td class="custom-font-size-td custom-size-price">
                               {{ formatPrice(item.price) }} đ
                             </td>
-                            <td class="custom-font-size-td custom-size-price text-center">
-                              {{ formatPrice(item.discount) }} đ
-                            </td>
                             <td class="custom-font-size-td custom-size-qty">
                               <input
                                 class="custom-input-total"
@@ -151,7 +147,7 @@
                               {{
                                 formatPrice(
                                   (totalPrice.value =
-                                    (item.price - item.discount)* item.quantity)
+                                    item.price * item.quantity)
                                 )
                               }}
                               đ
@@ -407,7 +403,6 @@ export default {
           })
           .then((response) => {
             console.log(response);
-            // console.log(response)
             this.$store.state.totalCart = response.data.object.length;
             this.$store.state.StoreCart = response.data.object;
             this.DetailsCart = this.$store.state.StoreCart;
@@ -435,7 +430,7 @@ export default {
       this.sumTotal = 0
       for (let i = 0; i < this.DetailsCart.length; i++) {
         this.sumTotal +=
-          (this.DetailsCart[i].price - this.DetailsCart[i].discount) * this.DetailsCart[i].quantity;
+          this.DetailsCart[i].price * this.DetailsCart[i].quantity;
       }
       return this.sumTotal;
     },
@@ -451,7 +446,7 @@ export default {
             console.log(response);
             this.getDTDT();
             this.sumTotal = 0;
-            this.sumPrice();
+            this.callFunction();
             this.$toasted.show("Đã xoá sản phẩm khỏi giỏ hàng !", {
               type: "error",
               duration: 2000,
@@ -574,7 +569,7 @@ export default {
   height: 70px;
 }
 .size-img-cart-product {
-  width: 45%;
+  width: 50%;
 }
 .text-color-red {
   color: red;
