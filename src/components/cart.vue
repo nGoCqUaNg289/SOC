@@ -141,6 +141,7 @@
                                 min="1"
                                 max="5"
                                 pattern="[0-9]"
+                                oninput="this.value = Math.abs(this.value)"
                               />
                             </td>
                             <td

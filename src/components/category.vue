@@ -364,9 +364,10 @@
                       </div>
                       <div class="text-center">
                           <jw-pagination
+                            :pageSize=9
                             style="margin-top: 15px"
-                            :Labels="customLabels"
-                            :maxPages="9"
+                            :labels="customLabels"
+                            :maxPages="4"
                             :items="getData"
                             @changePage="onChangePage"
                           ></jw-pagination>
