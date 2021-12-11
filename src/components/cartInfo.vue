@@ -38,7 +38,7 @@
                           tm-ignore-container
                         "
                       >
-                        <form>
+                        <div>
                           <div class="form-group col-md-12 form-margin-top">
                             <label class="label-custom">Họ tên</label>
                             <input
@@ -65,7 +65,7 @@
                               v-model="dataUser.phone"
                             />
                           </div>
-                          <div class="form-group form-margin-top">
+                          <div class="form-group form-margin-top" style="height: 270px;">
                             <label class="label-custom">Địa chỉ</label>
                             <input
                               type="text"
@@ -75,7 +75,11 @@
                               v-model="dataUser.address"
                             />
                           </div>
+                          <div class="form-group col-md-12 form-margin-top">
+       
+                          </div>
                           <form style="text-align: center">
+                            <p style="color: red">{{validateForm}}</p>
                             <button
                               type="button"
                               class="btn btn-outline-danger btn-size"
@@ -91,7 +95,7 @@
                               Lưu
                             </button>
                           </form>
-                        </form>
+                        </div>
                       </article>
                     </section>
                   </article>
@@ -115,6 +119,7 @@ export default {
     return {
       getData: "",
       dataUser: {},
+      validateForm: ""
     };
   },
   created() {
@@ -131,10 +136,14 @@ export default {
     },
     payment() {
       // console.log(this.dataUser);
-      this.$router.push({
-        name: "vnpay",
-        // params: { item: id },
-      });
+      if(this.dataUser.fullname == '' || this.dataUser.email == '' || this.dataUser.phone == '' || this.dataUser.address == ''){
+        this.validateForm = "Vui lòng không để trống thông tin !"
+      }else{
+      //   this.$router.push({
+      //   name: "vnpay",
+      // });
+      }
+      
     },
     cart() {
       this.$router.push({
@@ -144,7 +153,6 @@ export default {
     },
     getDataAccount() {
       
-      if(this.$store.state.tokenUser){
       axios
         .get(this.$store.state.MainLink + "customer/account", {
           headers: {
@@ -156,13 +164,13 @@ export default {
           this.$store.state.tokenUser = localStorage.userToken
           this.$store.state.InfoPersonal = response.data.object;
           this.getTotalCart();
-          // console.log(response.data.object);
+          console.log(response.data.object);
         })
         .catch((e) => {
           // this.error.push(e);
           console.log(e);
         });
-      }      
+            
     },
   },
 };

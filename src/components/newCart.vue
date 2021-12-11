@@ -1,330 +1,156 @@
 <template>
   <div class="uk-offcanvas-content">
-    <main>
-      <section class="uk-section uk-section-small">
-        <div class="uk-container">
-          <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
-            <div class="uk-text-center">
-              <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                <li>
-                  <router-link to="/" style="text-decoration: none">
-                    <a>Trang chủ</a>
-                  </router-link>
-                </li>
-                <li><span>Giỏ hàng</span></li>
-              </ul>
-              <h1 class="uk-margin-small-top uk-margin-remove-bottom">
-                Giỏ hàng
-              </h1>
-            </div>
-            <div v-if="this.DetailsCart.length > 0">
-              <div style="margin-bottom: 25px">
-                <div class="uk-grid-medium" uk-grid>
-                  <section class="uk-width-1-1 uk-width-expand@m">
-                    <article
-                      class="
-                        uk-card
-                        uk-card-default
-                        uk-card-small
-                        uk-card-body
-                        uk-article
-                        tm-ignore-container
-                      "
-                    >
-                      <table class="table table-custom-border" id="">
-                        <tbody>
-                          <tr>
-                            <!-- <th scope="row" class="checkbox-product">
-                              <input type="checkbox" />
-                            </th> -->
-                            <td
-                              class="custom-font-size-td size-img-cart-product"
-                            >
-                              Tất cả sản phẩm
-                            </td>
-                            <td style="width: 5%"></td>
-                            <td class="custom-font-size-td custom-size-price">
-                              Đơn giá
-                            </td>
-                            <td class="custom-font-size-td custom-size-qty">
-                              Số lượng
-                            </td>
-                            <td class="custom-font-size-td custom-size-total">
-                              Thành tiền
-                            </td>
-                            <td>
-                              <button class="btn-custom-color">
-                                <b-icon
-                                  icon="trash"
-                                  style="color: red"
-                                ></b-icon>
-                              </button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </article>
-                  </section>
-                  <aside class="uk-width-1-4 uk-visible@m tm-aside-column">
-                    <section
-                      class="uk-card uk-card-default uk-card-small"
-                      uk-sticky="offset: 90; bottom: true;"
-                    >
-                      <nav>
-                        <ul class="uk-nav uk-nav-default tm-nav">
-                          <li><a href="about.html">Giao tới</a></li>
-                          <li v-if="this.$store.state.tokenUser">
-                            <div class="font-li">
-                              <span>{{ dataUser.fullname }}</span> |
-                              <span>{{ dataUser.phone }}</span>
-                            </div>
-                            <!-- {{ this.$store.state.InfoPersonal }} -->
-                          </li>
-
-                          <li></li>
-                        </ul>
-                      </nav>
-                    </section>
-                  </aside>
-                </div>
+      <main>
+        <section class="uk-section uk-section-small">
+          <div class="uk-container">
+            <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
+              <div class="uk-text-center">
+                <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
+                  <li><a href="index.html">Home</a></li>
+                  <li><span>Cart</span></li>
+                </ul>
+                <h1 class="uk-margin-small-top uk-margin-remove-bottom">Cart</h1>
               </div>
-              <!-- {{item.quantity}} -->
               <div>
                 <div class="uk-grid-medium" uk-grid>
-                  <section class="uk-width-1-1 uk-width-expand@m">
-                    <article
-                      class="
-                        uk-card
-                        uk-card-default
-                        uk-card-small
-                        uk-card-body
-                        uk-article
-                        tm-ignore-container
-                      "
-                    >
-                      <table class="table">
-                        <tbody>
-                          <tr
-                            v-for="(item, index) in DetailsCart"
-                            :key="item.id"
-                            @onchange="sumPrice()"
-                          >
-                            <th scope="row" class="checkbox-product">
-                              <input type="checkbox" />
-                            </th>
-                            <td class="">
-                              <img
-                                class="img-product"
-                                :src="item.photo"
-                                alt=""
-                              />
-                            </td>
-                            <td>
-                              {{ item.productName.substr(6, 25) }} ...
-                              <!-- <div class="uk-link-heading">
-                                
-                              </div> -->
-                            </td>
-                            <td class="custom-font-size-td custom-size-price">
-                              {{ formatPrice(item.price) }} đ
-                            </td>
-                            <td class="custom-font-size-td custom-size-qty">
-                              <input
-                                class="custom-input-total"
-                                type="number"
-                                placeholder=""
-                                v-model="item.quantity"
-                                min="1"
-                                max="5"
-                              />
-                            </td>
-                            <td
-                              class="
-                                text-color-red
-                                custom-font-size-td custom-size-total
-                              "
-                            >
-                              {{
-                                formatPrice(
-                                  (totalPrice.value =
-                                    item.price * item.quantity)
-                                )
-                              }}
-                              đ
-                            </td>
-                            <td>
-                              <button
-                                class="btn-custom-color-product"
-                                @click="deleteProduct(index, item.id)"
-                              >
-                                <b-icon
-                                  icon="trash"
-                                  style="color: red"
-                                ></b-icon>
-                              </button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </article>
-                  </section>
-                  <aside class="uk-width-1-4 uk-visible@m tm-aside-column">
-                    <section
-                      class="uk-card uk-card-default uk-card-small"
-                      uk-sticky="offset: 90; bottom: true;"
-                    >
-                      <nav>
-                        <ul class="uk-nav uk-nav-default tm-nav">
-                          <li class="uk-active">
-                            <a
-                              >Tạm tính
-                              <span class="span-right"
-                                >{{ formatPrice(sumTotal) }} đ</span
-                              ></a
-                            >
-                          </li>
-                          <li class="uk-active">
-                            <a
-                              >Giảm giá
-                              <span class="span-right">0 đ</span>
-                            </a>
-                          </li>
-                          <hr />
-                          <li>
-                            <a>
-                              <div>Tổng cộng</div>
-                            </a>
-                            <div class="span-total">
-                              {{ formatPrice(sumTotal) }} đ
+                  <div class="uk-width-1-1 uk-width-expand@m">
+                    <div class="uk-card uk-card-default uk-card-small tm-ignore-container">
+                      <header class="uk-card-header uk-text-uppercase uk-text-muted uk-text-center uk-text-small uk-visible@m">
+                        <div class="uk-grid-small uk-child-width-1-2" uk-grid>
+                          <div>product</div>
+                          <div>
+                            <div class="uk-grid-small uk-child-width-expand" uk-grid>
+                              <div>price</div>
+                              <div class="tm-quantity-column">quantity</div>
+                              <div>sum</div>
+                              <div class="uk-width-auto">
+                                <div style="width: 20px;"></div>
+                              </div>
                             </div>
-                          </li>
-                          <br />
-                          <br />
-                          <br />
-
-                          <li>
-                            <button class="btn-muahang" @click="payment()">
-                              Mua Hàng
-                            </button>
-                          </li>
-                        </ul>
-                      </nav>
-                    </section>
-                  </aside>
+                          </div>
+                        </div>
+                      </header>
+                      <div class="uk-card-body">
+                        <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@m uk-flex-middle" uk-grid>
+                          <!-- Product cell-->
+                          <div>
+                            <div class="uk-grid-small" uk-grid>
+                              <div class="uk-width-1-3">
+                                <div class="tm-ratio tm-ratio-4-3"><a class="tm-media-box" href="product.html">
+                                    <figure class="tm-media-box-wrap"><img src="images/products/1/1-small.jpg" alt="Apple MacBook Pro 15&quot; Touch Bar MPTU2LL/A 256GB (Silver)">
+                                    </figure></a></div>
+                              </div>
+                              <div class="uk-width-expand">
+                                <div class="uk-text-meta">Laptop</div><a class="uk-link-heading" href="product.html">Apple MacBook Pro 15&quot; Touch Bar MPTU2LL/A 256GB (Silver)</a>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Other cells-->
+                          <div>
+                            <div class="uk-grid-small uk-child-width-1-1 uk-child-width-expand@s uk-text-center" uk-grid>
+                              <div>
+                                <div class="uk-text-muted uk-hidden@m">Price</div>
+                                <div>$1599.00</div>
+                              </div>
+                              <div class="tm-cart-quantity-column"><a onclick="increment(-1, 'product-1')" uk-icon="icon: minus; ratio: .75"></a>
+                                <input class="uk-input tm-quantity-input" id="product-1" type="text" maxlength="3" value="1"/><a onclick="increment(+1, 'product-1')" uk-icon="icon: plus; ratio: .75"></a>
+                              </div>
+                              <div>
+                                <div class="uk-text-muted uk-hidden@m">Sum</div>
+                                <div>$1599.00</div>
+                              </div>
+                              <div class="uk-width-auto@s"><a class="uk-text-danger" uk-tooltip="Remove"><span uk-icon="close"></span></a></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="uk-card-body">
+                        <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@m uk-flex-middle" uk-grid>
+                          <!-- Product cell-->
+                          <div>
+                            <div class="uk-grid-small" uk-grid>
+                              <div class="uk-width-1-3">
+                                <div class="tm-ratio tm-ratio-4-3"><a class="tm-media-box" href="product.html">
+                                    <figure class="tm-media-box-wrap"><img src="images/products/2/2-small.jpg" alt="Apple MacBook 12&quot; MNYN2LL/A 512GB (Rose Gold)">
+                                    </figure></a></div>
+                              </div>
+                              <div class="uk-width-expand">
+                                <div class="uk-text-meta">Laptop</div><a class="uk-link-heading" href="product.html">Apple MacBook 12&quot; MNYN2LL/A 512GB (Rose Gold)</a>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Other cells-->
+                          <div>
+                            <div class="uk-grid-small uk-child-width-1-1 uk-child-width-expand@s uk-text-center" uk-grid>
+                              <div>
+                                <div class="uk-text-muted uk-hidden@m">Price</div>
+                                <div>$1549.00</div>
+                              </div>
+                              <div class="tm-cart-quantity-column"><a onclick="increment(-1, 'product-2')" uk-icon="icon: minus; ratio: .75"></a>
+                                <input class="uk-input tm-quantity-input" id="product-2" type="text" maxlength="3" value="1"/><a onclick="increment(+1, 'product-2')" uk-icon="icon: plus; ratio: .75"></a>
+                              </div>
+                              <div>
+                                <div class="uk-text-muted uk-hidden@m">Sum</div>
+                                <div>$1549.00</div>
+                              </div>
+                              <div class="uk-width-auto@s"><a class="uk-text-danger" uk-tooltip="Remove"><span uk-icon="close"></span></a></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="uk-card-footer">
+                        <label><span class="uk-form-label uk-margin-small-right">Mã giảm giá</span>
+                          <div class="uk-inline"><a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="arrow-right"></a>
+                            <input class="uk-input uk-form-width-small" type="text">
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="uk-width-1-1 tm-aside-column uk-width-1-4@m">
+                    <div class="uk-card uk-card-default uk-card-small tm-ignore-container" uk-sticky="offset: 30; bottom: true; media: @m;">
+                      <div class="uk-card-body">
+                        <div class="uk-grid-small" uk-grid>
+                          <div class="uk-width-expand uk-text-muted">Subtotal</div>
+                          <div>$3148</div>
+                        </div>
+                        <div class="uk-grid-small" uk-grid>
+                          <div class="uk-width-expand uk-text-muted">Discount</div>
+                          <div class="uk-text-danger">−$29</div>
+                        </div>
+                      </div>
+                      <div class="uk-card-body">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                          <div class="uk-width-expand uk-text-muted">Total</div>
+                          <div class="uk-text-lead uk-text-bolder">$3119</div>
+                        </div><a class="uk-button uk-button-primary uk-margin-small uk-width-1-1" href="checkout.html">checkout</a>
+                      </div>
+                    </div>
+                    <div class="uk-card uk-card-default uk-card-small tm-ignore-container" uk-sticky="offset: 30; bottom: true; media: @m;" style="margin-top: 15px">
+                      <div class="uk-card-body">
+                        <div class="uk-grid-small" uk-grid>
+                          <div class="uk-width-expand uk-text-muted">Subtotal</div>
+                          <div>$3148</div>
+                        </div>
+                        <div class="uk-grid-small" uk-grid>
+                          <div class="uk-width-expand uk-text-muted">Discount</div>
+                          <div class="uk-text-danger">−$29</div>
+                        </div>
+                      </div>
+                      <div class="uk-card-body">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                          <div class="uk-width-expand uk-text-muted">Total</div>
+                          <div class="uk-text-lead uk-text-bolder">$3119</div>
+                        </div><a class="uk-button uk-button-primary uk-margin-small uk-width-1-1" href="checkout.html">checkout</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div v-else style="text-align: center">
-              <img
-                src="images/emptycart.png"
-                alt=""
-                width="150px"
-                style="margin-bottom: 25px"
-              />
-              <p>Oh ! Có vẻ như bạn chưa có sản phẩm nào cần mua.</p>
-              <p>Hãy tiếp tục mua sắm nào !</p>
-              <button
-                class="btn-custom-back btn btn-outline-primary"
-                @click="backToCategory()"
-              >
-                Các sản phẩm khác
-              </button>
-            </div>
           </div>
-        </div>
-      </section>
-      <!-- <section class="uk-section uk-section-default uk-section-small">
-        <div class="uk-container">
-          <div uk-slider>
-            <ul
-              class="
-                uk-slider-items
-                uk-child-width-1-1
-                uk-child-width-1-2@s
-                uk-child-width-1-5@m
-                uk-grid
-              "
-            >
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: star; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Mauris placerat</div>
-                    <div class="uk-text-meta">
-                      Donec mollis nibh dolor, sit amet auctor
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: receiver; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Lorem ipsum</div>
-                    <div class="uk-text-meta">
-                      Sit amet, consectetur adipiscing elit
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: location; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Proin pharetra</div>
-                    <div class="uk-text-meta">
-                      Nec quam a fermentum ut viverra
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: comments; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Praesent ultrices</div>
-                    <div class="uk-text-meta">
-                      Praesent ultrices, orci nec finibus
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="uk-grid-small uk-flex-center uk-flex-left@s"
-                  uk-grid
-                >
-                  <div><span uk-icon="icon: happy; ratio: 2.5;"></span></div>
-                  <div class="uk-text-center uk-text-left@s uk-width-expand@s">
-                    <div>Duis condimentum</div>
-                    <div class="uk-text-meta">
-                      Pellentesque eget varius arcu
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <ul
-              class="
-                uk-slider-nav uk-dotnav uk-flex-center uk-margin-medium-top
-              "
-            ></ul>
-          </div>
-        </div>
-      </section> -->
-    </main>
+        </section>
+      </main>
   </div>
 </template>
 

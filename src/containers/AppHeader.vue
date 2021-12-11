@@ -435,7 +435,8 @@
             </router-link>
 
             <div>
-              <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="user" @click="switchToAccount()"></a>
+              <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="user" @click="switchToAccount()" v-if="this.$store.state.tokenUser == ''"></a>
+              <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="user" @click="switchToAccount()" v-else></a>
               <div class="uk-padding-small uk-margin-remove" uk-dropdown="pos: bottom-right; offset: -10; delay-hide: 200;" style="min-width: 150px" >
                 <ul class="uk-nav uk-dropdown-nav">
                   <li>

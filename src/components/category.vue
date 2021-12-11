@@ -221,7 +221,7 @@
                           </div>
                           <div>
                             <div class="uk-grid-collapse uk-child-width-1-3 tm-products-grid js-products-grid" uk-grid>
-                              <article class="tm-product-card" v-for="item in getData" :key="item.id">
+                              <article class="tm-product-card" v-for="item in pageOfItems" :key="item.id">
                                 <div class="tm-product-card-media">
                                   <div class="tm-ratio tm-ratio-4-3">
                                     <a class="tm-media-box">
@@ -343,7 +343,14 @@
                               </article>
                             </div>
                           </div>
+                          <jw-pagination
+                            :Labels="customLabels"
+                            :maxPages="9"
+                            :items="getData"
+                            @changePage="onChangePage"
+                          ></jw-pagination>
                         </div>
+                        
                         <div v-else-if="getData.length == 0 && checkLenght == 1">
                           <div>
                             <article class="uk-card uk-card-default uk-card-body uk-article tm-ignore-container">
@@ -375,6 +382,12 @@
 <script>
 import axios from "axios";
 import loadingform from "../containers/loadingform.vue";
+const customLabels = {
+    first: '<<',
+    last: '>>',
+    previous: '<',
+    next: '>'
+};
 
 export default {
   // props: {
@@ -385,6 +398,8 @@ export default {
   },
   data() {
     return {
+      customLabels,
+      pageOfItems: [],
       getData: "",
       checkLenght: 0,
       formData: {
@@ -414,6 +429,9 @@ export default {
     this.callFunction();
   },
   methods: {
+    onChangePage(pageOfItems) {
+      this.pageOfItems = pageOfItems;
+    },
     filteredList() {
       return this.getData.filter((data) =>
         data.toLowerCase().includes(this.searchText.value.toLowerCase())

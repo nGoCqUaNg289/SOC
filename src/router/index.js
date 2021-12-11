@@ -27,6 +27,7 @@ import cartInfo from "../components/cartInfo.vue"
 import vnPayResult from "../components/vnPayResult.vue"
 import detailOrder from "../components/detailOrder.vue"
 import resultOrder from "../components/resultOrder.vue"
+import newCart from "../components/newCart.vue"
 
 import Login from "../containers/Login.vue"
 import Register from "../containers/Register.vue"
@@ -80,6 +81,7 @@ const router = new Router({
         { path: "/sendmail", component: confirmSendEmail, name: "sendmail" },
         { path: "/resetpass", component: resetPassword, name: "resetpass" },
         { path: "/resultorder", component: resultOrder, name: "resultorder" },
+        { path: "/newcart", component: newCart, name: "newcart" },
     ]
 })
 
