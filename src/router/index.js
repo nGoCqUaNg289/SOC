@@ -26,6 +26,7 @@ import vnpay from "../components/vnpay.vue"
 import cartInfo from "../components/cartInfo.vue"
 import vnPayResult from "../components/vnPayResult.vue"
 import detailOrder from "../components/detailOrder.vue"
+import resultOrder from "../components/resultOrder.vue"
 
 import Login from "../containers/Login.vue"
 import Register from "../containers/Register.vue"
@@ -78,6 +79,7 @@ const router = new Router({
         { path: "/forgotpass", component: ForgotPass, name: "forgotpass" },
         { path: "/sendmail", component: confirmSendEmail, name: "sendmail" },
         { path: "/resetpass", component: resetPassword, name: "resetpass" },
+        { path: "/resultorder", component: resultOrder, name: "resultorder" },
     ]
 })
 

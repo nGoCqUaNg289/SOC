@@ -234,8 +234,8 @@ export default {
         fullname: this.$store.state.InfoPersonal.fullname,
         phone: this.$store.state.InfoPersonal.phone,
       };
-      console.log(this.dataUser);
-      console.log(this.sumTotal);
+      // console.log(this.dataUser);
+      // console.log(this.sumTotal);
     },
     getOrderUser() {
       this.DetailsOrder = this.$store.state.StoreCart;
@@ -247,8 +247,8 @@ export default {
           discount: 0,
         };
       });
-      console.log(this.orderDetails);
-      console.log(this.DetailsOrder);
+      // console.log(this.orderDetails);
+      // console.log(this.DetailsOrder);
       // for (let i = 0; i < this.DetailsOrder.length; i++) {
 
       // }
@@ -266,7 +266,7 @@ export default {
         customer: this.dataUser,
         orderDetails: this.orderDetails,
       };
-
+      
       axios
         .post(this.$store.state.MainLink + "customer/orders/new", item, {
           headers: {
@@ -280,12 +280,16 @@ export default {
             returnURL: "http://150.95.105.29/vnPayResult"
             // returnURL: "http://localhost:8080/vnPayResult"
           };
-          console.log(infoCart);
+          this.$store.state.orderDetails = response.data.object.id;
+          // console.log(infoCart);
           if (this.typeOfPay == "1") {
             this.$toasted.show("Đặt hàng thành công !", {
               type: "success",
               duration: 2000,
             });
+            this.$router.push({
+              name: "resultorder",
+            })
           } else {
             axios
               .post(

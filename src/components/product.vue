@@ -212,16 +212,6 @@
                                       uk-text-meta
                                     "
                                   >
-                                    <!-- <a v-if="this.$store.state.tokenUser"
-                                      class="
-                                        uk-margin-small-right
-                                        js-add-to js-add-to-favorites
-                                        tm-action-button-active
-                                        js-added-to
-                                      "
-                                      uk-tooltip="Add to favorites"
-                                      ><span uk-icon="heart"></span></a
-                                    > -->
                                     
                                     <a class="js-add-to js-add-to-compare tm-action-button-active js-added-to" uk-tooltip="Add to compare" @click="compareProduct(getData)">
                                       <span uk-icon="copy"></span>
@@ -234,19 +224,8 @@
                         </div>
 
                         <div class="uk-margin">
-                          <div
-                            class="
-                              uk-padding-small
-                              uk-background-muted
-                              uk-border-rounded
-                            "
-                          >
-                            <div
-                              class="
-                                uk-grid-small uk-child-width-1-1 uk-text-small
-                              "
-                              uk-grid
-                            >
+                          <div class=" uk-padding-small uk-background-muted uk-border-rounded">
+                            <div class="uk-grid-small uk-child-width-1-1 uk-text-small" uk-grid>
                               <div>
                                 <div class="uk-grid-collapse" uk-grid>
                                   <span
@@ -257,7 +236,7 @@
                                     <div class="uk-text-bolder">
                                       Đặt hàng trực tuyến
                                     </div>
-                                    <div class="uk-text-xsmall uk-text-muted">
+                                    <div class="uk-text-small uk-text-muted">
                                       {{ getData.status }}
                                     </div>
                                   </div>
@@ -273,8 +252,24 @@
                                     <div class="uk-text-bolder">
                                       Mua tại cửa hàng
                                     </div>
-                                    <div class="uk-text-xsmall uk-text-muted">
+                                    <div class="uk-text-small uk-text-muted">
                                       {{ getData.status }}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <div class="uk-grid-collapse" uk-grid>
+                                  <span
+                                    class="uk-margin-xsmall-right"
+                                    uk-icon="check"
+                                  ></span>
+                                  <div>
+                                    <div class="uk-text-bolder">
+                                      Thời gian bảo hành
+                                    </div>
+                                    <div class="uk-text-small uk-text-muted">
+                                      {{ getData.warranty }} tháng
                                     </div>
                                   </div>
                                 </div>
@@ -282,20 +277,7 @@
                             </div>
                           </div>
                         </div>
-                        <!-- <div class="uk-margin">
-                          <div class="uk-margin-small-top">
-                            <a
-                              class="uk-link-heading js-scroll-to-description"
-                              onclick="UIkit.switcher('.js-product-switcher').show(1);"
-                              ><span class="tm-pseudo"
-                                >Thông số kỹ thuật chi tiết</span
-                              ><span
-                                class="uk-margin-xsmall-left"
-                                uk-icon="icon: chevron-down; ratio: .75;"
-                              ></span
-                            ></a>
-                          </div>
-                        </div> -->
+
                       </div>
                     </div>
                     <div
@@ -319,12 +301,6 @@
                                 >Thông số kỹ thuật</a
                               >
                             </li>
-                            <!-- <li>
-                              <a class="js-scroll-to-description">
-                                Các máy tương tự
-                                <span>(8)</span></a
-                              >
-                            </li> -->
                             <li>
                               <a class="js-scroll-to-description">
                                 Đánh giá sản phẩm
@@ -366,10 +342,6 @@
                                     </figure>
                                     <p></p>
                                   </div>
-                                  <!-- <img
-                                    :src="item.content"
-                                    v-if="item.type == 'photo'"
-                                  /> -->
                                   <p v-if="item.type == 'content'">
                                     {{ item.content }}
                                   </p>
@@ -379,19 +351,8 @@
                           </section>
                           <section>
                             <h2>Thông số kỹ thuật</h2>
-                            <!-- {{itemProduct}} -->
-                            <table
-                              class="
-                                uk-table
-                                uk-table-divider
-                                uk-table-justify
-                                uk-table-responsive
-                              "
-                            >
-                              <tr
-                                v-for="itemProduct in getData.productDetails"
-                                :key="itemProduct.id"
-                              >
+                            <table class=" uk-table uk-table-divider uk-table-justify uk-table-responsive">
+                              <tr v-for="itemProduct in getData.productDetails" :key="itemProduct.id">
                                 <th class="uk-width-medium">
                                   {{ itemProduct.propertyName }}
                                 </th>
@@ -401,136 +362,6 @@
                               </tr>
                             </table>
                           </section>
-                          <!-- <section>
-                            <div class="tm-wrapper">
-                              <div
-                                class="
-                                  uk-grid-collapse
-                                  uk-child-width-1-3@s
-                                  uk-child-width-1-4@m
-                                  tm-products-grid
-                                "
-                                uk-grid
-                              >
-                                <article class="tm-product-card">
-                                  <div class="tm-product-card-media">
-                                    <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
-                                        <div class="tm-product-card-labels">
-                                          <span
-                                            class="uk-label uk-label-warning"
-                                            >top selling</span
-                                          ><span
-                                            class="uk-label uk-label-danger"
-                                            >trade-in</span
-                                          >
-                                        </div>
-                                        <figure class="tm-media-box-wrap">
-                                          <img
-                                            src="images/products/1/1-medium.jpg"
-                                            alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                          /></figure
-                                      ></a>
-                                    </div>
-                                  </div>
-                                  <div class="tm-product-card-body">
-                                    <div class="tm-product-card-info">
-                                      <div
-                                        class="
-                                          uk-text-meta uk-margin-xsmall-bottom
-                                        "
-                                      >
-                                        Laptop
-                                      </div>
-                                      <h3 class="tm-product-card-title">
-                                        <a
-                                          class="uk-link-heading"
-                                          href="product.html"
-                                          >Apple MacBook Pro 15&quot; Touch Bar
-                                          MPTU2LL/A 256GB (Silver)</a
-                                        >
-                                      </h3>
-                                    </div>
-                                    <div class="tm-product-card-shop">
-                                      <div class="tm-product-card-prices">
-                                        <del class="uk-text-meta">$1899.00</del>
-                                        <div class="tm-product-card-price">
-                                          $1599.00
-                                        </div>
-                                      </div>
-                                      <div class="tm-product-card-add">
-                                        <div
-                                          class="
-                                            uk-text-meta
-                                            tm-product-card-actions
-                                          "
-                                        >
-                                          <a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-favorites
-                                              tm-action-button-active
-                                              js-added-to
-                                            "
-                                            title="Add to favorites"
-                                            ><span
-                                              uk-icon="icon: heart; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to favorites</span
-                                            ></a
-                                          ><a
-                                            class="
-                                              tm-product-card-action
-                                              js-add-to js-add-to-compare
-                                              tm-action-button-active
-                                              js-added-to
-                                            "
-                                            title="Add to compare"
-                                            ><span
-                                              uk-icon="icon: copy; ratio: .75;"
-                                            ></span
-                                            ><span
-                                              class="
-                                                tm-product-card-action-text
-                                              "
-                                              >Add to compare</span
-                                            ></a
-                                          >
-                                        </div>
-                                        <button
-                                          class="
-                                            uk-button uk-button-primary
-                                            tm-product-card-add-button tm-shine
-                                            js-add-to-cart
-                                          "
-                                        >
-                                          <span
-                                            class="
-                                              tm-product-card-add-button-icon
-                                            "
-                                            uk-icon="cart"
-                                          ></span
-                                          ><span
-                                            class="
-                                              tm-product-card-add-button-text
-                                            "
-                                            >Add to cart</span
-                                          >
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </article>
-                              </div>
-                            </div>
-                          </section> -->
                           <section>
                             <div class="uk-grid-small uk-grid-divider" uk-grid>
                               <div
@@ -540,9 +371,9 @@
                                 "
                               >
                                 <div class="uk-text-meta uk-text-uppercase">
-                                  average rating
+                                  Xếp hạng đánh giá
                                 </div>
-                                <div class="uk-heading-primary">5.0</div>
+                                <!-- <div class="uk-heading-primary">5.0</div>
                                 <div class="uk-flex uk-flex-center">
                                   <ul class="uk-iconnav tm-rating">
                                     <li>
@@ -576,9 +407,9 @@
                                       ></span>
                                     </li>
                                   </ul>
-                                </div>
+                                </div> -->
                                 <div class="uk-margin-small-top uk-text-meta">
-                                  based on 2 reviews
+                                  dựa trên {{getComment.length}} đánh giá
                                 </div>
                                 <button
                                   class="
@@ -589,7 +420,7 @@
                                   "
                                   uk-toggle="target: #review"
                                 >
-                                  write a review
+                                  Viết đánh giá
                                 </button>
                               </div>
                               <div class="uk-width-1-1 uk-width-expand@s">
@@ -601,29 +432,23 @@
                                   "
                                   uk-grid
                                 >
-                                  <article>
-                                    <section
-                                      class="uk-grid-small uk-child-width-1-1"
-                                      uk-grid
-                                    >
+                                  <article v-for="item in getComment" :key="item.id">
+                                    <section class="uk-grid-small uk-child-width-1-1" uk-grid>
                                       <header>
                                         <div class="uk-h4 uk-margin-remove">
-                                          Thomas Bruns
+                                          {{item.name}}
                                         </div>
                                         <time class="uk-text-meta"
-                                          >May 21, 2018</time
-                                        >
+                                          >{{item.timeCreated}}</time>
+                                        
                                       </header>
                                       <div>
-                                        <ul
-                                          class="
-                                            uk-iconnav uk-margin-bottom
-                                            tm-rating
-                                          "
-                                        >
+                                        <!-- <ul class="uk-iconnav uk-margin-bottom tm-rating">
                                           <li>
-                                            <span
-                                              class="uk-text-warning"
+                                            <span class="uk-text-warning" uk-icon="star"></span>
+                                          </li>
+                                          <li>
+                                            <span class="uk-text-warning"
                                               uk-icon="star"
                                             ></span>
                                           </li>
@@ -645,27 +470,13 @@
                                               uk-icon="star"
                                             ></span>
                                           </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                        </ul>
+                                        </ul> -->
                                         <div>
                                           <p>
-                                            Lorem ipsum dolor sit amet,
-                                            consetetur sadipscing elitr, sed
-                                            diam nonumy eirmod tempor invidunt
-                                            ut labore et dolore magna aliquyam
-                                            erat, sed diam voluptua. At vero eos
-                                            et accusam et justo duo dolores et
-                                            ea rebum. Stet clita kasd gubergren,
-                                            no sea takimata sanctus est Lorem
-                                            ipsum dolor sit amet.
+                                            {{item.detail}}
                                           </p>
                                         </div>
-                                        <div
+                                        <!-- <div
                                           class="
                                             uk-grid-small
                                             uk-flex-middle
@@ -709,134 +520,7 @@
                                               >
                                             </button>
                                           </div>
-                                        </div>
-                                      </div>
-                                    </section>
-                                  </article>
-                                  <article>
-                                    <section
-                                      class="uk-grid-small uk-child-width-1-1"
-                                      uk-grid
-                                    >
-                                      <header>
-                                        <div class="uk-h4 uk-margin-remove">
-                                          George Clanton
-                                        </div>
-                                        <time class="uk-text-meta"
-                                          >May 24, 2018</time
-                                        >
-                                      </header>
-                                      <div>
-                                        <ul
-                                          class="
-                                            uk-iconnav uk-margin-bottom
-                                            tm-rating
-                                          "
-                                        >
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                        </ul>
-                                        <div>
-                                          <p>
-                                            Nunc interdum odio non erat commodo
-                                            lacinia. Aliquam nec tincidunt
-                                            lorem. Nunc quis scelerisque nulla.
-                                            Nam nulla ante, luctus non dignissim
-                                            a, luctus quis sem. Curabitur
-                                            consectetur porttitor leo. Donec
-                                            molestie nisl vitae lorem porttitor
-                                            vehicula. Etiam feugiat a magna ac
-                                            dapibus. Donec vitae sollicitudin
-                                            lectus.
-                                          </p>
-                                          <p>
-                                            Sed mollis ex tincidunt posuere
-                                            blandit. Mauris sed tellus dolor.
-                                            Suspendisse nibh mi, dignissim et
-                                            molestie id, dictum in arcu. Duis
-                                            sodales scelerisque quam, quis
-                                            lobortis felis egestas eu. Sed nibh
-                                            nulla, aliquet ac leo vel, rutrum
-                                            dignissim metus. Sed non rhoncus ex.
-                                            Curabitur accumsan porta lacus non
-                                            viverra. Etiam feugiat sapien ut
-                                            purus luctus, eu porttitor neque
-                                            volutpat.
-                                          </p>
-                                        </div>
-                                        <div
-                                          class="
-                                            uk-grid-small
-                                            uk-flex-middle
-                                            uk-margin-top
-                                          "
-                                          uk-grid
-                                        >
-                                          <div class="uk-text-meta">
-                                            Was this review helpful to you?
-                                          </div>
-                                          <div>
-                                            <button
-                                              class="
-                                                uk-button
-                                                uk-button-default
-                                                uk-button-small
-                                              "
-                                            >
-                                              Yes<span
-                                                class="
-                                                  uk-margin-xsmall-left
-                                                  uk-text-muted
-                                                "
-                                                >5</span
-                                              >
-                                            </button>
-                                            <button
-                                              class="
-                                                uk-button
-                                                uk-button-default
-                                                uk-button-small
-                                                uk-margin-small-left
-                                              "
-                                            >
-                                              No<span
-                                                class="
-                                                  uk-margin-xsmall-left
-                                                  uk-text-muted
-                                                "
-                                                >0</span
-                                              >
-                                            </button>
-                                          </div>
-                                        </div>
+                                        </div> -->
                                       </div>
                                     </section>
                                   </article>
@@ -964,7 +648,7 @@
                     uk-grid
                   >
                     <h2 class="uk-width-expand uk-text-center uk-text-left@s">
-                      Related Products
+                      Sản phẩm liên quan
                     </h2>
                     <div class="uk-visible@s">
                       <a
@@ -999,7 +683,7 @@
                               tm-products-grid
                             "
                           >
-                            <article class="tm-product-card">
+                            <article class="tm-product-card" v-for="item in getDataTrending" :key="item.id">
                               <div class="tm-product-card-media">
                                 <div class="tm-ratio tm-ratio-4-3">
                                   <a class="tm-media-box" href="product.html">
@@ -1012,7 +696,7 @@
                                     </div>
                                     <figure class="tm-media-box-wrap">
                                       <img
-                                        src="images/products/1/1-medium.jpg"
+                                        :src="item.photos[0]"
                                         alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
                                       /></figure
                                   ></a>
@@ -1029,97 +713,23 @@
                                     <a
                                       class="uk-link-heading"
                                       href="product.html"
-                                      >Apple MacBook Pro 15&quot; Touch Bar
-                                      MPTU2LL/A 256GB (Silver)</a
+                                      >{{item.name}}</a
                                     >
                                   </h3>
-                                  <ul
-                                    class="
-                                      uk-list uk-text-small
-                                      tm-product-card-properties
-                                    "
-                                  >
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Diagonal display: </span
-                                      ><span>15.4"</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">CPU: </span
-                                      ><span>Intel®&nbsp;Core™ i7</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted">RAM: </span
-                                      ><span>16&nbsp;GB</span>
-                                    </li>
-                                    <li>
-                                      <span class="uk-text-muted"
-                                        >Video Card: </span
-                                      ><span>AMD Radeon Pro 555</span>
-                                    </li>
-                                  </ul>
                                 </div>
                                 <div class="tm-product-card-shop">
                                   <div class="tm-product-card-prices">
-                                    <del class="uk-text-meta">$1899.00</del>
+                                    <del class="uk-text-meta" v-if="item.discount != 0">{{item.price}}</del>
                                     <div class="tm-product-card-price">
-                                      $1599.00
+                                      {{formatPrice(item.price - item.discount)}} đ
                                     </div>
                                   </div>
                                   <div class="tm-product-card-add">
-                                    <div
-                                      class="
-                                        uk-text-meta
-                                        tm-product-card-actions
-                                      "
-                                    >
-                                      <a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-favorites
-                                          tm-action-button-active
-                                          js-added-to
-                                        "
-                                        title="Add to favorites"
-                                        ><span
-                                          uk-icon="icon: heart; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to favorites</span
-                                        ></a
-                                      ><a
-                                        class="
-                                          tm-product-card-action
-                                          js-add-to js-add-to-compare
-                                          tm-action-button-active
-                                          js-added-to
-                                        "
-                                        title="Add to compare"
-                                        ><span
-                                          uk-icon="icon: copy; ratio: .75;"
-                                        ></span
-                                        ><span
-                                          class="tm-product-card-action-text"
-                                          >Add to compare</span
-                                        ></a
-                                      >
+                                    <div class="uk-text-meta tm-product-card-actions">
                                     </div>
-                                    <button
-                                      class="
-                                        uk-button uk-button-primary
-                                        tm-product-card-add-button tm-shine
-                                        js-add-to-cart
-                                      "
-                                    >
-                                      <span
-                                        class="tm-product-card-add-button-icon"
-                                        uk-icon="cart"
-                                      ></span
-                                      ><span
-                                        class="tm-product-card-add-button-text"
-                                        >add to cart</span
-                                      >
+                                    <button class="uk-button uk-button-primary tm-product-card-add-button tm-shine js-add-to-cart">
+                                      <span class="tm-product-card-add-button-icon" uk-icon="cart"></span>
+                                      <span class="tm-product-card-add-button-text">add to cart</span>
                                     </button>
                                   </div>
                                 </div>
@@ -1149,26 +759,26 @@
                   type="button"
                   uk-close
                 ></button>
-                <h2 class="uk-modal-title uk-text-center">Review</h2>
+                <h2 class="uk-modal-title uk-text-center">Đánh giá</h2>
                 <form class="uk-form-stacked">
                   <div class="uk-grid-small uk-child-width-1-1" uk-grid>
                     <div>
-                      <label>
+                      <label style="width: 100%">
                         <div class="uk-form-label uk-form-label-required">
-                          Name
+                          Tên
                         </div>
-                        <input class="uk-input" type="text" required />
+                        <input class="uk-input" type="text" required v-model="comments.name"/>
                       </label>
                     </div>
                     <div>
-                      <label>
-                        <div class="uk-form-label uk-form-label-required">
+                      <label style="width: 100%; margin-top: 10px">
+                        <div class="uk-form-label">
                           Email
                         </div>
-                        <input class="uk-input" type="email" required />
+                        <input class="uk-input" type="email" required v-model="comments.email"/>
                       </label>
                     </div>
-                    <div>
+                    <!-- <div>
                       <div class="uk-form-label">Rating</div>
                       <ul class="uk-iconnav tm-rating">
                         <li><a uk-icon="star"></a></li>
@@ -1177,21 +787,22 @@
                         <li><a uk-icon="star"></a></li>
                         <li><a uk-icon="star"></a></li>
                       </ul>
-                    </div>
+                    </div> -->
                     <div>
-                      <label>
+                      <label style="width: 100%">
                         <div class="uk-form-label uk-form-label-required">
-                          Review
+                          Đánh giá của bạn
                         </div>
                         <textarea
                           class="uk-textarea"
                           rows="5"
                           required
+                          v-model="comments.detail"
                         ></textarea>
                       </label>
                     </div>
                     <div class="uk-text-center">
-                      <button class="uk-button uk-button-primary">Send</button>
+                      <button type="button" class="uk-button uk-button-primary" @click="sendComment(getData.blogs.id)">Gửi đánh giá</button>
                     </div>
                   </div>
                 </form>
@@ -1215,6 +826,8 @@ export default {
     return {
       getData: "",
       getBlog: "",
+      getComment: "",
+      getDataTrending: "",
       formData: {
         id: this.item,
         name: "",
@@ -1228,11 +841,18 @@ export default {
         cartDetails: "",
         productDetails: [],
       },
+      comments: {
+        email: "",
+        name: "",
+        blogId: 0,
+        detail: ""
+      },
       cartDetails: [],
     };
   },
   created() {
     this.getDetailProduct();
+    this.getDT();
     // this.callFunction();
   },
   methods: {
@@ -1246,7 +866,10 @@ export default {
         .get(this.$store.state.MainLink + "customer/products/" + this.item)
         .then((response) => {
           this.getData = response.data.object;
-          // this.getBlog = response.data.object.blogs.blogDetails;
+          this.getBlog = response.data.object.blogs.blogDetails;
+          console.log(response.data.object.blogs);
+          this.getComment = response.data.object.blogs.comments;
+          console.log(this.getComment);
           console.log("GetData", this.getData);
           // console.log("GetBlog", this.getBlog);
         })
@@ -1326,6 +949,43 @@ export default {
         });
       }
     },
+    getDT() {
+      this.checkFavorites = this.$store.state.tokenUser;
+      axios
+        .get(this.$store.state.MainLink + "customer/products/trending")
+        .then((response) => {
+          this.getDataTrending = response.data.object;
+          // console.log(this.getData);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    sendComment(id){
+      let item = {
+        blogId: id,
+        name : this.comments.name,
+        email : this.comments.email,
+        detail : this.comments.detail
+      }
+      // console.log(item);
+      axios
+        .post(this.$store.state.MainLink + "customer/comment/new", item)
+        .then(() => {
+          this.getDetailProduct();
+          this.$toasted.show("Đã đăng bình luận!", {
+          type: "success",
+          duration: 2000,
+        });
+        })
+        .catch((e) => {
+          this.$toasted.show("Lỗi, vui lòng thử lại!", {
+          type: "success",
+          duration: 2000,
+        });
+          console.log(e);
+        });
+    }
   },
 };
 </script>

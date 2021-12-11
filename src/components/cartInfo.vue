@@ -51,9 +51,9 @@
                           <div class="form-group col-md-12 form-margin-top">
                             <label class="label-custom">Email</label>
                             <input
-                              type="text"
+                              type="email"
                               class="form-control-custom form-control"
-                              placeholder="Nhập họ tên"
+                              placeholder="Nhập email của bạn"
                               v-model="dataUser.email"
                             />
                           </div>
