@@ -21,11 +21,11 @@
                     <h1 class="uk-article-title">Thông tin cửa hàng</h1>
                   </header>
                   <div class="uk-article-body">
-                    <p class="uk-text-lead uk-text-center">
+                    <p class="uk-text-lead uk-text-justify">
                       Cửa hàng SOC SHOP sở hữu chuỗi cửa hàng Hoàng Hà Mobile -
                       là nhà bán lẻ hàng đầu, chuyên cung cấp các sản phẩm máy
                       tính công nghệ chính hãng tại thị trường Việt Nam. Năm
-                      2020,SÕ SHOP được thành lập, từng bước trở thành địa chỉ
+                      2020,SOC SHOP được thành lập, từng bước trở thành địa chỉ
                       đáng tin cậy của người tiêu dùng Việt. Với khẩu hiệu “Nếu
                       những gì chúng tôi không có, nghĩa là bạn không cần”,
                       chúng tôi đã, đang và sẽ tiếp tục nỗ lực đem đến các sản

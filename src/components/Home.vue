@@ -273,7 +273,7 @@
             >
               <article
                 class="tm-product-card"
-                v-for="item in getData"
+                v-for="item in getNewData"
                 :key="item.id"
               >
                 <div class="tm-product-card-media">
@@ -679,6 +679,7 @@ export default {
       getData: "",
       getBlogHL: "",
       getAllCate: "",
+      getNewData: "",
       formData: {
         name: "",
         price: "",
@@ -700,7 +701,7 @@ export default {
     this.getCategory();
     this.getBlog();
     this.getDataAccount();
-    
+    this.getNewProduct();
   },
   methods: {
     switchToBlog(id) {
@@ -724,6 +725,18 @@ export default {
         .get(this.$store.state.MainLink + "customer/products/trending")
         .then((response) => {
           this.getData = response.data.object;
+          // console.log(this.getData);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    getNewProduct() {
+      this.checkFavorites = this.$store.state.tokenUser;
+      axios
+        .get(this.$store.state.MainLink + "customer/products/mostnew")
+        .then((response) => {
+          this.getNewData = response.data.object;
           // console.log(this.getData);
         })
         .catch((e) => {
