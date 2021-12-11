@@ -140,6 +140,7 @@
                                 v-model="item.quantity"
                                 min="1"
                                 max="5"
+                                pattern="[0-9]"
                               />
                             </td>
                             <td

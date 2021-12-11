@@ -139,9 +139,9 @@ export default {
       if(this.dataUser.fullname == '' || this.dataUser.email == '' || this.dataUser.phone == '' || this.dataUser.address == ''){
         this.validateForm = "Vui lòng không để trống thông tin !"
       }else{
-      //   this.$router.push({
-      //   name: "vnpay",
-      // });
+        this.$router.push({
+        name: "vnpay",
+      });
       }
       
     },
@@ -152,7 +152,6 @@ export default {
       });
     },
     getDataAccount() {
-      
       axios
         .get(this.$store.state.MainLink + "customer/account", {
           headers: {

@@ -19,12 +19,7 @@
             <div>
               <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
                 <section>
-                  <article
-                    class="
-                      uk-card uk-card-default uk-card-body uk-article
-                      tm-ignore-container
-                    "
-                  >
+                  <article class="uk-card uk-card-default uk-card-body uk-article tm-ignore-container">
                     <header class="uk-text-center">
                       <h1 class="uk-article-title">Thông tin thanh toán</h1>
                     </header>
@@ -107,12 +102,14 @@ export default {
   data() {
     return {
       vnResult: {},
+      detailOrder: ""
     };
   },
   created() {
     this.callFunction();
     this.getDataAccount();
-    // console.log(this.vnResult);
+    this.getTotalCart();
+    this.getDataUserOrder();
   },
   methods: {
     getDate: (time, format = "YYYYMMDD") =>
@@ -134,11 +131,25 @@ export default {
         Amount: this.$route.query.vnp_Amount,
         TransactionStatus: this.$route.query.vnp_TransactionStatus,
         PayDate: this.$route.query.vnp_PayDate,
-        // payDone: this.$route.query.vnp_Pay,
         TransactionNo: this.$route.query.vnp_TransactionNo,
       };
-      //   console.log(this.$route.query.vnp_TransactionStatus);
       console.log(this.vnResult);
+    },
+    getDataUserOrder() {
+      axios
+        .get(this.$store.state.MainLink + "customer/orders/" + localStorage.orderDetails, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          this.detailOrder = response.data.object;
+          console.log(this.detailOrder);
+        })
+        .catch((e) => {
+          this.error.push(e);
+          console.log(e);
+        });
     },
     backToHome() {
       this.$router.push({
@@ -181,8 +192,6 @@ export default {
         });
     },
     getDataAccount() {
-      
-      if(this.$store.state.tokenUser){
       axios
         .get(this.$store.state.MainLink + "customer/account", {
           headers: {
@@ -199,8 +208,7 @@ export default {
         .catch((e) => {
           // this.error.push(e);
           console.log(e);
-        });
-      }      
+        });    
     },
   },
 };

@@ -343,12 +343,6 @@
                               </article>
                             </div>
                           </div>
-                          <jw-pagination
-                            :Labels="customLabels"
-                            :maxPages="9"
-                            :items="getData"
-                            @changePage="onChangePage"
-                          ></jw-pagination>
                         </div>
                         
                         <div v-else-if="getData.length == 0 && checkLenght == 1">
@@ -366,8 +360,20 @@
                           </div>
                         </div>
                         <loadingform v-else></loadingform>
+                        
                       </div>
+                      <div class="text-center">
+                          <jw-pagination
+                            style="margin-top: 15px"
+                            :Labels="customLabels"
+                            :maxPages="9"
+                            :items="getData"
+                            @changePage="onChangePage"
+                          ></jw-pagination>
+                      </div>
+                      
                     </div>
+                    
                   </div>
                 </div>
               </div>

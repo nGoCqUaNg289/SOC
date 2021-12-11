@@ -282,6 +282,7 @@ export default {
             // returnURL: "http://localhost:8080/vnPayResult"
           };
           this.$store.state.orderDetails = response.data.object.id;
+          localStorage.orderDetails = response.data.object.id;
           // console.log(infoCart);
           if (this.typeOfPay == "1") {
             this.$toasted.show("Đặt hàng thành công !", {
