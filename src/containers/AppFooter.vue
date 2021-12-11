@@ -77,7 +77,7 @@
                     ></span
                     >
                     <span
-                      >St.&nbsp;Petersburg, Nevsky&nbsp;Prospect&nbsp;28</span
+                     >Xuân Phương, Nam Từ Liêm, Hà Nội</span
                     >
                   </div>
                 </li>
@@ -87,7 +87,7 @@
                     > -->
                     <span class="uk-margin-small-right"></span
                     >
-                    <span>Daily 10:00–22:00</span>
+                    <span>Mở cửa 10:00–22:00</span>
                   </div>
                 </li>
               </ul>
@@ -96,7 +96,7 @@
               <form class="uk-form-stacked">
                 <label>
                   <div class="uk-form-label uk-text-muted">
-                    Đăng ký ngay !
+                    <!-- Đăng ký ngay ! -->
                   </div>
                   <div class="uk-inline uk-width-1-1">
                     <a

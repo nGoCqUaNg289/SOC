@@ -344,6 +344,20 @@
                             </div>
                           </div>
                         </div>
+                        <div v-else-if="getData.length == 0 && checkLenght == 1">
+                          <div>
+                            <article class="uk-card uk-card-default uk-card-body uk-article tm-ignore-container">
+                                <header class="uk-text-center">
+                                  <h1 class="uk-article-title">Không có sản phẩm phù hợp !</h1>
+                                </header>
+                                <div class="uk-article-body">
+                                  <p class="uk-text-lead uk-text-center">
+                                    Có thể sản phẩm bạn tìm không có hoặc cửa hàng chưa cập nhật, vui lòng thử lại hoặc tìm kiếm lại sau !
+                                  </p>
+                            </div>
+                            </article>
+                          </div>
+                        </div>
                         <loadingform v-else></loadingform>
                       </div>
                     </div>
@@ -372,6 +386,7 @@ export default {
   data() {
     return {
       getData: "",
+      checkLenght: 0,
       formData: {
         product_id: "",
         quantiy: "",
@@ -395,6 +410,7 @@ export default {
   created() {
     this.getDT();
     this.getCategory();
+    this.callFunction();
   },
   methods: {
     filteredList() {
@@ -435,6 +451,7 @@ export default {
       }
     },
     resetData() {
+      this.checkLenght = 0
       this.selected = false;
       axios
         .get(this.$store.state.MainLink + "customer/products")
@@ -448,8 +465,9 @@ export default {
     callFunction: function () {
       var v = this;
       setTimeout(function () {
-        v.getDT();
-      }, 2000);
+        v.checkLenght = 1
+        console.log(v.checkLenght);
+      }, 3000);
     },
     detailProduct(id) {
       // console.log(id);
@@ -633,6 +651,7 @@ export default {
           .then((response) => {
             this.getData = response.data.object;
             // console.log(this.getData);
+            this.callFunction();
           })
           .catch((e) => {
             console.log(e);

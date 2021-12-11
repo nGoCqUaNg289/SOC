@@ -20,33 +20,33 @@
                                 <header class="uk-card-header uk-background-default">
                                     <nav>
                                         <ul class="uk-subnav uk-flex-center uk-margin-remove">
-                                            <li><a href="#number">#</a></li>
-                                            <li><a href="#A">A</a></li>
-                                            <li><a href="#B">B</a></li>
-                                            <li><a href="#C">C</a></li>
-                                            <li><a href="#D">D</a></li>
-                                            <li><a href="#E">E</a></li>
-                                            <li><a href="#F">F</a></li>
-                                            <li><a href="#G">G</a></li>
-                                            <li><a href="#H">H</a></li>
-                                            <li><a href="#I">I</a></li>
-                                            <li><a href="#J">J</a></li>
-                                            <li><a href="#K">K</a></li>
-                                            <li><a href="#L">L</a></li>
-                                            <li><a href="#M">M</a></li>
-                                            <li><a href="#N">N</a></li>
-                                            <li><a href="#O">O</a></li>
-                                            <li><a href="#P">P</a></li>
-                                            <li><a href="#Q">Q</a></li>
-                                            <li><a href="#R">R</a></li>
-                                            <li><a href="#S">S</a></li>
-                                            <li><a href="#T">T</a></li>
-                                            <li><a href="#U">U</a></li>
-                                            <li><a href="#V">V</a></li>
-                                            <li><a href="#W">W</a></li>
-                                            <li><a href="#X">X</a></li>
-                                            <li><a href="#Y">Y</a></li>
-                                            <li><a href="#Z">Z</a></li>
+                                            <li><a>#</a></li>
+                                            <li><a>A</a></li>
+                                            <li><a>B</a></li>
+                                            <li><a>C</a></li>
+                                            <li><a>D</a></li>
+                                            <li><a>E</a></li>
+                                            <li><a>F</a></li>
+                                            <li><a>G</a></li>
+                                            <li><a>H</a></li>
+                                            <li><a>I</a></li>
+                                            <li><a>J</a></li>
+                                            <li><a>K</a></li>
+                                            <li><a>L</a></li>
+                                            <li><a>M</a></li>
+                                            <li><a>N</a></li>
+                                            <li><a>O</a></li>
+                                            <li><a>P</a></li>
+                                            <li><a>Q</a></li>
+                                            <li><a>R</a></li>
+                                            <li><a>S</a></li>
+                                            <li><a>T</a></li>
+                                            <li><a>U</a></li>
+                                            <li><a>V</a></li>
+                                            <li><a>W</a></li>
+                                            <li><a>X</a></li>
+                                            <li><a>Y</a></li>
+                                            <li><a>Z</a></li>
                                         </ul>
                                     </nav>
                                 </header>
@@ -58,7 +58,7 @@
                                         <div class="uk-width-1-1 uk-width-expand@m">
                                             <ul class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m" uk-grid>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/apple.svg" alt="Apple"></figure>
@@ -68,7 +68,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/asus.svg" alt="ASUS"></figure>
@@ -78,7 +78,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/acer.svg" alt="Acer"></figure>
@@ -99,7 +99,7 @@
                                         <div class="uk-width-1-1 uk-width-expand@m">
                                             <ul class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m" uk-grid>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/canon.svg" alt="Canon"></figure>
@@ -120,7 +120,7 @@
                                         <div class="uk-width-1-1 uk-width-expand@m">
                                             <ul class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m" uk-grid>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/dell.svg" alt="Dell"></figure>
@@ -141,7 +141,7 @@
                                         <div class="uk-width-1-1 uk-width-expand@m">
                                             <ul class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m" uk-grid>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/hp.svg" alt="HP"></figure>
@@ -162,7 +162,7 @@
                                         <div class="uk-width-1-1 uk-width-expand@m">
                                             <ul class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m" uk-grid>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/intel.svg" alt="Intel"></figure>
@@ -183,7 +183,7 @@
                                         <div class="uk-width-1-1 uk-width-expand@m">
                                             <ul class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m" uk-grid>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/lg.svg" alt="LG"></figure>
@@ -193,7 +193,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/lenovo.svg" alt="Lenovo"></figure>
@@ -214,7 +214,7 @@
                                         <div class="uk-width-1-1 uk-width-expand@m">
                                             <ul class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m" uk-grid>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/microsoft.svg" alt="Microsoft"></figure>
@@ -235,7 +235,7 @@
                                         <div class="uk-width-1-1 uk-width-expand@m">
                                             <ul class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s uk-child-width-1-5@m" uk-grid>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/samsung.svg" alt="Samsung"></figure>
@@ -245,7 +245,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="#">
+                                                    <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large">
                                                         <div class="tm-ratio tm-ratio-4-3">
                                                             <div class="tm-media-box">
                                                                 <figure class="tm-media-box-wrap"><img class="item-brand" src="images/brands/sony.svg" alt="Sony"></figure>

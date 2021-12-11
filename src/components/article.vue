@@ -17,12 +17,7 @@
             <section>
               <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
                 <section>
-                  <article
-                    class="
-                      uk-card uk-card-default uk-card-body uk-article
-                      tm-ignore-container
-                    "
-                  >
+                  <article class="uk-card uk-card-default uk-card-body uk-article tm-ignore-container">
                     <header class="uk-text-center">
                       <h1 class="uk-article-title">
                         {{ getData.title }}
@@ -45,6 +40,9 @@
                       <p v-if="item.type == 'content'">
                         {{ item.content }}
                       </p>
+                      <p v-if="item.type == 'text'">
+                        {{ item.content }}
+                      </p>
                     </section>
                   </article>
                 </section>
@@ -60,7 +58,7 @@
                                   Nhận xét
                                 </div>
                                 <div class="uk-margin-small-top uk-text-meta">
-                                  dựa trên {{getData.comments.length}} nhận xét
+                                  dựa trên 1 nhận xét
                                 </div>
                                 <button
                                   class="
@@ -98,93 +96,11 @@
                                         >
                                       </header>
                                       <div>
-                                        <!-- <ul
-                                          class="
-                                            uk-iconnav uk-margin-bottom
-                                            tm-rating
-                                          "
-                                        >
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                        </ul> -->
                                         <div>
                                           <p>
                                             {{itemC.detail}}
                                           </p>
                                         </div>
-                                        <!-- <div
-                                          class="
-                                            uk-grid-small
-                                            uk-flex-middle
-                                            uk-margin-top
-                                          "
-                                          uk-grid
-                                        >
-                                          <div class="uk-text-meta">
-                                            Was this review helpful to you?
-                                          </div>
-                                          <div>
-                                            <button
-                                              class="
-                                                uk-button
-                                                uk-button-default
-                                                uk-button-small
-                                              "
-                                            >
-                                              Yes<span
-                                                class="
-                                                  uk-margin-xsmall-left
-                                                  uk-text-muted
-                                                "
-                                                >14</span
-                                              >
-                                            </button>
-                                            <button
-                                              class="
-                                                uk-button
-                                                uk-button-default
-                                                uk-button-small
-                                                uk-margin-small-left
-                                              "
-                                            >
-                                              No<span
-                                                class="
-                                                  uk-margin-xsmall-left
-                                                  uk-text-muted
-                                                "
-                                                >2</span
-                                              >
-                                            </button>
-                                          </div>
-                                        </div> -->
                                       </div>
                                     </section>
                                   </article>

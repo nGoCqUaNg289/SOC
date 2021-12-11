@@ -143,6 +143,7 @@
                                 tm-media-box
                               "
                               title="Apple"
+                              @click="getByCate('12')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img
@@ -165,6 +166,7 @@
                                 tm-media-box
                               "
                               title="Samsung"
+                              @click="getByCate('Samsung')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img
@@ -187,6 +189,7 @@
                                 tm-media-box
                               "
                               title="Sony"
+                              @click="getByCate('Sony')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img src="images/brands/sony.svg" alt="Sony" />
@@ -206,6 +209,7 @@
                                 tm-media-box
                               "
                               title="Microsoft"
+                              @click="getByCate('Microsoft')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img
@@ -228,6 +232,7 @@
                                 tm-media-box
                               "
                               title="Intel"
+                              @click="getByCate('Intel')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img
@@ -250,6 +255,7 @@
                                 tm-media-box
                               "
                               title="HP"
+                              @click="getByCate('13')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img src="images/brands/hp.svg" alt="HP" />
@@ -269,6 +275,7 @@
                                 tm-media-box
                               "
                               title="LG"
+                              @click="getByCate('LG')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img src="images/brands/lg.svg" alt="LG" />
@@ -288,6 +295,7 @@
                                 tm-media-box
                               "
                               title="Lenovo"
+                              @click="getByCate('7')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img
@@ -310,6 +318,7 @@
                                 tm-media-box
                               "
                               title="ASUS"
+                              @click="getByCate('9')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img src="images/brands/asus.svg" alt="ASUS" />
@@ -329,6 +338,7 @@
                                 tm-media-box
                               "
                               title="Acer"
+                              @click="getByCate('8')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img src="images/brands/acer.svg" alt="Acer" />
@@ -348,6 +358,7 @@
                                 tm-media-box
                               "
                               title="Dell"
+                              @click="getByCate('10')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img src="images/brands/dell.svg" alt="Dell" />
@@ -367,6 +378,7 @@
                                 tm-media-box
                               "
                               title="Canon"
+                              @click="getByCate('Canon')"
                             >
                               <figure class="tm-media-box-wrap">
                                 <img
@@ -459,16 +471,6 @@
                 </span>
               </a>
             </div>
-            <!-- <div>
-              <a class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button" uk-icon="cart" @click="switchToCart()">
-                <span class="uk-badge" v-if="this.$store.state.tokenUser == ''">
-                  {{ this.$store.state.StoreCart.length }}
-                </span>
-                <span class="uk-badge" v-else>
-                  {{ this.$store.state.totalCart }}
-                </span>
-              </a>
-            </div> -->
           </div>
         </div>
       </div>
@@ -494,18 +496,18 @@
                 </li>
                 <li class="uk-parent"><a>Thương hiệu</a>
                   <ul class="uk-nav-sub uk-list-divider">
-                    <li><a >Apple</a></li>
-                    <li><a >Samsung</a></li>
-                    <li><a >Sony</a></li>
-                    <li><a >Microsoft</a></li>
-                    <li><a >Intel</a></li>
-                    <li><a >HP</a></li>
-                    <li><a >LG</a></li>
-                    <li><a >Lenovo</a></li>
-                    <li><a >ASUS</a></li>
-                    <li><a >Acer</a></li>
-                    <li><a >Dell</a></li>
-                    <li><a >Canon</a></li>
+                    <li><a @click="getByCate('12')">Apple</a></li>
+                    <li><a @click="getByCate('Samsung')">Samsung</a></li>
+                    <li><a @click="getByCate('Sony')">Sony</a></li>
+                    <li><a @click="getByCate('Microsoft')">Microsoft</a></li>
+                    <li><a @click="getByCate('Intel')">Intel</a></li>
+                    <li><a @click="getByCate('13')">HP</a></li>
+                    <li><a @click="getByCate('LG')">LG</a></li>
+                    <li><a @click="getByCate('7')">Lenovo</a></li>
+                    <li><a @click="getByCate('9')">ASUS</a></li>
+                    <li><a @click="getByCate('8')">Acer</a></li>
+                    <li><a @click="getByCate('10')">Dell</a></li>
+                    <li><a @click="getByCate('Canon')">Canon</a></li>
                     <li class="uk-text-center"><a class="uk-link-muted uk-text-uppercase tm-link-to-all"><span>Xem tất cả</span><span uk-icon="icon: chevron-right; ratio: .75;"></span></a>
                     </li>
                   </ul>

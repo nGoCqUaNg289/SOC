@@ -16,12 +16,7 @@
             </section>
             <section>
               <div>
-                <article
-                  class="
-                    uk-card uk-card-default uk-card-body uk-article
-                    tm-ignore-container
-                  "
-                >
+                <article class="uk-card uk-card-default uk-card-body uk-article tm-ignore-container">
                   <header class="uk-text-center">
                     <h1 class="uk-article-title">Thông tin cửa hàng</h1>
                   </header>

@@ -64,7 +64,35 @@
       </section>
       <section class="uk-section uk-section-default uk-section-small">
         <div class="uk-container">
-          <div
+          <div class="row">
+            <div class="col" v-for="item in getAllCate" :key="item.id">
+              <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" @click="getByCate(item.id)">
+                  <div class="tm-ratio tm-ratio-4-3">
+                    <div class="tm-media-box">
+                      <figure class="tm-media-box-wrap">
+                        <img
+                          class="item-brand"
+                          src="images/catalog/laptops.png"
+                          alt="Laptops"
+                        />
+                      </figure>
+                  </div>
+              </div>
+              <div class="text-center">
+                {{item.name}}
+              </div>
+              </a>
+            </div>
+          </div>
+          <div class="uk-margin uk-text-center">
+            <router-link to="/category" style="text-decoration: none">
+              <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
+                ><span>Xem tất cả sản phẩm</span
+                ><span uk-icon="icon: chevron-right; ratio: .75;"></span
+              ></a>
+            </router-link>
+          </div>
+          <!-- <div
             class="
               uk-grid-small
               uk-child-width-1-2
@@ -73,17 +101,9 @@
             "
             uk-grid
           >
-            <div>
-              <router-link to="/subcategory">
-                <a
-                  class="
-                    uk-link-muted
-                    uk-text-center
-                    uk-display-block
-                    uk-padding-small
-                    uk-box-shadow-hover-large
-                  "
-                >
+            <div v-for="item in getAllCate" :key="item.id">
+              <router-link to="/category" style="text-decoration: none" >
+                <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" style="text-decoration: none" > 
                   <div class="tm-ratio tm-ratio-4-3">
                     <div class="tm-media-box">
                       <figure class="tm-media-box-wrap">
@@ -96,142 +116,10 @@
                     </div>
                   </div>
                   <div class="uk-margin-small-top">
-                    <div class="uk-text-truncate">Laptops Gaming</div>
+                    <div class="uk-text-truncate">{{item.name}}</div>
                   </div>
                 </a>
               </router-link>
-            </div>
-            <div>
-              <a
-                class="
-                  uk-link-muted
-                  uk-text-center
-                  uk-display-block
-                  uk-padding-small
-                  uk-box-shadow-hover-large
-                "
-              >
-                <div class="tm-ratio tm-ratio-4-3">
-                  <div class="tm-media-box">
-                    <figure class="tm-media-box-wrap">
-                      <img
-                        class="item-brand"
-                        src="images/catalog/smartphones.png"
-                        alt="Smartphones"
-                      />
-                    </figure>
-                  </div>
-                </div>
-                <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">Laptop văn phòng</div>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a
-                class="
-                  uk-link-muted
-                  uk-text-center
-                  uk-display-block
-                  uk-padding-small
-                  uk-box-shadow-hover-large
-                "
-              >
-                <div class="tm-ratio tm-ratio-4-3">
-                  <div class="tm-media-box">
-                    <figure class="tm-media-box-wrap">
-                      <img
-                        class="item-brand"
-                        src="images/catalog/tablets.png"
-                        alt="Tablets"
-                      />
-                    </figure>
-                  </div>
-                </div>
-                <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">
-                    Laptop mỏng nhẹ, thời trang
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a
-                class="
-                  uk-link-muted
-                  uk-text-center
-                  uk-display-block
-                  uk-padding-small
-                  uk-box-shadow-hover-large
-                "
-              >
-                <div class="tm-ratio tm-ratio-4-3">
-                  <div class="tm-media-box">
-                    <figure class="tm-media-box-wrap">
-                      <img
-                        class="item-brand"
-                        src="images/catalog/watches.png"
-                        alt="Smart Watches"
-                      />
-                    </figure>
-                  </div>
-                </div>
-                <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">Laptops sinh viên</div>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a
-                class="
-                  uk-link-muted
-                  uk-text-center
-                  uk-display-block
-                  uk-padding-small
-                  uk-box-shadow-hover-large
-                "
-              >
-                <div class="tm-ratio tm-ratio-4-3">
-                  <div class="tm-media-box">
-                    <figure class="tm-media-box-wrap">
-                      <img
-                        class="item-brand"
-                        src="images/catalog/consoles.png"
-                        alt="Gaming Consoles"
-                      />
-                    </figure>
-                  </div>
-                </div>
-                <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">Laptop đồ hoạ, kiến trúc</div>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a
-                class="
-                  uk-link-muted
-                  uk-text-center
-                  uk-display-block
-                  uk-padding-small
-                  uk-box-shadow-hover-large
-                "
-              >
-                <div class="tm-ratio tm-ratio-4-3">
-                  <div class="tm-media-box">
-                    <figure class="tm-media-box-wrap">
-                      <img
-                        class="item-brand"
-                        src="images/catalog/cameras.png"
-                        alt="Cameras"
-                      />
-                    </figure>
-                  </div>
-                </div>
-                <div class="uk-margin-small-top">
-                  <div class="uk-text-truncate">PC builds</div>
-                </div>
-              </a>
             </div>
           </div>
           <div class="uk-margin uk-text-center">
@@ -241,7 +129,7 @@
                 ><span uk-icon="icon: chevron-right; ratio: .75;"></span
               ></a>
             </router-link>
-          </div>
+          </div> -->
         </div>
       </section>
       <section class="uk-section uk-section-small">
@@ -265,9 +153,9 @@
                     <a class="tm-media-box" style="text-decoration: none">
                       <div class="tm-product-card-labels">
                         <span class="uk-label uk-label-warning"
-                          >top selling</span
+                          >Top tranding</span
                         >
-                        <span class="uk-label uk-label-danger">trade-in</span>
+                        <!-- <span class="uk-label uk-label-danger">sản phẩm nổi bật</span> -->
                       </div>
                       <figure class="tm-media-box-wrap">
                         <img :src="item.photos[0]" />
@@ -374,7 +262,7 @@
       </section>
       <section class="uk-section uk-section-small">
         <div class="uk-container">
-          <h2 class="uk-text-center">Sản phẩm nổi bật</h2>
+          <h2 class="uk-text-center">Sản phẩm mới</h2>
           <div class="uk-card uk-card-default tm-ignore-container">
             <div
               class="
@@ -392,10 +280,10 @@
                   <div class="tm-ratio tm-ratio-4-3">
                     <a class="tm-media-box" style="text-decoration: none">
                       <div class="tm-product-card-labels">
-                        <span class="uk-label uk-label-warning"
+                        <!-- <span class="uk-label uk-label-warning"
                           >top selling</span
-                        >
-                        <span class="uk-label uk-label-danger">trade-in</span>
+                        > -->
+                        <span class="uk-label uk-label-danger">New</span>
                       </div>
                       <figure class="tm-media-box-wrap">
                         <img :src="item.photos[0]" />
@@ -524,6 +412,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="Apple"
+                          @click="getByCate('12')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/apple.svg" alt="Apple" />
@@ -536,6 +425,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="Samsung"
+                          @click="getByCate('Samsung')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img
@@ -551,6 +441,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="Sony"
+                          @click="getByCate('Sony')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/sony.svg" alt="Sony" />
@@ -563,6 +454,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="Microsoft"
+                          @click="getByCate('Microsoft')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img
@@ -578,6 +470,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="Intel"
+                          @click="getByCate('Intel')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/intel.svg" alt="Intel" />
@@ -590,6 +483,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="HP"
+                          @click="getByCate('13')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/hp.svg" alt="HP" />
@@ -602,6 +496,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="LG"
+                          @click="getByCate('LG')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/lg.svg" alt="LG" />
@@ -614,6 +509,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="Lenovo"
+                          @click="getByCate('7')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/lenovo.svg" alt="Lenovo" />
@@ -626,6 +522,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="ASUS"
+                          @click="getByCate('9')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/asus.svg" alt="ASUS" />
@@ -638,6 +535,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="Acer"
+                          @click="getByCate('8')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/acer.svg" alt="Acer" />
@@ -650,6 +548,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="Dell"
+                          @click="getByCate('10')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/dell.svg" alt="Dell" />
@@ -662,6 +561,7 @@
                         <a
                           class="uk-link-muted tm-media-box tm-grayscale"
                           title="Canon"
+                          @click="getByCate('Canon')"
                         >
                           <figure class="tm-media-box-wrap">
                             <img src="images/brands/canon.svg" alt="Canon" />
@@ -778,6 +678,7 @@ export default {
     return {
       getData: "",
       getBlogHL: "",
+      getAllCate: "",
       formData: {
         name: "",
         price: "",
@@ -796,8 +697,10 @@ export default {
   },
   created() {
     this.getDT();
+    this.getCategory();
     this.getBlog();
     this.getDataAccount();
+    
   },
   methods: {
     switchToBlog(id) {
@@ -1000,6 +903,35 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+    getByCate(item){
+      // console.log(item)
+      if(this.$router.currentRoute.fullPath != '/category'){
+          this.$router.push({
+            path: "category",
+            // params: { item: item}
+          });
+          this.$store.state.categorySearch = item;
+          console.log(this.$store.state.categorySearch)
+      }else{
+        this.$store.state.categorySearch = item;
+        // console.log(this.$store.state.categorySearch)
+      }
+    },
+    getCategory() {
+      axios
+          .get(this.$store.state.MainLink + "customer/categories?active=true")
+          .then((response) => {
+            console.log(response.data.object[2].categories);
+            this.getAllCate = response.data.object[2].categories
+            // this.getBrands = response.data.object[1].categories
+            // console.log(this.getBrands)
+            // this.$store.state.StoreCart = response.data.object;
+          })
+          .catch((e) => {
+            this.error.push(e);
+            console.log(e);
+          });
     },
   },
 };

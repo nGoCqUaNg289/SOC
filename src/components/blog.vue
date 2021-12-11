@@ -18,7 +18,7 @@
             <div>
               <div class="uk-grid-medium" uk-grid>
                 <section class="uk-width-1-1 uk-width-expand@m">
-                  <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
+                  <div class="uk-grid-medium uk-grid-match uk-child-width-1-1 uk-child-width-1-2@s"  uk-grid>
                     <div v-for="item in getData" :key="item.id">
                       <a @click="detailBlog(item.id)">
                         <article
@@ -34,12 +34,7 @@
                           "
                         >
                           <div class="tm-ratio tm-ratio-16-9">
-                            <figure
-                              class="
-                                tm-media-box
-                                uk-cover-container uk-margin-remove
-                              "
-                            >
+                            <figure class="tm-media-box uk-cover-container uk-margin-remove">
                               <img
                                 :src="item.photo"
                                 alt="Everything You Need to Know About the MacBook Pro"
