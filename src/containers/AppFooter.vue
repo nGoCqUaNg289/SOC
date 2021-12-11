@@ -87,7 +87,7 @@
                     > -->
                     <span class="uk-margin-small-right"></span
                     >
-                    <span>Mở cửa 10:00–22:00</span>
+                    <span>Thời gian mở cửa 10:00–22:00</span>
                   </div>
                 </li>
               </ul>

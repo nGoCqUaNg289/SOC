@@ -201,6 +201,7 @@ export default {
   },
   created() {
     this.getBlog();
+    this.getDataAccount();
     // this.callFunction();
   },
   methods: {
@@ -240,7 +241,7 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-    }
+    },
     // detailBlog(id) {
     //   console.log(id);
     //   this.$router.push({
@@ -248,6 +249,28 @@ export default {
     //     params: { item: id },
     //   });
     // },
+    getDataAccount() {
+      
+      if(this.$store.state.tokenUser){
+      axios
+        .get(this.$store.state.MainLink + "customer/account", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.userName = response.data.object.fullname;
+          this.$store.state.tokenUser = localStorage.userToken
+          this.$store.state.InfoPersonal = response.data.object;
+          this.getTotalCart();
+          // console.log(response.data.object);
+        })
+        .catch((e) => {
+          // this.error.push(e);
+          console.log(e);
+        });
+      }      
+    },
   },
 };
 </script>

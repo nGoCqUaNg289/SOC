@@ -48,7 +48,7 @@
                       uk-grid
                     >
                       <section>
-                        <h3>Store</h3>
+                        <h3>Cửa hàng</h3>
                         <ul class="uk-list">
                           <li>
                             <a class="uk-link-heading" href="#"
@@ -77,8 +77,7 @@
                                 uk-icon="location"
                               ></span
                               ><span
-                                >St.&nbsp;Petersburg,
-                                Nevsky&nbsp;Prospect&nbsp;28</span
+                                >Xuân Phương, Nam Từ Liêm, Hà Nội</span
                               >
                             </div>
                           </li>
@@ -88,15 +87,15 @@
                                 class="uk-margin-small-right"
                                 uk-icon="clock"
                               ></span
-                              ><span>Daily 10:00–22:00</span>
+                              ><span>Thời gian mở cửa 10:00–22:00</span>
                             </div>
                           </li>
                         </ul>
                       </section>
                       <section>
-                        <h3>Feedback</h3>
+                        <h3>Góp ý</h3>
                         <dl class="uk-description-list">
-                          <dt><a uk-icon="facebook"></a> Facebook</dt>
+                          <dt><a uk-icon="facebook"></a>Facebook</dt>
                           <dd>
                             <a class="uk-link-muted" href="#"
                               >cooperation@example.com</a
@@ -251,7 +250,36 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  created(){
+    this.getDataAccount();
+  },
+  methods: {
+    getDataAccount() {
+      
+      if(this.$store.state.tokenUser){
+      axios
+        .get(this.$store.state.MainLink + "customer/account", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.userName = response.data.object.fullname;
+          this.$store.state.tokenUser = localStorage.userToken
+          this.$store.state.InfoPersonal = response.data.object;
+          this.getTotalCart();
+          // console.log(response.data.object);
+        })
+        .catch((e) => {
+          // this.error.push(e);
+          console.log(e);
+        });
+      }      
+    },
+  }
+};
 </script>
 
 <style>
