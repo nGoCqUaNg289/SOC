@@ -251,7 +251,7 @@ export default {
     // },
     getDataAccount() {
       
-      if(this.$store.state.tokenUser){
+
       axios
         .get(this.$store.state.MainLink + "customer/account", {
           headers: {
@@ -269,7 +269,22 @@ export default {
           // this.error.push(e);
           console.log(e);
         });
-      }      
+          
+    },
+    getTotalCart() {
+      axios
+        .get(this.$store.state.MainLink + "customer/cart/get", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+          this.$store.state.StoreCart = response.data.object;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };

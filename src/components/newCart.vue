@@ -27,6 +27,7 @@
                           <div>
                             <div class="uk-grid-small uk-child-width-expand" uk-grid>
                               <div>Giá</div>
+                              <div>Giảm giá</div>
                               <div class="tm-quantity-column">Số lượng</div>
                               <div>Tổng</div>
                               <div class="uk-width-auto">
@@ -63,6 +64,10 @@
                                 <div class="uk-text-muted uk-hidden@m">Price</div>
                                 <div>{{ formatPrice(item.price) }} đ</div>
                               </div>
+                              <div>
+                                <div class="uk-text-muted uk-hidden@m">discount</div>
+                                <div>{{ formatPrice(item.discount) }} đ</div>
+                              </div>
                               <div class="tm-cart-quantity-column">
                                 <!-- <a onclick="increment(-1, 'product-1')" uk-icon="icon: minus; ratio: .75" v-if="item.quantity > 0"></a> -->
                                 <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="3" v-model="item.quantity" min="1" max="5" oninput="this.value = Math.abs(this.value)"/>
@@ -83,11 +88,14 @@
                         </div>
                       </div>
                       <div class="uk-card-footer">
-                        <label><span class="uk-form-label uk-margin-small-right">Mã giảm giá</span>
-                          <div class="uk-inline"><a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="arrow-right"></a>
+                        
+                          <span class=" uk-margin-small-right">
+                            <i>Giá tổng tính đã được trừ đi giảm giá</i>
+                          </span>
+                          <!-- <div class="uk-inline"><a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="arrow-right"></a>
                             <input class="uk-input uk-form-width-small" type="text">
-                          </div>
-                        </label>
+                          </div> -->
+                        
                       </div>
                     </div>
                   </div>
@@ -120,7 +128,7 @@
                         </div>
                         <div class="uk-grid-small" uk-grid>
                           <div class="uk-width-expand uk-text-muted">Giảm giá</div>
-                          <div class="uk-text-danger">0 đ</div>
+                          <div class="uk-text-danger">- 0 đ</div>
                         </div>
                       </div>
                       <div class="uk-card-body">

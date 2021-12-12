@@ -1009,6 +1009,21 @@ export default {
         });
       }      
     },
+    getTotalCart() {
+      axios
+        .get(this.$store.state.MainLink + "customer/cart/get", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+          this.$store.state.StoreCart = response.data.object;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
 };
 </script>

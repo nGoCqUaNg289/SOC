@@ -138,7 +138,7 @@ export default {
   methods: {
     getDataAccount() {
       
-      if(this.$store.state.tokenUser){
+      if(localStorage.userToken){
       axios
         .get(this.$store.state.MainLink + "customer/account", {
           headers: {
