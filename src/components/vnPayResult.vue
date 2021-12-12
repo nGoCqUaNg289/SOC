@@ -24,7 +24,7 @@
                       <h1 class="uk-article-title">Thông tin thanh toán</h1>
                     </header>
                     <section class="uk-width-1-1 uk-width-expand@m">
-                      <article
+                      <!-- <article
                         class="
                           uk-card
                           uk-card-default
@@ -76,7 +76,89 @@
                             </button>
                           </form>
                         </form>
-                      </article>
+                      </article> -->
+
+                      <div class="uk-card uk-card-default uk-card-small tm-ignore-container">
+                            <header class="uk-card-header text-center">
+                            <h1 class="uk-h2">Đơn hàng của bạn</h1>
+                            </header>
+                            <section class="uk-card-body">
+                            <h3>
+                                <a class="uk-link-heading"># {{detailOrder.id}}
+                                    <span class="uk-text-muted uk-text-small">Từ ngày {{getDate(detailOrder.dateCreated)}}</span>
+                                </a>
+                            </h3>
+                            <table
+                                class="
+                                uk-table
+                                uk-table-small
+                                uk-table-justify
+                                uk-table-responsive
+                                uk-table-divider
+                                uk-margin-small-top
+                                uk-margin-remove-bottom
+                                "
+                            >
+                                <tbody>
+                                <tr>
+                                    <th class="uk-width-medium">Họ tên người mua</th>
+                                    <td>{{  detailOrder.customer.fullname }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="uk-width-medium">Email</th>
+                                    <td>{{  detailOrder.customer.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="uk-width-medium">Điện thoại</th>
+                                    <td>{{  detailOrder.customer.phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="uk-width-medium">Địa chỉ giao hàng</th>
+                                    <td>{{  detailOrder.customer.address }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="uk-width-medium">Tổng số sản phẩm</th>
+                                    <td>{{ detailOrder.orderDetails.length }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="uk-width-medium">Hình thức thanh toán</th>
+                                    <td>Thanh toán online</td>
+                                </tr>
+                                <tr>
+                                    <th class="uk-width-medium">Tổng tiền</th>
+                                    <td>{{formatPrice(detailOrder.sumprice)}} đ</td>
+                                </tr>
+                                <tr>
+                                    <th class="uk-width-medium">Trạng thái</th>
+                                    <td><span class="uk-label" v-if="detailOrder.status == 'Chờ xác nhận'">Chờ xác nhận</span></td>
+                                    <td>
+                                    <span class="uk-label uk-label-danger" v-if="detailOrder.status == 'Hủy'">Đơn hàng bị hủy</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <br>
+                            <table class="table" v-for="(item, index) in detailOrder.orderDetails" :key="index">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#{{index + 1}}</th>
+                                    <th scope="col">{{item.productName}} </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td scope="row">Giá sản phẩm</td>
+                                    <td>{{formatPrice(item.price)}} đ</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Số lượng</td>
+                                    <td>{{item.quantity}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </section>
+                        </div>
                     </section>
                   </article>
                 </section>
@@ -136,15 +218,16 @@ export default {
       console.log(this.vnResult);
     },
     getDataUserOrder() {
+      console.log(localStorage.orderDetails);
       axios
         .get(this.$store.state.MainLink + "customer/orders/" + localStorage.orderDetails, {
           headers: {
-            Authorization: this.$store.state.tokenUser,
+            Authorization: localStorage.userToken,
           },
         })
         .then((response) => {
           this.detailOrder = response.data.object;
-          console.log(this.detailOrder);
+          // console.log(this.detailOrder);
         })
         .catch((e) => {
           this.error.push(e);

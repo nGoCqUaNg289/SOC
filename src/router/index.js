@@ -8,7 +8,7 @@ import account from "../components/account.vue"
 import article from "../components/article.vue"
 import blog from "../components/blog.vue"
 import brands from "../components/brands.vue"
-import cart from "../components/cart.vue"
+// import cart from "../components/cart.vue"
 import catalog from "../components/catalog.vue"
 import category from "../components/category.vue"
 import checkout from "../components/checkout.vue"
@@ -28,6 +28,7 @@ import vnPayResult from "../components/vnPayResult.vue"
 import detailOrder from "../components/detailOrder.vue"
 import resultOrder from "../components/resultOrder.vue"
 import newCart from "../components/newCart.vue"
+// import checkout from "../components/checkout.vue"
 
 import Login from "../containers/Login.vue"
 import Register from "../containers/Register.vue"
@@ -59,7 +60,7 @@ const router = new Router({
         { path: "/compare", component: compare, name: "compare" },
         { path: "/catalog", component: catalog, name: "catalog" },
         { path: "/article", component: article, name: "article", props: true },
-        { path: "/cart", component: cart, name: "cart", props: true },
+        { path: "/cart", component: newCart, name: "cart", props: true },
         { path: "/category", component: category, name: "category", props: true },
         { path: "/checkout", component: checkout, name: "checkout", props: true },
         { path: "/delivery", component: delivery, name: "delivery" },
@@ -81,7 +82,8 @@ const router = new Router({
         { path: "/sendmail", component: confirmSendEmail, name: "sendmail" },
         { path: "/resetpass", component: resetPassword, name: "resetpass" },
         { path: "/resultorder", component: resultOrder, name: "resultorder" },
-        { path: "/newcart", component: newCart, name: "newcart" },
+        { path: "/newcart", component: newCart, name: "newcart", props: true },
+        // { path: "/checkout", component: checkout, name: "checkout", props: true },
     ]
 })
 

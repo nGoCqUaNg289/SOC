@@ -119,7 +119,8 @@ export default {
     return {
       getData: "",
       dataUser: {},
-      validateForm: ""
+      validateForm: "",
+      checkPay: true,
     };
   },
   created() {
@@ -135,7 +136,6 @@ export default {
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
     payment() {
-      // console.log(this.dataUser);
       if(this.dataUser.fullname == '' || this.dataUser.email == '' || this.dataUser.phone == '' || this.dataUser.address == ''){
         this.validateForm = "Vui lòng không để trống thông tin !"
       }else{
@@ -143,7 +143,6 @@ export default {
         name: "vnpay",
       });
       }
-      
     },
     cart() {
       this.$router.push({

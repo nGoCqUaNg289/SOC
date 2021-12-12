@@ -66,7 +66,8 @@
                                 </tr>
                                 <tr>
                                     <th class="uk-width-medium">Hình thức thanh toán</th>
-                                    <td>Thanh toán online</td>
+                                    <td v-if="detailOrder.typePayment == true">Thanh toán trực truyến </td>
+                                    <td v-else-if="detailOrder.typePayment == false">Thanh toán khi nhận hàng</td>
                                 </tr>
                                 <tr>
                                     <th class="uk-width-medium">Tổng tiền</th>
@@ -193,9 +194,9 @@ export default {
     },
     getDataUserOrder() {
       axios
-        .get(this.$store.state.MainLink + "customer/orders/" + this.$store.state.orderDetails, {
+        .get(this.$store.state.MainLink + "customer/orders/" + localStorage.orderDetails, {
           headers: {
-            Authorization: this.$store.state.tokenUser,
+            Authorization: localStorage.userToken,
           },
         })
         .then((response) => {

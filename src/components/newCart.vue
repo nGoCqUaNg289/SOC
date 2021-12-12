@@ -6,10 +6,16 @@
             <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
               <div class="uk-text-center">
                 <ul class="uk-breadcrumb uk-flex-center uk-margin-remove">
-                  <li><a href="index.html">Home</a></li>
-                  <li><span>Cart</span></li>
+                  <li>
+                    <router-link to="/" style="text-decoration: none">
+                      <a>Trang chủ</a>
+                    </router-link>
+                  </li>
+                  <li><span>Giỏ hàng</span></li>
                 </ul>
-                <h1 class="uk-margin-small-top uk-margin-remove-bottom">Cart</h1>
+                <h1 class="uk-margin-small-top uk-margin-remove-bottom">
+                  Giỏ hàng
+                </h1>
               </div>
               <div>
                 <div class="uk-grid-medium" uk-grid>
@@ -17,12 +23,12 @@
                     <div class="uk-card uk-card-default uk-card-small tm-ignore-container">
                       <header class="uk-card-header uk-text-uppercase uk-text-muted uk-text-center uk-text-small uk-visible@m">
                         <div class="uk-grid-small uk-child-width-1-2" uk-grid>
-                          <div>product</div>
+                          <div>Sản phẩm</div>
                           <div>
                             <div class="uk-grid-small uk-child-width-expand" uk-grid>
-                              <div>price</div>
-                              <div class="tm-quantity-column">quantity</div>
-                              <div>sum</div>
+                              <div>Giá</div>
+                              <div class="tm-quantity-column">Số lượng</div>
+                              <div>Tổng</div>
                               <div class="uk-width-auto">
                                 <div style="width: 20px;"></div>
                               </div>
@@ -30,18 +36,23 @@
                           </div>
                         </div>
                       </header>
-                      <div class="uk-card-body">
+                      <div class="uk-card-body" v-for="(item, index) in DetailsCart" :key="index">
                         <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@m uk-flex-middle" uk-grid>
                           <!-- Product cell-->
                           <div>
                             <div class="uk-grid-small" uk-grid>
                               <div class="uk-width-1-3">
-                                <div class="tm-ratio tm-ratio-4-3"><a class="tm-media-box" href="product.html">
-                                    <figure class="tm-media-box-wrap"><img src="images/products/1/1-small.jpg" alt="Apple MacBook Pro 15&quot; Touch Bar MPTU2LL/A 256GB (Silver)">
-                                    </figure></a></div>
+                                <div class="tm-ratio tm-ratio-4-3">
+                                  <a class="tm-media-box">
+                                    <figure class="tm-media-box-wrap">
+                                      <img :src="item.photo" alt="Ảnh của sản phẩm">
+                                    </figure>
+                                  </a>
+                                </div>
                               </div>
                               <div class="uk-width-expand">
-                                <div class="uk-text-meta">Laptop</div><a class="uk-link-heading" href="product.html">Apple MacBook Pro 15&quot; Touch Bar MPTU2LL/A 256GB (Silver)</a>
+                                <div class="uk-text-meta">Laptop</div>
+                                <a class="uk-link-heading">{{ item.productName }}</a>
                               </div>
                             </div>
                           </div>
@@ -50,50 +61,23 @@
                             <div class="uk-grid-small uk-child-width-1-1 uk-child-width-expand@s uk-text-center" uk-grid>
                               <div>
                                 <div class="uk-text-muted uk-hidden@m">Price</div>
-                                <div>$1599.00</div>
+                                <div>{{ formatPrice(item.price) }} đ</div>
                               </div>
-                              <div class="tm-cart-quantity-column"><a onclick="increment(-1, 'product-1')" uk-icon="icon: minus; ratio: .75"></a>
-                                <input class="uk-input tm-quantity-input" id="product-1" type="text" maxlength="3" value="1"/><a onclick="increment(+1, 'product-1')" uk-icon="icon: plus; ratio: .75"></a>
-                              </div>
-                              <div>
-                                <div class="uk-text-muted uk-hidden@m">Sum</div>
-                                <div>$1599.00</div>
-                              </div>
-                              <div class="uk-width-auto@s"><a class="uk-text-danger" uk-tooltip="Remove"><span uk-icon="close"></span></a></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="uk-card-body">
-                        <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@m uk-flex-middle" uk-grid>
-                          <!-- Product cell-->
-                          <div>
-                            <div class="uk-grid-small" uk-grid>
-                              <div class="uk-width-1-3">
-                                <div class="tm-ratio tm-ratio-4-3"><a class="tm-media-box" href="product.html">
-                                    <figure class="tm-media-box-wrap"><img src="images/products/2/2-small.jpg" alt="Apple MacBook 12&quot; MNYN2LL/A 512GB (Rose Gold)">
-                                    </figure></a></div>
-                              </div>
-                              <div class="uk-width-expand">
-                                <div class="uk-text-meta">Laptop</div><a class="uk-link-heading" href="product.html">Apple MacBook 12&quot; MNYN2LL/A 512GB (Rose Gold)</a>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- Other cells-->
-                          <div>
-                            <div class="uk-grid-small uk-child-width-1-1 uk-child-width-expand@s uk-text-center" uk-grid>
-                              <div>
-                                <div class="uk-text-muted uk-hidden@m">Price</div>
-                                <div>$1549.00</div>
-                              </div>
-                              <div class="tm-cart-quantity-column"><a onclick="increment(-1, 'product-2')" uk-icon="icon: minus; ratio: .75"></a>
-                                <input class="uk-input tm-quantity-input" id="product-2" type="text" maxlength="3" value="1"/><a onclick="increment(+1, 'product-2')" uk-icon="icon: plus; ratio: .75"></a>
+                              <div class="tm-cart-quantity-column">
+                                <!-- <a onclick="increment(-1, 'product-1')" uk-icon="icon: minus; ratio: .75" v-if="item.quantity > 0"></a> -->
+                                <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="3" v-model="item.quantity" min="1" max="5" oninput="this.value = Math.abs(this.value)"/>
+                                <!-- <a onclick="increment(+1, 'product-1')" uk-icon="icon: plus; ratio: .75"></a> -->
                               </div>
                               <div>
                                 <div class="uk-text-muted uk-hidden@m">Sum</div>
-                                <div>$1549.00</div>
+                                {{formatPrice((totalPrice.value = (item.price - item.discount)* item.quantity))}} đ
+                                <!-- <div>$1599.00</div> -->
                               </div>
-                              <div class="uk-width-auto@s"><a class="uk-text-danger" uk-tooltip="Remove"><span uk-icon="close"></span></a></div>
+                              <div class="uk-width-auto@s">
+                                <a class="uk-text-danger" uk-tooltip="Remove"  @click="deleteProduct(index, item.id)">
+                                  <span uk-icon="close"></span>
+                                </a>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -111,37 +95,45 @@
                     <div class="uk-card uk-card-default uk-card-small tm-ignore-container" uk-sticky="offset: 30; bottom: true; media: @m;">
                       <div class="uk-card-body">
                         <div class="uk-grid-small" uk-grid>
-                          <div class="uk-width-expand uk-text-muted">Subtotal</div>
-                          <div>$3148</div>
-                        </div>
-                        <div class="uk-grid-small" uk-grid>
-                          <div class="uk-width-expand uk-text-muted">Discount</div>
-                          <div class="uk-text-danger">−$29</div>
+                          <div class="uk-width-expand uk-text-muted uk-text-bold">Giao tới</div>
                         </div>
                       </div>
-                      <div class="uk-card-body">
-                        <div class="uk-grid-small uk-flex-middle" uk-grid>
-                          <div class="uk-width-expand uk-text-muted">Total</div>
-                          <div class="uk-text-lead uk-text-bolder">$3119</div>
-                        </div><a class="uk-button uk-button-primary uk-margin-small uk-width-1-1" href="checkout.html">checkout</a>
+                      <div class="uk-card-body" v-if="this.$store.state.tokenUser">
+                        <!-- <div class="uk-grid-small uk-flex-middle" uk-grid>
+                          <div class="uk-width-expand uk-text-bolder">Trịnh Ngọc Quang</div>
+                          <div class="uk-width-expand uk-text-bolder">0868987911</div>
+                        </div> -->
+                          <div class="row">
+                            <div class="col-7 uk-text-bolder">{{ dataUser.fullname }}</div>
+                            <div class="col-5 uk-text-bolder">{{ dataUser.phone }}</div>
+                          </div>
+                        <!-- <a class="uk-button uk-button-primary uk-margin-small uk-width-1-1" href="checkout.html">checkout</a> -->
                       </div>
                     </div>
                     <div class="uk-card uk-card-default uk-card-small tm-ignore-container" uk-sticky="offset: 30; bottom: true; media: @m;" style="margin-top: 15px">
                       <div class="uk-card-body">
                         <div class="uk-grid-small" uk-grid>
-                          <div class="uk-width-expand uk-text-muted">Subtotal</div>
-                          <div>$3148</div>
+                          <div class="uk-width-expand uk-text-muted">Tạm tính</div>
+                          <div>
+                            {{ formatPrice(sumTotal) }} đ
+                          </div>
                         </div>
                         <div class="uk-grid-small" uk-grid>
-                          <div class="uk-width-expand uk-text-muted">Discount</div>
-                          <div class="uk-text-danger">−$29</div>
+                          <div class="uk-width-expand uk-text-muted">Giảm giá</div>
+                          <div class="uk-text-danger">0 đ</div>
                         </div>
                       </div>
                       <div class="uk-card-body">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
-                          <div class="uk-width-expand uk-text-muted">Total</div>
-                          <div class="uk-text-lead uk-text-bolder">$3119</div>
-                        </div><a class="uk-button uk-button-primary uk-margin-small uk-width-1-1" href="checkout.html">checkout</a>
+                          <div class="uk-width-expand uk-text-muted">Tổng cộng</div>
+                          <div class="uk-text-lead uk-text-bolder">
+                            {{ formatPrice(sumTotal) }} đ
+                          </div>
+                        </div>
+                        <br>
+                        <!-- <br> -->
+                        <!-- <br> -->
+                        <a class="uk-button uk-button-primary uk-margin-small uk-width-1-1"  @click="checkout()">Mua hàng</a>
                       </div>
                     </div>
                   </div>
@@ -198,11 +190,10 @@ export default {
   },
   methods: {
     getDataUser() {
-      if (this.$store.state.tokenUser) {
         axios
           .get(this.$store.state.MainLink + "customer/account", {
             headers: {
-              Authorization: this.$store.state.tokenUser,
+              Authorization: localStorage.userToken,
             },
           })
           .then((response) => {
@@ -213,7 +204,6 @@ export default {
             this.error.push(e);
             console.log(e);
           });
-      }
     },
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
@@ -235,7 +225,7 @@ export default {
             for (let item in this.DetailsCart) {
               this.totalPriceProduct.push(response.data.object[item].price);
             }
-            
+
             // console.log(this.DetailsCart)
           })
           .catch((e) => {
@@ -301,9 +291,12 @@ export default {
         name: "cartinfo",
       });
     },
+    checkout(){
+      this.$router.push({
+        name: "checkout",
+      });
+    },
     getDataAccount() {
-      
-      if(this.$store.state.tokenUser){
       axios
         .get(this.$store.state.MainLink + "customer/account", {
           headers: {
@@ -313,15 +306,14 @@ export default {
         .then((response) => {
           this.$store.state.userName = response.data.object.fullname;
           this.$store.state.tokenUser = localStorage.userToken
-          this.$store.state.InfoPersonal = response.data.object;
+          // this.$store.state.InfoPersonal = response.data.object;
           this.getTotalCart();
-          // console.log(response.data.object);
+          console.log(response.data.object);
         })
         .catch((e) => {
           // this.error.push(e);
           console.log(e);
         });
-      }      
     },
     getTotalCart() {
       if(this.$store.state.tokenUser){
@@ -339,7 +331,7 @@ export default {
           console.log(e);
         });
       }
-      
+
     },
   },
   watch: {

@@ -1,39 +1,16 @@
 <template>
   <div class="uk-offcanvas-content">
-    <header>
-      <div class="uk-navbar-container tm-navbar-container">
-        <div class="uk-container" uk-navbar>
-          <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" href="index.html"
-              ><img src="images/logo.svg" width="90" height="32" alt="Logo"
-            /></a>
-          </div>
-          <div class="uk-navbar-right">
-            <a class="uk-navbar-item uk-link-muted" href="#"
-              ><span
-                class="uk-margin-xsmall-right"
-                uk-icon="icon: receiver; ratio: .75;"
-              ></span
-              ><span class="tm-pseudo">8 800 799 99 99</span></a
-            >
-          </div>
-        </div>
-      </div>
-    </header>
     <main>
       <section class="uk-section uk-section-small">
         <div class="uk-container">
           <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
             <section class="uk-text-center">
-              <a class="uk-link-muted uk-text-small" href="cart.html"
-                ><span
-                  class="uk-margin-xsmall-right"
-                  uk-icon="icon: arrow-left; ratio: .75;"
-                ></span
-                >Return to cart</a
-              >
+              <a class="uk-link-muted uk-text-small" @click="returnCart()">
+                <span class="uk-margin-xsmall-right" uk-icon="icon: arrow-left; ratio: .75;"></span>
+                Quay lại giỏ hàng
+              </a>
               <h1 class="uk-margin-small-top uk-margin-remove-bottom">
-                Checkout
+                Thanh toán
               </h1>
             </section>
             <section>
@@ -47,348 +24,55 @@
                 >
                   <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
                     <section>
-                      <h2 class="tm-checkout-title">Contact Information</h2>
+                      <h2 class="tm-checkout-title">Thông tin liên lạc</h2>
                       <div
                         class="
                           uk-card uk-card-default uk-card-small uk-card-body
                           tm-ignore-container
                         "
                       >
-                        <div
-                          class="
-                            uk-grid-small
-                            uk-child-width-1-1
-                            uk-child-width-1-2@s
-                          "
-                          uk-grid
-                        >
+                        <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@s" uk-grid>
                           <div>
-                            <label>
+                            <label class="full-size">
                               <div class="uk-form-label uk-form-label-required">
-                                First Name
+                                Họ tên
                               </div>
-                              <input class="uk-input" type="text" required />
+                              <input class="uk-input" type="text" v-model="dataUser.fullname" required />
                             </label>
                           </div>
                           <div>
-                            <label>
-                              <div class="uk-form-label uk-form-label-required">
-                                Last Name
-                              </div>
-                              <input class="uk-input" type="text" required />
-                            </label>
-                          </div>
-                          <div>
-                            <label>
-                              <div class="uk-form-label uk-form-label-required">
-                                Phone Number
-                              </div>
-                              <input class="uk-input" type="tel" required />
-                            </label>
-                          </div>
-                          <div>
-                            <label>
+                            <label class="full-size">
                               <div class="uk-form-label uk-form-label-required">
                                 Email
                               </div>
-                              <input class="uk-input" type="email" required />
+                              <input class="uk-input" type="email" v-model="dataUser.email" required />
                             </label>
                           </div>
+                          <div>
+                            <label class="full-size">
+                              <div class="uk-form-label uk-form-label-required">
+                                Số điện thoại
+                              </div>
+                              <input class="uk-input" type="tel" v-model="dataUser.phone" required />
+                            </label>
+                          </div>
+                          <div>
+                            <label class="full-size">
+                              <div class="uk-form-label uk-form-label-required">
+                                Địa chỉ giao hàng
+                              </div>
+                              <input class="uk-input" type="text" v-model="dataUser.address" required />
+                            </label>
+                          </div>
+                          <div class="col-12" style="color: red; text-align: center">
+                            <p>{{validateForm}}</p>
+                          </div>
+                          
                         </div>
                       </div>
                     </section>
                     <section>
-                      <h2 class="tm-checkout-title">Shipping</h2>
-                      <div
-                        class="
-                          uk-card uk-card-default uk-card-small uk-card-body
-                          tm-ignore-container
-                        "
-                      >
-                        <div
-                          class="
-                            uk-grid-small
-                            uk-grid-match
-                            uk-child-width-1-1
-                            uk-child-width-1-3@s
-                            uk-flex-center
-                          "
-                          uk-switcher="toggle: &gt; * &gt; .tm-choose"
-                          uk-grid
-                        >
-                          <div>
-                            <a class="tm-choose" href="#">
-                              <div class="tm-choose-title">
-                                pick up from store
-                              </div>
-                              <div class="tm-choose-description">
-                                Free, tomorrow
-                              </div>
-                            </a>
-                          </div>
-                          <div>
-                            <a class="tm-choose" href="#">
-                              <div class="tm-choose-title">
-                                delivery in city
-                              </div>
-                              <div class="tm-choose-description">
-                                Free, tomorrow
-                              </div>
-                            </a>
-                          </div>
-                          <div>
-                            <a class="tm-choose" href="#">
-                              <div class="tm-choose-title">
-                                regional delivery
-                              </div>
-                              <div class="tm-choose-description">
-                                Via Russian Post or postal courier services.
-                                Sending to any country
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="uk-switcher uk-margin">
-                          <section>
-                            <div
-                              class="
-                                uk-grid-small
-                                uk-child-width-1-1
-                                uk-child-width-1-2@s
-                              "
-                              uk-grid
-                            >
-                              <div>
-                                <figure
-                                  class="
-                                    uk-card-media-top
-                                    tm-ratio tm-ratio-16-9
-                                    js-map
-                                  "
-                                  data-latitude="59.9356728"
-                                  data-longitude="30.3258604"
-                                  data-zoom="14"
-                                ></figure>
-                              </div>
-                              <div class="uk-text-small">
-                                <div class="uk-text-bolder">Store Name</div>
-                                <div>
-                                  St.&nbsp;Petersburg,
-                                  Nevsky&nbsp;Prospect&nbsp;28
-                                </div>
-                                <div>Daily 10:00–22:00</div>
-                              </div>
-                            </div>
-                          </section>
-                          <section>
-                            <div class="uk-grid-small" uk-grid>
-                              <div class="uk-width-expand">
-                                <label>
-                                  <div
-                                    class="uk-form-label uk-form-label-required"
-                                  >
-                                    Street
-                                  </div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div class="uk-width-1-3 uk-width-1-6@s">
-                                <label>
-                                  <div
-                                    class="uk-form-label uk-form-label-required"
-                                  >
-                                    House
-                                  </div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                            </div>
-                            <div
-                              class="
-                                uk-grid-small
-                                uk-child-width-1-3
-                                uk-child-width-1-4@s
-                              "
-                              uk-grid
-                            >
-                              <div>
-                                <label>
-                                  <div class="uk-form-label">Building</div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div>
-                                <label>
-                                  <div class="uk-form-label">Entrance</div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div>
-                                <label>
-                                  <div class="uk-form-label">Floor</div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div>
-                                <label>
-                                  <div class="uk-form-label">Apartment</div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div class="uk-width-1-1">
-                                <label>
-                                  <div class="uk-form-label">Comment</div>
-                                  <textarea
-                                    class="uk-textarea"
-                                    rows="5"
-                                    placeholder="Additional information: phone numbers or doorphone code"
-                                  ></textarea>
-                                </label>
-                              </div>
-                            </div>
-                            <div
-                              class="
-                                uk-grid-small
-                                uk-child-width-1-2
-                                uk-child-width-1-4@s
-                              "
-                              uk-grid
-                            >
-                              <div class="uk-width-1-1 uk-text-meta">
-                                Choose a convenient date and delivery interval
-                              </div>
-                              <div>
-                                <select class="uk-select">
-                                  <option>Tomorrow</option>
-                                  <option>25 May</option>
-                                  <option>26 May</option>
-                                  <option>27 May</option>
-                                  <option>28 May</option>
-                                  <option>29 May</option>
-                                  <option>30 May</option>
-                                  <option>1 June</option>
-                                </select>
-                              </div>
-                              <div>
-                                <select class="uk-select">
-                                  <option>09:00 – 12:00</option>
-                                  <option>12:00 – 15:00</option>
-                                  <option>15:00 – 18:00</option>
-                                  <option>18:00 – 21:00</option>
-                                  <option>21:00 – 23:00</option>
-                                </select>
-                              </div>
-                            </div>
-                          </section>
-                          <div>
-                            <div class="uk-grid-small" uk-grid>
-                              <div class="uk-width-1-1">
-                                <label>
-                                  <div
-                                    class="uk-form-label uk-form-label-required"
-                                  >
-                                    Country
-                                  </div>
-                                  <select class="uk-select">
-                                    <option>Choose the country</option>
-                                    <option value="RU">Russia</option>
-                                  </select>
-                                </label>
-                              </div>
-                            </div>
-                            <div class="uk-grid-small" uk-grid>
-                              <div class="uk-width-expand">
-                                <label>
-                                  <div
-                                    class="uk-form-label uk-form-label-required"
-                                  >
-                                    City
-                                  </div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div class="uk-width-1-3 uk-width-1-6@s">
-                                <label>
-                                  <div
-                                    class="uk-form-label uk-form-label-required"
-                                  >
-                                    Post Code
-                                  </div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                            </div>
-                            <div class="uk-grid-small" uk-grid>
-                              <div class="uk-width-expand">
-                                <label>
-                                  <div
-                                    class="uk-form-label uk-form-label-required"
-                                  >
-                                    Street
-                                  </div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div class="uk-width-1-3 uk-width-1-6@s">
-                                <label>
-                                  <div
-                                    class="uk-form-label uk-form-label-required"
-                                  >
-                                    House
-                                  </div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                            </div>
-                            <div
-                              class="
-                                uk-grid-small
-                                uk-child-width-1-3
-                                uk-child-width-1-4@s
-                              "
-                              uk-grid
-                            >
-                              <div>
-                                <label>
-                                  <div class="uk-form-label">Building</div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div>
-                                <label>
-                                  <div class="uk-form-label">Entrance</div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div>
-                                <label>
-                                  <div class="uk-form-label">Floor</div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div>
-                                <label>
-                                  <div class="uk-form-label">Apartment</div>
-                                  <input class="uk-input" type="text" />
-                                </label>
-                              </div>
-                              <div class="uk-width-1-1">
-                                <label>
-                                  <div class="uk-form-label">Comment</div>
-                                  <textarea
-                                    class="uk-textarea"
-                                    rows="5"
-                                    placeholder="Additional information: phone numbers or doorphone code"
-                                  ></textarea>
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </section>
-                    <section>
-                      <h2 class="tm-checkout-title">Payment</h2>
+                      <h2 class="tm-checkout-title">Phương thức thanh toán</h2>
                       <div
                         class="
                           uk-card uk-card-default uk-card-small
@@ -407,27 +91,43 @@
                             uk-switcher="toggle: &gt; * &gt; .tm-choose"
                             uk-grid
                           >
-                            <div>
-                              <a class="tm-choose" href="#">
+                            <div class="form-check">
+                              <div class="" style="text-decoration: none">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id="flexRadioDefault1"
+                                    value="1"
+                                    v-model="typeOfPay"
+                                  />
                                 <div class="tm-choose-title">
-                                  payment upon receipt
+                                  Thanh toán khi nhận hàng
                                 </div>
-                                <div class="tm-choose-description">
-                                  Cash, credit card
+                                <div class="uk-text-meta">
+                                  Trả tiền mặt khi nhận hàng
                                 </div>
-                              </a>
+                              </div>
                             </div>
-                            <div>
-                              <a class="tm-choose" href="#">
+                            <div class="form-check">
+                              <div style="text-decoration: none">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="flexRadioDefault"
+                                  id="flexRadioDefault2"
+                                  v-model="typeOfPay"
+                                  value="2"
+                                />
                                 <div class="tm-choose-title">
-                                  online by card
+                                  Thanh toán trực tuyến
                                 </div>
-                                <div class="tm-choose-description">
-                                  Visa, MasterCard
+                                <div class="uk-text-meta">
+                                  Thanh toán qua cổng thông tin VNPAY
                                 </div>
-                              </a>
+                              </div>
                             </div>
-                            <div>
+                            <!-- <div>
                               <a class="tm-choose" href="#">
                                 <div class="tm-choose-title">
                                   electronic payment
@@ -436,7 +136,7 @@
                                   PayPal, Yandex.Money, QIWI
                                 </div>
                               </a>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                         <div class="uk-card-footer">
@@ -454,20 +154,12 @@
                                 class="uk-margin-xsmall-right"
                                 uk-icon="icon: lock; ratio: .75;"
                               ></span
-                              >Security of payments is is provided by secure
-                              protocols
+                              >Bảo mật thanh toán bởi
                             </div>
                             <div>
                               <img
-                                src="images/verified-by-visa.svg"
-                                title="Verified by Visa"
-                                style="height: 25px"
-                              />
-                            </div>
-                            <div>
-                              <img
-                                src="images/mastercard-securecode.svg"
-                                title="MasterCard SecureCode"
+                                src="images/logovnpay.svg"
+                                title="Verified by VNPAY"
                                 style="height: 25px"
                               />
                             </div>
@@ -486,86 +178,88 @@
                     uk-sticky="offset: 30; bottom: true; media: @m;"
                   >
                     <section class="uk-card-body">
-                      <h4>Items in order</h4>
-                      <div class="uk-grid-small" uk-grid>
+                      <h4>Danh sách sản phẩm</h4>
+                      <div class="uk-grid-small" uk-grid v-for="item in DetailsOrder" :key="item.id">
                         <div class="uk-width-expand">
                           <div class="uk-text-small">
-                            Apple MacBook Pro 15&quot; Touch Bar MPTU2LL/A 256GB
-                            (Silver)
+                            {{item.productName}}
                           </div>
-                          <div class="uk-text-meta">1 × $1599.00</div>
+                          <div class="uk-text-meta">{{item.quantity}} × {{ formatPrice(item.price) }} đ</div>
                         </div>
                         <div class="uk-text-right">
-                          <div>$1599.00</div>
-                        </div>
-                      </div>
-                      <div class="uk-grid-small" uk-grid>
-                        <div class="uk-width-expand">
-                          <div class="uk-text-small">
-                            Apple MacBook 12&quot; MNYN2LL/A 512GB (Rose Gold)
-                          </div>
-                          <div class="uk-text-meta">1 × $1549.00</div>
-                        </div>
-                        <div class="uk-text-right">
-                          <div>$1549.00</div>
+                          <div>{{ formatPrice(item.price*item.quantity) }} đ</div>
                         </div>
                       </div>
                     </section>
                     <section class="uk-card-body">
                       <div class="uk-grid-small" uk-grid>
                         <div class="uk-width-expand">
-                          <div class="uk-text-muted">Shipping</div>
-                        </div>
-                        <div class="uk-text-right">
-                          <div>Pick up from store</div>
-                          <div class="uk-text-meta">Free, tomorrow</div>
+                          <div class="uk-text-muted">Giao tới</div>
                         </div>
                       </div>
+                      <div class="uk-text-left uk-grid-small">
+                          <div>{{dataUser.fullname}}</div>
+                          <br>
+                          <div>{{dataUser.phone}}</div>
+                          <br>
+                          <div>{{dataUser.email}}</div>
+                          <br>
+                          <div>{{dataUser.address}}</div>
+                      </div>
+                      <hr>
                       <div class="uk-grid-small" uk-grid>
                         <div class="uk-width-expand">
-                          <div class="uk-text-muted">Payment</div>
+                          <div class="uk-text-muted">Thanh toán</div>
                         </div>
                         <div class="uk-text-right">
-                          <div>Online by card</div>
+                          <div v-if="typeOfPay == 2">Trực tuyến</div>
+                          <div v-else-if="typeOfPay == 1">Khi nhận hàng</div>
+                          <div v-else></div>
                         </div>
                       </div>
                     </section>
                     <section class="uk-card-body">
                       <div class="uk-grid-small" uk-grid>
                         <div class="uk-width-expand">
-                          <div class="uk-text-muted">Subtotal</div>
+                          <div class="uk-text-muted">Tạm tính</div>
                         </div>
                         <div class="uk-text-right">
-                          <div>$3148</div>
+                          <div>{{ formatPrice(sumTotal) }} đ</div>
                         </div>
                       </div>
                       <div class="uk-grid-small" uk-grid>
                         <div class="uk-width-expand">
-                          <div class="uk-text-muted">Discount</div>
+                          <div class="uk-text-muted">Giảm giá</div>
                         </div>
                         <div class="uk-text-right">
-                          <div class="uk-text-danger">−$29</div>
+                          <div class="uk-text-danger">- 0 đ</div>
                         </div>
                       </div>
                     </section>
                     <section class="uk-card-body">
                       <div class="uk-grid-small uk-flex-middle" uk-grid>
                         <div class="uk-width-expand">
-                          <div class="uk-text-muted">Total</div>
+                          <div class="uk-text-muted">Tổng</div>
                         </div>
                         <div class="uk-text-right">
-                          <div class="uk-text-lead uk-text-bolder">$3119</div>
+                          <div class="uk-text-lead uk-text-bolder">{{ formatPrice(sumTotal) }} đ</div>
                         </div>
                       </div>
                       <button
+                        v-if="checkPay == true"
                         class="
                           uk-button
                           uk-button-primary
                           uk-margin-small
                           uk-width-1-1
                         "
+                        @click="payment()"
                       >
-                        checkout
+                        Đặt hàng
+                      </button>
+                      <button v-else class="btn btn-primary uk-button uk-button-primary uk-margin-small uk-width-1-1" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Vui lòng chờ ...
                       </button>
                     </section>
                   </div>
@@ -576,32 +270,168 @@
         </div>
       </section>
     </main>
-    <footer>
-      <div class="uk-section uk-section-secondary uk-section-small uk-light">
-        <div class="uk-container">
-          <div class="uk-flex-middle" uk-grid>
-            <div class="uk-width-expand">
-              <div>© Company Name. All rights reserved</div>
-            </div>
-            <div>
-              <a class="uk-link-muted" href="#"
-                ><span
-                  class="uk-margin-xsmall-right"
-                  uk-icon="icon: receiver; ratio: .75;"
-                ></span
-                ><span class="tm-pseudo">8 800 799 99 99</span></a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  props: {
+    item: Number,
+  },
+  data() {
+    return {
+      getData: "",
+      dataUser: {},
+      DetailsOrder: [],
+      sumTotal: 0,
+      typeOfPay: "1",
+      orderDetails: [],
+      validateForm: "",
+      checkPay: true,
+    };
+  },
+  created() {
+    this.getOrderUser();
+    this.sumPrice();
+    this.getDataUser();
+    this.getDataAccount();
+  },
+  methods: {
+    formatPrice(value) {
+      let val = (value / 1).toFixed(0).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+    getDataUser() {
+      this.dataUser = {
+        address: this.$store.state.InfoPersonal.address,
+        email: this.$store.state.InfoPersonal.email,
+        fullname: this.$store.state.InfoPersonal.fullname,
+        phone: this.$store.state.InfoPersonal.phone,
+      };
+    },
+    getOrderUser() {
+      this.DetailsOrder = this.$store.state.StoreCart;
+      this.orderDetails = this.$store.state.StoreCart.map((detail) => {
+        return {
+          productId: detail.productId,
+          quantity: detail.quantity,
+          price: detail.price,
+          discount: 0,
+        };
+      });
+    },
+    payment() {
+      
+      this.checkPay = false;
+      console.log(this.checkPay)
+      if(this.dataUser.fullname == '' || this.dataUser.email == '' || this.dataUser.phone == '' || this.dataUser.address == ''){
+        this.validateForm = "Vui lòng không để trống thông tin !"
+        this.checkPay = true
+      }else{
+        this.addToOrder()
+      }
+    },
+    sumPrice() {
+      for (let i = 0; i < this.DetailsOrder.length; i++) {
+        this.sumTotal +=
+          this.DetailsOrder[i].price * this.DetailsOrder[i].quantity;
+      }
+      return this.sumTotal;
+    },
+    addToOrder() {
+      let item = {
+        sumprice: this.sumTotal,
+        customer: this.dataUser,
+        orderDetails: this.orderDetails,
+      };
+      this.checkPay = false
+      axios
+        .post(this.$store.state.MainLink + "customer/orders/new", item, {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          let infoCart = {
+            OrderInfo: "thanh toán máy tính",
+            ordersId: response.data.object.id,
+            returnURL: "http://150.95.105.29/vnPayResult"
+          };
+          this.$store.state.orderDetails = response.data.object.id;
+          localStorage.orderDetails = response.data.object.id;
+          if (this.typeOfPay == "1") {
+            this.$toasted.show("Đặt hàng thành công !", {
+              type: "success",
+              duration: 2000,
+            });
+            this.$router.push({
+              name: "resultorder",
+            })
+          } else {
+            axios
+              .post(
+                this.$store.state.MainLink + "customer/pay/getpayurl",
+                infoCart
+              )
+              .then((response) => {
+                window.location = response.data.object;
+              });
+          }
+        })
+        .catch((e) => {
+          this.$toasted.show("Đặt hàng thất bại !", {
+            type: "error",
+            duration: 2000,
+          });
+          console.log(e);
+          this.checkPay = true
+        });
+    },
+    returnCart() {
+      this.$router.push({
+        name: "cart",
+      });
+    },
+    getDataAccount() {
+      axios
+        .get(this.$store.state.MainLink + "customer/account", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.userName = response.data.object.fullname;
+          this.$store.state.tokenUser = localStorage.userToken
+          this.$store.state.InfoPersonal = response.data.object;
+          this.getTotalCart();
+        })
+        .catch((e) => {
+
+          console.log(e);
+        });     
+    },
+    getTotalCart() {
+      axios
+        .get(this.$store.state.MainLink + "customer/cart/get", {
+          headers: {
+            Authorization: localStorage.userToken,
+          },
+        })
+        .then((response) => {
+          this.$store.state.totalCart = response.data.object.length;
+          this.$store.state.StoreCart = response.data.object;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
+};
 </script>
 
-<style>
+<style scoped>
+label.full-size {
+  width: 100%;
+}
 </style>
