@@ -245,12 +245,12 @@
                                     <h3 class="tm-product-card-title">
                                       <a class="uk-link-heading" @click="detailProduct(item.id)">{{ item.name }}</a>
                                     </h3>
-                                    <ul class="uk-list uk-text-small tm-product-card-properties">
+                                    <!-- <ul class="uk-list uk-text-small tm-product-card-properties">
                                         <li><span class="uk-text-muted">Diagonal display: </span><span>15.4"</span></li>
                                         <li><span class="uk-text-muted">CPU: </span><span>Intel®&nbsp;Core™ i7</span></li>
                                         <li><span class="uk-text-muted">RAM: </span><span>16&nbsp;GB</span></li>
                                         <li><span class="uk-texưt-muted">Video Card: </span><span>AMD Radeon Pro 555</span></li>
-                                      </ul>
+                                      </ul> -->
                                   </div>
                                   <div class="tm-product-card-shop">
                                     <div class="tm-product-card-prices">

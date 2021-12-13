@@ -51,7 +51,7 @@
                                   </a>
                                 </div>
                               </div>
-                              <div class="uk-width-expand">
+                              <div class="uk-width-expand" style="font-size: 14px">
                                 <div class="uk-text-meta">Laptop</div>
                                 <a class="uk-link-heading">{{ item.productName }}</a>
                               </div>
@@ -59,22 +59,22 @@
                           </div>
                           <!-- Other cells-->
                           <div>
-                            <div class="uk-grid-small uk-child-width-1-1 uk-child-width-expand@s uk-text-center" uk-grid>
+                            <div class="uk-grid-small uk-child-width-1-1 uk-child-width-expand@s uk-text-center" uk-grid style="font-size: 14px">
                               <div>
-                                <div class="uk-text-muted uk-hidden@m">Price</div>
-                                <div>{{ formatPrice(item.price) }} đ</div>
+                                <div class="uk-text-muted uk-hidden@m">Giá</div>
+                                <div style="">{{ formatPrice(item.price) }} đ</div>
                               </div>
                               <div>
-                                <div class="uk-text-muted uk-hidden@m">discount</div>
+                                <div class="uk-text-muted uk-hidden@m">Giảm giá</div>
                                 <div>{{ formatPrice(item.discount) }} đ</div>
                               </div>
                               <div class="tm-cart-quantity-column">
                                 <!-- <a onclick="increment(-1, 'product-1')" uk-icon="icon: minus; ratio: .75" v-if="item.quantity > 0"></a> -->
-                                <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="3" v-model="item.quantity" min="1" max="5" oninput="this.value = Math.abs(this.value)"/>
+                                <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="3" v-model="item.quantity" min="1" max="5" style="height: 30px" oninput="this.value = Math.abs(this.value)"/>
                                 <!-- <a onclick="increment(+1, 'product-1')" uk-icon="icon: plus; ratio: .75"></a> -->
                               </div>
                               <div>
-                                <div class="uk-text-muted uk-hidden@m">Sum</div>
+                                <div class="uk-text-muted uk-hidden@m">Tổng</div>
                                 {{formatPrice((totalPrice.value = (item.price - item.discount)* item.quantity))}} đ
                                 <!-- <div>$1599.00</div> -->
                               </div>
@@ -90,7 +90,7 @@
                       <div class="uk-card-footer">
                         
                           <span class=" uk-margin-small-right">
-                            <i>Giá tổng tính đã được trừ đi giảm giá</i>
+                            <i>Để có thể xem lại hóa đơn thanh toán của mình, vui lòng <a><strong>đăng nhập</strong></a> vào hệ thống !</i>
                           </span>
                           <!-- <div class="uk-inline"><a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="arrow-right"></a>
                             <input class="uk-input uk-form-width-small" type="text">
@@ -226,7 +226,7 @@ export default {
             },
           })
           .then((response) => {
-            console.log(response);
+            // console.log(response);
             this.$store.state.totalCart = response.data.object.length;
             this.$store.state.StoreCart = response.data.object;
             this.DetailsCart = this.$store.state.StoreCart;
@@ -316,7 +316,7 @@ export default {
           this.$store.state.tokenUser = localStorage.userToken
           // this.$store.state.InfoPersonal = response.data.object;
           this.getTotalCart();
-          console.log(response.data.object);
+          // console.log(response.data.object);
         })
         .catch((e) => {
           // this.error.push(e);

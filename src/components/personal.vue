@@ -206,6 +206,8 @@
                         </div> -->
                       </fieldset>
                     </div>
+                    <br>
+                    <p class="text-center" style="color: red">{{checkNull}}</p>
                   </form>
                 </div>
                 <div class="uk-card-footer uk-text-center">
@@ -234,6 +236,7 @@ export default {
   data() {
     return {
       dataUser: {},
+      checkNull: ""
     };
   },
   created() {
@@ -257,6 +260,10 @@ export default {
       });
     },
     updateUser(dataUser) {
+      if(dataUser.fullname == '' || dataUser.phone == '' || dataUser.address == ''){
+        this.checkNull = "Không được bỏ trống trường thông tin!"
+      }else{
+        this.checkNull = ""
       let item = {
         fullname: dataUser.fullname,
         phone: dataUser.phone,
@@ -286,6 +293,9 @@ export default {
             duration: 2000,
           });
         });
+      }
+
+
     },
     getDataAccount() {
       

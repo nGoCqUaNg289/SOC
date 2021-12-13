@@ -603,7 +603,7 @@ export default {
           })
           .then((response) => {
             this.$store.state.InfoPersonal = response.data.object;
-            console.log(this.$store.state.InfoPersonal);
+            // console.log(this.$store.state.InfoPersonal);
           })
           .catch((e) => {
             this.error.push(e);

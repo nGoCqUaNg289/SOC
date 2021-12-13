@@ -17,6 +17,8 @@
                 Giỏ hàng
               </h1>
             </div>
+
+            <!-- <p></p> -->
             <div v-if="this.DetailsCart.length > 0">
               <div style="margin-bottom: 25px">
                 <div class="uk-grid-medium" uk-grid>

@@ -938,7 +938,7 @@ export default {
       axios
           .get(this.$store.state.MainLink + "customer/categories?active=true")
           .then((response) => {
-            console.log(response.data.object[2].categories);
+            // console.log(response.data.object[2].categories);
             this.getAllCate = response.data.object[2].categories
             // this.getBrands = response.data.object[1].categories
             // console.log(this.getBrands)

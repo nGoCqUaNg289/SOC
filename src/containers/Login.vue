@@ -13,21 +13,29 @@
           </div>
           <div>
             <div class="username">
-              <i class="ms-Icon ms-Icon--Contact"></i>
-              <input v-model="username" type="text" placeholder="User Name" />
+              <!-- <i class="ms-Icon ms-Icon--Contact"></i> -->
+              <!-- <i class="far fa-user"></i> -->
+              <!-- <b-icon icon="person"></b-icon> -->
+              <input v-model="username" type="text" placeholder="Tài khoản" />
             </div>
             <div class="password">
-              <i class="ms-Icon ms-Icon--Lock"></i>
+              <!-- <i class="ms-Icon ms-Icon--Lock"></i> -->
+              <!-- <i class="fas fa-lock"></i> -->
+              <!-- <b-icon icon="lock"></b-icon> -->
               <input
                 v-model="password"
                 type="password"
-                placeholder="Password"
+                placeholder="Mật khẩu"
               />
             </div>
             <div class="text-center" style="margin-top: 15px;color: red;">{{loginFail}}</div>
             <div class="submit-button">
-              <button type="button" @click="LoginJWT(), callFunctionTotal()">
+              <button type="button" @click="callFunction()" v-if="checkLogin == 0">
                 Đăng nhập
+              </button>
+              <button class="btn btn-primary" type="button" disabled v-else>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Đang đăng nhập...
               </button>
             </div>
             <div style="text-align: center; margin-top: 25px">
@@ -49,15 +57,19 @@ export default {
     return {
       username: "",
       password: "",
-      loginFail: ""
+      loginFail: "",
+      checkLogin: 0
     };
   },
   methods: {
     callFunction: function () {
       var v = this;
+      v.loginFail = "",
+      v.checkLogin = 1
       setTimeout(function () {
+        v.LoginJWT();
         v.callFunctionTotal();
-      }, 0);
+      }, 3000);
     },
     callFunctionTotal: function () {
       var v = this;
@@ -122,6 +134,7 @@ export default {
         .catch((e) => {
           // this.error.push(e);
           this.loginFail = "Thông tin đăng nhập không chính xác!"
+          this.checkLogin = 0
           console.log(e);
           // this.$toasted.show("Thông tin không chính xác, vui lòng nhập lại !", {
           //   type: "error",
@@ -222,7 +235,8 @@ main {
   width: 100%;
   height: 100%;
   display: flex;
-  background-image: url("/img/bg.svg");
+  background-image: url("https://images.pexels.com/photos/1903702/pexels-photo-1903702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  /* background-image: url("/public/images/SOCStore.png"); */
   background-size: cover;
 }
 .login-form {

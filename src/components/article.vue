@@ -216,7 +216,7 @@ export default {
           this.getData = response.data.object;
           this.getBlogDetail = response.data.object.blogDetails;
           // console.log(this.getBlogDetail);
-          console.log(this.getData)
+          // console.log(this.getData)
         })
         .catch((e) => {
           console.log(e);
