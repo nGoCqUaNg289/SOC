@@ -14,6 +14,7 @@ export default new Vuex.Store({
         StoreCart: [],
         CompareCart: [],
         searchText: "",
+        searchProduct: 0,
         minWidth: "",
         tokenUser: "",
         totalCart: "",

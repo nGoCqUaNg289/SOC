@@ -124,7 +124,8 @@
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Hình thức thanh toán</th>
-                        <td>Thanh toán online</td>
+                        <td v-if="item.typePayment == true">Thanh toán trực tuyến</td>
+                        <td v-else-if="item.typePayment == false">Thanh toán khi nhận hàng</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Tổng tiền</th>
@@ -132,60 +133,18 @@
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Trạng thái</th>
-                        <td><span class="uk-label" v-if="item.status == 'Chờ xác nhận'">Chờ xác nhận</span></td>
-                        <td>
-                          <span class="uk-label uk-label-danger" v-if="item.status == 'Hủy'">Đơn hàng bị hủy</span>
+                        <td  v-if="item.status == 'Chờ xác nhận'"><span class="uk-label">Chờ xác nhận</span></td>
+                        <!-- <td><span class="uk-label" v-if="item.status == 'Chờ xác nhận'">Chờ xác nhận</span></td> -->
+                        <td v-else-if="item.status == 'Đã hủy'">
+                          <span class="uk-label uk-label-danger">Đơn hàng bị hủy</span>
+                        </td>
+                        <td v-else-if="item.status == 'Đơn hàng lỗi'">
+                          <span class="uk-label uk-label-danger">Đơn hàng lỗi</span>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </section>
-                <!-- <section class="uk-card-body">
-                  <h3>
-                    <a class="uk-link-heading"
-                      >#36637648
-                      <span class="uk-text-muted uk-text-small"
-                        >from June 16, 2018</span
-                      ></a
-                    >
-                  </h3>
-                  <table
-                    class="
-                      uk-table
-                      uk-table-small
-                      uk-table-justify
-                      uk-table-responsive
-                      uk-table-divider
-                      uk-margin-small-top
-                      uk-margin-remove-bottom
-                    "
-                  >
-                    <tbody>
-                      <tr>
-                        <th class="uk-width-medium">Items</th>
-                        <td>2</td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">Shipping</th>
-                        <td>Pick up from store</td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">Payment</th>
-                        <td>Online by card</td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">Total</th>
-                        <td>$599.00</td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">Status</th>
-                        <td>
-                          <span class="uk-label uk-label-danger">Canceled</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </section> -->
               </div>
             </div>
           </div>

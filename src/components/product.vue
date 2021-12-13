@@ -476,51 +476,6 @@
                                             {{item.detail}}
                                           </p>
                                         </div>
-                                        <!-- <div
-                                          class="
-                                            uk-grid-small
-                                            uk-flex-middle
-                                            uk-margin-top
-                                          "
-                                          uk-grid
-                                        >
-                                          <div class="uk-text-meta">
-                                            Was this review helpful to you?
-                                          </div>
-                                          <div>
-                                            <button
-                                              class="
-                                                uk-button
-                                                uk-button-default
-                                                uk-button-small
-                                              "
-                                            >
-                                              Yes<span
-                                                class="
-                                                  uk-margin-xsmall-left
-                                                  uk-text-muted
-                                                "
-                                                >14</span
-                                              >
-                                            </button>
-                                            <button
-                                              class="
-                                                uk-button
-                                                uk-button-default
-                                                uk-button-small
-                                                uk-margin-small-left
-                                              "
-                                            >
-                                              No<span
-                                                class="
-                                                  uk-margin-xsmall-left
-                                                  uk-text-muted
-                                                "
-                                                >2</span
-                                              >
-                                            </button>
-                                          </div>
-                                        </div> -->
                                       </div>
                                     </section>
                                   </article>

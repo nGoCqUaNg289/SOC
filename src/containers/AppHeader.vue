@@ -420,23 +420,35 @@
               </ul>
             </nav>
           </div>
+          
           <div class="uk-navbar-right">
-            <router-link to="/compare"
-              ><a
-                class="
-                  uk-navbar-item uk-link-muted uk-visible@m
-                  tm-navbar-button
-                "
-                ><span uk-icon="copy"></span
-                ><span class="uk-badge">{{
+
+            <a class="uk-navbar-toggle tm-navbar-button" href="#" uk-search-icon></a>
+              <div class="uk-navbar-dropdown uk-padding-small uk-margin-remove" uk-drop="mode: click;cls-drop: uk-navbar-dropdown;boundary: .tm-navbar-container;boundary-align: true;pos: bottom-justify;flip: x">
+                <div class="uk-container">
+                  <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-expand">
+                      <div class="uk-search uk-search-navbar uk-width-1-1">
+                        <input class="uk-search-input" type="search" placeholder="Tìm kiếm ..." v-model="searchProduct">
+                      </div>
+                    </div>
+                    <div class="uk-width-auto"><a class="uk-navbar-dropdown-close" uk-search-icon @click="getSearchProduct()"></a></div>
+                  </div>
+                </div>
+              </div>
+
+            <router-link to="/compare">
+              <a class="uk-navbar-item uk-link-muted uk-visible@m tm-navbar-button">
+                <span uk-icon="copy"></span>
+                <span class="uk-badge">{{
                   this.$store.state.CompareCart.length
-                }}</span></a
-              >
+                }}</span>
+              </a>
             </router-link>
 
-            <div>
-              <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="user" @click="switchToAccount()" v-if="this.$store.state.tokenUser == ''"></a>
-              <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="user" @click="switchToAccount()" v-else></a>
+            <div v-if="this.$store.state.tokenUser">
+              <!-- <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="user" @click="switchToAccount()" v-if="this.$store.state.tokenUser == ''"></a> -->
+              <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="user" @click="switchToAccount()"></a>
               <div class="uk-padding-small uk-margin-remove" uk-dropdown="pos: bottom-right; offset: -10; delay-hide: 200;" style="min-width: 150px" >
                 <ul class="uk-nav uk-dropdown-nav">
                   <li>
@@ -461,6 +473,9 @@
                   </li>
                 </ul>
               </div>
+            </div>
+            <div v-else>
+              <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="user" @click="switchToAccount()"></a>
             </div>
             <div>
               <a class="uk-navbar-item uk-link-muted tm-navbar-button" uk-icon="cart" @click="switchToCart()">
@@ -553,6 +568,7 @@ export default {
       quantityCart: "",
       minWidthWindow: "",
       userName: "",
+      searchProduct: ""
     };
   },
   created() {
@@ -669,6 +685,18 @@ export default {
           // console.log(this.$store.state.categorySearch)
       }else{
         this.$store.state.categorySearch = 0;
+      }
+    },
+    getSearchProduct(){
+      if(this.$router.currentRoute.fullPath != '/category'){
+          this.$router.push({
+            path: "category",
+          });
+          this.$store.state.searchProduct = this.searchProduct;
+          console.log(this.$store.state.categorySearch)
+      }else{
+        this.$store.state.searchProduct = this.searchProduct;
+        console.log(this.$store.state.searchProduct)
       }
     }
   },

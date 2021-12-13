@@ -173,14 +173,16 @@
                           <div class="uk-card-header">
                             <div class="uk-grid-small uk-flex-middle" uk-grid>
                               <div class="uk-width-1-1 uk-width-expand@s uk-flex uk-flex-center uk-flex-left@s uk-text-small">
-                                <span class="uk-margin-small-right uk-text-muted">Sắp xếp theo:</span>
-                                <ul class="uk-subnav uk-margin-remove">
+                                <span class="uk-margin-small-right uk-text-muted">
+                                  <i>Hiển thị các sản phẩm liên quan</i>
+                                  </span>
+                                <!-- <ul class="uk-subnav uk-margin-remove">
                                   <li class="uk-active uk-padding-remove">
                                     <a class="" style="text-decoration: none;">Giá tiền
                                       <span class="uk-margin-xsmall-left" uk-icon="icon: chevron-down; ratio: .5;"></span>
                                     </a>
                                   </li>
-                                </ul>
+                                </ul> -->
                               </div>
                               <!-- <div class="uk-width-1-1 uk-width-auto@s uk-flex uk-flex-center uk-flex-middle">
                                   <button class="uk-button uk-button-default uk-button-small uk-hidden@m" uk-toggle="target: #filters"><span class="uk-margin-xsmall-right" uk-icon="icon: settings; ratio: .75;"></span>Filters
@@ -398,13 +400,14 @@ const customLabels = {
 
 export default {
   // props: {
-  //   item: Number,
+  //   items: String,
   // },
   components: {
     loadingform,
   },
   data() {
     return {
+      items: "",
       customLabels,
       pageOfItems: [],
       getData: "",
@@ -451,6 +454,7 @@ export default {
     getDT() {
       this.checkFavorites = this.$store.state.tokenUser;
       this.item = this.$store.state.categorySearch
+      this.itemSearch = this.$store.state.searchProduct
       // console.log(this.item);
       if (this.item != 0) {
         axios
@@ -459,7 +463,19 @@ export default {
           )
           .then((response) => {
             this.getData = response.data.object;
-            console.log(this.getData);
+            // console.log(this.getData);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      } else if(this.itemSearch != 0){
+        axios
+          .get(
+            this.$store.state.MainLink + "customer/products?find=" + this.itemSearch
+          )
+          .then((response) => {
+            this.getData = response.data.object;
+            // console.log(this.getData);
           })
           .catch((e) => {
             console.log(e);
@@ -496,7 +512,6 @@ export default {
       }, 3000);
     },
     detailProduct(id) {
-      // console.log(id);
       this.$router.push({
         name: "product",
         params: { item: id },
@@ -517,7 +532,6 @@ export default {
           type: "success",
           duration: 2000,
         });
-        // console.log("chạy vào không có token");
       } else {
         let item = {
           productId: id,
@@ -560,7 +574,6 @@ export default {
       }
     },
     compareProduct(item) {
-      // console.log(this.$store.state.CompareCart.length);
       if (this.$store.state.CompareCart.length < 2) {
         this.$store.state.CompareCart.push(item);
         this.$toasted.show("Đã chọn sản phẩm để so sánh!", {
@@ -582,7 +595,7 @@ export default {
         )
         .then((response) => {
           this.getData = response.data.object;
-          console.log(response.data.object);
+          // console.log(response.data.object);
         })
         .catch((e) => {
           console.log(e);
@@ -618,8 +631,8 @@ export default {
             },
           }
         )
-        .then((response) => {
-          console.log(response);
+        .then(() => {
+          // console.log(response);
           this.getDataFavorites();
         });
     },
@@ -656,12 +669,8 @@ export default {
           .then((response) => {
             console.log(response.data.object);
             this.getAllCate = response.data.object
-            // this.getNeed = response.data.object[3].categories
-            // this.getTypeMachine = response.data.object[0].categories
-            // this.getTypeProduct = response.data.object[1].categories
             this.getBrands = response.data.object[1].categories
-            console.log(this.getBrands)
-            // this.$store.state.StoreCart = response.data.object;
+            // console.log(this.getBrands)
           })
           .catch((e) => {
             this.error.push(e);
@@ -720,9 +729,25 @@ export default {
           console.log(e);
         });
     },
+    searchProductHear(){
+      axios
+        .get(
+          this.$store.state.MainLink + "customer/products?find=" + this.$store.state.searchProduct
+        )
+        .then((response) => {
+          this.getData = response.data.object;
+          // console.log(response.data.object);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   },
   watch: {
     '$store.state.categorySearch': function (){
+      this.getDT()
+    },
+    '$store.state.searchProduct': function (){
       this.getDT()
     }
   }
