@@ -37,55 +37,75 @@
                           </div>
                         </div>
                       </header>
-                      <div class="uk-card-body" v-for="(item, index) in DetailsCart" :key="index">
-                        <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@m uk-flex-middle" uk-grid>
-                          <!-- Product cell-->
-                          <div>
-                            <div class="uk-grid-small" uk-grid>
-                              <div class="uk-width-1-3">
-                                <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box">
-                                    <figure class="tm-media-box-wrap">
-                                      <img :src="item.photo" alt="Ảnh của sản phẩm">
-                                    </figure>
-                                  </a>
+                      <div v-if="DetailsCart.length > 0">
+                        <div class="uk-card-body" v-for="(item, index) in DetailsCart" :key="index">
+                          <div class="uk-grid-small uk-child-width-1-1 uk-child-width-1-2@m uk-flex-middle" uk-grid>
+                            <!-- Product cell-->
+                            <div>
+                              <div class="uk-grid-small" uk-grid>
+                                <div class="uk-width-1-3">
+                                  <div class="tm-ratio tm-ratio-4-3">
+                                    <a class="tm-media-box">
+                                      <figure class="tm-media-box-wrap">
+                                        <img :src="item.photo" alt="Ảnh của sản phẩm">
+                                      </figure>
+                                    </a>
+                                  </div>
+                                </div>
+                                <div class="uk-width-expand" style="font-size: 14px">
+                                  <div class="uk-text-meta">Laptop</div>
+                                  <a class="uk-link-heading">{{ item.productName }}</a>
+                                  <div class="uk-text-meta">Màu sắc: {{item.colorName}}</div>
                                 </div>
                               </div>
-                              <div class="uk-width-expand" style="font-size: 14px">
-                                <div class="uk-text-meta">Laptop</div>
-                                <a class="uk-link-heading">{{ item.productName }}</a>
-                              </div>
                             </div>
-                          </div>
-                          <!-- Other cells-->
-                          <div>
-                            <div class="uk-grid-small uk-child-width-1-1 uk-child-width-expand@s uk-text-center" uk-grid style="font-size: 14px">
-                              <div>
-                                <div class="uk-text-muted uk-hidden@m">Giá</div>
-                                <div style="">{{ formatPrice(item.price) }} đ</div>
-                              </div>
-                              <div>
-                                <div class="uk-text-muted uk-hidden@m">Giảm giá</div>
-                                <div>{{ formatPrice(item.discount) }} đ</div>
-                              </div>
-                              <div class="tm-cart-quantity-column">
-                                <!-- <a onclick="increment(-1, 'product-1')" uk-icon="icon: minus; ratio: .75" v-if="item.quantity > 0"></a> -->
-                                <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="3" v-model="item.quantity" min="1" max="5" style="height: 30px" oninput="this.value = Math.abs(this.value)"/>
-                                <!-- <a onclick="increment(+1, 'product-1')" uk-icon="icon: plus; ratio: .75"></a> -->
-                              </div>
-                              <div>
-                                <div class="uk-text-muted uk-hidden@m">Tổng</div>
-                                {{formatPrice((totalPrice.value = (item.price - item.discount)* item.quantity))}} đ
-                                <!-- <div>$1599.00</div> -->
-                              </div>
-                              <div class="uk-width-auto@s">
-                                <a class="uk-text-danger" uk-tooltip="Remove"  @click="deleteProduct(index, item.id)">
-                                  <span uk-icon="close"></span>
-                                </a>
+                            <!-- Other cells-->
+                            <div>
+                              <div class="uk-grid-small uk-child-width-1-1 uk-child-width-expand@s uk-text-center" uk-grid style="font-size: 14px">
+                                <div>
+                                  <div class="uk-text-muted uk-hidden@m">Giá</div>
+                                  <div style="">{{ formatPrice(item.price) }} đ</div>
+                                </div>
+                                <div>
+                                  <div class="uk-text-muted uk-hidden@m">Giảm giá</div>
+                                  <div>-{{ formatPrice(item.discount) }} đ</div>
+                                </div>
+                                <div class="tm-cart-quantity-column">
+                                  <!-- <a onclick="increment(-1, 'product-1')" uk-icon="icon: minus; ratio: .75" v-if="item.quantity > 0"></a> -->
+                                  <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="3" v-model="item.quantity" min="1" max="5" style="height: 30px" oninput="this.value = Math.abs(this.value)"/>
+                                  <!-- <a onclick="increment(+1, 'product-1')" uk-icon="icon: plus; ratio: .75"></a> -->
+                                </div>
+                                <div>
+                                  <div class="uk-text-muted uk-hidden@m">Tổng</div>
+                                  {{formatPrice((totalPrice.value = (item.price - item.discount)* item.quantity))}} đ
+                                  <!-- <div>$1599.00</div> -->
+                                </div>
+                                <div class="uk-width-auto@s">
+                                  <a class="uk-text-danger" uk-tooltip="Remove"  @click="deleteProduct(index, item.id)">
+                                    <span uk-icon="close"></span>
+                                  </a>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
+                      </div>
+                      
+                      <div class="text-center" style="margin: 15px 15px 15px 15px" v-else>
+                        <img
+                          src="images/emptycart.png"
+                          alt=""
+                          width="150px"
+                          style="margin-bottom: 25px"
+                        />
+                        <p>Oh ! Có vẻ như bạn chưa có sản phẩm nào cần mua.</p>
+                        <p>Hãy tiếp tục mua sắm nào !</p>
+                        <!-- <button
+                          class="btn-custom-back btn btn-outline-primary"
+                          @click="backToCategory()"
+                        >
+                          Các sản phẩm khác
+                        </button> -->
                       </div>
                       <div class="uk-card-footer">
                         
@@ -128,14 +148,14 @@
                         </div>
                         <div class="uk-grid-small" uk-grid>
                           <div class="uk-width-expand uk-text-muted">Giảm giá</div>
-                          <div class="uk-text-danger">- 0 đ</div>
+                          <div class="uk-text-danger">- {{ formatPrice(sumDiscount) }} đ</div>
                         </div>
                       </div>
                       <div class="uk-card-body">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
                           <div class="uk-width-expand uk-text-muted">Tổng cộng</div>
                           <div class="uk-text-lead uk-text-bolder">
-                            {{ formatPrice(sumTotal) }} đ
+                            {{ formatPrice(sumTotal - sumDiscount) }} đ
                           </div>
                         </div>
                         <br>
@@ -193,6 +213,7 @@ export default {
       TotalCart: [],
       totalPriceProduct: [],
       sumTotal: 0,
+      sumDiscount: 0,
       dataUser: {},
     };
   },
@@ -230,6 +251,7 @@ export default {
             this.$store.state.totalCart = response.data.object.length;
             this.$store.state.StoreCart = response.data.object;
             this.DetailsCart = this.$store.state.StoreCart;
+            console.log(this.DetailsCart)
             for (let item in this.DetailsCart) {
               this.totalPriceProduct.push(response.data.object[item].price);
             }
@@ -251,12 +273,16 @@ export default {
       }, 200);
     },
     sumPrice() {
-      this.sumTotal = 0
+      this.sumTotal = this.sumDiscount = 0
+      this.sumDiscount
       for (let i = 0; i < this.DetailsCart.length; i++) {
         this.sumTotal +=
           this.DetailsCart[i].price * this.DetailsCart[i].quantity;
       }
-      return this.sumTotal;
+      for (let i = 0; i < this.DetailsCart.length; i++) {
+        this.sumDiscount += this.DetailsCart[i].discount
+      }
+      return this.sumTotal, this.sumDiscount;
     },
     deleteProduct(index, id) {
       if (this.$store.state.tokenUser) {

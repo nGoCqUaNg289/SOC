@@ -4,7 +4,7 @@
       <loadingDot style="margin-left: -25px; margin-top: -150px"></loadingDot>
     </div>
 
-    <div class="login-form vpi" v-else-if="checkReToken == 1">
+    <div class="login-form vpi" v-else-if="checkReToken == 1" style="border-radius: 1em">
       <div class="login-form-bg"></div>
       <div class="login">
         <div class="login-bg"></div>
@@ -203,7 +203,7 @@ main {
   width: 100%;
   height: 100%;
   display: flex;
-  background-image: url("/img/bg.svg");
+  background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/12/26/ha-noi-sunset-wallpaper_021547797.jpg");
   background-size: cover;
 }
 .login-form {

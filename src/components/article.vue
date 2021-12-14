@@ -61,15 +61,7 @@
                                   dựa trên 1 nhận xét
                                 </div>
                                 <button
-                                  class="
-                                    uk-button
-                                    uk-button-primary
-                                    uk-margin-top
-                                    uk-width-1-1
-                                  "
-                                  uk-toggle="target: #review"
-                                  
-                                >
+                                  class="uk-button  uk-button-primary  uk-margin-top  uk-width-1-1" uk-toggle="target: #review">
                                   Viết nhận xét
                                 </button>
                               </div>

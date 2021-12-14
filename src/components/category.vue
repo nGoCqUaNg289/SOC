@@ -316,16 +316,16 @@
                                           tm-product-card-add-button tm-shine
                                           js-add-to-cart
                                         "
+                                        uk-toggle="target: #review"
                                         @click="
-                                          addToCart(
-                                            item.id,
+                                          setItem(item.id,
                                             item.name,
                                             item.photos[0],
                                             item.price,
-                                            item.discount
-                                          )
-                                        "
-                                      >
+                                            item.discount,
+                                            item.productColors,
+                                            item.productColors[0].color.colorName);
+                                        ">
                                         <span
                                           class="
                                             tm-product-card-add-button-icon
@@ -454,13 +454,79 @@
           </div>
         </div>
       </section>
+      <div id="review" uk-modal>
+              <div class="uk-modal-dialog uk-modal-body">
+                <button
+                  class="uk-modal-close-outside"
+                  type="button"
+                  uk-close
+                ></button>
+                <h2 class="uk-modal-title uk-text-center">Thông tin sản phẩm</h2>
+                <form class="uk-form-stacked">
+                  <div class="uk-grid-small uk-child-width-1-1" uk-grid>
+                    <div>
+                      <label style="width: 100%;">
+                        <div class="uk-form-label">
+                          Tên sản phẩm
+                        </div>
+                        <span>
+                          {{this.itemProduct.productName}}
+                        </span>
+                      </label>
+                    </div>
+                    <div>
+                      <label style="width: 100%;">
+                        <div class="uk-form-label">
+                          Giá sản phẩm
+                        </div>
+                        <span>
+                          {{formatPrice(this.itemProduct.price)}} đ
+                        </span>
+                      </label>
+                    </div>
+                    <div>
+                      <label style="width: 100%;">
+                        <div class="uk-form-label uk-form-label-required">
+                          Màu sắc
+                        </div>
+                        <div style=" display: flex">
+                          <div v-for="(item, index) in itemProduct.colorId" :key="index">
+                            <!-- <input type="radio" name="productColor"> -->
+                            <button type="button" style="width: 35px; height: 35px; margin-right: 1rem; border-radius: 1rem" @click="setColorProduct(item.colorId,item.color.colorName)" :style="{backgroundColor: '#'+item.color.code}">
+                              <input type="radio" name="productColor" hidden :value="item.colorId">
+                            </button>
+                          </div>
+                          
+                        </div>
+                        <br>
+                        <p>Đang chọn màu : <strong>{{itemColor}}</strong></p>
+                      </label>
+                    </div>
+                    <div class="uk-text-center">
+                      <button type="button" class="uk-button uk-button-primary" 
+                      @click="addToCart(
+                            itemProduct.productId,
+                            itemProduct.productName,
+                            itemProduct.photo,
+                            itemProduct.price,
+                            itemProduct.discount,
+                            itemColorId,
+                            itemColor
+                          )"> 
+                        <span class="tm-product-card-add-button-icon" uk-icon="cart"></span>
+                      Thêm vào giỏ hàng
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+      </div>
     </main>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-// import loadingform from "../containers/loadingform.vue";
 const customLabels = {
     first: '<<',
     last: '>>',
@@ -469,12 +535,6 @@ const customLabels = {
 };
 
 export default {
-  // props: {
-  //   items: String,
-  // },
-  components: {
-    // loadingform,
-  },
   data() {
     return {
       items: "",
@@ -500,6 +560,9 @@ export default {
       plusdash: 0,
       getBrands: "",
       selected: false,
+      itemColor: "",
+      itemColorId: "",
+      itemProduct: {},
     };
   },
   created() {
@@ -509,6 +572,22 @@ export default {
     this.callFunction();
   },
   methods: {
+    setColorProduct(id, name){
+      this.itemColorId = id;
+      this.itemColor = name;
+    },
+    setItem(id, name, photos, price, discount, colorId, colorName){
+      this.itemProduct ={
+          productName: name,
+          productId: id,
+          photo: photos,
+          price: price,
+          quantity: 1,
+          discount: discount,
+          colorId: colorId,
+          colorName: colorName,
+      }
+    },
     onChangePage(pageOfItems) {
       this.pageOfItems = pageOfItems;
     },
@@ -587,7 +666,8 @@ export default {
         params: { item: id },
       });
     },
-    addToCart(id, name, photos, price, discount) {
+    addToCart(id, name, photos, price, discount, colorId, colorName) {
+      this.itemColor = this.itemColorId = ""
       if (this.$store.state.tokenUser == "") {
         let item = {
           productName: name,
@@ -595,7 +675,9 @@ export default {
           photo: photos,
           price: price,
           quantity: 1,
-          discount: discount
+          discount: discount,
+          colorId: colorId,
+          colorName: colorName,
         };
         this.$store.state.StoreCart.push(item);
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
@@ -607,6 +689,7 @@ export default {
           productId: id,
           price: price,
           quantity: 1,
+          colorId: colorId,
         };
         this.$store.state.StoreCart.push(item);
         axios

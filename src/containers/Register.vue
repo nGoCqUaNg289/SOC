@@ -1,6 +1,6 @@
 <template>
   <main class="login-background">
-    <div class="login-form vpi">
+    <div class="login-form vpi" style="border-radius: 1em">
       <div class="login-form-bg"></div>
       <div class="login">
         <div class="login-bg"></div>
@@ -210,7 +210,7 @@ main {
   width: 100%;
   height: 100%;
   display: flex;
-  background-image: url("https://images.pexels.com/photos/1903702/pexels-photo-1903702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/12/26/ha-noi-sunset-wallpaper_021547797.jpg");
   background-size: cover;
 }
 .login-form {

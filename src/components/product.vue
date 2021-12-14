@@ -140,11 +140,11 @@
                                   Màu sắc
                                 </p>
                               <div style=" display: flex">
-                                
-                                  <button style="width: 35px; height: 35px; margin-right: 1rem; border-radius: 1rem" :style="{backgroundColor: '#'+item.color.code}" v-for="item in getData.productColors" :key="item.id">
+                                  <button style="width: 35px; height: 35px; margin-right: 1rem; border-radius: 1rem" :style="{backgroundColor: '#'+item.color.code}" v-for="item in getData.productColors" :key="item.id" @click="setColorProduct(item.colorId,item.color.colorName)">
                                   </button>
-                                
                               </div>
+                              <br>
+                              <p>Đang chọn màu : <strong>{{itemColor}}</strong></p>
                             </div>
                           </div>
                         </div>
@@ -194,8 +194,14 @@
                                         tm-product-add-button tm-shine
                                         js-add-to-cart
                                       "
-                                      @click="addToCart(getData)"
-                                    >
+                                      @click="addToCart(
+                                        getData.id,
+                                        getData.name,
+                                        getData.photos[0],
+                                        getData.price,
+                                        getData.discount,
+                                        itemColorId,
+                                        itemColor)">
                                       <b-icon
                                         icon="cart-plus"
                                         style="margin-right: 15px"
@@ -823,6 +829,8 @@ export default {
         detail: ""
       },
       cartDetails: [],
+      itemColor: "",
+      itemColorId: "",
     };
   },
   created() {
@@ -832,6 +840,10 @@ export default {
     // this.callFunction();
   },
   methods: {
+    setColorProduct(id, name){
+      this.itemColorId = id;
+      this.itemColor = name;
+    },
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -853,17 +865,21 @@ export default {
           console.log(e);
         });
     },
-    addToCart(getData) {
+    addToCart(id, name, photos, price, discount, colorId, colorName) {
       // console.log(id, name, photos, price);
-      console.log(getData);
+      // console.log(getData);
       if (this.$store.state.tokenUser == "") {
         let item = {
-          productName: getData.name,
-          productId: getData.id,
-          photo: getData.photos[0],
-          price: getData.price,
+          productName: name,
+          productId: id,
+          photo: photos,
+          price: price,
           quantity: 1,
+          discount: discount,
+          colorId: colorId,
+          colorName: colorName,
         };
+        console.log(item)
         this.$store.state.StoreCart.push(item);
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
           type: "success",
@@ -871,9 +887,10 @@ export default {
         });
       } else {
         let item = {
-          productId: getData.id,
-          price: getData.price,
+          productId: id,
+          price: price,
           quantity: 1,
+          colorId: colorId,
         };
         this.$store.state.StoreCart.push(item);
         axios
