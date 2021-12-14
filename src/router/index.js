@@ -39,6 +39,7 @@ import slideShow from "../containers/slideShow.vue"
 import ForgotPass from "../containers/ForgotPass.vue"
 import confirmSendEmail from "../containers/confirmSendEmail.vue"
 import resetPassword from "../containers/resetPassword.vue"
+import starRate from "../containers/starRate.vue"
 
 
 Vue.use(Router)
@@ -83,6 +84,7 @@ const router = new Router({
         { path: "/resetpass", component: resetPassword, name: "resetpass" },
         { path: "/resultorder", component: resultOrder, name: "resultorder" },
         { path: "/newcart", component: newCart, name: "newcart", props: true },
+        { path: "/starrate", component: starRate, name: "starrate", props: true },
         // { path: "/checkout", component: checkout, name: "checkout", props: true },
     ]
 })

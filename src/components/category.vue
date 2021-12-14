@@ -361,7 +361,77 @@
                             </article>
                           </div>
                         </div>
-                        <loadingform v-else></loadingform>
+                        <!-- <loadingform v-else></loadingform> -->
+                        <div v-else>
+                          <div class="container">
+                            <div class="row row-cols-3">
+                              <p class="placeholder-glow">
+                                <span class="placeholder col-8"></span>
+                                <span class="placeholder col-3"></span>
+                                <span class="placeholder col-5"></span>
+                                <span class="placeholder col-9"></span>
+                                <span class="placeholder col-11"></span>
+                              </p>
+                              <p class="placeholder-glow">
+                                <span class="placeholder col-8"></span>
+                                <span class="placeholder col-3"></span>
+                                <span class="placeholder col-5"></span>
+                                <span class="placeholder col-9"></span>
+                                <span class="placeholder col-11"></span>
+                              </p>
+                              <p class="placeholder-glow">
+                                <span class="placeholder col-8"></span>
+                                <span class="placeholder col-3"></span>
+                                <span class="placeholder col-5"></span>
+                                <span class="placeholder col-9"></span>
+                                <span class="placeholder col-11"></span>
+                              </p>
+                              <p class="placeholder-glow">
+                                <span class="placeholder col-8"></span>
+                                <span class="placeholder col-3"></span>
+                                <span class="placeholder col-5"></span>
+                                <span class="placeholder col-9"></span>
+                                <span class="placeholder col-11"></span>
+                              </p>
+                              <p class="placeholder-glow">
+                                <span class="placeholder col-8"></span>
+                                <span class="placeholder col-3"></span>
+                                <span class="placeholder col-5"></span>
+                                <span class="placeholder col-9"></span>
+                                <span class="placeholder col-11"></span>
+                              </p>
+                              <p class="placeholder-glow">
+                                <span class="placeholder col-8"></span>
+                                <span class="placeholder col-3"></span>
+                                <span class="placeholder col-5"></span>
+                                <span class="placeholder col-9"></span>
+                                <span class="placeholder col-11"></span>
+                              </p>
+                              <p class="placeholder-glow">
+                                <span class="placeholder col-8"></span>
+                                <span class="placeholder col-3"></span>
+                                <span class="placeholder col-5"></span>
+                                <span class="placeholder col-9"></span>
+                                <span class="placeholder col-11"></span>
+                              </p>
+                              <p class="placeholder-glow">
+                                <span class="placeholder col-8"></span>
+                                <span class="placeholder col-3"></span>
+                                <span class="placeholder col-5"></span>
+                                <span class="placeholder col-9"></span>
+                                <span class="placeholder col-11"></span>
+                              </p>
+                              <p class="placeholder-glow">
+                                <span class="placeholder col-8"></span>
+                                <span class="placeholder col-3"></span>
+                                <span class="placeholder col-5"></span>
+                                <span class="placeholder col-9"></span>
+                                <span class="placeholder col-11"></span>
+                              </p>
+                            </div>
+                          </div>
+                          
+                        </div>
                         
                       </div>
                       <div class="text-center">
@@ -390,7 +460,7 @@
 
 <script>
 import axios from "axios";
-import loadingform from "../containers/loadingform.vue";
+// import loadingform from "../containers/loadingform.vue";
 const customLabels = {
     first: '<<',
     last: '>>',
@@ -403,7 +473,7 @@ export default {
   //   items: String,
   // },
   components: {
-    loadingform,
+    // loadingform,
   },
   data() {
     return {
@@ -679,6 +749,7 @@ export default {
     },
     findByCate(id){
       // console.log(id);
+      // this.getData= []
       axios
           .get(
             this.$store.state.MainLink + "customer/products?cate=" +id
