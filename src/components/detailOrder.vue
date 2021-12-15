@@ -91,8 +91,8 @@
               <div class="uk-card uk-card-default uk-card-small tm-ignore-container">
                 <header class="uk-card-header">
                   <h1 class="uk-h2" style="float: left; margin: 10px 0 0 0">Đơn hàng của bạn</h1>
-                  <button type="button" class="btn btn-outline-danger btn-size" style="float: right; margin: 10px" v-if="detailOrder.status == 'Đã xác nhận'" uk-toggle="target: #review">Yêu cầu đơn hàng</button>
-                  <button type="button" class="btn btn-outline-danger btn-size" style="float: right; margin: 10px" v-else-if="detailOrder.status == 'Chờ xác nhận'" uk-toggle="target: #review">Hủy đơn hàng</button>
+                  <button type="button" class="btn btn-outline-danger btn-size" style="float: right; margin: 10px" v-if="detailOrder.status == 'Đã xác nhận' && detailOrder.typePayment == false" uk-toggle="target: #review">Yêu cầu hủy đơn</button>
+                  <button type="button" class="btn btn-outline-danger btn-size" style="float: right; margin: 10px" v-else-if="detailOrder.status == 'Chờ xác nhận' && detailOrder.typePayment == false" uk-toggle="target: #review">Hủy đơn hàng</button>
                 </header>
                 
                 <section
@@ -102,7 +102,6 @@
                     <a class="uk-link-heading">#{{  detailOrder.id }}
                       <span class="uk-text-muted uk-text-small">Từ ngày {{ getDate(detailOrder.dateCreated) }}</span>
                     </a>
-                    <!-- {{  detailOrder.orderDetails.length }} -->
                   </h3>
                   <table
                     class="
@@ -118,27 +117,28 @@
                     <tbody>
                       <tr>
                         <th class="uk-width-medium">Họ tên người mua</th>
-                        <td>{{  detailOrder.customer.fullname }}</td>
+                        <td>{{  detailUser.fullname }}</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Email</th>
-                        <td>{{  detailOrder.customer.email }}</td>
+                        <td>{{  detailUser.email }}</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Điện thoại</th>
-                        <td>{{  detailOrder.customer.phone }}</td>
+                        <td>{{  detailUser.phone }}</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Địa chỉ giao hàng</th>
-                        <td>{{  detailOrder.customer.address }}</td>
+                        <td>{{  detailUser.address }}</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Tổng số sản phẩm</th>
-                        <td>{{ detailOrder.orderDetails.length }}</td>
+                        <td>{{ detailProduct.length }}</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Hình thức thanh toán</th>
-                        <td>Thanh toán online</td>
+                        <td v-if="detailOrder.typePayment == true">Thanh toán trực tuyến</td>
+                        <td v-else>Thanh toán khi nhận hàng</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Tổng tiền</th>
@@ -146,13 +146,24 @@
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Trạng thái</th>
-                        <td><span class="uk-label" v-if="detailOrder.status == 'Chờ xác nhận'">Chờ xác nhận</span></td>
-                        <td>
-                          <span class="uk-label uk-label-danger" v-if="detailOrder.status == 'Hủy'">Đơn hàng bị hủy</span>
+                        <td v-if="detailOrder.status == 'Chờ xác nhận'"><span class="uk-label" >{{detailOrder.status}}</span></td>
+                        <td v-else-if="detailOrder.status == 'Đã hủy' || detailOrder.status == 'Yêu cầu hủy' || item.status == 'Đơn hàng lỗi'">
+                          <span class="uk-label uk-label-danger" >{{detailOrder.status}}</span>
+                        </td>
+                        <td v-else-if="detailOrder.status == 'Đang giao hàng'">
+                          <span class="uk-label" style="background-color: #18F5F5;">{{detailOrder.status}}</span>
+                        </td>
+                        <td v-else-if="detailOrder.status == 'Giao hàng thành công'">
+                          <span class="uk-label uk-label-success">{{detailOrder.status}}</span>
+                        </td>
+                        <td v-else>
+                          <span class="uk-label">{{detailOrder.status}}</span>
                         </td>
                       </tr>
                     </tbody>
                   </table>
+
+
                   <br>
                   <br>
                   <h4>
@@ -161,85 +172,23 @@
                   </h4>                  
                   <table class="uk-table uk-table-small uk-table-justify uk-table-responsive uk-table-divider uk-margin-small-top uk-margin-remove-bottom">
                     <tbody>
-                      <tr>
+                      <tr v-for="(item, index) in statusOrder" :key="index">
                         <th class="uk-width-medium">
-                          <div>11 tháng 12 10:15 AM</div>
-                          <div>NVTD: quang</div>
+                          <div>{{item.timeChange}}</div>
+                          <div>NVTD: {{item.changedBy}}</div>
                         </th>
                         <td>
-                          <div>Giao hàng thành công</div>
+                          <div>{{item.status}}</div>
                           <i class="uk-width-medium">
-                            Giao hàng thành công cho khách hàng!
-                          </i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">
-                          <div>11 tháng 12</div>
-                          <div>10:15 AM</div>
-                        </th>
-                        <td>
-                          <div>Đang giao hàng</div>
-                          <i class="uk-width-medium">
-                            Đã chuyển hàng cho vận chuyển
-                          </i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">
-                          <div>11 tháng 12</div>
-                          <div>10:15 AM</div>
-                        </th>
-                        <td>
-                          <div>Đã xác nhận</div>
-                          <i class="uk-width-medium">
-                            Cửa hàng xác nhận đơn hàng
-                          </i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th class="uk-width-medium">
-                          <div>11 tháng 12</div>
-                          <div>10:15 AM</div>
-                        </th>
-                        <td>
-                          <div>Chờ xác nhận</div>
-                          <i class="uk-width-medium">
-                            Đợi xác nhận từ cửa hàng
-                          </i>
-                        </td>
-                      </tr>
-                    </tbody>
-
-                    <tbody>
-                      <tr>
-                        <th class="uk-width-medium">
-                          <div>11 tháng 12</div>
-                          <div>10:15 AM</div>
-                        </th>
-                        <td>
-                          <div>Đơn hàng lỗi</div>
-                          <i class="uk-width-medium">
-                            Đơn hàng lỗi do khi đặt hàng hoặc thanh toán!
-                          </i>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th class="uk-width-medium">
-                          <div>11 tháng 12</div>
-                          <div>10:15 AM</div>
-                        </th>
-                        <td>
-                          <div>Đã hủy</div>
-                          <i class="uk-width-medium">
-                            Không thể xác nhận đơn với khách hàng!
+                            {{item.note}}
                           </i>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                  <div>
+
+
+                  <div v-if="detailOrder.typePayment == true">
                   <br>
                   <br>
                   <h4>
@@ -286,11 +235,11 @@
                   
                   <br>
                   <br>
-                  <table class="table" v-for="(item, index) in detailOrder.orderDetails" :key="index">
+                  <table class="table" v-for="(item, index) in detailProduct" :key="index">
                     <thead>
                       <tr>
                         <th scope="col">#{{index + 1}}</th>
-                        <th scope="col">{{item.productName.substr(6,35)}} ... </th>
+                        <th scope="col">{{item.productName}}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -323,7 +272,7 @@
                         <div class="uk-form-label uk-form-label-required">
                           Chọn lý do hủy đơn
                         </div>
-                        <select name="reason" id="reason" style="padding: 5px;width: 100%;border-radius: 5px;box-shadow: none;" v-model="cancelOrder">
+                        <select name="reason" id="reason" style="padding: 5px;width: 100%;border-radius: 5px;box-shadow: none;" v-model="note">
                           <option value="" selected disabled>-- Chọn lý do hủy đơn --</option>
                           <option value="Thay đổi sản phẩm khác">Thay đổi sản phẩm khác</option>
                           <option value="Thay đổi thông tin nhận hàng">Thay đổi thông tin nhận hàng</option>
@@ -332,18 +281,18 @@
                         </select>
                         <br>
                         <br>
-                        <div v-if="cancelOrder == 'diff'">
+                        <div v-if="note == 'diff'">
                           <div class="uk-form-label uk-form-label-required" >
                             Nhập lý do khác
                           </div>
-                          <textarea rows="4" style="width: 100%;border-radius: 5px;padding: 5px 0px 0px 10px;" placeholder="Nhập lý do bạn hủy đơn ..."></textarea>
+                          <textarea rows="4" style="width: 100%;border-radius: 5px;padding: 5px 0px 0px 10px;" placeholder="Nhập lý do bạn hủy đơn ..." v-model="notediff"></textarea>
                         </div>
 
                       </label>
                     </div>
                     <div class="uk-text-center">
-                      <button type="button" class="uk-button uk-button-danger" v-if="detailOrder.status == 'Chờ xác nhận'">Hủy đơn hàng</button>
-                      <button type="button" class="uk-button uk-button-danger" v-else-if="detailOrder.status == 'Đã xác nhận'">Yêu cầu hủy đơn</button>
+                      <button type="button" class="uk-button uk-button-danger" v-if="detailOrder.status == 'Chờ xác nhận'" @click="cancelUserOrder()">Hủy đơn hàng</button>
+                      <button type="button" class="uk-button uk-button-danger" v-else-if="detailOrder.status == 'Đã xác nhận'" @click="requestUserOrder()">Yêu cầu hủy đơn</button>
                     </div>
                   </div>
                 </form>
@@ -414,8 +363,12 @@ export default {
   data() {
     return {
       detailOrder: "",
+      detailProduct: "",
+      detailUser: "",
       detailVN: "",
-      cancelOrder: ""
+      statusOrder: "",
+      notediff: "",
+      note: ""
     };
   },
   created() {
@@ -425,6 +378,74 @@ export default {
     // console.log(this.item)
   },
   methods: {
+    cancelUserOrder(){
+      if(this.note != "diff"){
+        this.postNoteCancel()
+      }else{
+        this.note = this.notediff
+        this.postNoteCancel()
+      }
+    },
+    requestUserOrder(){
+      if(this.note != "diff"){
+        this.putNoteCancel()
+      }else{
+        this.note = this.notediff
+        this.putNoteCancel()
+      }
+    },
+    postNoteCancel(){
+      let itemNote = {
+        note : this.note
+      }
+      axios
+        .put(this.$store.state.MainLink + "customer/orders/cancerOrderUser?id=" + this.item, itemNote, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          console.log(response.data.object);
+          this.getDataUserOrder();
+          this.$toasted.show("Hủy đơn hàng thành công !", {
+            type: "success",
+            duration: 2000,
+          });
+        })
+        .catch((e) => {
+          this.$toasted.show("Hủy đơn hàng thất bại !", {
+            type: "error",
+            duration: 2000,
+          });
+          console.log(e);
+        });
+    },
+    putNoteCancel(){
+            let itemNote = {
+        note : this.note
+      }
+      axios
+        .put(this.$store.state.MainLink + "customer/orders/requestCancerOrderUser?id=" + this.item, itemNote, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then((response) => {
+          console.log(response.data.object);
+          this.getDataUserOrder();
+          this.$toasted.show("Gửi yêu cầu thành công !", {
+            type: "success",
+            duration: 2000,
+          });
+        })
+        .catch((e) => {
+          this.$toasted.show("Gửi yêu cầu thất bại !", {
+            type: "error",
+            duration: 2000,
+          });
+          console.log(e);
+        });
+    },
     clearData() {
       this.$store.state.tokenUser = "";
       this.$store.state.totalCart = 0;
@@ -453,7 +474,10 @@ export default {
         .then((response) => {
           // console.log(response.data.object);
           this.detailOrder = response.data.object;
-          console.log(this.detailOrder);
+          this.detailUser = response.data.object.customer;
+          this.detailProduct = response.data.object.orderDetails;
+          this.statusOrder = response.data.object.orderManagements;
+          // console.log(this.detailOrder);
         })
         .catch((e) => {
           this.error.push(e);
@@ -470,7 +494,7 @@ export default {
         .then((response) => {
           // console.log(response.data.object);
           this.detailVN = response.data.object;
-          console.log(this.detailVN);
+          // console.log(this.detailVN);
         })
         .catch((e) => {
           this.error.push(e);

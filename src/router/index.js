@@ -53,7 +53,7 @@ const router = new Router({
         { path: "/faq", component: faq, name: "faq" },
         { path: "/news", component: news, name: "news" },
         { path: "/contacts", component: contacts, name: "contacts" },
-        { path: "", component: error404, name: "error404" },
+        { path: "/404", component: error404, name: "error404" },
         { path: "/blog", component: blog, name: "blog" },
         { path: "/about", component: about, name: "about" },
         { path: "/brands", component: brands, name: "brands" },

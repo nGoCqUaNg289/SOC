@@ -312,12 +312,14 @@ export default {
     },
     getOrderUser() {
       this.DetailsOrder = this.$store.state.StoreCart;
+      console.log(this.DetailsOrder)
       this.orderDetails = this.$store.state.StoreCart.map((detail) => {
         return {
           productId: detail.productId,
           quantity: detail.quantity,
           price: detail.price,
-          discount: 0,
+          discount: detail.discount,
+          colorId: detail.colorId
         };
       });
     },
@@ -345,6 +347,7 @@ export default {
         customer: this.dataUser,
         orderDetails: this.orderDetails,
       };
+      console.log(item)
       this.checkPay = false
       axios
         .post(this.$store.state.MainLink + "customer/orders/new", item, {

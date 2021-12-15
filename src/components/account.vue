@@ -98,7 +98,7 @@
                 </header>
                 <section
                   class="uk-card-body"
-                  v-for="(item, index) in listOrder"
+                  v-for="(item, index) in pageOfItems"
                   :key="index"
                 >
                   <h3>
@@ -120,7 +120,8 @@
                     <tbody>
                       <tr>
                         <th class="uk-width-medium">Tổng số sản phẩm</th>
-                        <td>7</td>
+                        <td v-if="item.numOfProduct">{{item.numOfProduct}}</td>
+                        <td v-else style="color:red">Đơn hàng không có sản phẩm !</td>
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Hình thức thanh toán</th>
@@ -133,18 +134,35 @@
                       </tr>
                       <tr>
                         <th class="uk-width-medium">Trạng thái</th>
-                        <td  v-if="item.status == 'Chờ xác nhận'"><span class="uk-label">Chờ xác nhận</span></td>
+                        <td  v-if="item.status == 'Chờ xác nhận'"><span class="uk-label" style="background-color: gray">{{item.status}}</span></td>
+                        <td  v-else-if="item.status == 'Đã xác nhận'"><span class="uk-label">{{item.status}}</span></td>
                         <!-- <td><span class="uk-label" v-if="item.status == 'Chờ xác nhận'">Chờ xác nhận</span></td> -->
-                        <td v-else-if="item.status == 'Đã hủy'">
-                          <span class="uk-label uk-label-danger">Đơn hàng bị hủy</span>
+                        <td v-else-if="item.status == 'Đã hủy' || item.status == 'Đơn hàng lỗi' || item.status == 'Yêu cầu hủy'">
+                          <span class="uk-label uk-label-danger">{{item.status}}</span>
                         </td>
-                        <td v-else-if="item.status == 'Đơn hàng lỗi'">
-                          <span class="uk-label uk-label-danger">Đơn hàng lỗi</span>
+                        <td v-else-if="item.status == 'Đang giao hàng'">
+                          <span class="uk-label" style="background-color: #18F5F5;">{{item.status}}</span>
+                        </td>
+                        <td v-else-if="item.status == 'Giao hàng thành công'">
+                          <span class="uk-label uk-label-success">{{item.status}}</span>
+                        </td>
+                        <td v-else>
+                          <span class="uk-label">{{item.status}}</span>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </section>
+              </div>
+              <div class="text-center">
+                          <jw-pagination
+                            :pageSize=5
+                            style="margin-top: 15px"
+                            :labels="customLabels"
+                            :maxPages="3"
+                            :items="listOrder"
+                            @changePage="onChangePage"
+                          ></jw-pagination>
               </div>
             </div>
           </div>
@@ -158,11 +176,21 @@
 import axios from "axios";
 import moment from "moment";
 
+const customLabels = {
+    first: '<<',
+    last: '>>',
+    previous: '<',
+    next: '>'
+};
+
 export default {
   name: "account",
   data() {
     return {
+      customLabels,
       listOrder: "",
+      items: "",
+      pageOfItems: [],
     };
   },
   created() {
@@ -170,6 +198,14 @@ export default {
     this.getDataAccount();
   },
   methods: {
+    onChangePage(pageOfItems) {
+      this.pageOfItems = pageOfItems;
+    },
+    filteredList() {
+      return this.getData.filter((data) =>
+        data.toLowerCase().includes(this.searchText.value.toLowerCase())
+      );
+    },
     clearData() {
       this.$store.state.tokenUser = "";
       this.$store.state.totalCart = 0;
@@ -196,9 +232,8 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data.object);
           this.listOrder = response.data.object;
-          // console.log(this.listOrder);
+          console.log(this.listOrder);
         })
         .catch((e) => {
           this.error.push(e);
