@@ -113,10 +113,21 @@
                             uk-child-width-1-2@s
                           "
                           uk-grid
-                        >
+                        > 
                           <div>
                             <label style="width: 100%">
-                              <div class="uk-form-label">Tên người dùng</div>
+                              <div class="uk-form-label">Tên đăng nhập</div>
+                              <input
+                                class="uk-input"
+                                type="text"
+                                v-model="dataUser.username"
+                                disabled
+                              />
+                            </label>
+                          </div>
+                          <div>
+                            <label style="width: 100%">
+                              <div class="uk-form-label uk-form-label-required">Tên người dùng</div>
                               <input
                                 class="uk-input"
                                 type="text"
@@ -137,7 +148,7 @@
                           </div>
                           <div>
                             <label style="width: 100%">
-                              <div class="uk-form-label">Số điện thoại</div>
+                              <div class="uk-form-label uk-form-label-required">Số điện thoại</div>
                               <input
                                 class="uk-input"
                                 type="tel"
@@ -173,7 +184,7 @@
                         <div class="uk-grid-large" uk-grid>
                           <div class="uk-width-expand">
                             <label style="width: 100%">
-                              <div class="uk-form-label">Địa chỉ cụ thể</div>
+                              <div class="uk-form-label uk-form-label-required">Địa chỉ cụ thể</div>
                               <input
                                 class="uk-input"
                                 type="text"
@@ -214,7 +225,8 @@
                   <button
                     class="uk-button uk-button-primary"
                     @click="updateUser(dataUser)"
-                  >
+                  > 
+                  <b-icon icon="arrow-clockwise"></b-icon>
                     Cập nhật tài khoản
                   </button>
                 </div>
