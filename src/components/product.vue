@@ -136,64 +136,49 @@
                               >
                                 <p>{{ getData.name }}</p>
                               </div>
+                              <div>
+                                <span class="uk-label uk-label-warning uk-margin-xsmall-right">Xu hướng</span>
+                                <span class="uk-label uk-label-danger uk-margin-xsmall-right" v-if="getData.discount != 0">Khuyến mại</span>
+                              </div>
+                              <!-- <br>
                               <p>
                                   Màu sắc
-                                </p>
+                              </p>
                               <div style=" display: flex">
                                   <button style="width: 35px; height: 35px; margin-right: 1rem; border-radius: 1rem" :style="{backgroundColor: '#'+item.color.code}" v-for="item in getData.productColors" :key="item.id" @click="setColorProduct(item.colorId,item.color.colorName)">
                                   </button>
                               </div>
                               <br>
-                              <p>Đang chọn màu : <strong>{{itemColor}}</strong></p>
+                              <p>Đang chọn màu : <strong>{{itemColor}}</strong></p> -->
                             </div>
-                          </div>
+
+                            <div>
+                              <div class="uk-text-small uk-margin-xsmall-bottom">Màu sắc</div>
+                                <ul class="uk-subnav uk-subnav-pill tm-variations" uk-switcher>
+                                  <li v-for="item in getData.productColors" :key="item.id">
+                                    <a class="tm-variation-color" :uk-tooltip="item.color.colorName">
+                                      <div :style="{backgroundColor: '#' + item.color.code}" @click="setColorProduct(item.colorId,item.color.colorName)"></div>
+                                    </a>
+                                  </li>
+                                </ul>
+                                <p>Đang chọn màu : <strong>{{itemColor}}</strong></p>
+                              </div>
+                            </div>
+
+
                         </div>
                         <div class="uk-margin">
-                          <div
-                            class="
-                              uk-padding-small
-                              uk-background-primary-lighten
-                              uk-border-rounded
-                            "
-                          >
-                            <div
-                              class="uk-grid-small uk-child-width-1-1"
-                              uk-grid
-                            >
+                          <div class="uk-padding-small uk-background-primary-lighten uk-border-rounded">
+                            <div class="uk-grid-small uk-child-width-1-1" uk-grid>
                               <div>
-                                <!-- <del class="uk-text-meta">$1899.00</del> -->
-                                
                                 <div class="tm-product-price" style="text-align: center">
                                   {{ formatPrice(getData.price) }}đ
                                 </div>
                               </div>
                               <div>
                                 <div class="uk-grid-small" uk-grid>
-                                  <!-- <div>
-                                    <a
-                                      onclick="increment(-1, 'product-1')"
-                                      uk-icon="icon: minus; ratio: .75"
-                                    ></a>
-                                    <input
-                                      class="uk-input tm-quantity-input"
-                                      id="product-1"
-                                      type="text"
-                                      maxlength="3"
-                                      min="1"
-                                      value="1"
-                                    /><a
-                                      onclick="increment(+1, 'product-1')"
-                                      uk-icon="icon: plus; ratio: .75"
-                                    ></a>
-                                  </div> -->
-                                  <div>
-                                    <button
-                                      v-if="getData.status == 'Đang bán'"
-                                      class="
-                                        uk-button uk-button-primary
-                                        tm-product-add-button tm-shine
-                                        js-add-to-cart
-                                      "
+                                  <div style="width: 85%">
+                                    <button v-if="getData.status == 'Đang bán'" class=" uk-button uk-button-primary tm-product-add-button tm-shine js-add-to-cart" style="width: 100%"
                                       @click="addToCart(
                                         getData.id,
                                         getData.name,
@@ -202,23 +187,11 @@
                                         getData.discount,
                                         itemColorId,
                                         itemColor)">
-                                      <b-icon
-                                        icon="cart-plus"
-                                        style="margin-right: 15px"
-                                      ></b-icon>
+                                      <b-icon icon="cart-plus" style="margin-right: 15px"></b-icon>
                                       Thêm vào giỏ hàng
                                     </button>
                                   </div>
-                                  <div
-                                    class="
-                                      uk-width-auto
-                                      uk-width-expand@s
-                                      uk-flex
-                                      uk-flex-middle
-                                      uk-text-meta
-                                    "
-                                  >
-                                    
+                                  <div class="uk-width-auto uk-width-expand@s uk-flex uk-flex-middle uk-text-meta">
                                     <a class="js-add-to js-add-to-compare tm-action-button-active js-added-to" uk-tooltip="Add to compare" @click="compareProduct(getData)">
                                       <span uk-icon="copy"></span>
                                     </a>
@@ -323,33 +296,22 @@
                           <section>
                             <article class="uk-article">
                               <div class="uk-article-body">
-                                <div
-                                  v-for="(item, index) in getBlog"
-                                  :key="index"
-                                >
-                                  <h5
-                                    style="margin-top: 15px"
-                                    class="tm-product-card-title"
-                                    v-if="item.type == 'header'"
-                                  >
+                                <div v-for="(item, index) in getBlog" :key="index">
+                                  <h5 style="margin-top: 15px" class="tm-product-card-title" v-if="item.type == 'header'">
                                     {{ item.content }}
                                   </h5>
-                                  <div
-                                    class="tm-wrapper"
-                                    style="margin: 15px 15px 15px 15px"
-                                  >
-                                    <figure class="uk-text-center">
-                                      <a
-                                        ><img
-                                          :src="item.content"
-                                          alt="MacBook Pro"
-                                          v-if="item.type == 'photo'"
-                                      /></a>
+                                  <div class="tm-wrapper uk-text-center" style="margin: 15px 15px 15px 15px">
+                                    <figure>
+                                      <a>
+                                        <img :src="item.content" alt="Hình ảnh sản phẩm ..." v-if="item.type == 'photo'"/>
+                                      </a>
                                     </figure>
-                                    <p></p>
                                   </div>
-                                  <p v-if="item.type == 'content'">
+                                  <h4 class="uk-text-center" v-if="item.type == 'content'">
                                     {{ item.content }}
+                                  </h4>
+                                  <p v-else-if="item.type == 'text'">
+                                     {{ item.content }}
                                   </p>
                                 </div>
                               </div>
@@ -632,70 +594,36 @@
                       Sản phẩm liên quan
                     </h2>
                     <div class="uk-visible@s">
-                      <a
-                        class="tm-slidenav"
-                        href="#"
-                        uk-slider-item="previous"
-                        uk-slidenav-previous
-                      ></a
-                      ><a
-                        class="tm-slidenav"
-                        href="#"
-                        uk-slider-item="next"
-                        uk-slidenav-next
-                      ></a>
+                      <a class="tm-slidenav" href="#" uk-slider-item="previous" uk-slidenav-previous></a>
+                      <a class="tm-slidenav" href="#" uk-slider-item="next" uk-slidenav-next></a>
                     </div>
                   </div>
                   <div>
-                    <div
-                      class="
-                        uk-card uk-card-default uk-card-small
-                        tm-ignore-container
-                      "
-                    >
+                    <div class="uk-card uk-card-default uk-card-small tm-ignore-container">
                       <div class="uk-position-relative">
                         <div class="uk-slider-container">
-                          <div
-                            class="
-                              uk-slider-items
-                              uk-grid-collapse
-                              uk-child-width-1-3
-                              uk-child-width-1-4@m
-                              tm-products-grid
-                            "
-                          >
+                          <div class="uk-slider-items uk-grid-collapse uk-child-width-1-3 uk-child-width-1-4@m tm-products-grid">
                             <article class="tm-product-card" v-for="item in getDataTrending" :key="item.id">
                               <div class="tm-product-card-media">
                                 <div class="tm-ratio tm-ratio-4-3">
-                                  <a class="tm-media-box" href="product.html">
+                                  <a class="tm-media-box">
                                     <div class="tm-product-card-labels">
-                                      <span class="uk-label uk-label-warning"
-                                        >top selling</span
-                                      ><span class="uk-label uk-label-danger"
-                                        >trade-in</span
-                                      >
+                                      <span class="uk-label uk-label-warning" v-if="item.discount != 0">Khuyến mại</span>
+                                      <!-- <span class="uk-label uk-label-danger">trade-in</span> -->
                                     </div>
                                     <figure class="tm-media-box-wrap">
-                                      <img
-                                        :src="item.photos[0]"
-                                        alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
-                                      /></figure
-                                  ></a>
+                                      <img :src="item.photos[0]" alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'/>
+                                    </figure>
+                                  </a>
                                 </div>
                               </div>
                               <div class="tm-product-card-body">
                                 <div class="tm-product-card-info">
-                                  <div
-                                    class="uk-text-meta uk-margin-xsmall-bottom"
-                                  >
+                                  <div class="uk-text-meta uk-margin-xsmall-bottom">
                                     Laptop
                                   </div>
                                   <h3 class="tm-product-card-title">
-                                    <a
-                                      class="uk-link-heading"
-                                      href="product.html"
-                                      >{{item.name}}</a
-                                    >
+                                    <a class="uk-link-heading" href="product.html">{{item.name}}</a>
                                   </h3>
                                 </div>
                                 <div class="tm-product-card-shop">

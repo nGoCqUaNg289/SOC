@@ -29,15 +29,7 @@
                         "
                       >
                         <img class="uk-width-1-1" src="images/pngegg.png" />
-                        <a
-                          class="
-                            uk-link-reset
-                            uk-overlay-primary
-                            uk-position-cover
-                            uk-hidden-hover
-                          "
-                          href="#"
-                        >
+                        <a class="uk-link-reset uk-overlay-primary uk-position-cover uk-hidden-hover">
                           <div class="uk-position-center">
                             <span uk-icon="icon: camera; ratio: 1.25;"></span>
                           </div>
@@ -55,12 +47,7 @@
                     <div>
                       <div class="uk-grid-small uk-flex-center" uk-grid>
                         <div>
-                          <button
-                            class="uk-button uk-button-default uk-button-small"
-                            href="#"
-                            title="Log out"
-                            @click="clearData"
-                          >
+                          <button class="uk-button uk-button-default uk-button-small" title="Log out" @click="clearData">
                             <span uk-icon="icon: sign-out; ratio: .75;"></span>
                           </button>
                         </div>
@@ -109,13 +96,10 @@
                   >
                     <div class="tm-product-card-media">
                       <div class="tm-ratio tm-ratio-4-3">
-                        <a class="tm-media-box" href="product.html">
+                        <a class="tm-media-box">
                           <div class="tm-product-card-labels">
-                            <span class="uk-label uk-label-warning"
-                              >top selling</span
-                            ><span class="uk-label uk-label-danger"
-                              >trade-in</span
-                            >
+                            <span class="uk-label uk-label-warning" v-if="item.discount != 0">Khuyến mại</span>
+                            <!-- <span class="uk-label uk-label-danger">trade-in</span> -->
                           </div>
                           <figure class="tm-media-box-wrap">
                             <img :src="item.photos[0]" />
@@ -129,41 +113,14 @@
                           Laptop
                         </div>
                         <h3 class="tm-product-card-title">
-                          <a
-                            class="uk-link-heading text-decoration"
-                            href="product.html"
-                            >{{ item.name }}</a
-                          >
+                          <a class="uk-link-heading text-decoration">{{ item.name }}</a>
                         </h3>
-                        <!-- <ul
-                          class="
-                            uk-list uk-text-small
-                            tm-product-card-properties
-                          "
-                        >
-                          <li>
-                            <span class="uk-text-muted">Diagonal display: </span
-                            ><span>15.4"</span>
-                          </li>
-                          <li>
-                            <span class="uk-text-muted">CPU: </span
-                            ><span>Intel®&nbsp;Core™ i7</span>
-                          </li>
-                          <li>
-                            <span class="uk-text-muted">RAM: </span
-                            ><span>16&nbsp;GB</span>
-                          </li>
-                          <li>
-                            <span class="uk-text-muted">Video Card: </span
-                            ><span>AMD Radeon Pro 555</span>
-                          </li>
-                        </ul> -->
                       </div>
                       <div class="tm-product-card-shop">
                         <div class="tm-product-card-prices">
-                          <del class="uk-text-meta">$1899.00</del>
+                          <del class="uk-text-meta" v-if="item.discount != 0">{{ formatPrice(item.price) }} đ</del>
                           <div class="tm-product-card-price">
-                            {{ formatPrice(item.price) }} đ
+                            {{ formatPrice(item.price - item.discount) }} đ
                           </div>
                         </div>
                         <div class="tm-product-card-add">

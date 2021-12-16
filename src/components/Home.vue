@@ -158,7 +158,7 @@
                         <span class="uk-label uk-label-danger" v-if="item.discount != 0">Khuyến mại</span>
                       </div>
                       <figure class="tm-media-box-wrap">
-                        <img :src="item.photos[0]" />
+                        <img :src="item.photos[0]" @click="detailProduct(item.id)"/>
                       </figure>
                     </a>
                   </div>
@@ -287,7 +287,7 @@
                         <span class="uk-label uk-label-danger">Mới</span>
                       </div>
                       <figure class="tm-media-box-wrap">
-                        <img :src="item.photos[0]" />
+                        <img :src="item.photos[0]" @click="detailProduct(item.id)"/>
                       </figure>
                     </a>
                   </div>
@@ -716,6 +716,7 @@
                     </div>
                     <div class="uk-text-center">
                       <button type="button" class="uk-button uk-button-primary" 
+                      v-if="itemColor"
                       @click="addToCart(
                             itemProduct.productId,
                             itemProduct.productName,

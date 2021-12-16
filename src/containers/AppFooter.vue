@@ -6,19 +6,15 @@
       >
         <div class="uk-container">
           <div
-            class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-4@m"
+            class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-3@m"
             uk-grid
           >
             <div>
-              <a class="uk-logo" href="index.html"
-                ><img
-                  src="images/SOCFooter.png"
-                  width="150px"
-                  height="auto"
-                  alt="Logo"
-              /></a>
+              <a class="uk-logo" href="index.html">
+                <img src="images/SOCFooter.png" width="150px" height="auto" alt="Logo"/>
+              </a>
               <p class="uk-text-small"></p>
-              <!-- <ul class="uk-iconnav">
+              <ul class="uk-iconnav">
                 <li>
                   <a href="#" title="Facebook" uk-icon="facebook"></a>
                 </li>
@@ -31,87 +27,49 @@
                 <li>
                   <a href="#" title="Instagram" uk-icon="instagram"></a>
                 </li>
-              </ul> -->
+              </ul>
             </div>
             <div>
               <nav >
                 <ul class="uk-list uk-text-small">
                   <li>
-                    <a class="uk-link-muted" href="#"
-                      >
-                      <!-- <span
+                    <a class="uk-link-muted" href="#">
+                      <span
                         class="uk-margin-small-right"
                         uk-icon="receiver"
                       ></span
-                      > -->
-                      <span
-                        class="uk-margin-small-right"
-                      ></span
                       >
-                      <span class="tm-pseudo">8 800 799 99 99</span></a
-                    >
+                      <span class="uk-margin-small-right"></span>
+                      <span class="tm-pseudo">8 800 799 99 99</span>
+                    </a>
                   </li>
                   <li>
-                    <a class="uk-link-muted" href="#"
-                      >
-                      <!-- <span class="uk-margin-small-right" uk-icon="mail"></span
-                      > -->
+                    <a class="uk-link-muted" href="#">
+                      <span class="uk-margin-small-right" uk-icon="mail"></span >
                       <span class="uk-margin-small-right"></span>
-                      <span class="tm-pseudo">socstorehanoi@gmail.com</span></a
-                    >
+                      <span class="tm-pseudo">socstorehanoi@gmail.com</span>
+                    </a>
                   </li>
                 </ul>
               </nav>
             </div>
-            <div>
+            <div style="margin-left: -20px">
               <ul class="uk-list uk-text-small">
                 <li>
                   <div class="uk-text-muted">
-                    <!-- <span
-                      class="uk-margin-small-right"
-                      uk-icon="location"
-                    ></span
-                    > -->
-                    <span
-                      class="uk-margin-small-right"
-                    ></span
-                    >
-                    <span
-                     >Xuân Phương, Nam Từ Liêm, Hà Nội</span
-                    >
+                    <span class="uk-margin-small-right" uk-icon="location"></span>
+                    <span class="uk-margin-small-right"></span>
+                    <span>Xuân Phương, Nam Từ Liêm, Hà Nội</span>
                   </div>
                 </li>
                 <li>
                   <div class="uk-text-muted">
-                    <!-- <span class="uk-margin-small-right" uk-icon="clock"></span
-                    > -->
-                    <span class="uk-margin-small-right"></span
-                    >
-                    <span>Thời gian mở cửa 10:00–22:00</span>
+                    <span class="uk-margin-small-right" uk-icon="clock"></span>
+                    <span class="uk-margin-small-right"></span>
+                    <span>Mở cửa từ 08:00 - 22:00</span>
                   </div>
                 </li>
               </ul>
-            </div>
-            <div>
-              <form class="uk-form-stacked">
-                <label>
-                  <div class="uk-form-label uk-text-muted">
-                    <!-- Đăng ký ngay ! -->
-                  </div>
-                  <div class="uk-inline uk-width-1-1">
-                    <a
-                      class="uk-form-icon uk-form-icon-flip"
-                      href="#"
-                    ></a>
-                    <!-- <input
-                      class="uk-input"
-                      type="email"
-                      placeholder="Your email"
-                      required
-                    /> -->
-                  </div>
-                </label>
-              </form>
             </div>
           </div>
         </div>

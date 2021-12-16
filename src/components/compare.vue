@@ -1,5 +1,5 @@
 <template>
-  <div class="uk-offcanvas-content">
+  <div class="uk-offcanvas-content" style="min-height: 700px">
     <main>
       <div>
         <section class="uk-section uk-section-small">

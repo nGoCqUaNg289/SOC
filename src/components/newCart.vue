@@ -1,5 +1,5 @@
 <template>
-  <div class="uk-offcanvas-content">
+  <div class="uk-offcanvas-content" style="min-height: 700px">
       <main>
         <section class="uk-section uk-section-small">
           <div class="uk-container">
@@ -274,13 +274,13 @@ export default {
     },
     sumPrice() {
       this.sumTotal = this.sumDiscount = 0
-      this.sumDiscount
+      // this.sumDiscount
       for (let i = 0; i < this.DetailsCart.length; i++) {
         this.sumTotal +=
           this.DetailsCart[i].price * this.DetailsCart[i].quantity;
       }
       for (let i = 0; i < this.DetailsCart.length; i++) {
-        this.sumDiscount += this.DetailsCart[i].discount
+        this.sumDiscount += this.DetailsCart[i].discount * this.DetailsCart[i].quantity;
       }
       return this.sumTotal, this.sumDiscount;
     },
@@ -326,6 +326,8 @@ export default {
       });
     },
     checkout(){
+      this.$store.state.StoreCart = this.DetailsCart
+      // console.log(this.DetailsCart)
       this.$router.push({
         name: "checkout",
       });
@@ -340,12 +342,9 @@ export default {
         .then((response) => {
           this.$store.state.userName = response.data.object.fullname;
           this.$store.state.tokenUser = localStorage.userToken
-          // this.$store.state.InfoPersonal = response.data.object;
           this.getTotalCart();
-          // console.log(response.data.object);
         })
         .catch((e) => {
-          // this.error.push(e);
           console.log(e);
         });
     },
@@ -370,18 +369,10 @@ export default {
   },
   watch: {
     'totalPrice.value': function (value) {
-      // console.log(value);
       if(value){
-        // console.log(value);
         this.sumPrice()
       }
     },
-    // 'DetailsCart': function (value) {
-    //   console.log(value);
-    //   if(value){
-    //     console.log(value);
-    //   }
-    // }
   }
 };
 </script>
