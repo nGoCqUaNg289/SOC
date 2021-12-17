@@ -70,10 +70,7 @@
                                 >
                                   <div class="uk-width-1-3">
                                     <div class="tm-ratio tm-ratio-4-3">
-                                      <a
-                                        class="tm-media-box"
-                                        href="product.html"
-                                      >
+                                      <a class="tm-media-box">
                                         <figure class="tm-media-box-wrap">
                                           <img :src="item.photos" />
                                         </figure>
