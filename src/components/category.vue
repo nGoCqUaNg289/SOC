@@ -442,6 +442,7 @@
                     </div>
                     <div class="uk-text-center">
                       <button type="button" class="uk-button uk-button-primary" 
+                      v-if="itemColor"
                       @click="addToCart(
                             itemProduct.productId,
                             itemProduct.productName,
@@ -606,20 +607,43 @@ export default {
       });
     },
     addToCart(id, name, photos, price, discount, colorId, colorName) {
-      console.log(this.$store.state.StoreCart)
-      this.itemColor = this.itemColorId = ""
+      // console.log(this.$store.state.StoreCart)
+      
       if (this.$store.state.tokenUser == "") {
-        let item = {
-          productName: name,
-          productId: id,
-          photo: photos,
-          price: price,
-          quantity: 1,
-          discount: discount,
-          colorId: colorId,
-          colorName: colorName,
-        };
-        this.$store.state.StoreCart.push(item);
+        // 
+        
+              let isnew = true;
+        for (var item of this.$store.state.StoreCart) {
+          if (item.productId == id && item.colorId == colorId) {
+            isnew = false;
+            break;
+          }
+        }
+        if (isnew) {
+          this.$store.state.StoreCart.push({
+            productName: name,
+            productId: id,
+            photo: photos,
+            price: price,
+            quantity: 1,
+            discount: discount,
+            colorId: colorId,
+            colorName: colorName,
+          });
+        } else {
+          var idx = 0;
+          for(let i = 0; i<this.$store.state.StoreCart.length;i++ ){
+            if(this.$store.state.StoreCart[i].productId == id && this.$store.state.StoreCart[i].colorId == colorId){
+              idx = i;
+              break
+            }
+          }
+          var it = Object.assign({}, this.$store.state.StoreCart[idx]);
+          this.$store.state.StoreCart.splice(idx, 1, {
+            ...it,
+            quantity: it.quantity + 1,
+          });
+        } 
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
           type: "success",
           duration: 2000,
@@ -665,6 +689,7 @@ export default {
           duration: 2000,
         });
       }
+      this.itemColor = this.itemColorId = ""
     },
     compareProduct(item) {
       if (this.$store.state.CompareCart.length < 2) {

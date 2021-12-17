@@ -729,16 +729,6 @@
                         <span class="tm-product-card-add-button-icon" uk-icon="cart"></span>
                       Thêm vào giỏ hàng
                       </button>
-                      <!-- {{item.productColors}} -->
-                      <!-- addToCart(
-                            item.id,
-                            item.name,
-                            item.photos[0],
-                            item.price,
-                            item.discount,
-                            item.productColors[0].colorId,
-                            item.productColors[0].color.colorName
-                          ) -->
                     </div>
                   </div>
                 </form>
@@ -846,73 +836,92 @@ export default {
       });
     },
     addToCart(id, name, photos, price, discount, colorId, colorName) {
-      // console.log(id, name, photos, price, discount, colorId, colorName)
-      // if(this.$store.state.StoreCart){
-      //   for(var i = 0; i < this.$store.state.StoreCart.length; i++){
-      //     if(id == this.$store.state.StoreCart[i].productId){
-      //       this.$store.state.StoreCart[i].quantity = this.$store.state.StoreCart[i].quantity + 1
+
+
+      
+      if (this.$store.state.tokenUser == "") {
+        // let item = {
+        //   productName: name,
+        //   productId: id,
+        //   photo: photos,
+        //   price: price,
+        //   quantity: 1,
+        //   discount: discount,
+        //   colorId: colorId,
+        //   colorName: colorName,
+        // };
+        
+    
+
+      
+      // let added = false;
+      // let inNew = true;
+      // this.$store.state.StoreCart = this.$store.state.StoreCart.map(
+      //   product =>{
+      //     if(product.productId == id){
+      //       inNew = false;
+      //       if(product.colorId != colorId){
+      //         added = true;
+      //         return product;
+      //       }else{
+      //         return {...product, quantity: product.quantity + 1}
+      //       }
+      //     }else{
+      //       return product;
       //     }
       //   }
+      // )
+      // if(added || inNew){
+      //   this.$store.state.StoreCart.push(item);
       // }
 
-      this.itemColor = this.itemColorId = ""
-      if (this.$store.state.tokenUser == "") {
-        let item = {
-          productName: name,
-          productId: id,
-          photo: photos,
-          price: price,
-          quantity: 1,
-          discount: discount,
-          colorId: colorId,
-          colorName: colorName,
-        };
-        
-      
-      // if(this.$store.state.StoreCart.length != 0){
-      //   console.log(":((")
-      //   for(var i = 0; i < this.$store.state.StoreCart.length; i++){
-      //       if(id == this.$store.state.StoreCart[i].productId){
-      //         console.log("Tăng số lượng")
-      //         this.$store.state.StoreCart[i].quantity = this.$store.state.StoreCart[i].quantity + 1
-      //       }else{
-      //         console.log("Thêm sản phẩm mới")
-      //         this.$store.state.StoreCart.push(item);
-      //       }
-      //   }
-      // }else{
-      //   this.$store.state.StoreCart.push(item);
-      //   console.log(":)))")
-      // }  
+
 
       
-      let added = false;
-      let inNew = true;
-      this.$store.state.StoreCart = this.$store.state.StoreCart.map(
-        product =>{
-          if(product.productId == id){
-            inNew = false;
-            if(product.colorId != colorId){
-              added = true;
-            }else{
-              return {...product, quantity: product.quantity + 1}
-            }
-          }else{
-            return product;
+      //   this.$toasted.show("Đã thêm vào giỏ hàng !", {
+      //     type: "success",
+      //     duration: 2000,
+      //   });
+
+
+      let isnew = true;
+        for (var item of this.$store.state.StoreCart) {
+          if (item.productId == id && item.colorId == colorId) {
+            isnew = false;
+            break;
           }
         }
-      )
-      if(added || inNew){
-        this.$store.state.StoreCart.push(item);
-      }
-
-
-
-      
+        if (isnew) {
+          this.$store.state.StoreCart.push({
+            productName: name,
+            productId: id,
+            photo: photos,
+            price: price,
+            quantity: 1,
+            discount: discount,
+            colorId: colorId,
+            colorName: colorName,
+          });
+        } else {
+          var idx = 0;
+          for(let i = 0; i<this.$store.state.StoreCart.length;i++ ){
+            if(this.$store.state.StoreCart[i].productId == id && this.$store.state.StoreCart[i].colorId == colorId){
+              idx = i;
+              break
+            }
+          }
+          var it = Object.assign({}, this.$store.state.StoreCart[idx]);
+          this.$store.state.StoreCart.splice(idx, 1, {
+            ...it,
+            quantity: it.quantity + 1,
+          });
+        } 
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
           type: "success",
           duration: 2000,
         });
+
+
       } else {
         let item = {
           productId: id,
@@ -957,6 +966,7 @@ export default {
               });
           });
       }
+      this.itemColor = this.itemColorId = ""
     },
     compareProduct(item) {
       if (this.$store.state.CompareCart.length < 2) {

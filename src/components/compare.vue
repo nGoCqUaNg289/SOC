@@ -12,10 +12,10 @@
                       <a>Trang chủ</a>
                     </router-link>
                   </li>
-                  <li><span>Compare</span></li>
+                  <li><span>So sánh</span></li>
                 </ul>
                 <h1 class="uk-margin-small-top uk-margin-remove-bottom">
-                  Compare
+                  So sánh sản phẩm
                 </h1>
               </div>
               <div
