@@ -348,6 +348,7 @@ export default {
         orderDetails: this.orderDetails,
       };
       console.log(item)
+      this.$store.state.saveOrderDetail = item
       this.checkPay = false
       axios
         .post(this.$store.state.MainLink + "customer/orders/new", item, {

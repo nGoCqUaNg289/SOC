@@ -27,11 +27,7 @@
                             <h1 class="uk-h2">Đơn hàng của bạn</h1>
                             </header>
                             <section class="uk-card-body">
-                            <h3>
-                                <a class="uk-link-heading"># {{detailOrder.id}}
-                                    <span class="uk-text-muted uk-text-small">Từ ngày {{getDate(detailOrder.dateCreated)}}</span>
-                                </a>
-                            </h3>
+
                             <table
                                 class="
                                 uk-table
@@ -46,28 +42,23 @@
                                 <tbody>
                                 <tr>
                                     <th class="uk-width-medium">Họ tên người mua</th>
-                                    <td>{{  detailOrder.customer.fullname }}</td>
+                                    <td>{{detailUser.fullname}}</td>
                                 </tr>
                                 <tr>
                                     <th class="uk-width-medium">Email</th>
-                                    <td>{{  detailOrder.customer.email }}</td>
+                                    <td>{{detailUser.email}}</td>
                                 </tr>
                                 <tr>
                                     <th class="uk-width-medium">Điện thoại</th>
-                                    <td>{{  detailOrder.customer.phone }}</td>
+                                    <td>{{detailUser.phone}}</td>
                                 </tr>
                                 <tr>
                                     <th class="uk-width-medium">Địa chỉ giao hàng</th>
-                                    <td>{{  detailOrder.customer.address }}</td>
+                                    <td>{{detailUser.address}}</td>
                                 </tr>
                                 <tr>
                                     <th class="uk-width-medium">Tổng số sản phẩm</th>
-                                    <td>{{ detailOrder.orderDetails.length }}</td>
-                                </tr>
-                                <tr>
-                                    <th class="uk-width-medium">Hình thức thanh toán</th>
-                                    <td v-if="detailOrder.typePayment == true">Thanh toán trực truyến </td>
-                                    <td v-else-if="detailOrder.typePayment == false">Thanh toán khi nhận hàng</td>
+                                    <td>{{detailProduct.length}}</td>
                                 </tr>
                                 <tr>
                                     <th class="uk-width-medium">Tổng tiền</th>
@@ -75,20 +66,17 @@
                                 </tr>
                                 <tr>
                                     <th class="uk-width-medium">Trạng thái</th>
-                                    <td><span class="uk-label" v-if="detailOrder.status == 'Chờ xác nhận'">Chờ xác nhận</span></td>
-                                    <td>
-                                    <span class="uk-label uk-label-danger" v-if="detailOrder.status == 'Hủy'">Đơn hàng bị hủy</span>
-                                    </td>
+                                    <td><span class="uk-label">Chờ xác nhận</span></td>
                                 </tr>
                                 </tbody>
                             </table>
                             <br>
                             <br>
-                            <table class="table" v-for="(item, index) in detailOrder.orderDetails" :key="index">
+                            <table class="table" v-for="(item, index) in detailProduct" :key="index">
                                 <thead>
                                 <tr>
                                     <th scope="col">#{{index + 1}}</th>
-                                    <th scope="col">{{item.productName}} </th>
+                                    <th scope="col">{{item.productId}} </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -126,7 +114,9 @@ export default {
   },
   data() {
     return {
-        detailOrder: ""
+        detailOrder: "",
+        detailUser: "",
+        detailProduct: "",
     };
   },
   created() {
@@ -193,21 +183,20 @@ export default {
         });
     },
     getDataUserOrder() {
-      axios
-        .get(this.$store.state.MainLink + "customer/orders/" + localStorage.orderDetails, {
-          headers: {
-            Authorization: localStorage.userToken,
-          },
-        })
-        .then((response) => {
-          // console.log(response.data.object);
-          this.detailOrder = response.data.object;
-          console.log(this.detailOrder);
-        })
-        .catch((e) => {
-          this.error.push(e);
-          console.log(e);
-        });
+      // axios
+      //   .get(this.$store.state.MainLink + "customer/orders/" + localStorage.orderDetails)
+      //   .then((response) => {
+      //     this.detailOrder = response.data.object;
+      //     console.log(this.detailOrder);
+      //   })
+      //   .catch((e) => {
+      //     this.error.push(e);
+      //     console.log(e);
+      //   });
+      this.detailOrder = this.$store.state.saveOrderDetail
+      this.detailUser = this.detailOrder.customer;
+      this.detailProduct = this.detailOrder.orderDetails
+      console.log(this.detailOrder);
     },
   },
 };

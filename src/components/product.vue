@@ -41,17 +41,8 @@
                       >
                         <div>
                           <ul class="uk-slideshow-items" uk-lightbox>
-                            <li
-                              v-for="(item, index) in getData.photos"
-                              :key="index"
-                            >
-                              <a
-                                class="
-                                  uk-card-body
-                                  tm-media-box tm-media-box-zoom
-                                "
-                                :href="item"
-                              >
+                            <li v-for="(item, index) in getData.photos" :key="index">
+                              <a class="uk-card-body tm-media-box tm-media-box-zoom" :href="item">
                                 <figure class="tm-media-box-wrap">
                                   <img :src="item" />
                                 </figure>
@@ -97,7 +88,7 @@
                                           uk-position-center-left-out
                                           uk-position-small
                                         "
-                                        href="#"
+                                      
                                         uk-slider-item="previous"
                                         uk-slidenav-previous
                                       ></a
@@ -106,7 +97,7 @@
                                           uk-position-center-right-out
                                           uk-position-small
                                         "
-                                        href="#"
+                                      
                                         uk-slider-item="next"
                                         uk-slidenav-next
                                       ></a>
@@ -178,7 +169,7 @@
                               <div>
                                 <div class="uk-grid-small" uk-grid>
                                   <div style="width: 85%">
-                                    <button v-if="getData.status == 'Đang bán'" class=" uk-button uk-button-primary tm-product-add-button tm-shine js-add-to-cart" style="width: 100%"
+                                    <button v-if="getData.status == 'Đang bán' && itemColor" class=" uk-button uk-button-primary tm-product-add-button tm-shine js-add-to-cart" style="width: 100%"
                                       @click="addToCart(
                                         getData.id,
                                         getData.name,
@@ -187,6 +178,18 @@
                                         getData.discount,
                                         itemColorId,
                                         itemColor)">
+                                      <b-icon icon="cart-plus" style="margin-right: 15px"></b-icon>
+                                      Thêm vào giỏ hàng
+                                    </button>
+                                    <button v-else class=" uk-button uk-button-primary tm-product-add-button tm-shine js-add-to-cart" style="width: 100%"
+                                      @click="addToCart(
+                                        getData.id,
+                                        getData.name,
+                                        getData.photos[0],
+                                        getData.price,
+                                        getData.discount,
+                                        itemColorId,
+                                        itemColor)" disabled>
                                       <b-icon icon="cart-plus" style="margin-right: 15px"></b-icon>
                                       Thêm vào giỏ hàng
                                     </button>
@@ -477,7 +480,7 @@
                               uk-accordion="multiple: true"
                             >
                               <li>
-                                <a class="uk-accordion-title" href="#">
+                                <a class="uk-accordion-title">
                                   <b
                                     >Tôi mua sản phẩm tại SOC shop sẽ có khác
                                     biệt gì ?</b
@@ -493,7 +496,7 @@
                                 </div>
                               </li>
                               <li>
-                                <a class="uk-accordion-title" href="#"
+                                <a class="uk-accordion-title"
                                   ><b
                                     >Tại sao hàng chính hãng lại bán đắt hơn
                                     hàng xách tay bán tại các cửa hàng ?</b
@@ -519,7 +522,7 @@
                                 </div>
                               </li>
                               <li>
-                                <a class="uk-accordion-title" href="#"
+                                <a class="uk-accordion-title"
                                   ><p>
                                     <b
                                       >Tôi sẽ được ưu đãi và khuyến mại gì khii
@@ -539,7 +542,7 @@
                                 </div>
                               </li>
                               <li>
-                                <a class="uk-accordion-title" href="#"
+                                <a class="uk-accordion-title"
                                   ><b
                                     >Những dịch vụ chăm sóc khách hàng của SOC
                                     SHOP là gì ?</b
@@ -558,7 +561,7 @@
                                 </div>
                               </li>
                               <li>
-                                <a class="uk-accordion-title" href="#"
+                                <a class="uk-accordion-title"
                                   ><b
                                     >SOC SHOP có giao hàng tại nhà không ? Chất
                                     lượng sản phẩm có bị thay đổi đổi không ?</b
@@ -594,8 +597,8 @@
                       Sản phẩm liên quan
                     </h2>
                     <div class="uk-visible@s">
-                      <a class="tm-slidenav" href="#" uk-slider-item="previous" uk-slidenav-previous></a>
-                      <a class="tm-slidenav" href="#" uk-slider-item="next" uk-slidenav-next></a>
+                      <a class="tm-slidenav" uk-slider-item="previous" uk-slidenav-previous></a>
+                      <a class="tm-slidenav" uk-slider-item="next" uk-slidenav-next></a>
                     </div>
                   </div>
                   <div>
@@ -612,7 +615,7 @@
                                       <!-- <span class="uk-label uk-label-danger">trade-in</span> -->
                                     </div>
                                     <figure class="tm-media-box-wrap">
-                                      <img :src="item.photos[0]" alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'/>
+                                      <img :src="item.photos[0]" alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)' @click="showProductRe(item.id)"/>
                                     </figure>
                                   </a>
                                 </div>
@@ -623,7 +626,7 @@
                                     Laptop
                                   </div>
                                   <h3 class="tm-product-card-title">
-                                    <a class="uk-link-heading" href="product.html">{{item.name}}</a>
+                                    <a class="uk-link-heading" @click="showProductRe(item.id)">{{item.name}}</a>
                                   </h3>
                                 </div>
                                 <div class="tm-product-card-shop">
@@ -775,6 +778,11 @@ export default {
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+    showProductRe(id){
+      console.log(id);
+      this.item = id;
+      this.getDetailProduct()
     },
     getDetailProduct() {
       console.log(this.item)

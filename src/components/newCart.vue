@@ -72,9 +72,13 @@
                                 </div>
                                 <div class="tm-cart-quantity-column">
                                   <!-- <a onclick="increment(-1, 'product-1')" uk-icon="icon: minus; ratio: .75" v-if="item.quantity > 0"></a> -->
-                                  <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="3" v-model="item.quantity" min="1" max="5" style="height: 30px" oninput="this.value = Math.abs(this.value)"/>
+                                  <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="1" v-model="item.quantity" min="1" max="5" style="height: 30px" oninput="this.value = Math.abs(this.value)"/>
                                   <!-- <a onclick="increment(+1, 'product-1')" uk-icon="icon: plus; ratio: .75"></a> -->
+                                  <i v-if="item.quantity > 5" class="" style="color:red">
+                                    Mua số lượng lớn vui lòng liên hệ shop để được nhận giá khác!
+                                  </i>
                                 </div>
+                                
                                 <div>
                                   <div class="uk-text-muted uk-hidden@m">Tổng</div>
                                   {{formatPrice((totalPrice.value = (item.price - item.discount)* item.quantity))}} đ

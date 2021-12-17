@@ -61,30 +61,14 @@
                           <div v-for="item in getAllCate" :key="item.id">
                             <section class="uk-card-small uk-card-body" style="padding: 10px 0px 0px 20px;">
                               <h6 class="uk-margin-small-bottom" v-if="item.name != 'Thương hiệu'">{{item.name}}
-                                <!-- <span>
-                                  <button class="btn-custom-color" @click="changToDash()" v-if="plusdash == 0">
-                                    <b-icon icon="plus" style="color: gray" ></b-icon>
-                                  </button>
-                                  <button class="btn-custom-color" @click="changToPlus()" v-else>
-                                    <b-icon icon="dash" style="color: gray"></b-icon>
-                                  </button>
-                                </span> -->
                               </h6>
                               <div class="uk-accordion-content" v-if="item.name != 'Thương hiệu' && plusdash == 0" style="margin-top: 0">
                                 <ul class="uk-nav uk-nav-default" >
                                   <li v-for="items in item.categories" :key="items.id"><a @click="findByCate(items.id)"><b-icon icon="dash" style="color: gray"></b-icon> {{items.name}}</a></li>
                                 </ul>
                               </div>
-                              <!-- <div class="uk-accordion-content" v-else>
-                              </div> -->
                            </section>
                           </div>
-                          
-                          <!-- <ul class="uk-nav uk-nav-default" >
-                            <li v-for="item in getNeed" :key="item.id"><a @click="findByCate(item.id)">{{item.name}}</a></li>
-                            <li v-for="item in getTypeMachine" :key="item.id"><a @click="findByCate(item.id)">{{item.name}}</a></li>
-                            <li v-for="item in getTypeProduct" :key="item.id"><a @click="findByCate(item.id)">{{item.name}}</a></li>
-                          </ul> -->
                         </section>
                         <section class="uk-card-body uk-open js-accordion-section">
                           <h4 class="uk-accordion-title uk-margin-remove">
@@ -163,12 +147,7 @@
                 <div class="uk-width-expand">
                   <div class="uk-grid-medium uk-child-width-1-1" uk-grid>
                     <div>
-                      <div
-                        class="
-                          uk-card uk-card-default uk-card-small
-                          tm-ignore-container
-                        "
-                      >
+                      <div class=" uk-card uk-card-default uk-card-small tm-ignore-container">
                         <div class="uk-grid-collapse uk-child-width-1-1" id="products" uk-grid v-if="getData.length > 0">
                           <div class="uk-card-header">
                             <div class="uk-grid-small uk-flex-middle" uk-grid>
@@ -176,42 +155,10 @@
                                 <span class="uk-margin-small-right uk-text-muted">
                                   <i>Hiển thị các sản phẩm liên quan</i>
                                   </span>
-                                <!-- <ul class="uk-subnav uk-margin-remove">
-                                  <li class="uk-active uk-padding-remove">
-                                    <a class="" style="text-decoration: none;">Giá tiền
-                                      <span class="uk-margin-xsmall-left" uk-icon="icon: chevron-down; ratio: .5;"></span>
-                                    </a>
-                                  </li>
-                                </ul> -->
                               </div>
-                              <!-- <a class="uk-navbar-toggle tm-navbar-button" uk-search-icon></a>
-                              <div class="uk-navbar-dropdown uk-padding-small uk-margin-remove" uk-drop="mode: click;cls-drop: uk-navbar-dropdown;boundary: .tm-navbar-container;boundary-align: true;pos: bottom-justify;flip: x">
-                                <div class="uk-container">
-                                  <div class="uk-grid-small uk-flex-middle" uk-grid>
-                                    <div class="uk-width-expand">
-                                      <form class="uk-search uk-search-navbar uk-width-1-1">
-                                        <input
-                                          class="uk-search-input"
-                                          type="search"
-                                          placeholder="Tìm kiếm…"
-                                          autofocus
-                                          v-model="searchText"
-                                        />
-                                      </form>
-                                    </div>
-                                    <div class="uk-width-auto">
-                                      <a
-                                        class="uk-navbar-dropdown-close"
-                                        uk-search-icon
-                                        @click="searchProduct(searchText)"
-                                      ></a>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div> -->
                             </div>
                           </div>
-                          <div>
+                          <div style="min-height: 950px">
                             <div class="uk-grid-collapse uk-child-width-1-3 tm-products-grid js-products-grid" uk-grid>
                               <article class="tm-product-card" v-for="item in pageOfItems" :key="item.id">
                                 <div class="tm-product-card-media">
@@ -351,8 +298,8 @@
                             </article>
                           </div>
                         </div>
-                        <!-- <loadingform v-else></loadingform> -->
-                        <div v-else>
+
+                        <div v-else style="min-height: 950px">
                           <div class="container">
                             <div class="row row-cols-3">
                               <p class="placeholder-glow">
@@ -424,6 +371,7 @@
                         </div>
                         
                       </div>
+                      <br>
                       <div class="text-center">
                           <jw-pagination
                             :pageSize=9
@@ -634,6 +582,7 @@ export default {
     resetData() {
       this.checkLenght = 0
       this.selected = false;
+      this.getData = 0
       axios
         .get(this.$store.state.MainLink + "customer/products")
         .then((response) => {
@@ -657,6 +606,7 @@ export default {
       });
     },
     addToCart(id, name, photos, price, discount, colorId, colorName) {
+      console.log(this.$store.state.StoreCart)
       this.itemColor = this.itemColorId = ""
       if (this.$store.state.tokenUser == "") {
         let item = {
@@ -821,15 +771,13 @@ export default {
           });
     },
     findByCate(id){
-      // console.log(id);
-      // this.getData= []
+      this.getData = 0
       axios
           .get(
             this.$store.state.MainLink + "customer/products?cate=" +id
           )
           .then((response) => {
             this.getData = response.data.object;
-            // console.log(this.getData);
             this.callFunction();
           })
           .catch((e) => {

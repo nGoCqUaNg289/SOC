@@ -174,8 +174,8 @@
                     <tbody>
                       <tr v-for="(item, index) in statusOrder" :key="index">
                         <th class="uk-width-medium">
-                          <div>{{item.timeChange}}</div>
-                          <div>NVTD: {{item.changedBy}}</div>
+                          <div class="text-bold">{{item.timeChange}}</div>
+                          <div>NV thay đổi: <i>{{item.changedBy}}</i></div>
                         </th>
                         <td>
                           <div>{{item.status}}</div>
