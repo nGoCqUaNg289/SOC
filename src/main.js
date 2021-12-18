@@ -8,24 +8,20 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Paginate from 'vuejs-paginate'
-// import { store } from './store'
 import store from "./store";
 import Toasted from "vue-toasted";
-// import Vuex from 'vuex'
-
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 import moment from 'moment'
 import JwPagination from 'jw-vue-pagination';
+import 'v-slim-dialog/dist/v-slim-dialog.css'
+import SlimDialog from 'v-slim-dialog'
 
+Vue.use(SlimDialog)
 
 Vue.component('jw-pagination', JwPagination);
-// Vue.use(Vuex)
 library.add(faUserSecret)
-
-// Vue.use(moment)
 Vue.prototype.moment = moment
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('paginate', Paginate)

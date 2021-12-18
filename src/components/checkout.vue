@@ -302,11 +302,19 @@ export default {
     this.sumPrice();
     this.getDataUser();
     this.getDataAccount();
+
   },
   methods: {
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+    showAlert1() {
+      const options = {title: 'Lỗi', size: 'sm'}
+      this.$dialogs.alert(this.showAlert, options)
+      .then(res => {
+        console.log(res) // {ok: true|false|undefined}
+      })
     },
     getDataUser() {
       this.dataUser = {
@@ -396,17 +404,17 @@ export default {
         })
         .catch((error) => {
           
-          let item = Object.values(error.response.data.validateDetails).join(" - ")
-          // console.log(item)
-          // alert(error.response.data.validateDetails)
+          this.showAlert = Object.values(error.response.data.validateDetails).join(", ");
           // for (let i = 0; i < item.length; i ++){
-          //   this.showAlert += item[i] + " - "
+          //   this.showAlert +=  "- " + item[i]
           // }
+          // this.showAlert = "Quang\n 123"
           // console.log(this.showAlert)
-          this.$toasted.show(item + " !", {
-            type: "error",
-            duration: 3000,
-          });
+          // this.$toasted.show(item + " !", {
+          //   type: "error",
+          //   duration: 3000,
+          // });
+          this.showAlert1();
           // console.log(Object.values(error.response.data.validateDetails));
           this.checkPay = true
         });
