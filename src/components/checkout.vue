@@ -232,7 +232,7 @@
                           <div class="uk-text-muted">Giảm giá</div>
                         </div>
                         <div class="uk-text-right">
-                          <div class="uk-text-danger">- 0 đ</div>
+                          <div class="uk-text-danger">- {{ formatPrice(sumDiscount) }}đ</div>
                         </div>
                       </div>
                     </section>
@@ -242,7 +242,7 @@
                           <div class="uk-text-muted">Tổng</div>
                         </div>
                         <div class="uk-text-right">
-                          <div class="uk-text-lead uk-text-bolder">{{ formatPrice(sumTotal) }} đ</div>
+                          <div class="uk-text-lead uk-text-bolder">{{ formatPrice(sumPricePro.value = sumTotal - sumDiscount) }} đ</div>
                         </div>
                       </div>
                       <button
@@ -289,6 +289,11 @@ export default {
       orderDetails: [],
       validateForm: "",
       checkPay: true,
+      sumDiscount: 0,
+      sumPricePro: {
+        input: "",
+        value: 0,
+      },
     };
   },
   created() {
@@ -326,7 +331,7 @@ export default {
     payment() {
       
       this.checkPay = false;
-      console.log(this.checkPay)
+      // console.log(this.checkPay)
       if(this.dataUser.fullname == '' || this.dataUser.email == '' || this.dataUser.phone == '' || this.dataUser.address == ''){
         this.validateForm = "Vui lòng không để trống thông tin !"
         this.checkPay = true
@@ -335,15 +340,20 @@ export default {
       }
     },
     sumPrice() {
+      // this.sumTotal = this.sumDiscount = 0
+
       for (let i = 0; i < this.DetailsOrder.length; i++) {
         this.sumTotal +=
           this.DetailsOrder[i].price * this.DetailsOrder[i].quantity;
       }
-      return this.sumTotal;
+      for (let i = 0; i < this.DetailsOrder.length; i++) {
+        this.sumDiscount += this.DetailsOrder[i].discount * this.DetailsOrder[i].quantity;
+      }
+      return this.sumTotal, this.sumDiscount;
     },
     addToOrder() {
       let item = {
-        sumprice: this.sumTotal,
+        sumprice: this.sumPricePro.value,
         customer: this.dataUser,
         orderDetails: this.orderDetails,
       };
@@ -383,12 +393,14 @@ export default {
               });
           }
         })
-        .catch((e) => {
-          this.$toasted.show("Đặt hàng thất bại !", {
+        .catch((error) => {
+          
+          // let item = error.data.object.errorMsg
+          this.$toasted.show(error.data.object.errorMsg, {
             type: "error",
-            duration: 2000,
+            duration: 3000,
           });
-          console.log(e);
+          console.log(error);
           this.checkPay = true
         });
     },
