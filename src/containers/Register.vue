@@ -11,65 +11,61 @@
             </a>
           </div>
           <div>
-            <div class="username">
+            <div>
               <i class="ms-Icon ms-Icon--Contact"></i>
-              <input
-                v-model="username"
-                type="text"
-                placeholder="Tài khoản đăng nhập"
-              />
+              <input v-model="username" type="text" placeholder="Tài khoản đăng nhập"/>
               <div style="text-align: center;color: red;margin-top: 10px;">
                 {{errorsUsername}}
               </div>
               
             </div>
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Lock"></i>
-              <input
-                v-model="fullname"
-                type="text"
-                placeholder="Tên người dùng"
-              />
-              <div style="text-align: center;color: red;margin-top: 10px;">
-                {{errorsFullname}}
+
+            <div style="display: flex; margin-top: 25px;">
+              <div class="username">
+                <i class="ms-Icon ms-Icon--Lock"></i>
+                <input v-model="fullname" type="text" placeholder="Tên người dùng"/>
+                <div style="text-align: center;color: red;margin-top: 10px;">
+                  {{errorsFullname}}
+                </div>
               </div>
-              
-            </div>
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Lock"></i>
-              <input v-model="email" type="email" id="email" placeholder="Email" />
-              <div style="text-align: center;color: red;margin-top: 10px;">
-                {{errorsEmail}}
-              </div>
-              
-            </div>
-            
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Contact"></i>
-              <input
-                v-model="password"
-                type="password"
-                placeholder="Mật khẩu"
-              />
-              <div style="text-align: center;color: red;margin-top: 10px;">
-                {{errorsPassword}} 
-              </div>
-              
-            </div>
-            <div class="username">
-              <i class="ms-Icon ms-Icon--Contact"></i>
-              <input
-                v-model="repassword"
-                type="password"
-                placeholder="Xác nhận mật khẩu"
-              />
-              <div style="text-align: center;color: red;margin-top: 10px;">
-                {{errorsRePassword}} 
-              </div>
-              <div v-if="password != repassword" style="text-align: center;color: red;margin-top: 15px;">
-                Xác nhận mật khẩu không chính xác!
+              <div class="username" style="margin-left: 10px">
+                <i class="ms-Icon ms-Icon--Lock"></i>
+                <input v-model="email" type="email" id="email" placeholder="Email" />
+                <div style="text-align: center;color: red;margin-top: 10px;">
+                  {{errorsEmail}}
+                </div>
               </div>
             </div>
+
+            <div style="display: flex">
+              <div class="username">
+                <i class="ms-Icon ms-Icon--Contact"></i>
+                <input
+                  v-model="password"
+                  type="password"
+                  placeholder="Mật khẩu"
+                />
+                <div style="text-align: center;color: red;margin-top: 10px;">
+                  {{errorsPassword}} 
+                </div>
+                
+              </div>
+              <div class="username" style="margin-left: 10px">
+                <i class="ms-Icon ms-Icon--Contact"></i>
+                <input
+                  v-model="repassword"
+                  type="password"
+                  placeholder="Xác nhận mật khẩu"
+                />
+                <div style="text-align: center;color: red;margin-top: 10px;">
+                  {{errorsRePassword}} 
+                </div>
+                <div v-if="password != repassword" style="text-align: center;color: red;margin-top: 15px;">
+                  Xác nhận mật khẩu không chính xác!
+                </div>
+              </div>              
+            </div>
+
             <div class="submit-button">
               <button type="submit" @click="checkEmail()" v-if="checkReg == 0" style="width: 35%;margin: 15px;">Đăng ký</button>
               <button type="submit" @click="returnHome()" v-if="checkReg == 0" style="width: 35%;margin: 15px;">Hủy</button>
@@ -218,8 +214,8 @@ main {
     BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
   position: relative;
   margin: auto;
-  max-width: 440px;
-  width: 440px;
+  /* max-width: 440px; */
+  width: 600px;
   padding: 44px;
   /*! margin-bottom: 28px; */
   background-color: #fff;
@@ -319,5 +315,8 @@ main {
   background-color: #eeeeee;
   margin-top: -10%;
   height: 110%;
+}
+.username{
+  width: 50%;
 }
 </style>

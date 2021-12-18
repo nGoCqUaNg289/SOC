@@ -294,6 +294,7 @@ export default {
         input: "",
         value: 0,
       },
+      showAlert: ""
     };
   },
   created() {
@@ -395,12 +396,18 @@ export default {
         })
         .catch((error) => {
           
-          // let item = error.data.object.errorMsg
-          this.$toasted.show(error.data.object.errorMsg, {
+          let item = Object.values(error.response.data.validateDetails).join(" - ")
+          // console.log(item)
+          // alert(error.response.data.validateDetails)
+          // for (let i = 0; i < item.length; i ++){
+          //   this.showAlert += item[i] + " - "
+          // }
+          // console.log(this.showAlert)
+          this.$toasted.show(item + " !", {
             type: "error",
             duration: 3000,
           });
-          console.log(error);
+          // console.log(Object.values(error.response.data.validateDetails));
           this.checkPay = true
         });
     },
