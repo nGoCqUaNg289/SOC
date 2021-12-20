@@ -134,6 +134,137 @@
       </section>
       <section class="uk-section uk-section-small">
         <div class="uk-container">
+          <h2 class="uk-text-center">Sản phẩm đang khuyến mại</h2>
+          <div class="uk-card uk-card-default tm-ignore-container">
+            <div
+              class="
+                uk-grid-collapse uk-child-width-1-3 uk-child-width-1-4@m
+                tm-products-grid
+              "
+              uk-grid
+            >
+              <article
+                class="tm-product-card"
+                v-for="item in getProductDiscount"
+                :key="item.id"
+              >
+                <div class="tm-product-card-media">
+                  <div class="tm-ratio tm-ratio-4-3">
+                    <a class="tm-media-box" style="text-decoration: none">
+                      <div class="tm-product-card-labels">
+                        <span class="uk-label uk-label-warning"
+                          >Xu hướng</span
+                        >
+                        <span class="uk-label uk-label-danger" v-if="item.discount != 0">Khuyến mại</span>
+                      </div>
+                      <figure class="tm-media-box-wrap">
+                        <img :src="item.photos[0]" @click="detailProduct(item.id)"/>
+                      </figure>
+                    </a>
+                  </div>
+                </div>
+                <div class="tm-product-card-body">
+                  <div class="tm-product-card-info">
+                    <div class="uk-text-meta uk-margin-xsmall-bottom">
+                      Laptop
+                    </div>
+                    <h3 class="tm-product-card-title">
+                      <a
+                        class="uk-link-heading"
+                        @click="detailProduct(item.id)"
+                        >{{ item.name.substr(6,40) }} ...</a
+                      >
+                    </h3>
+                  </div>
+                  <div class="tm-product-card-shop">
+                    <div class="tm-product-card-prices">
+                      <del class="uk-text-meta" style="color:red" v-if="item.discount != 0">{{ formatPrice(item.price) }}đ</del>
+                      <div class="tm-product-card-price">
+                        {{ formatPrice(item.price - item.discount) }}đ
+                      </div>
+                    </div>
+                    <div class="tm-product-card-add">
+                      <div class="uk-text-meta tm-product-card-actions">
+                        <a
+                          class="
+                            tm-product-card-action
+                            js-add-to js-add-to-favorites
+                            tm-action-button-active
+                            js-added-to
+                          "
+                          title="Add to favorites"
+                          @click="addToFavorite(item.id)"
+                          v-if="checkFavorites != ''"
+                        >
+                          <b-icon
+                            :icon="isFavorited(item) ? 'heart-fill' : 'heart'"
+                            style="color: red"
+                          ></b-icon>
+                          <!-- <b-icon icon="heart" style="color: red"></b-icon> -->
+                          <span class="tm-product-card-action-text"
+                            >Add to favorites</span
+                          >
+                        </a>
+                        <a
+                          class="
+                            tm-product-card-action
+                            js-add-to js-add-to-compare
+                            tm-action-button-active
+                            js-added-to
+                          "
+                          title="Add to compare"
+                          @click="compareProduct(item)"
+                        >
+                          <span uk-icon="icon: copy; ratio: .75;"></span>
+                          <span class="tm-product-card-action-text"
+                            >Add to compare</span
+                          >
+                        </a>
+                      </div>
+                      <!-- {{item.productColors[0]}} -->
+                      <button
+                        class="
+                          uk-button uk-button-primary
+                          tm-product-card-add-button tm-shine
+                          js-add-to-cart
+                        "
+                        uk-toggle="target: #review"
+                        @click="
+                           setItem(item.id,
+                            item.name,
+                            item.photos[0],
+                            item.price,
+                            item.discount,
+                            item.productColors,
+                            item.productColors[0].color.colorName);
+                        ">
+                        <span
+                          class="tm-product-card-add-button-icon"
+                          uk-icon="cart"
+                        ></span>
+                        <span class="tm-product-card-add-button-text"
+                          >add to cart</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- {{item.productColors[0].color.colorName}} -->
+              </article>
+            </div>
+          </div>
+          <div class="uk-margin uk-text-center">
+            <router-link to="/category" style="text-decoration: none">
+              <a class="uk-link-muted uk-text-uppercase tm-link-to-all"
+                ><span>Toàn bộ sản phẩm</span
+                ><span uk-icon="icon: chevron-right; ratio: .75;"></span
+              ></a>
+            </router-link>
+          </div>
+        </div>
+      </section>
+      <section class="uk-section uk-section-small">
+        <div class="uk-container">
           <h2 class="uk-text-center">Sản phẩm nổi bật</h2>
           <div class="uk-card uk-card-default tm-ignore-container">
             <div
@@ -605,7 +736,7 @@
               uk-grid-medium
               uk-grid-match
               uk-child-width-1-1
-              uk-child-width-1-2@s
+              uk-child-width-1-3@s
             "
             uk-grid
           >
@@ -752,6 +883,7 @@ export default {
       getBlogHL: "",
       getAllCate: "",
       getNewData: "",
+      getProductDiscount: "",
       itemProduct: {},
       formData: {
         name: "",
@@ -782,6 +914,7 @@ export default {
     setColorProduct(id, name){
       this.itemColorId = id;
       this.itemColor = name;
+      console.log(id, name);
     },
     switchToBlog(id) {
       this.$router.push({
@@ -804,6 +937,16 @@ export default {
         .get(this.$store.state.MainLink + "customer/products/trending")
         .then((response) => {
           this.getData = response.data.object;
+          // console.log(this.getData);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      axios
+        .get(this.$store.state.MainLink + "customer/products/discount")
+        .then((response) => {
+          this.getProductDiscount = response.data.object;
           // console.log(this.getData);
         })
         .catch((e) => {
@@ -1032,7 +1175,7 @@ export default {
       axios
         .get(this.$store.state.MainLink + "customer/blog")
         .then((response) => {
-          this.getBlogHL = response.data.object.slice(0, 2);
+          this.getBlogHL = response.data.object.slice(0, 3);
 
           // console.log(this.getBlogHL);
         })
@@ -1115,7 +1258,7 @@ export default {
           colorId: colorId,
           colorName: colorName,
       }
-      // console.log(this.itemProduct)
+      // console.log(colorName)
     }
   },
 };

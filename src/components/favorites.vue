@@ -47,6 +47,13 @@
                     <div>
                       <div class="uk-grid-small uk-flex-center" uk-grid>
                         <div>
+                          <router-link to="setting">
+                            <a class="uk-button uk-button-default uk-button-small">
+                              <span class="uk-margin-xsmall-right" uk-icon="icon: cog; ratio: .75;"></span>
+                              <span>Cài đặt</span></a>
+                          </router-link>
+                        </div>
+                        <div>
                           <button class="uk-button uk-button-default uk-button-small" title="Log out" @click="clearData">
                             <span uk-icon="icon: sign-out; ratio: .75;"></span>
                           </button>

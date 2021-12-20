@@ -58,7 +58,8 @@ export default {
       username: "",
       password: "",
       loginFail: "",
-      checkLogin: 0
+      checkLogin: 0,
+      errorAlert: ""
     };
   },
   methods: {
@@ -133,16 +134,25 @@ export default {
         })
         .catch((e) => {
           // this.error.push(e);
+          console.log(e.response.data.errorMsg);
+          this.errorAlert = e.response.data.errorMsg
           this.loginFail = "Thông tin đăng nhập không chính xác!"
           this.checkLogin = 0
-          console.log(e);
+          this.showAlert()
+          
           // this.$toasted.show("Thông tin không chính xác, vui lòng nhập lại !", {
           //   type: "error",
           //   duration: 2000,
           // });
         });
     },
-
+    showAlert() {
+      const options = {title: 'Lỗi', size: 'sm'}
+      this.$dialogs.alert(this.errorAlert, options)
+      .then(res => {
+        console.log(res) // {ok: true|false|undefined}
+      })
+    },
     getTotalCart() {
       axios
         .get(this.$store.state.MainLink + "customer/cart/get", {

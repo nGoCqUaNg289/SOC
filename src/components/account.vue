@@ -51,6 +51,13 @@
                     <div>
                       <div class="uk-grid-small uk-flex-center" uk-grid>
                         <div>
+                          <router-link to="setting">
+                            <a class="uk-button uk-button-default uk-button-small">
+                              <span class="uk-margin-xsmall-right" uk-icon="icon: cog; ratio: .75;"></span>
+                              <span>Cài đặt</span></a>
+                          </router-link>
+                        </div>
+                        <div>
                           <button
                             class="uk-button uk-button-default uk-button-small"
                             title="Log out"
@@ -143,7 +150,7 @@
                         <td v-else-if="item.status == 'Đang giao hàng'">
                           <span class="uk-label" style="background-color: #18F5F5;">{{item.status}}</span>
                         </td>
-                        <td v-else-if="item.status == 'Giao hàng thành công'">
+                        <td v-else-if="item.status == 'Giao hàng thành công' || item.status == 'Đã nhận lại hàng hoàn về'">
                           <span class="uk-label uk-label-success">{{item.status}}</span>
                         </td>
                         <td v-else>
