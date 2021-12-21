@@ -118,11 +118,11 @@
                           <h3 class="uk-margin-remove">Thông số chi tiết</h3>
                         </th>
                       </tr>
-                      <tr v-for="(item, index) in detailProduct" :key="index">
+                      <tr v-for="(item, index) in detailProduct" :key="index"> 
                         <th>
                           {{ item[0] }}
                         </th>
-                        <td>
+                        <td style="border-right: 1px solid gray;">
                           {{ item[1] }}
                         </td>
                         <td>

@@ -1,5 +1,5 @@
 <template>
-  <main class="login-background">
+  <main class="login-background" style="z-index: 99">
     <div v-if="checkReToken == 0">
       <loadingDot style="margin-left: -25px; margin-top: -150px"></loadingDot>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <main class="login-background">
+  <main class="login-background" style="z-index: 99">
     <!-- <button @click="getTotalCart()">Click here !</button> -->
     <div class="login-form vpi" style="border-radius: 1em">
       <div class="login-form-bg"></div>
