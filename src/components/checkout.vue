@@ -127,16 +127,6 @@
                                 </div>
                               </div>
                             </div>
-                            <!-- <div>
-                              <a class="tm-choose" href="#">
-                                <div class="tm-choose-title">
-                                  electronic payment
-                                </div>
-                                <div class="tm-choose-description">
-                                  PayPal, Yandex.Money, QIWI
-                                </div>
-                              </a>
-                            </div> -->
                           </div>
                         </div>
                         <div class="uk-card-footer">
@@ -245,23 +235,16 @@
                           <div class="uk-text-lead uk-text-bolder">{{ formatPrice(sumPricePro.value = sumTotal - sumDiscount) }} đ</div>
                         </div>
                       </div>
-                      <button
-                        v-if="checkPay == true"
-                        class="
-                          uk-button
-                          uk-button-primary
-                          uk-margin-small
-                          uk-width-1-1
-                        "
-                        uk-toggle="target: #review9"
-                        
-                      >
-                        Đặt hàng
-                      </button>
-                      <button v-else class="btn btn-primary uk-button uk-button-primary uk-margin-small uk-width-1-1" type="button" disabled>
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Vui lòng chờ ...
-                      </button>
+                      <div v-if="dataUser.fullname != '' || dataUser.email != '' || dataUser.phone != '' || dataUser.address != ''">
+                        <button v-if="checkPay == true" class=" uk-button uk-button-primary uk-margin-small uk-width-1-1" uk-toggle="target: #review9">
+                          Đặt hàng
+                        </button>
+                        <button v-else class="btn btn-primary uk-button uk-button-primary uk-margin-small uk-width-1-1" type="button" disabled>
+                          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                          Vui lòng chờ ...
+                        </button>
+                      </div>
+
                     </section>
                   </div>
                 </div>
@@ -271,8 +254,8 @@
         </div>
       </section>
       <div id="review9" uk-modal>
-              <div class="uk-modal-dialog uk-modal-body">
-                <button
+        <div class="uk-modal-dialog uk-modal-body">
+          <button
                   class="uk-modal-close-outside"
                   type="button"
                   uk-close
@@ -294,17 +277,12 @@
                     <br>
                     <br>
                     <div class="uk-text-center">
-                      <button class="uk-button uk-button-primary uk-modal-close" type="button" style="border: none; color: white" @click="payment()"><span  uk-icon="check"></span> Thanh toán hóa đơn</button>
-                      <!-- <button type="button" class="uk-button uk-button-primary" @click="payment()"> 
-                        <button class="uk-button uk-button-default uk-modal-close" type="button" style="border: none; color: white"><span  uk-icon="check"></span></button>
-                        Thanh toán hóa đơn
-                      </button> -->
-                      
+                      <button class="uk-button uk-button-primary uk-modal-close" type="button" style="border: none; color: white" @click="payment()"><span  uk-icon="check"></span> Thanh toán hóa đơn</button>                      
                     </div>
                   </div>
                 </form>
               </div>
-        </div>
+      </div>
     </main>
   </div>
 </template>
