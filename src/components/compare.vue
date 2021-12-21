@@ -72,7 +72,7 @@
                                     <div class="tm-ratio tm-ratio-4-3">
                                       <a class="tm-media-box">
                                         <figure class="tm-media-box-wrap">
-                                          <img :src="item.photos" />
+                                          <img :src="item.photos[0]" />
                                         </figure>
                                       </a>
                                     </div>

@@ -41,8 +41,17 @@
                       >
                         <div>
                           <ul class="uk-slideshow-items" uk-lightbox>
-                            <li v-for="(item, index) in getData.photos" :key="index">
-                              <a class="uk-card-body tm-media-box tm-media-box-zoom" :href="item">
+                            <li
+                              v-for="(item, index) in getData.photos"
+                              :key="index"
+                            >
+                              <a
+                                class="
+                                  uk-card-body
+                                  tm-media-box tm-media-box-zoom
+                                "
+                                :href="item"
+                              >
                                 <figure class="tm-media-box-wrap">
                                   <img :src="item" />
                                 </figure>
@@ -128,8 +137,23 @@
                                 <p>{{ getData.name }}</p>
                               </div>
                               <div>
-                                <span class="uk-label uk-label-warning uk-margin-xsmall-right">Xu hướng</span>
-                                <span class="uk-label uk-label-danger uk-margin-xsmall-right" v-if="getData.discount != 0">Khuyến mại</span>
+                                <span
+                                  class="
+                                    uk-label
+                                    uk-label-warning
+                                    uk-margin-xsmall-right
+                                  "
+                                  >Xu hướng</span
+                                >
+                                <span
+                                  class="
+                                    uk-label
+                                    uk-label-danger
+                                    uk-margin-xsmall-right
+                                  "
+                                  v-if="getData.discount != 0"
+                                  >Khuyến mại</span
+                                >
                               </div>
                               <!-- <br>
                               <p>
@@ -144,58 +168,141 @@
                             </div>
 
                             <div>
-                              <div class="uk-text-small uk-margin-xsmall-bottom">Màu sắc</div>
-                                <ul class="uk-subnav uk-subnav-pill tm-variations" uk-switcher>
-                                  <li v-for="item in getData.productColors" :key="item.id">
-                                    <a class="tm-variation-color" :uk-tooltip="item.color.colorName">
-                                      <div :style="{backgroundColor: '#' + item.color.code}" @click="setColorProduct(item.colorId,item.color.colorName)"></div>
-                                    </a>
-                                  </li>
-                                </ul>
-                                <p>Đang chọn màu : <strong>{{itemColor}}</strong></p>
+                              <div
+                                class="uk-text-small uk-margin-xsmall-bottom"
+                              >
+                                Màu sắc
                               </div>
+                              <ul
+                                class="uk-subnav uk-subnav-pill tm-variations"
+                                uk-switcher
+                              >
+                                <li
+                                  v-for="item in getData.productColors"
+                                  :key="item.id"
+                                >
+                                  <a
+                                    class="tm-variation-color"
+                                    :uk-tooltip="item.color.colorName"
+                                  >
+                                    <div
+                                      :style="{
+                                        backgroundColor: '#' + item.color.code,
+                                      }"
+                                      @click="
+                                        setColorProduct(
+                                          item.colorId,
+                                          item.color.colorName
+                                        )
+                                      "
+                                    ></div>
+                                  </a>
+                                </li>
+                              </ul>
+                              <p>
+                                Đang chọn màu : <strong>{{ itemColor }}</strong>
+                              </p>
                             </div>
-
-
+                          </div>
                         </div>
                         <div class="uk-margin">
-                          <div class="uk-padding-small uk-background-primary-lighten uk-border-rounded">
-                            <div class="uk-grid-small uk-child-width-1-1" uk-grid>
+                          <div
+                            class="
+                              uk-padding-small
+                              uk-background-primary-lighten
+                              uk-border-rounded
+                            "
+                          >
+                            <div
+                              class="uk-grid-small uk-child-width-1-1"
+                              uk-grid
+                            >
                               <div>
-                                <div class="tm-product-price" style="text-align: center">
+                                <div
+                                  class="tm-product-price"
+                                  style="text-align: center"
+                                >
                                   {{ formatPrice(getData.price) }}đ
                                 </div>
                               </div>
                               <div>
                                 <div class="uk-grid-small" uk-grid>
                                   <div style="width: 85%">
-                                    <button v-if="getData.status == 'Đang bán' && itemColor" class=" uk-button uk-button-primary tm-product-add-button tm-shine js-add-to-cart" style="width: 100%"
-                                      @click="addToCart(
-                                        getData.id,
-                                        getData.name,
-                                        getData.photos[0],
-                                        getData.price,
-                                        getData.discount,
-                                        itemColorId,
-                                        itemColor)">
-                                      <b-icon icon="cart-plus" style="margin-right: 15px"></b-icon>
+                                    <button
+                                      v-if="
+                                        getData.status == 'Đang bán' &&
+                                        itemColor
+                                      "
+                                      class="
+                                        uk-button uk-button-primary
+                                        tm-product-add-button tm-shine
+                                        js-add-to-cart
+                                      "
+                                      style="width: 100%"
+                                      @click="
+                                        addToCart(
+                                          getData.id,
+                                          getData.name,
+                                          getData.photos[0],
+                                          getData.price,
+                                          getData.discount,
+                                          itemColorId,
+                                          itemColor
+                                        )
+                                      "
+                                    >
+                                      <b-icon
+                                        icon="cart-plus"
+                                        style="margin-right: 15px"
+                                      ></b-icon>
                                       Thêm vào giỏ hàng
                                     </button>
-                                    <button v-else class=" uk-button uk-button-primary tm-product-add-button tm-shine js-add-to-cart" style="width: 100%"
-                                      @click="addToCart(
-                                        getData.id,
-                                        getData.name,
-                                        getData.photos[0],
-                                        getData.price,
-                                        getData.discount,
-                                        itemColorId,
-                                        itemColor)" disabled>
-                                      <b-icon icon="cart-plus" style="margin-right: 15px"></b-icon>
+                                    <button
+                                      v-else
+                                      class="
+                                        uk-button uk-button-primary
+                                        tm-product-add-button tm-shine
+                                        js-add-to-cart
+                                      "
+                                      style="width: 100%"
+                                      @click="
+                                        addToCart(
+                                          getData.id,
+                                          getData.name,
+                                          getData.photos[0],
+                                          getData.price,
+                                          getData.discount,
+                                          itemColorId,
+                                          itemColor
+                                        )
+                                      "
+                                      disabled
+                                    >
+                                      <b-icon
+                                        icon="cart-plus"
+                                        style="margin-right: 15px"
+                                      ></b-icon>
                                       Thêm vào giỏ hàng
                                     </button>
                                   </div>
-                                  <div class="uk-width-auto uk-width-expand@s uk-flex uk-flex-middle uk-text-meta">
-                                    <a class="js-add-to js-add-to-compare tm-action-button-active js-added-to" uk-tooltip="Add to compare" @click="compareProduct(getData)">
+                                  <div
+                                    class="
+                                      uk-width-auto
+                                      uk-width-expand@s
+                                      uk-flex
+                                      uk-flex-middle
+                                      uk-text-meta
+                                    "
+                                  >
+                                    <a
+                                      class="
+                                        js-add-to js-add-to-compare
+                                        tm-action-button-active
+                                        js-added-to
+                                      "
+                                      uk-tooltip="Add to compare"
+                                      @click="compareProduct(getData)"
+                                    >
                                       <span uk-icon="copy"></span>
                                     </a>
                                   </div>
@@ -206,8 +313,19 @@
                         </div>
 
                         <div class="uk-margin">
-                          <div class=" uk-padding-small uk-background-muted uk-border-rounded">
-                            <div class="uk-grid-small uk-child-width-1-1 uk-text-small" uk-grid>
+                          <div
+                            class="
+                              uk-padding-small
+                              uk-background-muted
+                              uk-border-rounded
+                            "
+                          >
+                            <div
+                              class="
+                                uk-grid-small uk-child-width-1-1 uk-text-small
+                              "
+                              uk-grid
+                            >
                               <div>
                                 <div class="uk-grid-collapse" uk-grid>
                                   <span
@@ -259,7 +377,6 @@
                             </div>
                           </div>
                         </div>
-
                       </div>
                     </div>
                     <div
@@ -299,22 +416,39 @@
                           <section>
                             <article class="uk-article">
                               <div class="uk-article-body">
-                                <div v-for="(item, index) in getBlog" :key="index">
-                                  <h5 style="margin-top: 15px" class="tm-product-card-title" v-if="item.type == 'header'">
+                                <div
+                                  v-for="(item, index) in getBlog"
+                                  :key="index"
+                                >
+                                  <h5
+                                    style="margin-top: 15px"
+                                    class="tm-product-card-title"
+                                    v-if="item.type == 'header'"
+                                  >
                                     {{ item.content }}
                                   </h5>
-                                  <div class="tm-wrapper uk-text-center" style="margin: 15px 15px 15px 15px">
+                                  <div
+                                    class="tm-wrapper uk-text-center"
+                                    style="margin: 15px 15px 15px 15px"
+                                  >
                                     <figure>
                                       <a>
-                                        <img :src="item.content" alt="Hình ảnh sản phẩm ..." v-if="item.type == 'photo'"/>
+                                        <img
+                                          :src="item.content"
+                                          alt="Hình ảnh sản phẩm ..."
+                                          v-if="item.type == 'photo'"
+                                        />
                                       </a>
                                     </figure>
                                   </div>
-                                  <h4 class="uk-text-center" v-if="item.type == 'content'">
+                                  <h4
+                                    class="uk-text-center"
+                                    v-if="item.type == 'content'"
+                                  >
                                     {{ item.content }}
                                   </h4>
                                   <p v-else-if="item.type == 'text'">
-                                     {{ item.content }}
+                                    {{ item.content }}
                                   </p>
                                 </div>
                               </div>
@@ -322,8 +456,18 @@
                           </section>
                           <section>
                             <h2>Thông số kỹ thuật</h2>
-                            <table class=" uk-table uk-table-divider uk-table-justify uk-table-responsive">
-                              <tr v-for="itemProduct in getData.productDetails" :key="itemProduct.id">
+                            <table
+                              class="
+                                uk-table
+                                uk-table-divider
+                                uk-table-justify
+                                uk-table-responsive
+                              "
+                            >
+                              <tr
+                                v-for="itemProduct in getData.productDetails"
+                                :key="itemProduct.id"
+                              >
                                 <th class="uk-width-medium">
                                   {{ itemProduct.propertyName }}
                                 </th>
@@ -381,26 +525,77 @@
                                 </div> -->
                                 <div style="height: 20px">
                                   <div id="rating" style="margin-left: 15px">
-                                      <input type="radio" id="star5" name="rating" value="5" />
-                                      <label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                  
-                                      <input type="radio" id="star4" name="rating" value="4" />
-                                      <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                  
-                                      <input type="radio" id="star3" name="rating" value="3" />
-                                      <label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                  
-                                      <input type="radio" id="star2" name="rating" value="2" />
-                                      <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                  
-                                      <input type="radio" id="star1" name="rating" value="1" />
-                                      <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                    <input
+                                      type="radio"
+                                      id="star5"
+                                      name="rating"
+                                      value="5"
+                                      checked="checked"
+                                      @click="setRate(5)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star5"
+                                      title="Awesome - 5 stars"
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      id="star4"
+                                      name="rating"
+                                      value="4"
+                                      @click="setRate(4)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star4"
+                                      title="Pretty good - 4 stars"
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      id="star3"
+                                      name="rating"
+                                      value="3"
+                                      @click="setRate(3)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star3"
+                                      title="Meh - 3 stars"
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      id="star2"
+                                      name="rating"
+                                      value="2"
+                                      @click="setRate(2)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star2"
+                                      title="Kinda bad - 2 stars"
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      id="star1"
+                                      name="rating"
+                                      value="1"
+                                      @click="setRate(1)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star1"
+                                      title="Sucks big time - 1 star"
+                                    ></label>
                                   </div>
                                 </div>
-                                  
-                                  <br>
+
+                                <br />
                                 <div class="uk-margin-small-top uk-text-meta">
-                                  dựa trên {{getComment.length}} đánh giá
+                                  dựa trên {{ getComment.length }} đánh giá
                                 </div>
                                 <button
                                   class="
@@ -423,48 +618,110 @@
                                   "
                                   uk-grid
                                 >
-                                  <article v-for="item in getComment" :key="item.id">
-                                    <section class="uk-grid-small uk-child-width-1-1" uk-grid>
+                                  <article
+                                    v-for="item in getComment"
+                                    :key="item.id"
+                                  >
+                                    <section
+                                      class="uk-grid-small uk-child-width-1-1"
+                                      uk-grid
+                                    >
                                       <header>
                                         <div class="uk-h4 uk-margin-remove">
-                                          {{item.name}}
+                                          {{ item.name }}
                                         </div>
-                                        <time class="uk-text-meta"
-                                          >{{item.timeCreated}}</time>
-                                        
+                                        <time class="uk-text-meta">{{
+                                          item.timeCreated
+                                        }}</time>
                                       </header>
-                                      <div>
-                                        <!-- <ul class="uk-iconnav uk-margin-bottom tm-rating">
-                                          <li>
-                                            <span class="uk-text-warning" uk-icon="star"></span>
-                                          </li>
-                                          <li>
-                                            <span class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                          <li>
-                                            <span
-                                              class="uk-text-warning"
-                                              uk-icon="star"
-                                            ></span>
-                                          </li>
-                                        </ul> -->
-                                        <div>
+                                      <div style="position: relative">
+                                        <div
+                                          id="rating"
+                                          style="
+                                            position: absolute;
+                                            top: 0;
+                                            left: 10px;
+                                            line-height: 25px;
+                                          "
+                                        >
+                                          <input
+                                            type="radio"
+                                            :id="`star5${item.id}`"
+                                            name="rating"
+                                            value="5"
+                                            disabled
+                                            :checked="setChecked(5, item.rate)"
+                                          />
+                                          <label
+                                            class="full"
+                                            disabled
+                                            :for="`star5${item.id}`"
+                                            title="Awesome - 5 stars"
+                                          ></label>
+
+                                          <input
+                                            type="radio"
+                                            :id="`star4${item.id}`"
+                                            name="rating"
+                                            value="4"
+                                            disabled
+                                            :checked="setChecked(4, item.rate)"
+                                          />
+                                          <label
+                                            class="full"
+                                            disabled
+                                            :for="`star4${item.id}`"
+                                            title="Pretty good - 4 stars"
+                                          ></label>
+
+                                          <input
+                                            type="radio"
+                                            :id="`star3${item.id}`"
+                                            name="rating"
+                                            value="3"
+                                            disabled
+                                            :checked="setChecked(3, item.rate)"
+                                          />
+                                          <label
+                                            class="full"
+                                            disabled
+                                            :for="`star3${item.id}`"
+                                            title="Meh - 3 stars"
+                                          ></label>
+
+                                          <input
+                                            type="radio"
+                                            :id="`star2${item.id}`"
+                                            name="rating"
+                                            value="2"
+                                            disabled
+                                            :checked="setChecked(2, item.rate)"
+                                          />
+                                          <label
+                                            class="full"
+                                            disabled
+                                            :for="`star2${item.id}`"
+                                            title="Kinda bad - 2 stars"
+                                          ></label>
+
+                                          <input
+                                            type="radio"
+                                            :id="`star1${item.id}`"
+                                            name="rating"
+                                            value="1"
+                                            disabled
+                                            :checked="setChecked(1, item.rate)"
+                                          />
+                                          <label
+                                            class="full"
+                                            disabled
+                                            :for="`star1${item.id}`"
+                                            title="Sucks big time - 1 star"
+                                          ></label>
+                                        </div>
+                                        <div style="margin-top: 30px">
                                           <p>
-                                            {{item.detail}}
+                                            {{ item.detail }}
                                           </p>
                                         </div>
                                       </div>
@@ -597,51 +854,113 @@
                       Sản phẩm liên quan
                     </h2>
                     <div class="uk-visible@s">
-                      <a class="tm-slidenav" uk-slider-item="previous" uk-slidenav-previous></a>
-                      <a class="tm-slidenav" uk-slider-item="next" uk-slidenav-next></a>
+                      <a
+                        class="tm-slidenav"
+                        uk-slider-item="previous"
+                        uk-slidenav-previous
+                      ></a>
+                      <a
+                        class="tm-slidenav"
+                        uk-slider-item="next"
+                        uk-slidenav-next
+                      ></a>
                     </div>
                   </div>
                   <div>
-                    <div class="uk-card uk-card-default uk-card-small tm-ignore-container">
+                    <div
+                      class="
+                        uk-card uk-card-default uk-card-small
+                        tm-ignore-container
+                      "
+                    >
                       <div class="uk-position-relative">
                         <div class="uk-slider-container">
-                          <div class="uk-slider-items uk-grid-collapse uk-child-width-1-3 uk-child-width-1-4@m tm-products-grid">
-                            <article class="tm-product-card" v-for="item in getDataTrending" :key="item.id">
+                          <div
+                            class="
+                              uk-slider-items
+                              uk-grid-collapse
+                              uk-child-width-1-3
+                              uk-child-width-1-4@m
+                              tm-products-grid
+                            "
+                          >
+                            <article
+                              class="tm-product-card"
+                              v-for="item in getDataTrending"
+                              :key="item.id"
+                            >
                               <div class="tm-product-card-media">
                                 <div class="tm-ratio tm-ratio-4-3">
                                   <a class="tm-media-box">
                                     <div class="tm-product-card-labels">
-                                      <span class="uk-label uk-label-warning" v-if="item.discount != 0">Khuyến mại</span>
+                                      <span
+                                        class="uk-label uk-label-warning"
+                                        v-if="item.discount != 0"
+                                        >Khuyến mại</span
+                                      >
                                       <!-- <span class="uk-label uk-label-danger">trade-in</span> -->
                                     </div>
                                     <figure class="tm-media-box-wrap">
-                                      <img :src="item.photos[0]" alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)' @click="showProductRe(item.id)"/>
+                                      <img
+                                        :src="item.photos[0]"
+                                        alt='Apple MacBook Pro 15" Touch Bar MPTU2LL/A 256GB (Silver)'
+                                        @click="showProductRe(item.id)"
+                                      />
                                     </figure>
                                   </a>
                                 </div>
                               </div>
                               <div class="tm-product-card-body">
                                 <div class="tm-product-card-info">
-                                  <div class="uk-text-meta uk-margin-xsmall-bottom">
+                                  <div
+                                    class="uk-text-meta uk-margin-xsmall-bottom"
+                                  >
                                     Laptop
                                   </div>
                                   <h3 class="tm-product-card-title">
-                                    <a class="uk-link-heading" @click="showProductRe(item.id)">{{item.name}}</a>
+                                    <a
+                                      class="uk-link-heading"
+                                      @click="showProductRe(item.id)"
+                                      >{{ item.name }}</a
+                                    >
                                   </h3>
                                 </div>
                                 <div class="tm-product-card-shop">
                                   <div class="tm-product-card-prices">
-                                    <del class="uk-text-meta" v-if="item.discount != 0">{{item.price}}</del>
+                                    <del
+                                      class="uk-text-meta"
+                                      v-if="item.discount != 0"
+                                      >{{ item.price }}</del
+                                    >
                                     <div class="tm-product-card-price">
-                                      {{formatPrice(item.price - item.discount)}} đ
+                                      {{
+                                        formatPrice(item.price - item.discount)
+                                      }}
+                                      đ
                                     </div>
                                   </div>
                                   <div class="tm-product-card-add">
-                                    <div class="uk-text-meta tm-product-card-actions">
-                                    </div>
-                                    <button class="uk-button uk-button-primary tm-product-card-add-button tm-shine js-add-to-cart">
-                                      <span class="tm-product-card-add-button-icon" uk-icon="cart"></span>
-                                      <span class="tm-product-card-add-button-text">add to cart</span>
+                                    <div
+                                      class="
+                                        uk-text-meta
+                                        tm-product-card-actions
+                                      "
+                                    ></div>
+                                    <button
+                                      class="
+                                        uk-button uk-button-primary
+                                        tm-product-card-add-button tm-shine
+                                        js-add-to-cart
+                                      "
+                                    >
+                                      <span
+                                        class="tm-product-card-add-button-icon"
+                                        uk-icon="cart"
+                                      ></span>
+                                      <span
+                                        class="tm-product-card-add-button-text"
+                                        >add to cart</span
+                                      >
                                     </button>
                                   </div>
                                 </div>
@@ -679,27 +998,94 @@
                         <div class="uk-form-label uk-form-label-required">
                           Tên
                         </div>
-                        <input class="uk-input" type="text" required v-model="comments.name"/>
+                        <input
+                          class="uk-input"
+                          type="text"
+                          required
+                          v-model="comments.name"
+                        />
                       </label>
                     </div>
                     <div>
                       <label style="width: 100%; margin-top: 10px">
-                        <div class="uk-form-label">
-                          Email
-                        </div>
-                        <input class="uk-input" type="email" required v-model="comments.email"/>
+                        <div class="uk-form-label">Email</div>
+                        <input
+                          class="uk-input"
+                          type="email"
+                          required
+                          v-model="comments.email"
+                        />
                       </label>
                     </div>
-                    <!-- <div>
-                      <div class="uk-form-label">Rating</div>
-                      <ul class="uk-iconnav tm-rating">
-                        <li><a uk-icon="star"></a></li>
-                        <li><a uk-icon="star"></a></li>
-                        <li><a uk-icon="star"></a></li>
-                        <li><a uk-icon="star"></a></li>
-                        <li><a uk-icon="star"></a></li>
-                      </ul>
-                    </div> -->
+                    <div style="height: 20px">
+                                  <div id="rating" style="">
+                                    <input
+                                      type="radio"
+                                      id="star5"
+                                      name="rating"
+                                      value="5"
+                                      checked="checked"
+                                      @click="setRate(5)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star5"
+                                      title="Awesome - 5 stars"
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      id="star4"
+                                      name="rating"
+                                      value="4"
+                                      @click="setRate(4)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star4"
+                                      title="Pretty good - 4 stars"
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      id="star3"
+                                      name="rating"
+                                      value="3"
+                                      @click="setRate(3)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star3"
+                                      title="Meh - 3 stars"
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      id="star2"
+                                      name="rating"
+                                      value="2"
+                                      @click="setRate(2)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star2"
+                                      title="Kinda bad - 2 stars"
+                                    ></label>
+
+                                    <input
+                                      type="radio"
+                                      id="star1"
+                                      name="rating"
+                                      value="1"
+                                      @click="setRate(1)"
+                                    />
+                                    <label
+                                      class="full"
+                                      for="star1"
+                                      title="Sucks big time - 1 star"
+                                    ></label>
+                                  </div>
+                                </div>
                     <div>
                       <label style="width: 100%">
                         <div class="uk-form-label uk-form-label-required">
@@ -714,7 +1100,13 @@
                       </label>
                     </div>
                     <div class="uk-text-center">
-                      <button type="button" class="uk-button uk-button-primary" @click="sendComment(getData.blogs.id)">Gửi đánh giá</button>
+                      <button
+                        type="button"
+                        class="uk-button uk-button-primary"
+                        @click="sendComment(getData.blogs.id)"
+                      >
+                        Gửi đánh giá
+                      </button>
                     </div>
                   </div>
                 </form>
@@ -757,11 +1149,12 @@ export default {
         email: "",
         name: "",
         blogId: 0,
-        detail: ""
+        detail: "",
       },
       cartDetails: [],
       itemColor: "",
       itemColorId: "",
+      rate: 0,
     };
   },
   created() {
@@ -771,7 +1164,14 @@ export default {
     // this.callFunction();
   },
   methods: {
-    setColorProduct(id, name){
+    setChecked(value, rate) {
+      return value == rate ? "checked" : "";
+    },
+    setRate(value) {
+      this.rate = value;
+      console.log(this.rate);
+    },
+    setColorProduct(id, name) {
       this.itemColorId = id;
       this.itemColor = name;
     },
@@ -779,13 +1179,13 @@ export default {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    showProductRe(id){
+    showProductRe(id) {
       console.log(id);
       this.item = id;
-      this.getDetailProduct()
+      this.getDetailProduct();
     },
     getDetailProduct() {
-      console.log(this.item)
+      console.log(this.item);
       axios
         .get(this.$store.state.MainLink + "customer/products/" + this.item)
         .then((response) => {
@@ -815,7 +1215,7 @@ export default {
           colorId: colorId,
           colorName: colorName,
         };
-        console.log(item)
+        console.log(item);
         this.$store.state.StoreCart.push(item);
         this.$toasted.show("Đã thêm vào giỏ hàng !", {
           type: "success",
@@ -890,52 +1290,51 @@ export default {
           console.log(e);
         });
     },
-    sendComment(id){
+    sendComment(id) {
       let item = {
         blogId: id,
-        name : this.comments.name,
-        email : this.comments.email,
-        detail : this.comments.detail
-      }
+        name: this.comments.name,
+        email: this.comments.email,
+        detail: this.comments.detail,
+      };
       // console.log(item);
       axios
         .post(this.$store.state.MainLink + "customer/comment/new", item)
         .then(() => {
           this.getDetailProduct();
           this.$toasted.show("Đã đăng bình luận!", {
-          type: "success",
-          duration: 2000,
-        });
+            type: "success",
+            duration: 2000,
+          });
         })
         .catch((e) => {
           this.$toasted.show("Lỗi, vui lòng thử lại!", {
-          type: "success",
-          duration: 2000,
-        });
+            type: "success",
+            duration: 2000,
+          });
           console.log(e);
         });
     },
     getDataAccount() {
-      
-      if(this.$store.state.tokenUser){
-      axios
-        .get(this.$store.state.MainLink + "customer/account", {
-          headers: {
-            Authorization: localStorage.userToken,
-          },
-        })
-        .then((response) => {
-          this.$store.state.userName = response.data.object.fullname;
-          this.$store.state.tokenUser = localStorage.userToken
-          this.$store.state.InfoPersonal = response.data.object;
-          this.getTotalCart();
-          // console.log(response.data.object);
-        })
-        .catch((e) => {
-          // this.error.push(e);
-          console.log(e);
-        });
-      }      
+      if (this.$store.state.tokenUser) {
+        axios
+          .get(this.$store.state.MainLink + "customer/account", {
+            headers: {
+              Authorization: localStorage.userToken,
+            },
+          })
+          .then((response) => {
+            this.$store.state.userName = response.data.object.fullname;
+            this.$store.state.tokenUser = localStorage.userToken;
+            this.$store.state.InfoPersonal = response.data.object;
+            this.getTotalCart();
+            // console.log(response.data.object);
+          })
+          .catch((e) => {
+            // this.error.push(e);
+            console.log(e);
+          });
+      }
     },
     getTotalCart() {
       axios
@@ -966,22 +1365,52 @@ a.js-scroll-to-description {
 }
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 /*reset css*/
-div,label{margin:0;padding:0;}
-body{margin:20px;}
-h1{font-size:1.5em;margin:10px;}
+div,
+label {
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 20px;
+}
+h1 {
+  font-size: 1.5em;
+  margin: 10px;
+}
 /****** Style Star Rating Widget *****/
-#rating{border:none;float:left;}
-#rating>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
-#rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
-#rating>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
-#rating>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+#rating {
+  border: none;
+  float: left;
+}
+#rating > input {
+  display: none;
+} /*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+} /*1 ngôi sao*/
+#rating > .half:before {
+  content: "\f089";
+  position: absolute;
+} /*0.5 ngôi sao*/
+#rating > label {
+  color: #ddd;
+  float: right;
+} /*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
 /*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
-#rating>input:checked~label,
-#rating:not(:checked)>label:hover, 
-#rating:not(:checked)>label:hover~label{color:#FFD700;}
+#rating > input:checked ~ label,
+#rating:not(:checked) > label:hover,
+#rating:not(:checked) > label:hover ~ label {
+  color: #ffd700;
+}
 /* Hover vào các sao phía trước ngôi sao đã chọn*/
-#rating>input:checked+label:hover,
-#rating>input:checked~label:hover,
-#rating>label:hover~input:checked~label,
-#rating>input:checked~label:hover~label{color:#FFED85;}
+#rating > input:checked + label:hover,
+#rating > input:checked ~ label:hover,
+#rating > label:hover ~ input:checked ~ label,
+#rating > input:checked ~ label:hover ~ label {
+  color: #ffed85;
+}
 </style>
