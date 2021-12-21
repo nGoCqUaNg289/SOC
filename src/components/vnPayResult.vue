@@ -113,8 +113,8 @@
                                 <tr>
                                     <th class="uk-width-medium">Tình trạng thanh toán</th>
                                     <td>
-                                      <span class="uk-label uk-label-success" v-if="vnResult.Status == '01'">Thanh toán thành công!</span>
-                                      <span class="uk-label uk-label-danger" v-else-if="vnResult.Status == '02'">Thanh toán thất bại!</span>
+                                      <span class="uk-label uk-label-success" v-if="vnResult.Status == '00'">Thanh toán thành công!</span>
+                                      <span class="uk-label uk-label-danger" v-else>Thanh toán thất bại!</span>
                                     </td>
                                 </tr>
                                 </tbody>
