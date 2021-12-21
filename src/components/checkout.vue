@@ -253,7 +253,8 @@
                           uk-margin-small
                           uk-width-1-1
                         "
-                        @click="payment()"
+                        uk-toggle="target: #review9"
+                        
                       >
                         Đặt hàng
                       </button>
@@ -269,6 +270,41 @@
           </div>
         </div>
       </section>
+      <div id="review9" uk-modal>
+              <div class="uk-modal-dialog uk-modal-body">
+                <button
+                  class="uk-modal-close-outside"
+                  type="button"
+                  uk-close
+                ></button>
+                <h2 class="uk-modal-title uk-text-center">Xác nhận</h2>
+                <form class="uk-form-stacked">
+                  <div class="uk-grid-small uk-child-width-1-1" uk-grid>
+                    <div>
+                      <label style="width: 100%;" class="uk-text-center">
+                        <h5>
+                          Bạn chắn chắn muốn thanh toán hóa đơn này?
+                        </h5>
+                        <i>
+                          Đơn hàng sẽ không thể thay đổi sau khi đặt hàng, nếu có bất kỳ thay đổi nào, vui lòng liên hệ với nhân viên!
+                        </i>
+                      </label>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="uk-text-center">
+                      <button class="uk-button uk-button-primary uk-modal-close" type="button" style="border: none; color: white" @click="payment()"><span  uk-icon="check"></span> Thanh toán hóa đơn</button>
+                      <!-- <button type="button" class="uk-button uk-button-primary" @click="payment()"> 
+                        <button class="uk-button uk-button-default uk-modal-close" type="button" style="border: none; color: white"><span  uk-icon="check"></span></button>
+                        Thanh toán hóa đơn
+                      </button> -->
+                      
+                    </div>
+                  </div>
+                </form>
+              </div>
+        </div>
     </main>
   </div>
 </template>
@@ -403,19 +439,13 @@ export default {
           }
         })
         .catch((error) => {
-          
-          this.showAlert = Object.values(error.response.data.validateDetails).join(", ");
-          // for (let i = 0; i < item.length; i ++){
-          //   this.showAlert +=  "- " + item[i]
-          // }
-          // this.showAlert = "Quang\n 123"
-          // console.log(this.showAlert)
-          // this.$toasted.show(item + " !", {
-          //   type: "error",
-          //   duration: 3000,
-          // });
+          console.log(error.response.data)
+          if(error.response.data.errorMsg){
+            this.showAlert = error.response.data.errorMsg
+          }else{
+            this.showAlert = Object.values(error.response.data.validateDetails).join(", ");
+          }
           this.showAlert1();
-          // console.log(Object.values(error.response.data.validateDetails));
           this.checkPay = true
         });
     },

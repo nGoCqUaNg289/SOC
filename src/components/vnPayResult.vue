@@ -24,60 +24,7 @@
                       <h1 class="uk-article-title">Thông tin thanh toán</h1>
                     </header>
                     <section class="uk-width-1-1 uk-width-expand@m">
-                      <!-- <article
-                        class="
-                          uk-card
-                          uk-card-default
-                          uk-card-small
-                          uk-card-body
-                          uk-article
-                          tm-ignore-container
-                        "
-                      >
-                        <form>
-                          <div class="form-group col-md-12 form-margin-top">
-                            <label class="label-custom"
-                              >Tình trạng thanh toán:</label
-                            >
-                            <label
-                              class="label-custom-detail"
-                              v-if="(vnResult.TransactionStatus = '00')"
-                              >Thanh toán thành công!</label
-                            >
-                            <label
-                              class="label-custom-detail label-custom-red"
-                              v-else
-                              >Thanh toán thất bại!</label
-                            >
-                          </div>
-                          <div class="form-group col-md-12 form-margin-top">
-                            <label class="label-custom">Giá tiền:</label>
-                            <label class="label-custom-detail"
-                              >{{ formatPrice(vnResult.Amount / 100) }} đ</label
-                            >
-                          </div>
-                          <div class="form-group col-md-12 form-margin-top">
-                            <label class="label-custom"
-                              >Thời gian thanh toán:</label
-                            >
-                            <label class="label-custom-detail"
-                              >{{ getDate(vnResult.PayDate) }} -
-                              {{ getTime(vnResult.PayDate) }}
-                            </label>
-                          </div>
-                          <form style="text-align: center">
-                            <button
-                              type="button"
-                              class="btn btn-outline-primary btn-size"
-                              style="width: 30%"
-                              @click="backToHome()"
-                            >
-                              Tiếp tục mua hàng!
-                            </button>
-                          </form>
-                        </form>
-                      </article> -->
-
+                      
                       <div class="uk-card uk-card-default uk-card-small tm-ignore-container">
                             <header class="uk-card-header text-center">
                             <h1 class="uk-h2">Đơn hàng của bạn</h1>
@@ -133,6 +80,41 @@
                                     <td><span class="uk-label" v-if="detailOrder.status == 'Chờ xác nhận'">Chờ xác nhận</span></td>
                                     <td>
                                     <span class="uk-label uk-label-danger" v-if="detailOrder.status == 'Hủy'">Đơn hàng bị hủy</span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <br>
+                            <h3>
+                                <a class="uk-link-heading"># Thông tin thanh toán
+                                </a>
+                            </h3>
+                            <table
+                                class="
+                                uk-table
+                                uk-table-small
+                                uk-table-justify
+                                uk-table-responsive
+                                uk-table-divider
+                                uk-margin-small-top
+                                uk-margin-remove-bottom
+                                "
+                            >
+                                <tbody>
+                                <tr>
+                                    <th class="uk-width-medium">Tên ngân hàng</th>
+                                    <td>{{  vnResult.bankCode }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="uk-width-medium">Loại hình thanh toán</th>
+                                    <td>{{  vnResult.typeCard }}</td>
+                                </tr>
+                                <tr>
+                                    <th class="uk-width-medium">Tình trạng thanh toán</th>
+                                    <td>
+                                      <span class="uk-label uk-label-success" v-if="vnResult.Status == '01'">Thanh toán thành công!</span>
+                                      <span class="uk-label uk-label-danger" v-else-if="vnResult.Status == '02'">Thanh toán thất bại!</span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -214,6 +196,9 @@ export default {
         TransactionStatus: this.$route.query.vnp_TransactionStatus,
         PayDate: this.$route.query.vnp_PayDate,
         TransactionNo: this.$route.query.vnp_TransactionNo,
+        Status: this.$route.query.vnp_TransactionStatus,
+        bankCode: this.$route.query.vnp_BankCode,
+        typeCard: this.$route.query.vnp_CardType
       };
       console.log(this.vnResult);
     },

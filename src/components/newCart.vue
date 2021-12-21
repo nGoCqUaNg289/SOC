@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="tm-cart-quantity-column">
                                   <!-- <a onclick="increment(-1, 'product-1')" uk-icon="icon: minus; ratio: .75" v-if="item.quantity > 0"></a> -->
-                                  <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="1" v-model="item.quantity" min="1" max="5" style="height: 30px" oninput="this.value = Math.abs(this.value)"/>
+                                  <input class="uk-input tm-quantity-input" id="product-1" type="number" maxlength="1" v-model="item.quantity" min="1" max="5" style="height: 30px" oninput="this.value = Math.abs(this.value)" @change="checkQuantity(index)"/>
                                   <!-- <a onclick="increment(+1, 'product-1')" uk-icon="icon: plus; ratio: .75"></a> -->
                                   <i v-if="item.quantity > 5" class="" style="color:red">
                                     Mua số lượng lớn vui lòng liên hệ shop để được nhận giá khác!
@@ -85,7 +85,7 @@
                                   <!-- <div>$1599.00</div> -->
                                 </div>
                                 <div class="uk-width-auto@s">
-                                  <a class="uk-text-danger" uk-tooltip="Remove"  @click="deleteProduct(index, item.id)">
+                                  <a class="uk-text-danger" uk-tooltip="Remove" uk-toggle="target: #review0" @click="setIndex(index, item.id)">
                                     <span uk-icon="close"></span>
                                   </a>
                                 </div>
@@ -165,7 +165,7 @@
                         <br>
                         <!-- <br> -->
                         <!-- <br> -->
-                        <a class="uk-button uk-button-primary uk-margin-small uk-width-1-1"  @click="checkout()">Mua hàng</a>
+                        <a class="uk-button uk-button-primary uk-margin-small uk-width-1-1"  @click="checkout()" v-if="DetailsCart.length > 0">Mua hàng</a>
                       </div>
                     </div>
                   </div>
@@ -174,6 +174,37 @@
             </div>
           </div>
         </section>
+        <div id="review0" uk-modal>
+              <div class="uk-modal-dialog uk-modal-body">
+                <button
+                  class="uk-modal-close-outside"
+                  type="button"
+                  uk-close
+                ></button>
+                <h2 class="uk-modal-title uk-text-center">Xác nhận</h2>
+                <form class="uk-form-stacked">
+                  <div class="uk-grid-small uk-child-width-1-1" uk-grid>
+                    <div>
+                      <label style="width: 100%;" class="uk-text-center">
+                        <i>
+                          Bạn chắn chắn muốn xóa sản phẩm khỏi giỏ hàng?
+                        </i>
+                      </label>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="uk-text-center">
+                      <button class="uk-button uk-button-danger uk-modal-close" type="button" style="border: none; color: white" @click="deleteProduct()"><span  uk-icon="trash"></span> Xóa sản phẩm</button>
+                      <!-- <button type="button" class="uk-button uk-button-danger" @click="deleteProduct()"> 
+                        <button class="uk-modal-close-outside" type="button" uk-close hidden></button>
+                        Xóa sản phẩm
+                      </button> -->
+                    </div>
+                  </div>
+                </form>
+              </div>
+        </div>
       </main>
   </div>
 </template>
@@ -219,9 +250,15 @@ export default {
       sumTotal: 0,
       sumDiscount: 0,
       dataUser: {},
+      indexCart: 0,
+      idCart: 0
     };
   },
   methods: {
+    setIndex(index, id){
+      this.indexCart = index;
+      this.idCart = id;
+    },
     getDataUser() {
         axios
           .get(this.$store.state.MainLink + "customer/account", {
@@ -288,10 +325,10 @@ export default {
       }
       return this.sumTotal, this.sumDiscount;
     },
-    deleteProduct(index, id) {
+    deleteProduct() {
       if (this.$store.state.tokenUser) {
         axios
-          .delete(this.$store.state.MainLink + "customer/cart/delete/" + id, {
+          .delete(this.$store.state.MainLink + "customer/cart/delete/" + this.idCart, {
             headers: {
               Authorization: localStorage.userToken,
             },
@@ -306,11 +343,14 @@ export default {
               duration: 2000,
             });
           })
-          .catch(function (error) {
-            alert(error);
+          .catch((error) => {
+            this.$toasted.show(error.response.data.errorMsg, {
+              type: "error",
+              duration: 2000,
+            });
           });
       } else {
-        this.DetailsCart.splice(index, 1);
+        this.DetailsCart.splice(this.indexCart, 1);
         this.sumTotal = 0;
         this.sumPrice();
         this.$toasted.show("Đã xoá sản phẩm khỏi giỏ hàng !", {
@@ -370,6 +410,9 @@ export default {
       }
 
     },
+    checkQuantity(index){
+      console.log(index);
+    }
   },
   watch: {
     'totalPrice.value': function (value) {

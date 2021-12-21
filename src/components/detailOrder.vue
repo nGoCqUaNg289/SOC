@@ -94,6 +94,8 @@
                   <button type="button" class="btn btn-outline-danger btn-size" style="float: right; margin: 10px" v-if="detailOrder.status == 'Đã xác nhận' && detailOrder.typePayment == false" uk-toggle="target: #review1">Yêu cầu hủy đơn</button>
                   <button type="button" class="btn btn-outline-danger btn-size" style="float: right; margin: 10px" v-else-if="detailOrder.status == 'Chờ xác nhận' && detailOrder.typePayment == false" uk-toggle="target: #review1">Hủy đơn hàng</button>
                   <button type="button" class="btn btn-outline-success btn-size" style="float: right; margin: 10px" v-else-if="detailOrder.status == 'Giao hàng thành công'" uk-toggle="target: #review2">Yêu cầu trả hàng</button>
+                  <button type="button" class="btn btn-outline-danger btn-size" style="float: right; margin: 10px" v-if="detailOrder.status == 'Yêu cầu trả hàng' && detailOrder.typePayment == false" uk-toggle="target: #review3">Hủy yêu cầu</button>
+                  <button type="button" class="btn btn-outline-danger btn-size" style="float: right; margin: 10px" v-if="detailOrder.status == 'Yêu cầu hủy' && detailOrder.typePayment == false" uk-toggle="target: #review4">Hủy yêu cầu</button>
                 </header>
                 
                 <section
@@ -260,6 +262,10 @@
                         <td>{{formatPrice(item.price)}} đ</td>
                       </tr>
                       <tr>
+                        <td scope="row">Màu sản phẩm</td>
+                        <td>{{item.colorName}}</td>
+                      </tr>
+                      <tr>
                         <td scope="row">Số lượng</td>
                         <td>{{item.quantity}}</td>
                       </tr>
@@ -328,12 +334,82 @@
                           <div class="uk-form-label uk-form-label-required" >
                             Nhập lý do khác
                           </div>
-                          <textarea rows="4" style="width: 100%;border-radius: 5px;padding: 5px 0px 0px 10px;" placeholder="Nhập lý do bạn hủy đơn ..." v-model="notediff"></textarea>
+                          <textarea rows="4" style="width: 100%;border-radius: 5px;padding: 5px 0px 0px 10px;" placeholder="Nhập lý do bạn hoàn trả sản phẩm ..." v-model="notediff"></textarea>
                         </div>
                       </label>
                     </div>
                     <div class="uk-text-center">
-                      <button type="button" class="uk-button uk-button-success" style="color: white; background: green" @click="checkReturnOrder()">Yêu cầu hoàn đơn</button>
+                      <button type="button" class="uk-button uk-button-danger" @click="checkReturnOrder()">Yêu cầu hoàn đơn</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div id="review3" uk-modal>
+              <div class="uk-modal-dialog uk-modal-body">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+                <h2 class="uk-modal-title uk-text-center">Hủy yêu cầu</h2>
+                <form class="uk-form-stacked">
+                  <div class="uk-grid-small uk-child-width-1-1" uk-grid>
+                    <div>
+                      <label style="width: 100%">
+                        <div class="uk-form-label uk-form-label-required">
+                          Chọn lý do hủy yêu cầu
+                        </div>
+                        <select name="reason" id="reason" style="padding: 5px;width: 100%;border-radius: 5px;box-shadow: none;" v-model="note">
+                          <option value="" selected disabled>-- Chọn lý do hủy yêu cầu --</option>
+                          <option value="Thay đổi sản phẩm khác">Yêu cầu sai</option>
+                          <option value="Thay đổi thông tin nhận hàng">Không muốn hủy đơn</option>
+                          <option value="diff">Lý do khác</option>
+                        </select>
+                        <br>
+                        <br>
+                        <div v-if="note == 'diff'">
+                          <div class="uk-form-label uk-form-label-required" >
+                            Nhập lý do khác
+                          </div>
+                          <textarea rows="4" style="width: 100%;border-radius: 5px;padding: 5px 0px 0px 10px;" placeholder="Nhập lý do bạn không muốn hủy đơn ..." v-model="notediff"></textarea>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="uk-text-center">
+                      <button type="button" class="uk-button uk-button-danger" @click="cancelReturnOrder()">Hủy yêu cầu</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div id="review4" uk-modal>
+              <div class="uk-modal-dialog uk-modal-body">
+                <button class="uk-modal-close-outside" type="button" uk-close></button>
+                <h2 class="uk-modal-title uk-text-center">Hủy yêu cầu</h2>
+                <form class="uk-form-stacked">
+                  <div class="uk-grid-small uk-child-width-1-1" uk-grid>
+                    <div>
+                      <label style="width: 100%">
+                        <div class="uk-form-label uk-form-label-required">
+                          Chọn lý do hủy yêu cầu
+                        </div>
+                        <select name="reason" id="reason" style="padding: 5px;width: 100%;border-radius: 5px;box-shadow: none;" v-model="note">
+                          <option value="" selected disabled>-- Chọn lý do hủy yêu cầu --</option>
+                          <option value="Thay đổi sản phẩm khác">Yêu cầu sai</option>
+                          <option value="Thay đổi thông tin nhận hàng">Không muốn hủy đơn</option>
+                          <option value="diff">Lý do khác</option>
+                        </select>
+                        <br>
+                        <br>
+                        <div v-if="note == 'diff'">
+                          <div class="uk-form-label uk-form-label-required" >
+                            Nhập lý do khác
+                          </div>
+                          <textarea rows="4" style="width: 100%;border-radius: 5px;padding: 5px 0px 0px 10px;" placeholder="Nhập lý do bạn không muốn hủy đơn ..." v-model="notediff"></textarea>
+                        </div>
+                      </label>
+                    </div>
+                    <div class="uk-text-center">
+                      <button type="button" class="uk-button uk-button-danger" @click="unCancelOrder()">Hủy yêu cầu</button>
                     </div>
                   </div>
                 </form>
@@ -395,13 +471,81 @@ export default {
         note : this.note
       }
       axios
-        .put(this.$store.state.MainLink + "customer/orders/confimReturnsUser?id=" + this.item, itemNote, {
+        .put(this.$store.state.MainLink + "customer/orders/unCancerOrderUser?id=" + this.item, itemNote, {
           headers: {
             Authorization: this.$store.state.tokenUser,
           },
         })
         .then((response) => {
           console.log(response.data.object);
+          this.getDataUserOrder();
+          this.$toasted.show("Hủy đơn hàng thành công !", {
+            type: "success",
+            duration: 2000,
+          });
+        })
+        .catch((e) => {
+          this.$toasted.show("Hủy đơn hàng thất bại !", {
+            type: "error",
+            duration: 2000,
+          });
+          console.log(e);
+        });
+    },
+    cancelReturnOrder(){
+      if(this.note != "diff"){
+        this.cancelReturn()
+      }else{
+        this.note = this.notediff
+        this.cancelReturn()
+      }
+    },
+    cancelReturn(){
+      let itemNote = {
+        note : this.note
+      }
+      axios
+        .put(this.$store.state.MainLink + "customer/orders/unCancerOrderUser?id=" + this.item, itemNote, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then(() => {
+          // console.log(response.data.object);
+          this.getDataUserOrder();
+          this.$toasted.show("Hủy đơn hàng thành công !", {
+            type: "success",
+            duration: 2000,
+          });
+        })
+        .catch((e) => {
+          this.$toasted.show("Hủy đơn hàng thất bại !", {
+            type: "error",
+            duration: 2000,
+          });
+          console.log(e);
+        });
+    },
+    unCancelOrder(){
+      if(this.note != "diff"){
+        this.requestCancelOrder()
+      }else{
+        this.note = this.notediff
+        this.requestCancelOrder()
+      }
+    },
+    requestCancelOrder(){
+      let itemNote = {
+        note : this.note
+      }
+      axios
+        .put(this.$store.state.MainLink + "customer/orders/unConfimReturnsUser?id=" + this.item, itemNote, {
+          headers: {
+            Authorization: this.$store.state.tokenUser,
+          },
+        })
+        .then(() => {
+          // console.log(response.data.object);
           this.getDataUserOrder();
           this.$toasted.show("Hủy đơn hàng thành công !", {
             type: "success",
@@ -503,7 +647,7 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data.object.dateCreated);
+          console.log(response.data.object);
           
           this.detailOrder = response.data.object;
           this.detailUser = response.data.object.customer;
