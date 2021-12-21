@@ -228,7 +228,7 @@ export default {
     getDetailResult() {
       // this.getTotalCart();
       axios
-        .get(this.$store.state.MainLink + "customer/pay/getpaydetail?trandate=20211210&tranno=13650461", {
+        .get(this.$store.state.MainLink + "customer/pay/getpaydetail?trandate="+this.vnResult.PayDate+"&tranno=" +this.vnResult.TransactionNo, {
           headers: {
             Authorization: localStorage.userToken,
           },
